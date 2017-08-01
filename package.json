@@ -4,7 +4,7 @@
   "description": "Blog from scratch",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "browserify ./project/app/index.js -o ./project/dist/index.js"
   },
