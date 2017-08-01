@@ -1,7 +1,7 @@
 {
-  "name": "blog",
+  "name": "tax",
   "version": "1.0.0",
-  "description": "Blog from scratch",
+  "description": "Tax Smart",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
