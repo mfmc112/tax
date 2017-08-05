@@ -1,0 +1,25 @@
+.main-menu {
+  background-color: #606060;
+}
+
+.navbar-brand {
+  color: #ffffff;
+}
+
+.navbar-default {
+  border-bottom-color: #000000;
+  border-bottom-width: thick;
+}
+
+.navbar-nav>li>a {
+    color: #ffffff;
+}
+
+.navbar-nav>.active>a, .navbar-nav>.active>a:focus, .navbar-nav>.active>a:hover {
+  color: #ffcc5c;
+  background-color: #606060;
+}
+
+.navbar-text {
+    color: #ffffff;
+}

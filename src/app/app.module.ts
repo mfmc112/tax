@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
+import { LoginComponent } from './login/login.component';
 import { LandingPageComponent } from './landing-page/landing-page.component'
 
 @NgModule({
@@ -13,12 +14,16 @@ import { LandingPageComponent } from './landing-page/landing-page.component'
     FormsModule,
     RouterModule.forRoot([
       {
+        path: 'login',
+        component: LoginComponent
+      },
+      {
         path: 'langing-page',
         component: LandingPageComponent
       },
       {
         path: '',
-        redirectTo: 'landing-page',
+        redirectTo: 'login',
         pathMatch: 'full'
       }
     ])
@@ -26,7 +31,8 @@ import { LandingPageComponent } from './landing-page/landing-page.component'
   declarations: [
     AppComponent,
     MenuComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    LoginComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

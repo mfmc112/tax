@@ -21,10 +21,12 @@
     "@angular/platform-browser": "^4.0.0",
     "@angular/platform-browser-dynamic": "^4.0.0",
     "@angular/router": "^4.0.0",
-    "bootstrap": "^4.0.0-alpha.6",
     "body-parser": "~1.5.2",
+    "bootstrap": "^3.3.7",
     "core-js": "^2.4.1",
     "express": "~4.7.2",
+    "jquery": "^3.2.1",
+    "tether": "^1.4.0",
     "rxjs": "^5.4.1",
     "zone.js": "^0.8.14"
   },

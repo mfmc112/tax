@@ -1,2 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
-@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+@import "./assets/css/bootstrap.min.css";
+
+.lower-border {
+  background-color: #232323;
+  min-height: 60px;
+}
