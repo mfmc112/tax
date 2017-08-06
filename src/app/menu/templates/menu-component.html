@@ -1,17 +1,21 @@
-<nav class="navbar navbar-default navbar-fixed-top main-menu">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">
-        LevIt
-      </a>
+<div class="menu-offset">
+  <nav class="navbar navbar-default navbar-fixed-top main-menu">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">
+          LEVIT
+        </a>
+      </div>
+      <ul class="nav navbar-nav">
+          <li class="active"><a routerLink="/login" routerLinkActive="active">Clients <span class="sr-only">(current)</span></a></li>
+          <li><a routerLink="/landing-page" routerLinkActive="active">Reports</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>{{user.name}}</li>
+        <li><a href="#"><span class="glyphicon glyphicon-bell"></span></a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-cog"></span></a></li>
+      </ul>
     </div>
-    <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Clients <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">Reports</a></li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="#"><span class="glyphicon glyphicon-bell"></span></a></li>
-      <li><a href="#"><span class="glyphicon glyphicon-cog"></span></a></li>
-    </ul>
-  </div>
-</nav>
+  </nav>
+</div>
+<router-outlet></router-outlet>

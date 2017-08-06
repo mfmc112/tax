@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonService } from '../common.service';
+import { User } from '../login/user';
 
 @Component({
   selector: 'menu-component',
@@ -6,7 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./templates/menu.component.css']
 })
 export class MenuComponent implements OnInit {
-  ngOnInit(): void {
 
+  user: User;
+
+  constructor ( private commonService: CommonService ) {}
+
+  ngOnInit(): void {
+    this.user = this.commonService.getUser();
   }
 }
