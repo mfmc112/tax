@@ -13,6 +13,21 @@ webpackEmptyContext.id = "../../../../../src async recursive";
 
 /***/ }),
 
+/***/ "../../../../../src/app/alert/alert.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Alert; });
+var Alert = (function () {
+    function Alert() {
+    }
+    return Alert;
+}());
+
+//# sourceMappingURL=alert.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/app-routing.module.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -227,6 +242,7 @@ module.exports = "landing page {{user.name}}\r\n"
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_service__ = __webpack_require__("../../../../../src/app/common.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__user__ = __webpack_require__("../../../../../src/app/login/user.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__alert_alert__ = __webpack_require__("../../../../../src/app/alert/alert.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -241,6 +257,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var LoginComponent = (function () {
     function LoginComponent(router, commonService) {
         this.router = router;
@@ -251,6 +268,7 @@ var LoginComponent = (function () {
     };
     LoginComponent.prototype.gotoLandingPage = function () {
         this.user.name = 'Marcos Costa';
+        this.user.alerts = [new __WEBPACK_IMPORTED_MODULE_4__alert_alert__["a" /* Alert */](), new __WEBPACK_IMPORTED_MODULE_4__alert_alert__["a" /* Alert */](), new __WEBPACK_IMPORTED_MODULE_4__alert_alert__["a" /* Alert */]()];
         this.commonService.setUser(this.user);
         this.router.navigate(['/landing-page']);
     };
@@ -343,6 +361,10 @@ var MenuComponent = (function () {
     MenuComponent.prototype.ngOnInit = function () {
         this.user = this.commonService.getUser();
     };
+    // This will get called everytime when something changes on this app
+    MenuComponent.prototype.ngDoCheck = function () {
+        this.user = this.commonService.getUser();
+    };
     return MenuComponent;
 }());
 MenuComponent = __decorate([
@@ -362,7 +384,7 @@ var _a;
 /***/ "../../../../../src/app/menu/templates/menu-component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"menu-offset\">\r\n  <nav class=\"navbar navbar-default navbar-fixed-top main-menu\">\r\n    <div class=\"container-fluid\">\r\n      <div class=\"navbar-header\">\r\n        <a class=\"navbar-brand\" href=\"#\">\r\n          LEVIT\r\n        </a>\r\n      </div>\r\n      <ul class=\"nav navbar-nav\">\r\n          <li class=\"active\"><a routerLink=\"/login\" routerLinkActive=\"active\">Clients <span class=\"sr-only\">(current)</span></a></li>\r\n          <li><a routerLink=\"/landing-page\" routerLinkActive=\"active\">Reports</a></li>\r\n      </ul>\r\n      <ul class=\"nav navbar-nav navbar-right\">\r\n        <li>{{user.name}}</li>\r\n        <li><a href=\"#\"><span class=\"glyphicon glyphicon-bell\"></span></a></li>\r\n        <li><a href=\"#\"><span class=\"glyphicon glyphicon-cog\"></span></a></li>\r\n      </ul>\r\n    </div>\r\n  </nav>\r\n</div>\r\n<router-outlet></router-outlet>\r\n"
+module.exports = "<div class=\"menu-offset\">\r\n  <nav class=\"navbar navbar-default navbar-fixed-top main-menu\">\r\n    <div class=\"container-fluid\">\r\n      <div class=\"navbar-header\">\r\n        <a class=\"navbar-brand\" href=\"#\">\r\n          LEVIT\r\n        </a>\r\n      </div>\r\n      <ul class=\"nav navbar-nav\">\r\n          <li class=\"active\"><a routerLink=\"/login\" routerLinkActive=\"active\">Clients <span class=\"sr-only\">(current)</span></a></li>\r\n          <li><a routerLink=\"/landing-page\" routerLinkActive=\"active\">Reports</a></li>\r\n      </ul>\r\n      <ul class=\"nav navbar-nav navbar-right\">\r\n        <li *ngIf=\"user && user.name\" class=\"loggedAgent\">Welcome {{user.name}}&nbsp;&nbsp;&nbsp;</li>\r\n        <li><a href=\"#\"><span class=\"glyphicon glyphicon-bell\"><span *ngIf=\"user && user.alerts\" class=\"badge\">{{user.alerts.length}}</span></span></a></li>\r\n        <li>\r\n          <div class=\"dropdown\">\r\n            <button class=\"btn btn-default dropdown-toggle image-button\" type=\"button\" id=\"dropdownMenu1\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"true\">\r\n              <span class=\"glyphicon glyphicon-cog\"></span>\r\n              <span class=\"caret\"></span>\r\n            </button>\r\n            <ul class=\"dropdown-menu\" aria-labelledby=\"dropdownMenu1\">\r\n              <li><a href=\"#\">Action</a></li>\r\n              <li><a href=\"#\">Another action</a></li>\r\n              <li><a href=\"#\">Something else here</a></li>\r\n              <li role=\"separator\" class=\"divider\"></li>\r\n              <li><a href=\"#\">Separated link</a></li>\r\n            </ul>\r\n          </div>\r\n        </li>\r\n      </ul>\r\n    </div>\r\n  </nav>\r\n</div>\r\n<router-outlet></router-outlet>\r\n"
 
 /***/ }),
 
@@ -374,7 +396,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".main-menu {\n  background-color: #606060;\n}\n\n.navbar-brand {\n  color: #ffffff;\n}\n\n.navbar-default {\n  border-bottom-color: #000000;\n  border-bottom-width: thick;\n}\n\n.navbar-nav>li>a {\n    color: #ffffff;\n}\n\n.navbar-nav>.active>a, .navbar-nav>.active>a:focus, .navbar-nav>.active>a:hover {\n  color: #ffcc5c;\n  background-color: #606060;\n}\n\n.navbar-text {\n    color: #ffffff;\n}\n\n.menu-offset {\n  min-height: 60px;\n}\n", ""]);
+exports.push([module.i, ".main-menu {\n  background-color: #606060;\n}\n\n.navbar-brand {\n  color: #ffffff;\n}\n\n.navbar-default {\n  border-bottom-color: #000000;\n  border-bottom-width: thick;\n}\n\n.navbar-nav>li>a {\n  color: #ffffff;\n}\n\n.loggedAgent {\n  top: 15px;\n  color: #ffffff;\n}\n\n.navbar-nav>.active>a, .navbar-nav>.active>a:focus, .navbar-nav>.active>a:hover {\n  color: #ffcc5c;\n  background-color: #606060;\n}\n\n.navbar-text {\n    color: #ffffff;\n}\n\n.menu-offset {\n  min-height: 60px;\n}\n\n.badge {\n    display: inline-block;\n    min-width: 10px;\n    padding: 2px 3px;\n    font-size: 8px;\n    font-face: Arial;\n    font-weight: 100;\n    line-height: 1;\n    color: #fff;\n    text-align: center;\n    white-space: nowrap;\n    background-color: #d9534f;\n    border-radius: 10px;\n}\n\n.image-button {\n  margin-top: 7px!important;\n  margin-bottom:;\n  color: #ffffff;\n  background-color: #606060;\n  border-color: #606060;\n}\n\n.image-button.focus, .image-button:focus {\n    color: #ffcc5c;\n    background-color: #e6e6e6;\n    border-color: #8c8c8c;\n}\n\n.image-button:hover {\n    color: #ffcc5c;\n    background-color: #606060;\n    border-color: #606060;\n}\n", ""]);
 
 // exports
 

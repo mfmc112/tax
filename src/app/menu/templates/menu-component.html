@@ -11,9 +11,23 @@
           <li><a routerLink="/landing-page" routerLinkActive="active">Reports</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li>{{user.name}}</li>
-        <li><a href="#"><span class="glyphicon glyphicon-bell"></span></a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-cog"></span></a></li>
+        <li *ngIf="user && user.name" class="loggedAgent">Welcome {{user.name}}&nbsp;&nbsp;&nbsp;</li>
+        <li><a href="#"><span class="glyphicon glyphicon-bell"><span *ngIf="user && user.alerts" class="badge">{{user.alerts.length}}</span></span></a></li>
+        <li>
+          <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle image-button" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              <span class="glyphicon glyphicon-cog"></span>
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Separated link</a></li>
+            </ul>
+          </div>
+        </li>
       </ul>
     </div>
   </nav>

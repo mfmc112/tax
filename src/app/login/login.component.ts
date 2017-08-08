@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonService } from '../common.service';
 import { User } from './user';
+import { Alert } from '../alert/alert';
 
 @Component({
   selector: 'login-component',
@@ -23,6 +24,7 @@ export class LoginComponent implements OnInit {
 
   gotoLandingPage(): void {
     this.user.name = 'Marcos Costa';
+    this.user.alerts = [new Alert(), new Alert(), new Alert()];
     this.commonService.setUser( this.user );
     this.router.navigate(['/landing-page']);
   }
