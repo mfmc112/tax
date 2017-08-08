@@ -8,8 +8,7 @@ import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
 import { LoginComponent } from './login/login.component';
 import { LandingPageComponent } from './landing-page/landing-page.component'
-
-
+import { ClientListComponent } from './landing-page/client-list.component';
 
 import { CommonService } from './common.service';
 
@@ -23,9 +22,11 @@ import { CommonService } from './common.service';
     AppComponent,
     MenuComponent,
     LandingPageComponent,
-    LoginComponent
+    LoginComponent,
+    ClientListComponent
   ],
   providers: [CommonService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

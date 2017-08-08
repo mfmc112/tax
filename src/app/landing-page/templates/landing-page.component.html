@@ -1,10 +1,62 @@
 <div class="container-fluid">
-  <div class="col-md-2">
-    <button type="button" id="myButton" data-loading-text="Loading..." class="btn btn-primary" autocomplete="off">
+  <div class="col-md-1">
+    <button type="button" id="myButton" data-loading-text="Loading..." class="btn new-client-button" autocomplete="off">
+      <br>
       <span class="glyphicon glyphicon-plus"></span>
       <span class="glyphicon glyphicon-user"></span>
-      <br>
+      <br><br>
       New Client
     </button>
+  </div>
+  <div class="col-md-11">
+    <div class="row">
+      <div class="col-md-2"><span class="year-font">2017</span></div>
+      <div class="col-md-10">&nbsp;</div>
+    </div>
+    <div class="row">
+      <div class="col-md-2">
+        <label for="clientName">&nbsp;</label>
+        <div class="input-group">
+          <span class="input-group-btn" id="basic-addon1">>
+              <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+          </span>
+          <input type="text" name="clientName" class="form-control" placeholder="Client Name" aria-describedby="basic-addon1">
+        </div>
+      </div>
+      <div class="col-md-2">
+          <label for="returnYear">Return Year</label>
+          <select name="returnYear" class="form-control">
+            <option value="2017">2017</option>
+            <option value="2016">2016</option>
+            <option value="2015">2015</option>
+          </select>
+      </div>
+      <div class="col-md-2">
+          <label for="federalStatus">Federal Status</label>
+          <select name="federalStatus" class="form-control">
+            <option value="In Progress">In Progress</option>
+            <option value="On Hold">On Hold</option>
+            <option value="E-Filed">E-Filed</option>
+          </select>
+      </div>
+      <div class="col-md-2">
+          <label for="taxPreparer">Federal Status</label>
+          <select name="taxPreparer" class="form-control">
+            <option value="Josue Edgardo Albertp">Josue Edgardo Alberto</option>
+            <option value="Marcos Costa">Marcos Costa</option>
+            <option value="Kristy Campbell">Kristy Campbell</option>
+            <option value="Val V">Val V</option>
+          </select>
+      </div>
+      <div class="col-md-4">&nbsp;</div>
+    </div>
+  </div>
+</div>
+<!-- list starts here-->
+<div class="container-fluid" style="padding-top:30px;">
+  <div class="row">
+    <div class="col-md-12">
+      <client-list></client-list>
+    </div>
   </div>
 </div>

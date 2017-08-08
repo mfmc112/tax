@@ -1,0 +1,12 @@
+.new-client-button {
+  min-width: 90px;
+  min-height: 90px;
+  color: #ffffff;
+  background-color: #004d66;
+}
+
+.year-font {
+  font-size: 40px;
+  font-weight: 600;
+  color: #C3C3C3;
+}
