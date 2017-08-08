@@ -1,4 +1,4 @@
-import { Alert } from '../alert/alert';
+import { Alert } from './alert';
 
 export class User {
   email: string;

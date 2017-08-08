@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonService } from '../common.service';
 import { User } from './user';
-import { Alert } from '../alert/alert';
+import { Alert } from './alert';
 
 @Component({
   selector: 'login-component',

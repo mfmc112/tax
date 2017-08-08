@@ -34,36 +34,38 @@
 }
 
 .badge {
-    display: inline-block;
-    min-width: 10px;
-    padding: 2px 3px;
-    font-size: 8px;
-    font-face: Arial;
-    font-weight: 100;
-    line-height: 1;
-    color: #fff;
-    text-align: center;
-    white-space: nowrap;
-    background-color: #d9534f;
-    border-radius: 10px;
+  border-radius: 8px;
+  display: inline-block;
+  font: 12px Roboto,Arial,Helvetica,sans-serif;
+  line-height: 12px;
+  min-height: 12px;
+  min-width: 12px;
+  left: 8px;
+  position: absolute;
+  text-align: center;
+  top: -8px;
+  background-color: #d9534f;
 }
 
 .image-button {
   margin-top: 7px!important;
   margin-bottom:;
+}
+
+.image-button-yellow {
   color: #ffffff;
   background-color: #606060;
   border-color: #606060;
 }
 
-.image-button.focus, .image-button:focus {
-    color: #ffcc5c;
-    background-color: #e6e6e6;
-    border-color: #8c8c8c;
+.image-button-yellow.focus, .image-button-yellow:focus {
+  color: #ffcc5c;
+  background-color: #606060;
+  border-color: #606060;
 }
 
-.image-button:hover {
-    color: #ffcc5c;
-    background-color: #606060;
-    border-color: #606060;
+.image-button-yellow:hover {
+  color: #ffcc5c;
+  background-color: #606060;
+  border-color: #606060;
 }

@@ -16,7 +16,8 @@ export class MenuComponent implements OnInit, DoCheck {
   ngOnInit(): void {
     this.user = this.commonService.getUser();
   }
-  // This will get called everytime when something changes on this app
+
+  // This ebables two way binding so when user changes into commonService it will get it
   ngDoCheck() {
     this.user = this.commonService.getUser();
   }
