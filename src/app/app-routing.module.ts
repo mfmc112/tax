@@ -3,12 +3,14 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { MenuComponent } from './menu/menu.component';
 import { LoginComponent } from './login/login.component';
-import { LandingPageComponent } from './landing-page/landing-page.component'
+import { LandingPageComponent } from './landing-page/landing-page.component';
+import { TaxReturnComponent } from './tax-return/tax-return.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'landing-page', component: LandingPageComponent }
+  { path: 'landing-page', component: LandingPageComponent },
+  { path: 'tax-return', component: TaxReturnComponent }
 ];
 
 @NgModule({

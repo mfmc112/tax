@@ -1,0 +1,15 @@
+<div class="col-md-12" *ngIf="client && client.firstName">
+  <div class="row">
+    <div class="col-md-12">
+      CLIENT // {{client.firstName}} {{client.middleName}} {{client.lastName}}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2 ammount-box">
+      <span class="big-value">${{taxReturn.estimate}}</span><BR>
+      FEDERAL<BR>
+      Current AGI: {{taxReturn.currentAGI}}
+    </div>
+    <div class="col-md-9">&nbsp;</div>
+  </div>
+</div>

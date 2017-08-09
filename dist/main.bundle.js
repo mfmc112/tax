@@ -21,6 +21,7 @@ webpackEmptyContext.id = "../../../../../src async recursive";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login_login_component__ = __webpack_require__("../../../../../src/app/login/login.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__landing_page_landing_page_component__ = __webpack_require__("../../../../../src/app/landing-page/landing-page.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__tax_return_tax_return_component__ = __webpack_require__("../../../../../src/app/tax-return/tax-return.component.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppRoutingModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -32,10 +33,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
 var routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
     { path: 'login', component: __WEBPACK_IMPORTED_MODULE_2__login_login_component__["a" /* LoginComponent */] },
-    { path: 'landing-page', component: __WEBPACK_IMPORTED_MODULE_3__landing_page_landing_page_component__["a" /* LandingPageComponent */] }
+    { path: 'landing-page', component: __WEBPACK_IMPORTED_MODULE_3__landing_page_landing_page_component__["a" /* LandingPageComponent */] },
+    { path: 'tax-return', component: __WEBPACK_IMPORTED_MODULE_4__tax_return_tax_return_component__["a" /* TaxReturnComponent */] }
 ];
 var AppRoutingModule = (function () {
     function AppRoutingModule() {
@@ -97,7 +100,11 @@ AppComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__login_login_component__ = __webpack_require__("../../../../../src/app/login/login.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__landing_page_landing_page_component__ = __webpack_require__("../../../../../src/app/landing-page/landing-page.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__landing_page_client_list_component__ = __webpack_require__("../../../../../src/app/landing-page/client-list.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__common_service__ = __webpack_require__("../../../../../src/app/common.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__tax_return_tax_return_component__ = __webpack_require__("../../../../../src/app/tax-return/tax-return.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__tax_return_tax_header_component__ = __webpack_require__("../../../../../src/app/tax-return/tax-header.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__common_service__ = __webpack_require__("../../../../../src/app/common.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__working_client_service__ = __webpack_require__("../../../../../src/app/working-client.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__working_tax_return_service__ = __webpack_require__("../../../../../src/app/working-tax-return.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -108,6 +115,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
  // NgModel lives here
+
+
+
+
 
 
 
@@ -132,9 +143,11 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_5__menu_menu_component__["a" /* MenuComponent */],
             __WEBPACK_IMPORTED_MODULE_7__landing_page_landing_page_component__["a" /* LandingPageComponent */],
             __WEBPACK_IMPORTED_MODULE_6__login_login_component__["a" /* LoginComponent */],
-            __WEBPACK_IMPORTED_MODULE_8__landing_page_client_list_component__["a" /* ClientListComponent */]
+            __WEBPACK_IMPORTED_MODULE_8__landing_page_client_list_component__["a" /* ClientListComponent */],
+            __WEBPACK_IMPORTED_MODULE_9__tax_return_tax_return_component__["a" /* TaxReturnComponent */],
+            __WEBPACK_IMPORTED_MODULE_10__tax_return_tax_header_component__["a" /* TaxHeaderComponent */]
         ],
-        providers: [__WEBPACK_IMPORTED_MODULE_9__common_service__["a" /* CommonService */]],
+        providers: [__WEBPACK_IMPORTED_MODULE_11__common_service__["a" /* CommonService */], __WEBPACK_IMPORTED_MODULE_12__working_client_service__["a" /* WorkingClientService */], __WEBPACK_IMPORTED_MODULE_13__working_tax_return_service__["a" /* WorkingTaxReturnService */]],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* AppComponent */]]
     })
 ], AppModule);
@@ -175,11 +188,67 @@ CommonService = __decorate([
 
 /***/ }),
 
+/***/ "../../../../../src/app/common/client.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Client; });
+var Client = (function () {
+    function Client() {
+    }
+    Client.prototype.setFirstName = function (firstName) {
+        this.firstName = firstName;
+    };
+    Client.prototype.setMiddleName = function (middleName) {
+        this.middleName = middleName;
+    };
+    Client.prototype.setLastName = function (lastName) {
+        this.lastName = lastName;
+    };
+    Client.prototype.setSSN = function (ssn) {
+        this.ssn = ssn;
+    };
+    Client.prototype.setITIN = function (itin) {
+        this.itin = itin;
+    };
+    return Client;
+}());
+
+//# sourceMappingURL=client.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/common/tax-return.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TaxReturn; });
+var TaxReturn = (function () {
+    function TaxReturn() {
+    }
+    TaxReturn.prototype.setEstimate = function (estimate) {
+        this.estimate = estimate;
+    };
+    TaxReturn.prototype.setCurrentAGI = function (currentAGI) {
+        this.currentAGI = currentAGI;
+    };
+    return TaxReturn;
+}());
+
+//# sourceMappingURL=tax-return.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/landing-page/client-list.component.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_client__ = __webpack_require__("../../../../../src/app/common/client.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_tax_return__ = __webpack_require__("../../../../../src/app/common/tax-return.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__working_client_service__ = __webpack_require__("../../../../../src/app/working-client.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__working_tax_return_service__ = __webpack_require__("../../../../../src/app/working-tax-return.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ClientListComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -187,10 +256,33 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
 
 var ClientListComponent = (function () {
-    function ClientListComponent() {
+    function ClientListComponent(router, workingClientService, workingTaxReturnService) {
+        this.router = router;
+        this.workingClientService = workingClientService;
+        this.workingTaxReturnService = workingTaxReturnService;
     }
+    ClientListComponent.prototype.taxReturn = function () {
+        var client = new __WEBPACK_IMPORTED_MODULE_2__common_client__["a" /* Client */]();
+        client.setFirstName('Kristy');
+        client.setMiddleName('L');
+        client.setLastName('Campbell');
+        this.workingClientService.setClient(client);
+        var taxReturn = new __WEBPACK_IMPORTED_MODULE_3__common_tax_return__["a" /* TaxReturn */]();
+        taxReturn.setEstimate(2500);
+        taxReturn.setCurrentAGI(24858);
+        this.workingTaxReturnService.setTaxReturn(taxReturn);
+        this.router.navigate(['./tax-return']);
+    };
     return ClientListComponent;
 }());
 ClientListComponent = __decorate([
@@ -198,9 +290,11 @@ ClientListComponent = __decorate([
         selector: 'client-list',
         styles: [__webpack_require__("../../../../../src/app/landing-page/templates/client-list.component.css")],
         template: __webpack_require__("../../../../../src/app/landing-page/templates/client-list.component.html")
-    })
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__working_client_service__["a" /* WorkingClientService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__working_client_service__["a" /* WorkingClientService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5__working_tax_return_service__["a" /* WorkingTaxReturnService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__working_tax_return_service__["a" /* WorkingTaxReturnService */]) === "function" && _c || Object])
 ], ClientListComponent);
 
+var _a, _b, _c;
 //# sourceMappingURL=client-list.component.js.map
 
 /***/ }),
@@ -267,7 +361,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/landing-page/templates/client-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid\">\r\n  <div class=\"col-md-12\">\r\n    <table class=\"table table-hover\">\r\n      <tr>\r\n        <td class=\"active\"><input type=\"checkbox\" class=\"checkbox\"></td>\r\n        <td class=\"active\">Client Name</td>\r\n        <td class=\"active\">Status</td>\r\n        <td class=\"active\">Preparer</td>\r\n        <td class=\"active\">Last Updated</td>\r\n      </tr>\r\n      <tr>\r\n        <td class=\"info\"><input type=\"checkbox\" class=\"checkbox\"></td>\r\n        <td>Ana Vitoria Goulet</td>\r\n        <td>In Progress</td>\r\n        <td>Josue Edgardo Alberto</td>\r\n        <td>08/05/2017 22:29</td>\r\n      </tr>\r\n      <tr>\r\n        <td class=\"success\"><input type=\"checkbox\" class=\"checkbox\"></td>\r\n        <td>Antonio Carlos da Costa</td>\r\n        <td>E-Filed</td>\r\n        <td>Josue Edgardo Alberto</td>\r\n        <td>08/08/2017 08:03</td>\r\n      </tr>\r\n      <tr>\r\n        <td class=\"success\"><input type=\"checkbox\" class=\"checkbox\"></td>\r\n        <td>Antonio Carlos da Costa</td>\r\n        <td>E-Filed</td>\r\n        <td>Josue Edgardo Alberto</td>\r\n        <td>08/08/2017 08:03</td>\r\n      </tr>\r\n      <tr>\r\n        <td class=\"success\"><input type=\"checkbox\" class=\"checkbox\"></td>\r\n        <td>Antonio Carlos da Costa</td>\r\n        <td>E-Filed</td>\r\n        <td>Josue Edgardo Alberto</td>\r\n        <td>08/08/2017 08:03</td>\r\n      </tr>\r\n      <tr>\r\n        <td class=\"danger\"><input type=\"checkbox\" class=\"checkbox\"></td>\r\n        <td>Ana Vitoria Goulet</td>\r\n        <td>Rejected</td>\r\n        <td>Josue Edgardo Alberto</td>\r\n        <td>08/08/2017 10:47</td>\r\n      </tr>\r\n    </table>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"container-fluid\">\r\n  <div class=\"col-md-12\">\r\n    <table class=\"table table-hover\">\r\n      <tr>\r\n        <td class=\"active\"><input type=\"checkbox\" class=\"checkbox\"></td>\r\n        <td class=\"active\">Client Name</td>\r\n        <td class=\"active\">Status</td>\r\n        <td class=\"active\">Preparer</td>\r\n        <td class=\"active\">Last Updated</td>\r\n      </tr>\r\n      <tr (click)=\"taxReturn()\">\r\n        <td class=\"info\"><input type=\"checkbox\" class=\"checkbox\"></td>\r\n        <td>Ana Vitoria Goulet</td>\r\n        <td>In Progress</td>\r\n        <td>Josue Edgardo Alberto</td>\r\n        <td>08/05/2017 22:29</td>\r\n      </tr>\r\n      <tr (click)=\"taxReturn()\">\r\n        <td class=\"success\"><input type=\"checkbox\" class=\"checkbox\"></td>\r\n        <td>Antonio Carlos da Costa</td>\r\n        <td>E-Filed</td>\r\n        <td>Josue Edgardo Alberto</td>\r\n        <td>08/08/2017 08:03</td>\r\n      </tr>\r\n      <tr (click)=\"taxReturn()\">\r\n        <td class=\"success\"><input type=\"checkbox\" class=\"checkbox\"></td>\r\n        <td>Antonio Carlos da Costa</td>\r\n        <td>E-Filed</td>\r\n        <td>Josue Edgardo Alberto</td>\r\n        <td>08/08/2017 08:03</td>\r\n      </tr>\r\n      <tr (click)=\"taxReturn()\">\r\n        <td class=\"success\"><input type=\"checkbox\" class=\"checkbox\"></td>\r\n        <td>Antonio Carlos da Costa</td>\r\n        <td>E-Filed</td>\r\n        <td>Josue Edgardo Alberto</td>\r\n        <td>08/08/2017 08:03</td>\r\n      </tr>\r\n      <tr (click)=\"taxReturn()\">\r\n        <td class=\"danger\"><input type=\"checkbox\" class=\"checkbox\"></td>\r\n        <td>Ana Vitoria Goulet</td>\r\n        <td>Rejected</td>\r\n        <td>Josue Edgardo Alberto</td>\r\n        <td>08/08/2017 10:47</td>\r\n      </tr>\r\n    </table>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -292,7 +386,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/landing-page/templates/landing-page.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid\">\r\n  <div class=\"col-md-1\">\r\n    <button type=\"button\" id=\"myButton\" data-loading-text=\"Loading...\" class=\"btn new-client-button\" autocomplete=\"off\">\r\n      <br>\r\n      <span class=\"glyphicon glyphicon-plus\"></span>\r\n      <span class=\"glyphicon glyphicon-user\"></span>\r\n      <br><br>\r\n      New Client\r\n    </button>\r\n  </div>\r\n  <div class=\"col-md-11\">\r\n    <div class=\"row\">\r\n      <div class=\"col-md-2\"><span class=\"year-font\">2017</span></div>\r\n      <div class=\"col-md-10\">&nbsp;</div>\r\n    </div>\r\n    <div class=\"row\">\r\n      <div class=\"col-md-2\">\r\n        <label for=\"clientName\">&nbsp;</label>\r\n        <div class=\"input-group\">\r\n          <span class=\"input-group-btn\" id=\"basic-addon1\">>\r\n              <button class=\"btn btn-default\" type=\"button\"><span class=\"glyphicon glyphicon-search\"></span></button>\r\n          </span>\r\n          <input type=\"text\" name=\"clientName\" class=\"form-control\" placeholder=\"Client Name\" aria-describedby=\"basic-addon1\">\r\n        </div>\r\n      </div>\r\n      <div class=\"col-md-2\">\r\n          <label for=\"returnYear\">Return Year</label>\r\n          <select name=\"returnYear\" class=\"form-control\">\r\n            <option value=\"2017\">2017</option>\r\n            <option value=\"2016\">2016</option>\r\n            <option value=\"2015\">2015</option>\r\n          </select>\r\n      </div>\r\n      <div class=\"col-md-2\">\r\n          <label for=\"federalStatus\">Federal Status</label>\r\n          <select name=\"federalStatus\" class=\"form-control\">\r\n            <option value=\"In Progress\">In Progress</option>\r\n            <option value=\"On Hold\">On Hold</option>\r\n            <option value=\"E-Filed\">E-Filed</option>\r\n          </select>\r\n      </div>\r\n      <div class=\"col-md-2\">\r\n          <label for=\"taxPreparer\">Federal Status</label>\r\n          <select name=\"taxPreparer\" class=\"form-control\">\r\n            <option value=\"Josue Edgardo Albertp\">Josue Edgardo Alberto</option>\r\n            <option value=\"Marcos Costa\">Marcos Costa</option>\r\n            <option value=\"Kristy Campbell\">Kristy Campbell</option>\r\n            <option value=\"Val V\">Val V</option>\r\n          </select>\r\n      </div>\r\n      <div class=\"col-md-4\">&nbsp;</div>\r\n    </div>\r\n  </div>\r\n</div>\r\n<!-- list starts here-->\r\n<div class=\"container-fluid\" style=\"padding-top:30px;\">\r\n  <div class=\"row\">\r\n    <div class=\"col-md-12\">\r\n      <client-list></client-list>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"container-fluid\">\r\n  <div class=\"col-md-1\">\r\n    <button type=\"button\" id=\"myButton\" data-loading-text=\"Loading...\" class=\"btn new-client-button\" autocomplete=\"off\">\r\n      <br>\r\n      <span class=\"glyphicon glyphicon-plus\"></span>\r\n      <span class=\"glyphicon glyphicon-user\"></span>\r\n      <br><br>\r\n      New Client\r\n    </button>\r\n  </div>\r\n  <div class=\"col-md-11\">\r\n    <div class=\"row\">\r\n      <div class=\"col-md-2\"><span class=\"year-font\">2017</span></div>\r\n      <div class=\"col-md-10\">&nbsp;</div>\r\n    </div>\r\n    <div class=\"row\">\r\n      <div class=\"col-md-2\">\r\n        <label for=\"clientName\">&nbsp;</label>\r\n        <div class=\"input-group\">\r\n          <span class=\"input-group-btn\" id=\"basic-addon1\">>\r\n              <button class=\"btn btn-default\" type=\"button\"><span class=\"glyphicon glyphicon-search\"></span></button>\r\n          </span>\r\n          <input type=\"text\" name=\"clientName\" class=\"form-control\" placeholder=\"Client Name\" aria-describedby=\"basic-addon1\">\r\n        </div>\r\n      </div>\r\n      <div class=\"col-md-2\">\r\n          <label for=\"returnYear\">Return Year</label>\r\n          <select name=\"returnYear\" class=\"form-control\">\r\n            <option value=\"2017\">2017</option>\r\n            <option value=\"2016\">2016</option>\r\n            <option value=\"2015\">2015</option>\r\n          </select>\r\n      </div>\r\n      <div class=\"col-md-2\">\r\n          <label for=\"federalStatus\">Federal Status</label>\r\n          <select name=\"federalStatus\" class=\"form-control\">\r\n            <option value=\"In Progress\">In Progress</option>\r\n            <option value=\"On Hold\">On Hold</option>\r\n            <option value=\"E-Filed\">E-Filed</option>\r\n          </select>\r\n      </div>\r\n      <div class=\"col-md-2\">\r\n          <label for=\"taxPreparer\">Federal Status</label>\r\n          <select name=\"taxPreparer\" class=\"form-control\">\r\n            <option value=\"Josue Edgardo Albertp\">Josue Edgardo Alberto</option>\r\n            <option value=\"Marcos Costa\">Marcos Costa</option>\r\n            <option value=\"Kristy Campbell\">Kristy Campbell</option>\r\n            <option value=\"Val V\">Valerie Osipenko</option>\r\n          </select>\r\n      </div>\r\n      <div class=\"col-md-4\">&nbsp;</div>\r\n    </div>\r\n  </div>\r\n</div>\r\n<!-- list starts here-->\r\n<div class=\"container-fluid\" style=\"padding-top:30px;\">\r\n  <div class=\"row\">\r\n    <div class=\"col-md-12\">\r\n      <client-list></client-list>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -352,11 +446,11 @@ var LoginComponent = (function () {
     return LoginComponent;
 }());
 __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["e" /* Input */])(),
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Input */])(),
     __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__user__["a" /* User */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__user__["a" /* User */]) === "function" && _a || Object)
 ], LoginComponent.prototype, "user", void 0);
 __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["e" /* Input */])(),
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Input */])(),
     __metadata("design:type", String)
 ], LoginComponent.prototype, "password", void 0);
 LoginComponent = __decorate([
@@ -483,6 +577,115 @@ module.exports = module.exports.toString();
 
 /***/ }),
 
+/***/ "../../../../../src/app/tax-return/tax-header.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__working_client_service__ = __webpack_require__("../../../../../src/app/working-client.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__working_tax_return_service__ = __webpack_require__("../../../../../src/app/working-tax-return.service.ts");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TaxHeaderComponent; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var TaxHeaderComponent = (function () {
+    function TaxHeaderComponent(workingClientService, workingTaxReturnService) {
+        this.workingClientService = workingClientService;
+        this.workingTaxReturnService = workingTaxReturnService;
+    }
+    TaxHeaderComponent.prototype.ngOnInit = function () {
+        this.client = this.workingClientService.getClient();
+        this.taxReturn = this.workingTaxReturnService.getTaxReturn();
+    };
+    return TaxHeaderComponent;
+}());
+TaxHeaderComponent = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["d" /* Component */])({
+        selector: 'tax-header-component',
+        template: __webpack_require__("../../../../../src/app/tax-return/templates/tax-header.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/tax-return/templates/tax-return.component.css")]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__working_client_service__["a" /* WorkingClientService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__working_client_service__["a" /* WorkingClientService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__working_tax_return_service__["a" /* WorkingTaxReturnService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__working_tax_return_service__["a" /* WorkingTaxReturnService */]) === "function" && _b || Object])
+], TaxHeaderComponent);
+
+var _a, _b;
+//# sourceMappingURL=tax-header.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/tax-return/tax-return.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TaxReturnComponent; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+var TaxReturnComponent = (function () {
+    function TaxReturnComponent() {
+    }
+    TaxReturnComponent.prototype.ngOnInit = function () {
+    };
+    return TaxReturnComponent;
+}());
+TaxReturnComponent = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["d" /* Component */])({
+        selector: 'main-tax-return',
+        template: __webpack_require__("../../../../../src/app/tax-return/templates/tax-return.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/tax-return/templates/tax-return.component.css")]
+    })
+], TaxReturnComponent);
+
+//# sourceMappingURL=tax-return.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/tax-return/templates/tax-header.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"col-md-12\" *ngIf=\"client && client.firstName\">\r\n  <div class=\"row\">\r\n    <div class=\"col-md-12\">\r\n      CLIENT // {{client.firstName}} {{client.middleName}} {{client.lastName}}\r\n    </div>\r\n  </div>\r\n  <div class=\"row\">\r\n    <div class=\"col-md-2 ammount-box\">\r\n      <span class=\"big-value\">${{taxReturn.estimate}}</span><BR>\r\n      FEDERAL<BR>\r\n      Current AGI: {{taxReturn.currentAGI}}\r\n    </div>\r\n    <div class=\"col-md-9\">&nbsp;</div>\r\n  </div>\r\n</div>\r\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/tax-return/templates/tax-return.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\r\n.ammount-box {\r\n  background-color: #9FD068;\r\n  font-size: 17px;\r\n  font-face: Arial!important;\r\n}\r\n\r\n.big-value {\r\n  font-size: 40px;\r\n}\r\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/tax-return/templates/tax-return.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"container-fluid\">\r\n  <div class=\"col-md-12\">\r\n    <tax-header-component></tax-header-component>\r\n  </div>\r\n  <div class=\"col-md-12\">\r\n  \r\n  </div>\r\n</div>\r\n"
+
+/***/ }),
+
 /***/ "../../../../../src/app/templates/app.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -505,6 +708,70 @@ module.exports = module.exports.toString();
 /***/ (function(module, exports) {
 
 module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<div class=\"container-fluid\">\n  <div class=\"col-md-12\">\n    <menu-component></menu-component>\n  </div>\n<div>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/working-client.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WorkingClientService; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+var WorkingClientService = (function () {
+    function WorkingClientService() {
+    }
+    WorkingClientService.prototype.getClient = function () {
+        return this.client;
+    };
+    WorkingClientService.prototype.setClient = function (client) {
+        this.client = client;
+    };
+    return WorkingClientService;
+}());
+WorkingClientService = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* Injectable */])()
+], WorkingClientService);
+
+//# sourceMappingURL=working-client.service.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/working-tax-return.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WorkingTaxReturnService; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+var WorkingTaxReturnService = (function () {
+    function WorkingTaxReturnService() {
+    }
+    WorkingTaxReturnService.prototype.getTaxReturn = function () {
+        return this.taxReturn;
+    };
+    WorkingTaxReturnService.prototype.setTaxReturn = function (taxReturn) {
+        this.taxReturn = taxReturn;
+    };
+    return WorkingTaxReturnService;
+}());
+WorkingTaxReturnService = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* Injectable */])()
+], WorkingTaxReturnService);
+
+//# sourceMappingURL=working-tax-return.service.js.map
 
 /***/ }),
 
