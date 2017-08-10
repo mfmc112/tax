@@ -1,15 +1,49 @@
-<div class="col-md-12" *ngIf="client && client.firstName">
+<div *ngIf="client && client.firstName">
   <div class="row">
     <div class="col-md-12">
-      CLIENT // {{client.firstName}} {{client.middleName}} {{client.lastName}}
+      <h4>CLIENT // {{client.firstName}} {{client.middleName}} {{client.lastName}}</h4>
+      <div class="divider-10"></div>
     </div>
   </div>
   <div class="row">
-    <div class="col-md-2 ammount-box">
-      <span class="big-value">${{taxReturn.estimate}}</span><BR>
-      FEDERAL<BR>
+    <div class="col-md-2 ammount-box tax-header-row">
+      <span class="big-value">${{taxReturn.estimate}}</span><br>
+      FEDERAL<div class="divider-5"></div>
       Current AGI: {{taxReturn.currentAGI}}
     </div>
-    <div class="col-md-9">&nbsp;</div>
+    <div class="col-md-1">
+      <div class="tax-header-row">
+        <button type="button" id="attachButton" class="btn new-client-button large-button-blue tax-header-button" autocomplete="off">
+          <span class="glyphicon glyphicon-paperclip large-button-icon"></span>
+          <div class="divider-5"></div>
+          Attachments
+        </button>
+      </div>
+    </div>
+    <div class="col-md-1">
+      <div class="tax-header-row">
+        <button type="button" id="summaryButton" class="btn new-client-button large-button-blue align-bottom tax-header-button" autocomplete="off">
+          <span class="glyphicon glyphicon-list-alt large-button-icon"></span>
+          <br>
+          Return<br>Summary
+        </button>
+      </div>
+    </div>
+    <div class="col-md-1">
+      <div class="tax-header-row">
+        <button type="button" id="printButton" class="btn new-client-button large-button-blue align-bottom tax-header-button" autocomplete="off">
+          <span class="glyphicon glyphicon-print large-button-icon"></span>
+          <div class="divider-5"></div>
+          Print
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2 step-menu-border">
+      <h4>FEDERAL FORMS</h4>
+      <tax-menu-component></tax-menu-component>
+    </div>
+    <div class="col-md-2"></div>
   </div>
 </div>

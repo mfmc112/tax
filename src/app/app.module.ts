@@ -11,6 +11,7 @@ import { LandingPageComponent } from './landing-page/landing-page.component'
 import { ClientListComponent } from './landing-page/client-list.component';
 import { TaxReturnComponent } from './tax-return/tax-return.component';
 import { TaxHeaderComponent } from './tax-return/tax-header.component';
+import { TaxMenuComponent } from './tax-return/tax-menu.component';
 
 import { CommonService } from './common.service';
 import { WorkingClientService } from './working-client.service';
@@ -29,7 +30,8 @@ import { WorkingTaxReturnService } from './working-tax-return.service';
     LoginComponent,
     ClientListComponent,
     TaxReturnComponent,
-    TaxHeaderComponent
+    TaxHeaderComponent,
+    TaxMenuComponent
   ],
   providers: [CommonService, WorkingClientService, WorkingTaxReturnService],
   bootstrap: [AppComponent]
