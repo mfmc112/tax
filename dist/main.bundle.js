@@ -669,7 +669,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "\r\n.ammount-box {\r\n  background-color: #9FD068;\r\n  font-size: 17px;\r\n  font-face: Arial!important;\r\n}\r\n\r\n.big-value {\r\n  font-size: 40px;\r\n}\r\n", ""]);
+exports.push([module.i, "\r\n.ammount-box {\r\n  background-color: #9EBA7E;\r\n  font-size: 17px;\r\n  font-face: Arial!important;\r\n}\r\n\r\n.big-value {\r\n  font-size: 40px;\r\n}\r\n", ""]);
 
 // exports
 
