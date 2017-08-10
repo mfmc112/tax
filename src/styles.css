@@ -24,7 +24,7 @@
   padding-bottom: 10px
 }
 
-.large-button-blue {
+.large-button {
   width: 100px;
   height: 90px;
   color: #ffffff;
@@ -36,8 +36,24 @@
   border-style: solid;
 }
 
-.large-button-blue:hover {
+.large-button-blue {
+  color: #ffffff;
+  background-color: #004d66;
+}
+
+.large-button-red {
+  color: #ffffff;
+  background-color: #b30000;
+}
+
+.large-button-grey {
+  color: #ffffff;
+  background-color: #cccccc;
+}
+
+.large-button:hover {
   color: #ffcc5c!important;
+  border-color: #000000;
 }
 
 .thin-border-black {

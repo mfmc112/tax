@@ -13,7 +13,7 @@
     </div>
     <div class="col-md-1">
       <div class="tax-header-row">
-        <button type="button" id="attachButton" class="btn new-client-button large-button-blue tax-header-button" autocomplete="off">
+        <button type="button" id="attachButton" class="btn large-button large-button-blue tax-header-button" autocomplete="off">
           <span class="glyphicon glyphicon-paperclip large-button-icon"></span>
           <div class="divider-5"></div>
           Attachments
@@ -22,7 +22,7 @@
     </div>
     <div class="col-md-1">
       <div class="tax-header-row">
-        <button type="button" id="summaryButton" class="btn new-client-button large-button-blue align-bottom tax-header-button" autocomplete="off">
+        <button type="button" id="summaryButton" class="btn large-button large-button-blue align-bottom tax-header-button" autocomplete="off">
           <span class="glyphicon glyphicon-list-alt large-button-icon"></span>
           <br>
           Return<br>Summary
@@ -31,19 +31,38 @@
     </div>
     <div class="col-md-1">
       <div class="tax-header-row">
-        <button type="button" id="printButton" class="btn new-client-button large-button-blue align-bottom tax-header-button" autocomplete="off">
+        <button type="button" id="printButton" class="btn large-button large-button-blue align-bottom tax-header-button" autocomplete="off">
           <span class="glyphicon glyphicon-print large-button-icon"></span>
           <div class="divider-5"></div>
           Print
         </button>
       </div>
     </div>
+    <div class="col-md-5">&nbsp;</div>
+    <div class="col-md-1">
+      <div class="tax-header-row">
+        <button type="button" id="printButton" class="btn large-button large-button-red align-bottom tax-header-button" autocomplete="off">
+          Error<br>Check
+        </button>
+      </div>
+    </div>
+    <div class="col-md-1">
+      <div class="tax-header-row">
+        <button type="button" id="printButton" class="btn large-button large-button-grey align-bottom tax-header-button" autocomplete="off">
+          Send
+        </button>
+      </div>
+    </div>
+
+
   </div>
   <div class="row">
     <div class="col-md-2 step-menu-border">
       <h4>FEDERAL FORMS</h4>
       <tax-menu-component></tax-menu-component>
     </div>
-    <div class="col-md-2"></div>
+    <div class="col-md-10 area-menu area-menu-border">
+      <tax-area-component></tax-area-component>
+    </div>
   </div>
 </div>

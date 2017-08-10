@@ -24,12 +24,25 @@
 .step-menu-border {
   border: #000000;
   border-width: 1px;
+  border-right-width: 0;
   border-style: solid;
+  background-color: #bfbfbf;
+  min-height:500px;
 }
 
 .steps-menu {
   width: 205px;
   margin-left: -11px;
+}
+
+.area-menu {
+   min-height:500px;
+}
+
+.area-menu-border {
+  border: #000000;
+  border-width: 1px;
+  border-style: solid;
 }
 
 .panel-group .panel {
