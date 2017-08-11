@@ -13,6 +13,7 @@ import { TaxReturnComponent } from './tax-return/tax-return.component';
 import { TaxHeaderComponent } from './tax-return/tax-header.component';
 import { TaxMenuComponent } from './tax-return/tax-menu.component';
 import { TaxAreaComponent } from './tax-return/tax-area.component';
+import { TaxContentComponent } from './tax-return/tax-content.component';
 
 import { CommonService } from './common.service';
 import { WorkingClientService } from './working-client.service';
@@ -33,7 +34,8 @@ import { WorkingTaxReturnService } from './working-tax-return.service';
     TaxReturnComponent,
     TaxHeaderComponent,
     TaxMenuComponent,
-    TaxAreaComponent
+    TaxAreaComponent,
+    TaxContentComponent
   ],
   providers: [CommonService, WorkingClientService, WorkingTaxReturnService],
   bootstrap: [AppComponent]

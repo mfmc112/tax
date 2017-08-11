@@ -104,9 +104,10 @@ AppComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__tax_return_tax_header_component__ = __webpack_require__("../../../../../src/app/tax-return/tax-header.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__tax_return_tax_menu_component__ = __webpack_require__("../../../../../src/app/tax-return/tax-menu.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__tax_return_tax_area_component__ = __webpack_require__("../../../../../src/app/tax-return/tax-area.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__common_service__ = __webpack_require__("../../../../../src/app/common.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__working_client_service__ = __webpack_require__("../../../../../src/app/working-client.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__working_tax_return_service__ = __webpack_require__("../../../../../src/app/working-tax-return.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__tax_return_tax_content_component__ = __webpack_require__("../../../../../src/app/tax-return/tax-content.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__common_service__ = __webpack_require__("../../../../../src/app/common.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__working_client_service__ = __webpack_require__("../../../../../src/app/working-client.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__working_tax_return_service__ = __webpack_require__("../../../../../src/app/working-tax-return.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -117,6 +118,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
  // NgModel lives here
+
 
 
 
@@ -151,9 +153,10 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_9__tax_return_tax_return_component__["a" /* TaxReturnComponent */],
             __WEBPACK_IMPORTED_MODULE_10__tax_return_tax_header_component__["a" /* TaxHeaderComponent */],
             __WEBPACK_IMPORTED_MODULE_11__tax_return_tax_menu_component__["a" /* TaxMenuComponent */],
-            __WEBPACK_IMPORTED_MODULE_12__tax_return_tax_area_component__["a" /* TaxAreaComponent */]
+            __WEBPACK_IMPORTED_MODULE_12__tax_return_tax_area_component__["a" /* TaxAreaComponent */],
+            __WEBPACK_IMPORTED_MODULE_13__tax_return_tax_content_component__["a" /* TaxContentComponent */]
         ],
-        providers: [__WEBPACK_IMPORTED_MODULE_13__common_service__["a" /* CommonService */], __WEBPACK_IMPORTED_MODULE_14__working_client_service__["a" /* WorkingClientService */], __WEBPACK_IMPORTED_MODULE_15__working_tax_return_service__["a" /* WorkingTaxReturnService */]],
+        providers: [__WEBPACK_IMPORTED_MODULE_14__common_service__["a" /* CommonService */], __WEBPACK_IMPORTED_MODULE_15__working_client_service__["a" /* WorkingClientService */], __WEBPACK_IMPORTED_MODULE_16__working_tax_return_service__["a" /* WorkingTaxReturnService */]],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* AppComponent */]]
     })
 ], AppModule);
@@ -628,6 +631,51 @@ var _a, _b;
 
 /***/ }),
 
+/***/ "../../../../../src/app/tax-return/tax-content.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__working_client_service__ = __webpack_require__("../../../../../src/app/working-client.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__working_tax_return_service__ = __webpack_require__("../../../../../src/app/working-tax-return.service.ts");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TaxContentComponent; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var TaxContentComponent = (function () {
+    function TaxContentComponent(workingClientService, workingTaxReturnService) {
+        this.workingClientService = workingClientService;
+        this.workingTaxReturnService = workingTaxReturnService;
+    }
+    TaxContentComponent.prototype.ngOnInit = function () {
+        this.client = this.workingClientService.getClient();
+        this.taxReturn = this.workingTaxReturnService.getTaxReturn();
+    };
+    return TaxContentComponent;
+}());
+TaxContentComponent = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["d" /* Component */])({
+        selector: 'tax-content-component',
+        template: __webpack_require__("../../../../../src/app/tax-return/templates/tax-content.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/tax-return/templates/tax-return.component.css")]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__working_client_service__["a" /* WorkingClientService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__working_client_service__["a" /* WorkingClientService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__working_tax_return_service__["a" /* WorkingTaxReturnService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__working_tax_return_service__["a" /* WorkingTaxReturnService */]) === "function" && _b || Object])
+], TaxContentComponent);
+
+var _a, _b;
+//# sourceMappingURL=tax-content.component.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/tax-return/tax-header.component.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -723,6 +771,8 @@ var _a, _b;
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__working_client_service__ = __webpack_require__("../../../../../src/app/working-client.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__working_tax_return_service__ = __webpack_require__("../../../../../src/app/working-tax-return.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TaxReturnComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -730,11 +780,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
 
 var TaxReturnComponent = (function () {
-    function TaxReturnComponent() {
+    function TaxReturnComponent(workingClientService, workingTaxReturnService) {
+        this.workingClientService = workingClientService;
+        this.workingTaxReturnService = workingTaxReturnService;
     }
     TaxReturnComponent.prototype.ngOnInit = function () {
+        this.client = this.workingClientService.getClient();
+        this.taxReturn = this.workingTaxReturnService.getTaxReturn();
     };
     return TaxReturnComponent;
 }());
@@ -743,14 +802,23 @@ TaxReturnComponent = __decorate([
         selector: 'main-tax-return',
         template: __webpack_require__("../../../../../src/app/tax-return/templates/tax-return.component.html"),
         styles: [__webpack_require__("../../../../../src/app/tax-return/templates/tax-return.component.css")]
-    })
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__working_client_service__["a" /* WorkingClientService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__working_client_service__["a" /* WorkingClientService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__working_tax_return_service__["a" /* WorkingTaxReturnService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__working_tax_return_service__["a" /* WorkingTaxReturnService */]) === "function" && _b || Object])
 ], TaxReturnComponent);
 
+var _a, _b;
 //# sourceMappingURL=tax-return.component.js.map
 
 /***/ }),
 
 /***/ "../../../../../src/app/tax-return/templates/tax-area.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"row\">\r\n  <div class=\"col-md-2 step-menu-border\">\r\n    <tax-menu-component></tax-menu-component>\r\n  </div>\r\n  <div class=\"col-md-10 area-menu area-menu-border\">\r\n    <tax-content-component></tax-content-component>\r\n  </div>\r\n</div>\r\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/tax-return/templates/tax-content.component.html":
 /***/ (function(module, exports) {
 
 module.exports = ""
@@ -760,14 +828,14 @@ module.exports = ""
 /***/ "../../../../../src/app/tax-return/templates/tax-header.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"client && client.firstName\">\r\n  <div class=\"row\">\r\n    <div class=\"col-md-12\">\r\n      <h4>CLIENT // {{client.firstName}} {{client.middleName}} {{client.lastName}}</h4>\r\n      <div class=\"divider-10\"></div>\r\n    </div>\r\n  </div>\r\n  <div class=\"row\">\r\n    <div class=\"col-md-2 ammount-box tax-header-row\">\r\n      <span class=\"big-value\">${{taxReturn.estimate}}</span><br>\r\n      FEDERAL<div class=\"divider-5\"></div>\r\n      Current AGI: {{taxReturn.currentAGI}}\r\n    </div>\r\n    <div class=\"col-md-1\">\r\n      <div class=\"tax-header-row\">\r\n        <button type=\"button\" id=\"attachButton\" class=\"btn large-button large-button-blue tax-header-button\" autocomplete=\"off\">\r\n          <span class=\"glyphicon glyphicon-paperclip large-button-icon\"></span>\r\n          <div class=\"divider-5\"></div>\r\n          Attachments\r\n        </button>\r\n      </div>\r\n    </div>\r\n    <div class=\"col-md-1\">\r\n      <div class=\"tax-header-row\">\r\n        <button type=\"button\" id=\"summaryButton\" class=\"btn large-button large-button-blue align-bottom tax-header-button\" autocomplete=\"off\">\r\n          <span class=\"glyphicon glyphicon-list-alt large-button-icon\"></span>\r\n          <br>\r\n          Return<br>Summary\r\n        </button>\r\n      </div>\r\n    </div>\r\n    <div class=\"col-md-1\">\r\n      <div class=\"tax-header-row\">\r\n        <button type=\"button\" id=\"printButton\" class=\"btn large-button large-button-blue align-bottom tax-header-button\" autocomplete=\"off\">\r\n          <span class=\"glyphicon glyphicon-print large-button-icon\"></span>\r\n          <div class=\"divider-5\"></div>\r\n          Print\r\n        </button>\r\n      </div>\r\n    </div>\r\n    <div class=\"col-md-5\">&nbsp;</div>\r\n    <div class=\"col-md-1\">\r\n      <div class=\"tax-header-row\">\r\n        <button type=\"button\" id=\"printButton\" class=\"btn large-button large-button-red align-bottom tax-header-button\" autocomplete=\"off\">\r\n          Error<br>Check\r\n        </button>\r\n      </div>\r\n    </div>\r\n    <div class=\"col-md-1\">\r\n      <div class=\"tax-header-row\">\r\n        <button type=\"button\" id=\"printButton\" class=\"btn large-button large-button-grey align-bottom tax-header-button\" autocomplete=\"off\">\r\n          Send\r\n        </button>\r\n      </div>\r\n    </div>\r\n\r\n\r\n  </div>\r\n  <div class=\"row\">\r\n    <div class=\"col-md-2 step-menu-border\">\r\n      <h4>FEDERAL FORMS</h4>\r\n      <tax-menu-component></tax-menu-component>\r\n    </div>\r\n    <div class=\"col-md-10 area-menu area-menu-border\">\r\n      <tax-area-component></tax-area-component>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+module.exports = "  <div class=\"row\">\r\n    <div class=\"col-md-12\">\r\n      <h4>CLIENT // {{client.firstName}} {{client.middleName}} {{client.lastName}}</h4>\r\n      <div class=\"divider-10\"></div>\r\n    </div>\r\n  </div>\r\n  <div class=\"row\">\r\n    <div class=\"col-md-2 ammount-box tax-header-row\">\r\n      <span class=\"big-value\">${{taxReturn.estimate}}</span><br>\r\n      FEDERAL<div class=\"divider-5\"></div>\r\n      Current AGI: {{taxReturn.currentAGI}}\r\n    </div>\r\n    <div class=\"col-md-4 tax-header-border-right\">\r\n      <div class=\"tax-header-row\">\r\n        <button type=\"button\" id=\"attachButton\" class=\"btn large-button large-button-blue tax-header-button\" autocomplete=\"off\">\r\n          <span class=\"glyphicon glyphicon-paperclip large-button-icon\"></span>\r\n          <div class=\"divider-5\"></div>\r\n          Attachments\r\n        </button>\r\n\r\n        <button type=\"button\" id=\"summaryButton\" class=\"btn large-button large-button-blue align-bottom tax-header-button\" autocomplete=\"off\">\r\n          <span class=\"glyphicon glyphicon-list-alt large-button-icon\"></span>\r\n          <br>\r\n          Return<br>Summary\r\n        </button>\r\n\r\n        <button type=\"button\" id=\"printButton\" class=\"btn large-button large-button-blue align-bottom tax-header-button\" autocomplete=\"off\">\r\n          <span class=\"glyphicon glyphicon-print large-button-icon\"></span>\r\n          <div class=\"divider-5\"></div>\r\n          Print\r\n        </button>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"col-md-4\">&nbsp;</div>\r\n\r\n    <div class=\"col-md-2\">\r\n      <div class=\"tax-header-row pull-right\">\r\n        <button type=\"button\" id=\"printButton\" class=\"btn large-button large-button-red align-bottom tax-header-button\" autocomplete=\"off\">\r\n          Error<br>Check\r\n        </button>\r\n\r\n        <button type=\"button\" id=\"printButton\" class=\"btn large-button large-button-grey align-bottom tax-header-button\" autocomplete=\"off\">\r\n          Send\r\n        </button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n"
 
 /***/ }),
 
 /***/ "../../../../../src/app/tax-return/templates/tax-menu.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"panel-group steps-menu\" id=\"accordion\">\r\n  <!-- Client Information -->\r\n  <div class=\"panel panel-default\">\r\n    <div class=\"panel-heading\">\r\n        <h4 class=\"panel-title\">\r\n            <a data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapseOne\">\r\n              <span class=\"glyphicon glyphicon-user\">&nbsp;</span>\r\n              Client Information\r\n            </a>\r\n        </h4>\r\n    </div>\r\n    <div id=\"collapseOne\" class=\"panel-collapse collapse in\">\r\n        <div class=\"panel-body\">\r\n            <table class=\"table\">\r\n                <tr>\r\n                    <td>\r\n                        <span class=\"glyphicon glyphicon-ok text-success\"></span>&nbsp;<a>Personal Information</a>\r\n                    </td>\r\n                </tr>\r\n                <tr>\r\n                    <td>\r\n                        <span class=\"glyphicon glyphicon-ok text-success\"></span>&nbsp;<a>Filing Information</a>\r\n                    </td>\r\n                </tr>\r\n            </table>\r\n        </div>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"panel panel-default\">\r\n      <div class=\"panel-heading\">\r\n          <h4 class=\"panel-title\">\r\n              <a data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#form1040\">\r\n                <span class=\"glyphicon glyphicon-user\">&nbsp;</span>\r\n                Form 1040\r\n              </a>\r\n          </h4>\r\n      </div>\r\n      <div id=\"form1040\" class=\"panel-collapse collapse\">\r\n          <div class=\"panel-body\">\r\n              <table class=\"table\">\r\n                  <tr>\r\n                      <td>\r\n                          <span class=\"glyphicon glyphicon-ok text-success\"></span>&nbsp;<a>Page 1</a>\r\n                      </td>\r\n                  </tr>\r\n                  <tr>\r\n                      <td>\r\n                          <span class=\"glyphicon glyphicon-ok text-success\"></span>&nbsp;<a>Page 2</a>\r\n                      </td>\r\n                  </tr>\r\n              </table>\r\n          </div>\r\n      </div>\r\n  </div>\r\n  <!-- W-2 -->\r\n  <div class=\"panel panel-default\">\r\n      <div class=\"panel-heading\">\r\n          <h4 class=\"panel-title\">\r\n              <a data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#w2\">\r\n                <span class=\"glyphicon glyphicon-user\">&nbsp;</span>\r\n                W-2\r\n              </a>\r\n          </h4>\r\n      </div>\r\n      <div id=\"w2\" class=\"panel-collapse collapse\">\r\n          <div class=\"panel-body\">\r\n              <table class=\"table\">\r\n                  <tr>\r\n                      <td>\r\n                          <span class=\"glyphicon glyphicon-plus\"></span>&nbsp;<a> Add W-2</a>\r\n                      </td>\r\n                  </tr>\r\n                  <tr>\r\n                      <td>\r\n                          <span class=\"glyphicon glyphicon-ok text-success\"></span>&nbsp;<a>W-2 (T-AXXESS HEALTHCARE)</a>\r\n                      </td>\r\n                  </tr>\r\n              </table>\r\n          </div>\r\n      </div>\r\n  </div>\r\n\r\n\r\n</div>\r\n"
+module.exports = "<h4>FEDERAL FORMS</h4>\r\n<div class=\"panel-group steps-menu\" id=\"accordion\">\r\n  <!-- Client Information -->\r\n  <div class=\"panel panel-default\">\r\n    <div class=\"panel-heading\">\r\n        <h4 class=\"panel-title\">\r\n            <a data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#client\">\r\n              <span class=\"glyphicon glyphicon-user\">&nbsp;</span>\r\n              Client Information\r\n            </a>\r\n        </h4>\r\n    </div>\r\n    <div id=\"client\" class=\"panel-collapse collapse in\">\r\n        <div class=\"panel-body\">\r\n            <table class=\"table\">\r\n                <tr>\r\n                    <td>\r\n                        <span class=\"glyphicon glyphicon-ok text-success\"></span>&nbsp;<a>Personal Information</a>\r\n                    </td>\r\n                </tr>\r\n                <tr>\r\n                    <td>\r\n                        <span class=\"glyphicon glyphicon-ok text-success\"></span>&nbsp;<a>Filing Information</a>\r\n                    </td>\r\n                </tr>\r\n            </table>\r\n        </div>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"panel panel-default\">\r\n      <div class=\"panel-heading\">\r\n          <h4 class=\"panel-title\">\r\n              <a data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#form1040\">\r\n                <span class=\"glyphicon glyphicon-user\">&nbsp;</span>\r\n                Form 1040\r\n              </a>\r\n          </h4>\r\n      </div>\r\n      <div id=\"form1040\" class=\"panel-collapse collapse\">\r\n          <div class=\"panel-body\">\r\n              <table class=\"table\">\r\n                  <tr>\r\n                      <td>\r\n                          <span class=\"glyphicon glyphicon-ok text-success\"></span>&nbsp;<a>Page 1</a>\r\n                      </td>\r\n                  </tr>\r\n                  <tr>\r\n                      <td>\r\n                          <span class=\"glyphicon glyphicon-ok text-success\"></span>&nbsp;<a>Page 2</a>\r\n                      </td>\r\n                  </tr>\r\n              </table>\r\n          </div>\r\n      </div>\r\n  </div>\r\n  <!-- W-2 -->\r\n  <div class=\"panel panel-default\">\r\n      <div class=\"panel-heading\">\r\n          <h4 class=\"panel-title\">\r\n              <a data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#w2\">\r\n                <span class=\"glyphicon glyphicon-user\">&nbsp;</span>\r\n                W-2\r\n              </a>\r\n          </h4>\r\n      </div>\r\n      <div id=\"w2\" class=\"panel-collapse collapse\">\r\n          <div class=\"panel-body\">\r\n              <table class=\"table\">\r\n                  <tr>\r\n                      <td>\r\n                          <span class=\"glyphicon glyphicon-plus\"></span>&nbsp;<a> Add W-2</a>\r\n                      </td>\r\n                  </tr>\r\n                  <tr>\r\n                      <td>\r\n                          <span class=\"glyphicon glyphicon-ok text-success\"></span>&nbsp;<a>W-2 (T-AXXESS HEALTHCARE)</a>\r\n                      </td>\r\n                  </tr>\r\n              </table>\r\n          </div>\r\n      </div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -779,7 +847,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "\r\n.ammount-box {\r\n  background-color: #9EBA7E;\r\n  font-size: 15px;\r\n  font-family: Arial!important;\r\n  border: #000000;\r\n  border-width: 1px;\r\n  border-bottom-width: 0;\r\n  border-style: solid;\r\n}\r\n\r\n.big-value {\r\n  font-size: 30px;\r\n}\r\n\r\n.tax-header-row {\r\n  height: 100px;\r\n}\r\n\r\n.tax-header-button {\r\n  margin-top: 8px;\r\n}\r\n\r\n.step-menu-border {\r\n  border: #000000;\r\n  border-width: 1px;\r\n  border-right-width: 0;\r\n  border-style: solid;\r\n  background-color: #bfbfbf;\r\n  min-height:500px;\r\n}\r\n\r\n.steps-menu {\r\n  width: 205px;\r\n  margin-left: -11px;\r\n}\r\n\r\n.area-menu {\r\n   min-height:500px;\r\n}\r\n\r\n.area-menu-border {\r\n  border: #000000;\r\n  border-width: 1px;\r\n  border-style: solid;\r\n}\r\n\r\n.panel-group .panel {\r\n    border-radius: 0px;\r\n}\r\n", ""]);
+exports.push([module.i, "\r\n.ammount-box {\r\n  background-color: #9EBA7E;\r\n  font-size: 15px;\r\n  font-family: Arial!important;\r\n  border: #000000;\r\n  border-width: 1px;\r\n  border-bottom-width: 0;\r\n  border-style: solid;\r\n  border-right-width: 0;\r\n}\r\n\r\n.big-value {\r\n  font-size: 30px;\r\n}\r\n\r\n.tax-header-row {\r\n  height: 100px;\r\n}\r\n\r\n.tax-header-button {\r\n  margin-top: 5px;\r\n}\r\n\r\n.tax-header-border-right{\r\n  border-left: #000000;\r\n  border-left-style: solid;\r\n  border-left-width: 1px;\r\n}\r\n\r\n.step-menu-border {\r\n  border: #000000;\r\n  border-width: 1px;\r\n  border-right-width: 0;\r\n  border-style: solid;\r\n  background-color: #bfbfbf;\r\n  min-height:500px;\r\n}\r\n\r\n.steps-menu {\r\n\r\n\r\n}\r\n\r\n.area-menu {\r\n   min-height:500px;\r\n}\r\n\r\n.area-menu-border {\r\n  border: #000000;\r\n  border-width: 1px;\r\n  border-style: solid;\r\n}\r\n\r\n.panel-group .panel {\r\n    border-radius: 0px;\r\n}\r\n", ""]);
 
 // exports
 
@@ -792,7 +860,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/tax-return/templates/tax-return.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"col-md-12\">\r\n  <tax-header-component></tax-header-component>\r\n</div>\r\n<div class=\"col-md-12\">\r\n\r\n</div>\r\n"
+module.exports = "<div *ngIf=\"client && client.firstName\" style=\"border-right-style: solid;border-right-width: 1px;\">\r\n  <div class=\"col-md-12\">\r\n    <tax-header-component></tax-header-component>\r\n  </div>\r\n  <div class=\"col-md-12\">\r\n    <tax-area-component></tax-area-component>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 

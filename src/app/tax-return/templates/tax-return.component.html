@@ -1,6 +1,8 @@
-<div class="col-md-12">
-  <tax-header-component></tax-header-component>
-</div>
-<div class="col-md-12">
-
+<div *ngIf="client && client.firstName" style="border-right-style: solid;border-right-width: 1px;">
+  <div class="col-md-12">
+    <tax-header-component></tax-header-component>
+  </div>
+  <div class="col-md-12">
+    <tax-area-component></tax-area-component>
+  </div>
 </div>

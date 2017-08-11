@@ -5,11 +5,11 @@ import { WorkingClientService } from '../working-client.service';
 import { WorkingTaxReturnService } from '../working-tax-return.service';
 
 @Component({
-  selector: 'main-tax-return',
-  templateUrl: './templates/tax-return.component.html',
+  selector: 'tax-content-component',
+  templateUrl: './templates/tax-content.component.html',
   styleUrls: ['./templates/tax-return.component.css']
 })
-export class TaxReturnComponent implements OnInit {
+export class TaxContentComponent implements OnInit {
 
   client: Client;
   taxReturn: TaxReturn;
@@ -23,5 +23,4 @@ export class TaxReturnComponent implements OnInit {
     this.client = this.workingClientService.getClient();
     this.taxReturn = this.workingTaxReturnService.getTaxReturn();
   }
-  
 }

@@ -7,6 +7,7 @@
   border-width: 1px;
   border-bottom-width: 0;
   border-style: solid;
+  border-right-width: 0;
 }
 
 .big-value {
@@ -18,7 +19,13 @@
 }
 
 .tax-header-button {
-  margin-top: 8px;
+  margin-top: 5px;
+}
+
+.tax-header-border-right{
+  border-left: #000000;
+  border-left-style: solid;
+  border-left-width: 1px;
 }
 
 .step-menu-border {
@@ -31,8 +38,8 @@
 }
 
 .steps-menu {
-  width: 205px;
-  margin-left: -11px;
+
+
 }
 
 .area-menu {

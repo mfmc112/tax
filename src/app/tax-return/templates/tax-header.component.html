@@ -1,4 +1,3 @@
-<div *ngIf="client && client.firstName">
   <div class="row">
     <div class="col-md-12">
       <h4>CLIENT // {{client.firstName}} {{client.middleName}} {{client.lastName}}</h4>
@@ -11,26 +10,20 @@
       FEDERAL<div class="divider-5"></div>
       Current AGI: {{taxReturn.currentAGI}}
     </div>
-    <div class="col-md-1">
+    <div class="col-md-4 tax-header-border-right">
       <div class="tax-header-row">
         <button type="button" id="attachButton" class="btn large-button large-button-blue tax-header-button" autocomplete="off">
           <span class="glyphicon glyphicon-paperclip large-button-icon"></span>
           <div class="divider-5"></div>
           Attachments
         </button>
-      </div>
-    </div>
-    <div class="col-md-1">
-      <div class="tax-header-row">
+
         <button type="button" id="summaryButton" class="btn large-button large-button-blue align-bottom tax-header-button" autocomplete="off">
           <span class="glyphicon glyphicon-list-alt large-button-icon"></span>
           <br>
           Return<br>Summary
         </button>
-      </div>
-    </div>
-    <div class="col-md-1">
-      <div class="tax-header-row">
+
         <button type="button" id="printButton" class="btn large-button large-button-blue align-bottom tax-header-button" autocomplete="off">
           <span class="glyphicon glyphicon-print large-button-icon"></span>
           <div class="divider-5"></div>
@@ -38,31 +31,18 @@
         </button>
       </div>
     </div>
-    <div class="col-md-5">&nbsp;</div>
-    <div class="col-md-1">
-      <div class="tax-header-row">
+
+    <div class="col-md-4">&nbsp;</div>
+
+    <div class="col-md-2">
+      <div class="tax-header-row pull-right">
         <button type="button" id="printButton" class="btn large-button large-button-red align-bottom tax-header-button" autocomplete="off">
           Error<br>Check
         </button>
-      </div>
-    </div>
-    <div class="col-md-1">
-      <div class="tax-header-row">
+
         <button type="button" id="printButton" class="btn large-button large-button-grey align-bottom tax-header-button" autocomplete="off">
           Send
         </button>
       </div>
     </div>
-
-
   </div>
-  <div class="row">
-    <div class="col-md-2 step-menu-border">
-      <h4>FEDERAL FORMS</h4>
-      <tax-menu-component></tax-menu-component>
-    </div>
-    <div class="col-md-10 area-menu area-menu-border">
-      <tax-area-component></tax-area-component>
-    </div>
-  </div>
-</div>
