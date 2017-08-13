@@ -1,12 +1,62 @@
 <div>
   <div class="row">
     <div class="col-md-1" style="position:relative; top:20px;">
-      <button type="button" id="myButton" data-loading-text="Loading..." class="btn large-button large-button-blue" autocomplete="off">
+      <button type="button" id="myButton" (click)="modal.open()" class="btn large-button large-button-blue" autocomplete="off">
         <span class="glyphicon glyphicon-plus medium-button-icon"></span>
         <span class="glyphicon glyphicon-user medium-button-icon"></span>
         <div class="divider-5"></div>
         New Client
       </button>
+      <modal #modal>
+        <modal-header [show-close]="true">
+            <h4 class="modal-title">NEW CLIENT</h4>
+        </modal-header>
+        <modal-body>
+            <form (submit)="saveClient()"  style="min-height:150px">
+              <div class="row">
+                <div class="col-sm-4">
+                  <label for="clientRY">Return Year</label>
+                  <select [(ngModel)]="clientReturnYear" name="clientRY" class="form-control">
+                    <option value="2017">2017</option>
+                    <option value="2016">2016</option>
+                    <option value="2015">2015</option>
+                  </select>
+                </div>
+                <div class="col-sm-4">
+                  <label for="clientSSNITIN">SSN/ITIN</label>
+                  <input [(ngModel)]="clientSSNITIN" type="text" name="clientSSNITIN" placeholder="###-##-####" class="form-control">
+                </div>
+                <div class="col-sm-4">
+                  <div class="middle_lable">
+                    <strong>or <input [(ngModel)]="generateITIN" type="checkbox" name="generateITIN"> Generate ITIN</strong>
+                  </div>
+                </div>
+              </div>
+<div class="row">
+  <div class="divider-20"></div>
+</div>
+              <div class="row">
+                <div class="col-sm-5">
+                  <label for="clientFN"><br>First Name</label>
+                  <input [(ngModel)]="firstName" type="text" name="clientFN" placeholder="Client First Name" class="form-control">
+                </div>
+                <div class="col-sm-2" style="text-align: center;">
+                  <label for="clientMN">Middle<br>Name</label>
+                  <input [(ngModel)]="middleName" type="text" name="clientMN" class="form-control">
+                </div>
+                <div class="col-sm-5">
+                  <label for="clientLN"><br>Last Name</label>
+                  <input [(ngModel)]="lastName" type="text" name="clientLN" placeholder="Last Name" class="form-control">
+                </div>
+              </div>
+            </form>
+        </modal-body>
+        <modal-footer>
+            <button type="button" class="btn btn-primary" (click)="addClient">Add Client</button>
+            <button type="button" class="btn btn-default" (click)="modal.close()">Close</button>
+        </modal-footer>
+
+      </modal>
     </div>
     <div class="col-md-11">
       <div class="row">

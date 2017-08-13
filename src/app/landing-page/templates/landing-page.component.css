@@ -4,3 +4,8 @@
   font-weight: 600;
   color: #C3C3C3;
 }
+
+.middle_lable {
+  top: 30px;
+  position: relative;
+}

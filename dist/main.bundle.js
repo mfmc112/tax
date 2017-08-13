@@ -46,7 +46,7 @@ var AppRoutingModule = (function () {
     return AppRoutingModule;
 }());
 AppRoutingModule = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["b" /* NgModule */])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
         imports: [__WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* RouterModule */].forRoot(routes)],
         exports: [__WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* RouterModule */]]
     })
@@ -76,7 +76,7 @@ var AppComponent = (function () {
     return AppComponent;
 }());
 AppComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["d" /* Component */])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-root',
         template: __webpack_require__("../../../../../src/app/templates/app.component.html"),
         styles: [__webpack_require__("../../../../../src/app/templates/app.component.css")]
@@ -95,19 +95,21 @@ AppComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_routing_module__ = __webpack_require__("../../../../../src/app/app-routing.module.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__menu_menu_component__ = __webpack_require__("../../../../../src/app/menu/menu.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__login_login_component__ = __webpack_require__("../../../../../src/app/login/login.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__landing_page_landing_page_component__ = __webpack_require__("../../../../../src/app/landing-page/landing-page.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__landing_page_client_list_component__ = __webpack_require__("../../../../../src/app/landing-page/client-list.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__tax_return_tax_return_component__ = __webpack_require__("../../../../../src/app/tax-return/tax-return.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__tax_return_tax_header_component__ = __webpack_require__("../../../../../src/app/tax-return/tax-header.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__tax_return_tax_menu_component__ = __webpack_require__("../../../../../src/app/tax-return/tax-menu.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__tax_return_tax_area_component__ = __webpack_require__("../../../../../src/app/tax-return/tax-area.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__tax_return_tax_content_component__ = __webpack_require__("../../../../../src/app/tax-return/tax-content.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__common_service__ = __webpack_require__("../../../../../src/app/common.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__working_client_service__ = __webpack_require__("../../../../../src/app/working-client.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__working_tax_return_service__ = __webpack_require__("../../../../../src/app/working-tax-return.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng2_bs3_modal_ng2_bs3_modal__ = __webpack_require__("../../../../ng2-bs3-modal/ng2-bs3-modal.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng2_bs3_modal_ng2_bs3_modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_ng2_bs3_modal_ng2_bs3_modal__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__menu_menu_component__ = __webpack_require__("../../../../../src/app/menu/menu.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__login_login_component__ = __webpack_require__("../../../../../src/app/login/login.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__landing_page_landing_page_component__ = __webpack_require__("../../../../../src/app/landing-page/landing-page.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__landing_page_client_list_component__ = __webpack_require__("../../../../../src/app/landing-page/client-list.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__tax_return_tax_return_component__ = __webpack_require__("../../../../../src/app/tax-return/tax-return.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__tax_return_tax_header_component__ = __webpack_require__("../../../../../src/app/tax-return/tax-header.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__tax_return_tax_menu_component__ = __webpack_require__("../../../../../src/app/tax-return/tax-menu.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__tax_return_tax_area_component__ = __webpack_require__("../../../../../src/app/tax-return/tax-area.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__tax_return_tax_content_component__ = __webpack_require__("../../../../../src/app/tax-return/tax-content.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__common_service__ = __webpack_require__("../../../../../src/app/common.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__working_client_service__ = __webpack_require__("../../../../../src/app/working-client.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__working_tax_return_service__ = __webpack_require__("../../../../../src/app/working-tax-return.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -132,32 +134,34 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
 var AppModule = (function () {
     function AppModule() {
     }
     return AppModule;
 }());
 AppModule = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["b" /* NgModule */])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["NgModule"])({
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
             __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormsModule */],
-            __WEBPACK_IMPORTED_MODULE_3__app_routing_module__["a" /* AppRoutingModule */]
+            __WEBPACK_IMPORTED_MODULE_3__app_routing_module__["a" /* AppRoutingModule */],
+            __WEBPACK_IMPORTED_MODULE_4_ng2_bs3_modal_ng2_bs3_modal__["Ng2Bs3ModalModule"]
         ],
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* AppComponent */],
-            __WEBPACK_IMPORTED_MODULE_5__menu_menu_component__["a" /* MenuComponent */],
-            __WEBPACK_IMPORTED_MODULE_7__landing_page_landing_page_component__["a" /* LandingPageComponent */],
-            __WEBPACK_IMPORTED_MODULE_6__login_login_component__["a" /* LoginComponent */],
-            __WEBPACK_IMPORTED_MODULE_8__landing_page_client_list_component__["a" /* ClientListComponent */],
-            __WEBPACK_IMPORTED_MODULE_9__tax_return_tax_return_component__["a" /* TaxReturnComponent */],
-            __WEBPACK_IMPORTED_MODULE_10__tax_return_tax_header_component__["a" /* TaxHeaderComponent */],
-            __WEBPACK_IMPORTED_MODULE_11__tax_return_tax_menu_component__["a" /* TaxMenuComponent */],
-            __WEBPACK_IMPORTED_MODULE_12__tax_return_tax_area_component__["a" /* TaxAreaComponent */],
-            __WEBPACK_IMPORTED_MODULE_13__tax_return_tax_content_component__["a" /* TaxContentComponent */]
+            __WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* AppComponent */],
+            __WEBPACK_IMPORTED_MODULE_6__menu_menu_component__["a" /* MenuComponent */],
+            __WEBPACK_IMPORTED_MODULE_8__landing_page_landing_page_component__["a" /* LandingPageComponent */],
+            __WEBPACK_IMPORTED_MODULE_7__login_login_component__["a" /* LoginComponent */],
+            __WEBPACK_IMPORTED_MODULE_9__landing_page_client_list_component__["a" /* ClientListComponent */],
+            __WEBPACK_IMPORTED_MODULE_10__tax_return_tax_return_component__["a" /* TaxReturnComponent */],
+            __WEBPACK_IMPORTED_MODULE_11__tax_return_tax_header_component__["a" /* TaxHeaderComponent */],
+            __WEBPACK_IMPORTED_MODULE_12__tax_return_tax_menu_component__["a" /* TaxMenuComponent */],
+            __WEBPACK_IMPORTED_MODULE_13__tax_return_tax_area_component__["a" /* TaxAreaComponent */],
+            __WEBPACK_IMPORTED_MODULE_14__tax_return_tax_content_component__["a" /* TaxContentComponent */]
         ],
-        providers: [__WEBPACK_IMPORTED_MODULE_14__common_service__["a" /* CommonService */], __WEBPACK_IMPORTED_MODULE_15__working_client_service__["a" /* WorkingClientService */], __WEBPACK_IMPORTED_MODULE_16__working_tax_return_service__["a" /* WorkingTaxReturnService */]],
-        bootstrap: [__WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* AppComponent */]]
+        providers: [__WEBPACK_IMPORTED_MODULE_15__common_service__["a" /* CommonService */], __WEBPACK_IMPORTED_MODULE_16__working_client_service__["a" /* WorkingClientService */], __WEBPACK_IMPORTED_MODULE_17__working_tax_return_service__["a" /* WorkingTaxReturnService */]],
+        bootstrap: [__WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* AppComponent */]]
     })
 ], AppModule);
 
@@ -190,7 +194,7 @@ var CommonService = (function () {
     return CommonService;
 }());
 CommonService = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* Injectable */])()
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])()
 ], CommonService);
 
 //# sourceMappingURL=common.service.js.map
@@ -295,7 +299,7 @@ var ClientListComponent = (function () {
     return ClientListComponent;
 }());
 ClientListComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["d" /* Component */])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'client-list',
         styles: [__webpack_require__("../../../../../src/app/landing-page/templates/client-list.component.css")],
         template: __webpack_require__("../../../../../src/app/landing-page/templates/client-list.component.html")
@@ -336,7 +340,7 @@ var LandingPageComponent = (function () {
     return LandingPageComponent;
 }());
 LandingPageComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["d" /* Component */])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'landing-page',
         styles: [__webpack_require__("../../../../../src/app/landing-page/templates/landing-page.component.css")],
         template: __webpack_require__("../../../../../src/app/landing-page/templates/landing-page.component.html")
@@ -382,7 +386,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "\r\n.year-font {\r\n  font-size: 40px;\r\n  font-weight: 600;\r\n  color: #C3C3C3;\r\n}\r\n", ""]);
+exports.push([module.i, "\r\n.year-font {\r\n  font-size: 40px;\r\n  font-weight: 600;\r\n  color: #C3C3C3;\r\n}\r\n\r\n.middle_lable {\r\n  top: 30px;\r\n  position: relative;\r\n}\r\n", ""]);
 
 // exports
 
@@ -395,7 +399,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/landing-page/templates/landing-page.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div>\n  <div class=\"row\">\r\n    <div class=\"col-md-1\" style=\"position:relative; top:20px;\">\r\n      <button type=\"button\" id=\"myButton\" data-loading-text=\"Loading...\" class=\"btn large-button large-button-blue\" autocomplete=\"off\">\r\n        <span class=\"glyphicon glyphicon-plus medium-button-icon\"></span>\r\n        <span class=\"glyphicon glyphicon-user medium-button-icon\"></span>\r\n        <div class=\"divider-5\"></div>\r\n        New Client\r\n      </button>\r\n    </div>\r\n    <div class=\"col-md-11\">\r\n      <div class=\"row\">\r\n        <div class=\"col-md-2\"><span class=\"year-font\">2017</span></div>\r\n        <div class=\"col-md-10\">&nbsp;</div>\r\n      </div>\r\n      <div class=\"row\">\r\n        <div class=\"col-md-4\">\r\n          <label for=\"clientName\">&nbsp;</label>\r\n          <div class=\"input-group\">\r\n            <span class=\"input-group-btn\" id=\"basic-addon1\">>\r\n                <button class=\"btn btn-default\" type=\"button\"><span class=\"glyphicon glyphicon-search\"></span></button>\r\n            </span>\r\n            <input type=\"text\" name=\"clientName\" class=\"form-control\" placeholder=\"Client Name\" aria-describedby=\"basic-addon1\">\r\n          </div>\r\n        </div>\r\n        <div class=\"col-md-2\">\r\n            <label for=\"returnYear\">Return Year</label>\r\n            <select name=\"returnYear\" class=\"form-control\">\r\n              <option value=\"2017\">2017</option>\r\n              <option value=\"2016\">2016</option>\r\n              <option value=\"2015\">2015</option>\r\n            </select>\r\n        </div>\r\n        <div class=\"col-md-2\">\r\n            <label for=\"federalStatus\">Federal Status</label>\r\n            <select name=\"federalStatus\" class=\"form-control\">\r\n              <option value=\"In Progress\">In Progress</option>\r\n              <option value=\"On Hold\">On Hold</option>\r\n              <option value=\"E-Filed\">E-Filed</option>\r\n            </select>\r\n        </div>\r\n        <div class=\"col-md-4\">\r\n            <label for=\"taxPreparer\">Federal Status</label>\r\n            <select name=\"taxPreparer\" class=\"form-control\">\r\n              <option value=\"Josue Edgardo Albertp\">Josue Edgardo Alberto</option>\r\n              <option value=\"Marcos Costa\">Marcos Costa</option>\r\n              <option value=\"Kristy Campbell\">Kristy Campbell</option>\r\n              <option value=\"Val V\">Valerie Osipenko</option>\r\n            </select>\r\n        </div>\r\n      </div>\r\n    </div>\n  </div>\n\n  <div class=\"divider-10\"></div>\n  <!-- list starts here-->\n  <div class=\"row\">\r\n    <div class=\"col-md-12\">\r\n      <client-list></client-list>\n    </div>\r\n  </div>\r\n  <!-- list ends here-->\n</div>\r\n"
+module.exports = "<div>\n  <div class=\"row\">\r\n    <div class=\"col-md-1\" style=\"position:relative; top:20px;\">\r\n      <button type=\"button\" id=\"myButton\" (click)=\"modal.open()\" class=\"btn large-button large-button-blue\" autocomplete=\"off\">\r\n        <span class=\"glyphicon glyphicon-plus medium-button-icon\"></span>\r\n        <span class=\"glyphicon glyphicon-user medium-button-icon\"></span>\r\n        <div class=\"divider-5\"></div>\r\n        New Client\r\n      </button>\r\n      <modal #modal>\r\n        <modal-header [show-close]=\"true\">\r\n            <h4 class=\"modal-title\">NEW CLIENT</h4>\r\n        </modal-header>\r\n        <modal-body>\r\n            <form (submit)=\"saveClient()\"  style=\"min-height:150px\">\r\n              <div class=\"row\">\r\n                <div class=\"col-sm-4\">\r\n                  <label for=\"clientRY\">Return Year</label>\r\n                  <select [(ngModel)]=\"clientReturnYear\" name=\"clientRY\" class=\"form-control\">\r\n                    <option value=\"2017\">2017</option>\r\n                    <option value=\"2016\">2016</option>\r\n                    <option value=\"2015\">2015</option>\r\n                  </select>\r\n                </div>\r\n                <div class=\"col-sm-4\">\r\n                  <label for=\"clientSSNITIN\">SSN/ITIN</label>\r\n                  <input [(ngModel)]=\"clientSSNITIN\" type=\"text\" name=\"clientSSNITIN\" placeholder=\"###-##-####\" class=\"form-control\">\r\n                </div>\r\n                <div class=\"col-sm-4\">\r\n                  <div class=\"middle_lable\">\r\n                    <strong>or <input [(ngModel)]=\"generateITIN\" type=\"checkbox\" name=\"generateITIN\"> Generate ITIN</strong>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n<div class=\"row\">\r\n  <div class=\"divider-20\"></div>\r\n</div>\r\n              <div class=\"row\">\r\n                <div class=\"col-sm-5\">\r\n                  <label for=\"clientFN\"><br>First Name</label>\r\n                  <input [(ngModel)]=\"firstName\" type=\"text\" name=\"clientFN\" placeholder=\"Client First Name\" class=\"form-control\">\r\n                </div>\r\n                <div class=\"col-sm-2\" style=\"text-align: center;\">\r\n                  <label for=\"clientMN\">Middle<br>Name</label>\r\n                  <input [(ngModel)]=\"middleName\" type=\"text\" name=\"clientMN\" class=\"form-control\">\r\n                </div>\r\n                <div class=\"col-sm-5\">\r\n                  <label for=\"clientLN\"><br>Last Name</label>\r\n                  <input [(ngModel)]=\"lastName\" type=\"text\" name=\"clientLN\" placeholder=\"Last Name\" class=\"form-control\">\r\n                </div>\r\n              </div>\r\n            </form>\r\n        </modal-body>\r\n        <modal-footer>\r\n            <button type=\"button\" class=\"btn btn-primary\" (click)=\"addClient\">Add Client</button>\r\n            <button type=\"button\" class=\"btn btn-default\" (click)=\"modal.close()\">Close</button>\r\n        </modal-footer>\r\n\r\n      </modal>\r\n    </div>\r\n    <div class=\"col-md-11\">\r\n      <div class=\"row\">\r\n        <div class=\"col-md-2\"><span class=\"year-font\">2017</span></div>\r\n        <div class=\"col-md-10\">&nbsp;</div>\r\n      </div>\r\n      <div class=\"row\">\r\n        <div class=\"col-md-4\">\r\n          <label for=\"clientName\">&nbsp;</label>\r\n          <div class=\"input-group\">\r\n            <span class=\"input-group-btn\" id=\"basic-addon1\">>\r\n                <button class=\"btn btn-default\" type=\"button\"><span class=\"glyphicon glyphicon-search\"></span></button>\r\n            </span>\r\n            <input type=\"text\" name=\"clientName\" class=\"form-control\" placeholder=\"Client Name\" aria-describedby=\"basic-addon1\">\r\n          </div>\r\n        </div>\r\n        <div class=\"col-md-2\">\r\n            <label for=\"returnYear\">Return Year</label>\r\n            <select name=\"returnYear\" class=\"form-control\">\r\n              <option value=\"2017\">2017</option>\r\n              <option value=\"2016\">2016</option>\r\n              <option value=\"2015\">2015</option>\r\n            </select>\r\n        </div>\r\n        <div class=\"col-md-2\">\r\n            <label for=\"federalStatus\">Federal Status</label>\r\n            <select name=\"federalStatus\" class=\"form-control\">\r\n              <option value=\"In Progress\">In Progress</option>\r\n              <option value=\"On Hold\">On Hold</option>\r\n              <option value=\"E-Filed\">E-Filed</option>\r\n            </select>\r\n        </div>\r\n        <div class=\"col-md-4\">\r\n            <label for=\"taxPreparer\">Federal Status</label>\r\n            <select name=\"taxPreparer\" class=\"form-control\">\r\n              <option value=\"Josue Edgardo Albertp\">Josue Edgardo Alberto</option>\r\n              <option value=\"Marcos Costa\">Marcos Costa</option>\r\n              <option value=\"Kristy Campbell\">Kristy Campbell</option>\r\n              <option value=\"Val V\">Valerie Osipenko</option>\r\n            </select>\r\n        </div>\r\n      </div>\r\n    </div>\n  </div>\n\n  <div class=\"divider-10\"></div>\n  <!-- list starts here-->\n  <div class=\"row\">\r\n    <div class=\"col-md-12\">\r\n      <client-list></client-list>\n    </div>\r\n  </div>\r\n  <!-- list ends here-->\n</div>\r\n"
 
 /***/ }),
 
@@ -455,15 +459,15 @@ var LoginComponent = (function () {
     return LoginComponent;
 }());
 __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Input */])(),
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
     __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__user__["a" /* User */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__user__["a" /* User */]) === "function" && _a || Object)
 ], LoginComponent.prototype, "user", void 0);
 __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Input */])(),
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
     __metadata("design:type", String)
 ], LoginComponent.prototype, "password", void 0);
 LoginComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["d" /* Component */])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'login-component',
         styles: [__webpack_require__("../../../../../src/app/login/templates/login.component.css")],
         template: __webpack_require__("../../../../../src/app/login/templates/login.component.html")
@@ -548,7 +552,7 @@ var MenuComponent = (function () {
     return MenuComponent;
 }());
 MenuComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["d" /* Component */])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'menu-component',
         template: __webpack_require__("../../../../../src/app/menu/templates/menu-component.html"),
         styles: [__webpack_require__("../../../../../src/app/menu/templates/menu.component.css")]
@@ -618,7 +622,7 @@ var TaxAreaComponent = (function () {
     return TaxAreaComponent;
 }());
 TaxAreaComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["d" /* Component */])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'tax-area-component',
         template: __webpack_require__("../../../../../src/app/tax-return/templates/tax-area.component.html"),
         styles: [__webpack_require__("../../../../../src/app/tax-return/templates/tax-return.component.css")]
@@ -663,7 +667,7 @@ var TaxContentComponent = (function () {
     return TaxContentComponent;
 }());
 TaxContentComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["d" /* Component */])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'tax-content-component',
         template: __webpack_require__("../../../../../src/app/tax-return/templates/tax-content.component.html"),
         styles: [__webpack_require__("../../../../../src/app/tax-return/templates/tax-return.component.css")]
@@ -708,7 +712,7 @@ var TaxHeaderComponent = (function () {
     return TaxHeaderComponent;
 }());
 TaxHeaderComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["d" /* Component */])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'tax-header-component',
         template: __webpack_require__("../../../../../src/app/tax-return/templates/tax-header.component.html"),
         styles: [__webpack_require__("../../../../../src/app/tax-return/templates/tax-return.component.css")]
@@ -753,7 +757,7 @@ var TaxMenuComponent = (function () {
     return TaxMenuComponent;
 }());
 TaxMenuComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["d" /* Component */])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'tax-menu-component',
         template: __webpack_require__("../../../../../src/app/tax-return/templates/tax-menu.component.html"),
         styles: [__webpack_require__("../../../../../src/app/tax-return/templates/tax-return.component.css")]
@@ -798,7 +802,7 @@ var TaxReturnComponent = (function () {
     return TaxReturnComponent;
 }());
 TaxReturnComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["d" /* Component */])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'main-tax-return',
         template: __webpack_require__("../../../../../src/app/tax-return/templates/tax-return.component.html"),
         styles: [__webpack_require__("../../../../../src/app/tax-return/templates/tax-return.component.css")]
@@ -885,7 +889,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/templates/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<div class=\"container-fluid\">\n  <div class=\"col-md-12\">\n    <menu-component></menu-component>\n  </div>\n<div>\n"
+module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<div class=\"container-fluid\">\n  <div class=\"colsm-12\">\n    <menu-component></menu-component>\n  </div>\n<div>\n"
 
 /***/ }),
 
@@ -914,7 +918,7 @@ var WorkingClientService = (function () {
     return WorkingClientService;
 }());
 WorkingClientService = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* Injectable */])()
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])()
 ], WorkingClientService);
 
 //# sourceMappingURL=working-client.service.js.map
@@ -946,7 +950,7 @@ var WorkingTaxReturnService = (function () {
     return WorkingTaxReturnService;
 }());
 WorkingTaxReturnService = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* Injectable */])()
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])()
 ], WorkingTaxReturnService);
 
 //# sourceMappingURL=working-tax-return.service.js.map
@@ -965,7 +969,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 if (!/localhost/.test(document.location.host)) {
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["a" /* enableProdMode */])();
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["enableProdMode"])();
 }
 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_2__app_app_module__["a" /* AppModule */]);
 //# sourceMappingURL=main.js.map
