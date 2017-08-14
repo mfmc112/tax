@@ -15,17 +15,25 @@ server.use(bodyParser.json({type: 'application/vdn.api+json'}));
 
 server.listen(port);
 console.log("Tax Smart is up");
+var clientsAPIName = 'clients';
+var addHeaderCORS = function(res) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+}
 
 /**
  * Get by filter. Currently it can be ID, firstName, lastName and email
  */
-server.get('/client', function(req, res) {
+server.get('/api/' + clientsAPIName, function(req, res) {
   var condition = parser.parseQuery(req.query);
   mongo.find(condition, function(response, error) {
     if (!error) {
+      //TODO: change this accordingly to PROD or dev environment
+      addHeaderCORS(res);
       res.send(response);
     } else {
       console.log(error);
+      //TODO: change this accordingly to PROD or dev environment
+      addHeaderCORS(res);
       res.status(500).json("Error executing search");
     }
   });
@@ -34,12 +42,17 @@ server.get('/client', function(req, res) {
 /**
  * Get by Id (_id)
  */
-server.get('/client/:id', function(req, res) {
+server.get('/api/' + clientsAPIName + '/:id', function(req, res) {
+  console.log('executing GET ' + req.params.id);
   mongo.find({"_id" : ObjectId(req.params.id)},  function(response, error) {
     if (!error) {
+      //TODO: change this accordingly to PROD or dev environment
+      addHeaderCORS(res);
       res.send(response);
     } else {
       console.log(error);
+      //TODO: change this accordingly to PROD or dev environment
+      addHeaderCORS(res);
       res.status(500).json("Error executing search");
     }
   });
@@ -48,15 +61,21 @@ server.get('/client/:id', function(req, res) {
 /**
  * Create a new client if it already do not exists
  */
-server.post('/client', function(req,res) {
+server.post('/api/' + clientsAPIName, function(req,res) {
+  console.log('executing POST' + req.body.firstName);
   mongo.find({"firstName": req.body.firstName, "lastName": req.body.lastName}, function(response) {
-    if (response.length == 0) {
+    console.log(response);
+    if (!response || response.totalCount == 0) {
       // If client is not already registered
       mongo.insert(req.body, function(response) {
-       res.send(response);
+        //TODO: change this accordingly to PROD or dev environment
+        addHeaderCORS(res);
+        res.send(response, error);
      });
    } else {
      // If client is already registered
+     //TODO: change this accordingly to PROD or dev environment
+     addHeaderCORS(res);
      res.status(500).json("A client with same First and Last Name already exists on the system");
    }
   });
@@ -66,19 +85,20 @@ server.post('/client', function(req,res) {
 /**
  * Update implemented to return the error
  */
-server.put('/client', function(req,res) {
+server.put('/api/' + clientsAPIName, function(req,res) {
+  //TODO: change this accordingly to PROD or dev environment
+  addHeaderCORS(res);
   res.status(500).json("This is an illegal update. It requires an :id");
 });
 
 /**
  * Update an existing client
  */
-server.put('/client/:id', function(req,res) {
-  // mongo.removeAll(function(response) {
-  //   console.log('update client ' + response.firstName);
-  //   res.send(response);
-  // });
+server.put('/api/' + clientsAPIName + '/:id', function(req,res) {
+  console.log('executing PUT' + req.body.firstName);
   mongo.update({"_id" : ObjectId(req.params.id)}, req.body, function(response) {
+    //TODO: change this accordingly to PROD or dev environment
+    addHeaderCORS(res);
     res.send(response);
   });
 });
@@ -86,8 +106,10 @@ server.put('/client/:id', function(req,res) {
 /**
  * Update an existing client
  */
-server.delete('/client/:id', function(req,res) {
+server.delete('/api/' + clientsAPIName + '/:id', function(req,res) {
   mongo.removeById(req.params.id, function(response) {
+    //TODO: change this accordingly to PROD or dev environment
+    addHeaderCORS(res);
     res.send(response);
   });
 });

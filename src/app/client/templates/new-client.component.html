@@ -1,0 +1,59 @@
+<modal #newClientModal>
+  <modal-header [show-close]="true">
+      <h4 class="modal-title">NEW CLIENT</h4>
+  </modal-header>
+  <modal-body>
+    <form [formGroup]="clientForm" (submit)="submitForm(clientForm.value)" style="min-height:150px">
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label>Return Year</label>
+              <select formControlName="returnYear" class="form-control">
+                <option value="2017">2017</option>
+                <option value="2016">2016</option>
+                <option value="2015">2015</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label>SSN/ITIN</label>
+              <input formControlName="ssnItin" type="text" placeholder="###-##-####" class="form-control">
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group middle_lable">
+              <strong>or <input formControlName="generateItin" type="checkbox"> Generate ITIN</strong>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="divider-20"></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-5">
+            <div class="form-group">
+              <label><br>First Name</label>
+              <input formControlName="firstName" type="text" placeholder="Client First Name" class="form-control">
+            </div>
+          </div>
+          <div class="col-sm-2" style="text-align: center;">
+            <div class="form-group">
+              <label>Middle<br>Name</label>
+              <input formControlName="middleName" type="text" class="form-control">
+            </div>
+          </div>
+          <div class="col-sm-5">
+            <div class="form-group">
+              <label><br>Last Name</label>
+              <input formControlName="lastName" type="text" placeholder="Last Name" class="form-control">
+            </div>
+          </div>
+        </div>
+      </form>
+  </modal-body>
+  <modal-footer>
+      <button type="submit" class="btn btn-primary" [disabled]="!clientForm.valid" (click)="submitForm(clientForm.value)">Add Client</button>
+      <button type="button" class="btn btn-default" (click)="close()">Close</button>
+  </modal-footer>
+</modal>
