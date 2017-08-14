@@ -4,6 +4,7 @@ import { Client } from '../common/client';
 import { TaxReturn } from '../common/tax-return';
 import { WorkingClientService } from '../working-client.service';
 import { WorkingTaxReturnService } from '../working-tax-return.service';
+import { ClientApiService } from '../client/client-api.service';
 
 @Component({
   selector:'client-list',
@@ -12,11 +13,17 @@ import { WorkingTaxReturnService } from '../working-tax-return.service';
 })
 export class ClientListComponent {
 
+  public clientList: Client[];
+
   constructor(
     private router: Router,
     private workingClientService: WorkingClientService,
-    private workingTaxReturnService: WorkingTaxReturnService
-   ) { }
+    private workingTaxReturnService: WorkingTaxReturnService,
+    private clientApiService: ClientApiService
+   ) {
+
+   this.findClients();
+ }
 
   taxReturn():void {
     let client: Client = new Client();
@@ -31,6 +38,10 @@ export class ClientListComponent {
     this.workingTaxReturnService.setTaxReturn(taxReturn);
 
     this.router.navigate(['./tax-return']);
+  }
+
+  findClients() : void {
+    this.clientApiService.findByFilter({}).subscribe(data => this.clientList = data);
   }
 
 }

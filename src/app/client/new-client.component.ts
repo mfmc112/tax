@@ -1,0 +1,62 @@
+import { Component, ViewChild } from '@angular/core';
+import { ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ValidatorRulesComponent } from '../validator/validator-rules.component';
+
+import { ClientApiService } from '../client/client-api.service';
+import { Client } from '../common/client';
+
+@Component({
+  selector: 'new-client-modal',
+  templateUrl: './templates/new-client.component.html'
+})
+export class NewClientComponent {
+  // This makes the reference to my modal the child as String is the #modalName
+  @ViewChild('newClientModal') modal: ModalComponent;
+  clientForm: FormGroup;
+  validator: ValidatorRulesComponent = new ValidatorRulesComponent();
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private clientApiService: ClientApiService){
+    const SSN_PATTERN: RegExp = this.validator.getSSNPattern();
+
+    // Here we are using the FormBuilder to build out our form.
+    this.clientForm = formBuilder.group({
+      'firstName' : [null, Validators.compose([Validators.required, Validators.maxLength(45)])],
+      'middleName' : '',
+      'lastName': [null, Validators.compose([Validators.required, Validators.maxLength(45)])],
+      'returnYear': '2017',
+      'ssnItin' : [null, Validators.compose([Validators.required, Validators.pattern(SSN_PATTERN)])],
+      'generateItin' : false
+    });
+
+  }
+
+  submitForm(fields: any):void {
+    let client: Client = new Client();
+    if (fields.ssnItin && /^(9\d{2})([ \-]?)([7]\d|8[0-8])([ \-]?)(\d{4})$/.test(fields.ssnItin)) {
+      client.setITIN(fields.ssnItin);
+    } else {
+      client.setSSN(fields.ssnItin);
+    }
+    client.firstName = fields.firstName;
+    client.middleName = fields.middleName;
+    client.lastName = fields.lastName;
+
+    this.addClient(client);
+  }
+
+  open(): void {
+    this.modal.open();
+  }
+
+  close(): void {
+    this.modal.close();
+  }
+
+  addClient(client: Client) : void {
+    this.clientApiService.insert(client).subscribe(data => this.close());
+  }
+
+}

@@ -3,14 +3,41 @@ var ObjectId = require('mongodb').ObjectID;
 
 var client = require('./MongoClient');
 var assert = require('assert');
+var pluralize = require('pluralize')
 
-this.documentName = "client";
+var documentName = "client";
+var documentPlural = pluralize(documentName);
+
+var enrichGetResponse = function(response) {
+  var totalCount = 0;
+  var enriched = {};
+  enriched.totalCount = totalCount;
+  enriched[documentPlural] = [];
+  if (!response) return enriched;
+
+  enriched.totalCount = response.length;
+  enriched[documentPlural] = response;
+  return enriched;
+}
+
+var enrichPutResponse = function(response) {
+  if (!response || !response.value) return {};
+  var enriched = response.value;
+  return enriched;
+}
+
+var enrichPostResponse = function(response) {
+  if (!response || !response.ops || !response.ops[0]) return {};
+  var enriched = response.ops[0];
+  return enriched;
+}
 
 this.find = function(query, callback) {
   if (!query) query = {};
-  var collection = client.db.collection(this.documentName);
-  collection.find(query).toArray(function(err, docs) {
-    callback(docs, err);
+  var collection = client.db.collection(documentName);
+  collection.find(query).toArray(function(err, response) {
+    var enriched = enrichGetResponse(response);
+    callback( enriched, err );
   });
 }
 
@@ -18,12 +45,10 @@ this.find = function(query, callback) {
  * Insert single records
  */
 this.insert = function(data, callback) {
-  var collection = client.db.collection(this.documentName);
-  collection.insertOne(data, function(err, result) {
-    assert.equal(err, null);
-    assert.equal(null, err);
-    assert.equal(1, result.insertedCount);
-    callback(result.ops[0]);
+  var collection = client.db.collection(documentName);
+  collection.insertOne(data, function(err, response) {
+    var enriched = enrichPostResponse(response);
+    callback(enriched, err);
   });
 }
 
@@ -35,10 +60,10 @@ this.update = function(condition, set, callback) {
     callback("condition not set");
     return;
   }
-  var collection = client.db.collection(this.documentName);
-  collection.findOneAndUpdate(condition, set, { new: false }, function(err, result) {
-    assert.equal(err, null);
-    callback(result);
+  var collection = client.db.collection(documentName);
+  collection.findOneAndUpdate(condition, set, { new: false }, function(err, response) {
+    var enriched = enrichPutResponse(response);
+    callback(enriched, err);
   });
 }
 
@@ -47,7 +72,7 @@ var insertOrUpdate = function(set, where, callback) {
     callback("Cannot update all records");
     return;
   }
-  var collection = this.client.db.collection(this.documentName);
+  var collection = this.client.db.collection(documentName);
   collection.updateMany(where, {'upsert': true}
     , { $set: set }, function(err, result) {
     assert.equal(err, null);
@@ -61,7 +86,7 @@ var updateFirst = function(set, where, callback) {
     callback("Please Specify a condition");
     return;
   }
-  var collection = this.client.db.collection(this.documentName);
+  var collection = this.client.db.collection(documentName);
   collection.updateOne(where, {'upsert': true}
     , { $set: set }, function(err, result) {
     assert.equal(err, null);
@@ -71,14 +96,14 @@ var updateFirst = function(set, where, callback) {
 }
 
 this.removeById = function(id, callback) {
-  var collection = client.db.collection(this.documentName);
+  var collection = client.db.collection(documentName);
   collection.deleteOne({ _id : ObjectId(id) }, function(err, result) {
     console.log("Removed the document of _id=" + id);
-    callback(result);
+    callback(result, err);
   });
 }
 
 this.removeAll = function(id, callback) {
-  var collection = client.db.collection(this.documentName);
+  var collection = client.db.collection(documentName);
   collection.deleteOne({}, {"justOne": false});
 }
