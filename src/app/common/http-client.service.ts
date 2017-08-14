@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class HttpClientService {
 
-  urlBase:string = 'http://localhost:5000';
+  urlBase:string = '';//'http://localhost:5000';
   constructor(private http: HttpClient) {}
 
   createAuthorizationHeader(headers: HttpHeaders) {
