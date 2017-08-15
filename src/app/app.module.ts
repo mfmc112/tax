@@ -5,7 +5,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { Ng2Bs3ModalModule } from 'ng2-bs3-modal/ng2-bs3-modal';
 
-import { ValidatorRulesComponent } from './validator/validator-rules.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -21,7 +20,6 @@ import { TaxContentComponent } from './tax-return/tax-content.component';
 import { CommonService } from './common.service';
 import { WorkingClientService } from './working-client.service';
 import { WorkingTaxReturnService } from './working-tax-return.service';
-
 // client
 import { NewClientComponent } from './client/new-client.component';
 
@@ -56,7 +54,6 @@ import { HttpClientService } from './common/http-client.service';
     CommonService,
     WorkingClientService,
     WorkingTaxReturnService,
-    ValidatorRulesComponent,
     HttpClientModule,
     HttpClientService,
     ClientApiService

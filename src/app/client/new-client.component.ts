@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ValidatorRulesComponent } from '../validator/validator-rules.component';
+import { validationRules } from '../validator/validator-rules.component';
 
 import { ClientApiService } from '../client/client-api.service';
 import { Client } from '../common/client';
@@ -14,12 +14,11 @@ export class NewClientComponent {
   // This makes the reference to my modal the child as String is the #modalName
   @ViewChild('newClientModal') modal: ModalComponent;
   clientForm: FormGroup;
-  validator: ValidatorRulesComponent = new ValidatorRulesComponent();
 
   constructor(
     private formBuilder: FormBuilder,
-    private clientApiService: ClientApiService){
-    const SSN_PATTERN: RegExp = this.validator.getSSNPattern();
+    private clientApiService: ClientApiService
+  ){
 
     // Here we are using the FormBuilder to build out our form.
     this.clientForm = formBuilder.group({
@@ -27,7 +26,7 @@ export class NewClientComponent {
       'middleName' : '',
       'lastName': [null, Validators.compose([Validators.required, Validators.maxLength(45)])],
       'returnYear': '2017',
-      'ssnItin' : [null, Validators.compose([Validators.required, Validators.pattern(SSN_PATTERN)])],
+      'ssnItin' : [null, Validators.compose([Validators.required, Validators.pattern(validationRules.SSN_REGEXP)])],
       'generateItin' : false
     });
 
@@ -35,7 +34,7 @@ export class NewClientComponent {
 
   submitForm(fields: any):void {
     let client: Client = new Client();
-    if (fields.ssnItin && /^(9\d{2})([ \-]?)([7]\d|8[0-8])([ \-]?)(\d{4})$/.test(fields.ssnItin)) {
+    if (fields.ssnItin && validationRules.ITIN_REGEXP.test(fields.ssnItin)) {
       client.setITIN(fields.ssnItin);
     } else {
       client.setSSN(fields.ssnItin);

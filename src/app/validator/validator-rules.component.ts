@@ -1,14 +1,4 @@
-import { Component } from '@angular/core';
-
-@Component({
-  template: ''
-})
-export class ValidatorRulesComponent {
-
-  SSN_REGEXP: RegExp = /^(\d{3}-?\d{2}-?\d{4})$/;
-
-  getSSNPattern(): RegExp {
-    return this.SSN_REGEXP;
-  }
-
-}
+export const validationRules = {
+  SSN_REGEXP: /^(\d{3}-?\d{2}-?\d{4})$/,
+  ITIN_REGEXP: /^(9\d{2})([ \-]?)([7]\d|8[0-8])([ \-]?)(\d{4})$/
+};
