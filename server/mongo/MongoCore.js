@@ -35,7 +35,7 @@ var enrichPostResponse = function(response) {
 this.find = function(query, callback) {
   if (!query) query = {};
   var collection = client.db.collection(documentName);
-  collection.find(query).toArray(function(err, response) {
+  collection.find(query).sort( { firstName: 1 } ).toArray(function(err, response) {
     var enriched = enrichGetResponse(response);
     callback( enriched, err );
   });
