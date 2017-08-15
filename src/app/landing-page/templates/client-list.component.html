@@ -8,7 +8,7 @@
       </tr>
       <tr *ngFor="let client of clientList.clients" (click)="taxReturn(client._id)">
         <td class="info"><input type="checkbox" class="checkbox"></td>
-        <td>{{client.fistName}} {{client.middleName}} {{client.lastName}}</td>
+        <td>{{client.firstName}} {{client.middleName}}{{(client.middleName)?'.':''}} {{client.lastName}}</td>
         <td>In Progress</td>
         <td>Josue Edgardo Alberto</td>
         <td>08/05/2017 22:29</td>

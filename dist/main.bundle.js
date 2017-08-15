@@ -396,6 +396,7 @@ var Client = (function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("../../../common/@angular/common/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__environments_environment__ = __webpack_require__("../../../../../src/environments/environment.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HttpClientService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -408,10 +409,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
 var HttpClientService = (function () {
     function HttpClientService(http) {
         this.http = http;
-        this.urlBase = ''; //'http://localhost:5000';
+        this.urlBase = __WEBPACK_IMPORTED_MODULE_2__environments_environment__["a" /* environment */].apiPrefix; //'http://localhost:5000';
     }
     HttpClientService.prototype.createAuthorizationHeader = function (headers) {
         //TODO: implement that in the future
@@ -608,7 +610,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/landing-page/templates/client-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "    <table *ngIf=\"clientList\" class=\"table table-hover\">\r\n      <tr>\r\n        <td class=\"active\"><input type=\"checkbox\" class=\"checkbox\"></td>\r\n        <td class=\"active\">Client Name</td>\r\n        <td class=\"active\">Status</td>\r\n        <td class=\"active\">Preparer</td>\r\n        <td class=\"active\">Last Updated</td>\r\n      </tr>\r\n      <tr *ngFor=\"let client of clientList.clients\" (click)=\"taxReturn(client._id)\">\r\n        <td class=\"info\"><input type=\"checkbox\" class=\"checkbox\"></td>\r\n        <td>{{client.fistName}} {{client.middleName}} {{client.lastName}}</td>\r\n        <td>In Progress</td>\r\n        <td>Josue Edgardo Alberto</td>\r\n        <td>08/05/2017 22:29</td>\r\n      </tr>\r\n    </table>\r\n"
+module.exports = "    <table *ngIf=\"clientList\" class=\"table table-hover\">\r\n      <tr>\r\n        <td class=\"active\"><input type=\"checkbox\" class=\"checkbox\"></td>\r\n        <td class=\"active\">Client Name</td>\r\n        <td class=\"active\">Status</td>\r\n        <td class=\"active\">Preparer</td>\r\n        <td class=\"active\">Last Updated</td>\r\n      </tr>\r\n      <tr *ngFor=\"let client of clientList.clients\" (click)=\"taxReturn(client._id)\">\r\n        <td class=\"info\"><input type=\"checkbox\" class=\"checkbox\"></td>\r\n        <td>{{client.firstName}} {{client.middleName}}{{(client.middleName)?'.':''}} {{client.lastName}}</td>\r\n        <td>In Progress</td>\r\n        <td>Josue Edgardo Alberto</td>\r\n        <td>08/05/2017 22:29</td>\r\n      </tr>\r\n    </table>\r\n"
 
 /***/ }),
 
@@ -633,7 +635,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/landing-page/templates/landing-page.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div>\r\n  <div class=\"row\">\r\n    <div class=\"col-md-1\" style=\"position:relative; top:20px;\">\r\n      <button type=\"button\" id=\"myButton\" (click)=\"open()\" class=\"btn large-button large-button-blue\" autocomplete=\"off\">\r\n        <span class=\"glyphicon glyphicon-plus medium-button-icon\"></span>\r\n        <span class=\"glyphicon glyphicon-user medium-button-icon\"></span>\r\n        <div class=\"divider-5\"></div>\r\n        New Client\r\n      </button>\r\n      <new-client-modal></new-client-modal>\r\n    </div>\r\n    <div class=\"col-md-11\">\r\n      <div class=\"row\">\r\n        <div class=\"col-md-2\"><span class=\"year-font\">2017</span></div>\r\n        <div class=\"col-md-10\">&nbsp;</div>\r\n      </div>\r\n      <div class=\"row\">\r\n        <div class=\"col-md-4\">\r\n          <label for=\"clientName\">&nbsp;</label>\r\n          <div class=\"input-group\">\r\n            <span class=\"input-group-btn\" id=\"basic-addon1\">>\r\n                <button class=\"btn btn-default\" type=\"button\"><span class=\"glyphicon glyphicon-search\"></span></button>\r\n            </span>\r\n            <input type=\"text\" name=\"clientName\" class=\"form-control\" placeholder=\"Client Name\" aria-describedby=\"basic-addon1\">\r\n          </div>\r\n        </div>\r\n        <div class=\"col-md-2\">\r\n            <label for=\"returnYear\">Return Year</label>\r\n            <select name=\"returnYear\" class=\"form-control\">\r\n              <option value=\"2017\">2017</option>\r\n              <option value=\"2016\">2016</option>\r\n              <option value=\"2015\">2015</option>\r\n            </select>\r\n        </div>\r\n        <div class=\"col-md-2\">\r\n            <label for=\"federalStatus\">Federal Status</label>\r\n            <select name=\"federalStatus\" class=\"form-control\">\r\n              <option value=\"In Progress\">In Progress</option>\r\n              <option value=\"On Hold\">On Hold</option>\r\n              <option value=\"E-Filed\">E-Filed</option>\r\n            </select>\r\n        </div>\r\n        <div class=\"col-md-4\">\r\n            <label for=\"taxPreparer\">Federal Status</label>\r\n            <select name=\"taxPreparer\" class=\"form-control\">\r\n              <option value=\"Josue Edgardo Albertp\">Josue Edgardo Alberto</option>\r\n              <option value=\"Marcos Costa\">Marcos Costa</option>\r\n              <option value=\"Kristy Campbell\">Kristy Campbell</option>\r\n              <option value=\"Val V\">Valerie Osipenko</option>\r\n            </select>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"divider-10\"></div>\r\n  <!-- list starts here-->\r\n  <div class=\"row\">\r\n    <div class=\"col-md-12\">\r\n      <client-list></client-list>\r\n    </div>\r\n  </div>\r\n  <!-- list ends here-->\r\n</div>\r\n"
+module.exports = "<div>\r\n  <div class=\"row\">\r\n    <div class=\"col-md-1\" style=\"position:relative; top:20px;\">\r\n      <button type=\"button\" id=\"myButton\" (click)=\"open()\" class=\"btn large-button large-button-blue\" autocomplete=\"off\">\r\n        <span class=\"glyphicon glyphicon-plus medium-button-icon\"></span>\r\n        <span class=\"glyphicon glyphicon-user medium-button-icon\"></span>\r\n        <div class=\"divider-5\"></div>\r\n        New Client\r\n      </button>\r\n      <new-client-modal></new-client-modal>\r\n    </div>\r\n    <div class=\"col-md-11\">\r\n      <div class=\"row\">\r\n        <div class=\"col-md-2\"><span class=\"year-font\">2017</span></div>\r\n        <div class=\"col-md-10\">&nbsp;</div>\r\n      </div>\r\n      <div class=\"row\">\r\n        <div class=\"col-md-4\">\r\n          <label for=\"clientName\">&nbsp;</label>\r\n          <div class=\"input-group\">\r\n            <span class=\"input-group-btn\" id=\"basic-addon1\">>\r\n                <button class=\"btn btn-default\" type=\"button\"><span class=\"glyphicon glyphicon-search\"></span></button>\r\n            </span>\r\n            <input type=\"text\" name=\"clientName\" class=\"form-control\" placeholder=\"Client Name\" aria-describedby=\"basic-addon1\">\r\n          </div>\r\n        </div>\r\n        <div class=\"col-md-2\">\r\n            <label for=\"returnYear\">Return Year</label>\r\n            <select name=\"returnYear\" class=\"form-control\">\r\n              <option value=\"2017\">2017</option>\r\n              <option value=\"2016\">2016</option>\r\n              <option value=\"2015\">2015</option>\r\n            </select>\r\n        </div>\r\n        <div class=\"col-md-2\">\r\n            <label for=\"federalStatus\">Federal Status</label>\r\n            <select name=\"federalStatus\" class=\"form-control\">\r\n              <option value=\"In Progress\">In Progress</option>\r\n              <option value=\"On Hold\">On Hold</option>\r\n              <option value=\"E-Filed\">E-Filed</option>\r\n            </select>\r\n        </div>\r\n        <div class=\"col-md-4\">\r\n            <label for=\"taxPreparer\">Tax Preparer</label>\r\n            <select name=\"taxPreparer\" class=\"form-control\">\r\n              <option value=\"Josue Edgardo Albertp\">Josue Edgardo Alberto</option>\r\n              <option value=\"Marcos Costa\">Marcos Costa</option>\r\n              <option value=\"Kristy Campbell\">Kristy Campbell</option>\r\n              <option value=\"Val V\">Valerie Osipenko</option>\r\n            </select>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"divider-10\"></div>\r\n  <!-- list starts here-->\r\n  <div class=\"row\">\r\n    <div class=\"col-md-12\">\r\n      <client-list></client-list>\r\n    </div>\r\n  </div>\r\n  <!-- list ends here-->\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1123,7 +1125,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/templates/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<div class=\"container-fluid\">\n  <div class=\"colsm-12\">\n    <menu-component></menu-component>\n  </div>\n<div>\n"
+module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<div class=\"container-fluid\">\n  <div class=\"col-xs-12\">\n    <menu-component></menu-component>\n  </div>\n<div>\n"
 
 /***/ }),
 
@@ -1220,6 +1222,24 @@ WorkingTaxReturnService = __decorate([
 ], WorkingTaxReturnService);
 
 //# sourceMappingURL=working-tax-return.service.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/environments/environment.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return environment; });
+// The file contents for the current environment will overwrite these during build.
+// The build system defaults to the dev environment which uses `environment.ts`, but if you do
+// `ng build --env=prod` then `environment.prod.ts` will be used instead.
+// The list of which env maps to which file can be found in `.angular-cli.json`.
+// The file contents for the current environment will overwrite these during build.
+var environment = {
+    production: false,
+    apiPrefix: 'http://localhost:5000'
+};
+//# sourceMappingURL=environment.js.map
 
 /***/ }),
 

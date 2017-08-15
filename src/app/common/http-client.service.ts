@@ -1,11 +1,13 @@
 import {Injectable} from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import { environment } from '../../environments/environment';
+
 
 @Injectable()
 export class HttpClientService {
 
-  urlBase:string = '';//'http://localhost:5000';
+  urlBase:string = environment.apiPrefix;//'http://localhost:5000';
   constructor(private http: HttpClient) {}
 
   createAuthorizationHeader(headers: HttpHeaders) {
