@@ -1,8 +1,8 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ViewContainerRef } from '@angular/core';
 import { ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { validationRules } from '../validator/validator-rules.component';
-
 import { ClientApiService } from '../client/client-api.service';
 import { Client } from '../common/client';
 
@@ -17,10 +17,11 @@ export class NewClientComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private clientApiService: ClientApiService
+    private clientApiService: ClientApiService,
+    public toastr: ToastsManager, vcr: ViewContainerRef
   ){
+    this.toastr.setRootViewContainerRef(vcr);
 
-    // Here we are using the FormBuilder to build out our form.
     this.clientForm = formBuilder.group({
       'firstName' : [null, Validators.compose([Validators.required, Validators.maxLength(45)])],
       'middleName' : '',
@@ -29,7 +30,6 @@ export class NewClientComponent {
       'ssnItin' : [null, Validators.compose([Validators.required, Validators.pattern(validationRules.SSN_REGEXP)])],
       'generateItin' : false
     });
-
   }
 
   submitForm(fields: any):void {
@@ -55,7 +55,10 @@ export class NewClientComponent {
   }
 
   addClient(client: Client) : void {
-    this.clientApiService.insert(client).subscribe(data => this.close());
+    this.clientApiService.insert(client).subscribe((data) => {
+      this.toastr.success('Client added successfully', 'Success!');
+      this.close()
+    });
   }
 
 }

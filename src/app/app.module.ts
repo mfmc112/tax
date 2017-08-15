@@ -1,9 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';  // NgModel lives here, Reactive is for validation
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { Ng2Bs3ModalModule } from 'ng2-bs3-modal/ng2-bs3-modal';
+import {ToastModule} from 'ng2-toastr/ng2-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,9 +22,9 @@ import { TaxContentComponent } from './tax-return/tax-content.component';
 import { CommonService } from './common.service';
 import { WorkingClientService } from './working-client.service';
 import { WorkingTaxReturnService } from './working-tax-return.service';
+
 // client
 import { NewClientComponent } from './client/new-client.component';
-
 
 //Services
 import { ClientApiService } from './client/client-api.service';
@@ -31,6 +33,8 @@ import { HttpClientService } from './common/http-client.service';
 @NgModule({
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    ToastModule.forRoot(),
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,

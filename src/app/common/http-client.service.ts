@@ -24,7 +24,7 @@ export class HttpClientService {
   post(url, data): Observable<any> {
     let headers = new HttpHeaders();
     this.createAuthorizationHeader(headers);
-    headers.append('Access-Control-Allow-Origin', '*');
+    // headers.append('Access-Control-Allow-Origin', '*');
     return this.http.post(this.urlBase + url, data, {headers: headers});
   }
 

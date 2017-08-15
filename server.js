@@ -14,7 +14,8 @@ server.use(bodyParser.json());
 server.use(bodyParser.json({type: 'application/vdn.api+json'}));
 
 server.listen(port);
-console.log("Tax Smart is up");
+console.log("Tax Smart is up and running");
+
 var clientsAPIName = 'clients';
 var addHeaderCORS = function(res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -62,18 +63,18 @@ server.get('/api/' + clientsAPIName + '/:id', function(req, res) {
  * Create a new client if it already do not exists
  */
 server.post('/api/' + clientsAPIName, function(req,res) {
-  console.log('executing POST' + req.body.firstName);
+  console.log('executing POST ' + req.body.firstName);
   mongo.find({"firstName": req.body.firstName, "lastName": req.body.lastName}, function(response) {
     console.log(response);
     if (!response || response.totalCount == 0) {
       // If client is not already registered
-      mongo.insert(req.body, function(response) {
+      mongo.insert(req.body, function(response, error) {
         //TODO: change this accordingly to PROD or dev environment
         addHeaderCORS(res);
-        res.send(response, error);
+        if (!error) res.status(200).send(response);
+        else res.status(500).send(error);
      });
    } else {
-     // If client is already registered
      //TODO: change this accordingly to PROD or dev environment
      addHeaderCORS(res);
      res.status(500).json("A client with same First and Last Name already exists on the system");
@@ -96,10 +97,11 @@ server.put('/api/' + clientsAPIName, function(req,res) {
  */
 server.put('/api/' + clientsAPIName + '/:id', function(req,res) {
   console.log('executing PUT' + req.body.firstName);
-  mongo.update({"_id" : ObjectId(req.params.id)}, req.body, function(response) {
+  mongo.update({"_id" : ObjectId(req.params.id)}, req.body, function(response, error) {
     //TODO: change this accordingly to PROD or dev environment
     addHeaderCORS(res);
-    res.send(response);
+    if (!error) res.status(200).send(response);
+    else res.status(500).send(error);
   });
 });
 
@@ -107,10 +109,11 @@ server.put('/api/' + clientsAPIName + '/:id', function(req,res) {
  * Update an existing client
  */
 server.delete('/api/' + clientsAPIName + '/:id', function(req,res) {
-  mongo.removeById(req.params.id, function(response) {
+  mongo.removeById(req.params.id, function(response, error) {
     //TODO: change this accordingly to PROD or dev environment
     addHeaderCORS(res);
-    res.send(response);
+    if (!error) res.status(200).send(response);
+    else res.status(500).send(error);
   });
 });
 
@@ -118,27 +121,3 @@ server.delete('/api/' + clientsAPIName + '/:id', function(req,res) {
 server.get('*', function(req,res) {
   res.sendfile('./dist/index.html');
 });
-
-function testConnected() {
-  var kristy = {"firstName": "Kristy", "lastName": "Campbell", "middleName":"L", "ssn": "111-111-1111", "itin": "1111111111"};
-  var val = {"firstName": "Val", "lastName": "Osipenki", "middleName":"V", "ssn": "2222-2222-2222", "itin": "2222222222"};
-  // mongo.find({firstName: 'Kristy'}, function(result){
-  //   console.log(result);
-  // });
-  // mongo.insert({
-  //   firstName: 'Kristy',
-  //   lastName: 'Campbell',
-  //   middleName:'L',
-  //   ssn: '111-111-1111',
-  //   itin: '1111111111'}, function(res) {
-  //     console.log('inserterd one client');
-  //     console.log(res);
-  //   });
-
-  // mongo.insertArray([val, val], function(res) {
-  //     console.log('inserterd one client');
-  //     console.log(res);
-  //   });
-
-}
-setTimeout(testConnected, 1000);
