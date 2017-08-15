@@ -21,8 +21,7 @@ export class ClientListComponent {
     private workingTaxReturnService: WorkingTaxReturnService,
     private clientApiService: ClientApiService
    ) {
-
-   this.findClients();
+   this.findClients({});
  }
 
   taxReturn():void {
@@ -40,8 +39,9 @@ export class ClientListComponent {
     this.router.navigate(['./tax-return']);
   }
 
-  findClients() : void {
-    this.clientApiService.findByFilter({}).subscribe(data => this.clientList = data);
+  findClients(filter: object) : void {
+    if (!filter) filter = {};
+    this.clientApiService.findByFilter(filter).subscribe(data => this.clientList = data);
   }
 
 }

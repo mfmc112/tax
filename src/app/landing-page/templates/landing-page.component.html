@@ -19,9 +19,9 @@
           <label for="clientName">&nbsp;</label>
           <div class="input-group">
             <span class="input-group-btn" id="basic-addon1">>
-                <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                <button class="btn btn-default" type="button" (click)="findClients()" ><span class="glyphicon glyphicon-search"></span></button>
             </span>
-            <input type="text" name="clientName" class="form-control" placeholder="Client Name" aria-describedby="basic-addon1">
+            <input type="text" [(ngModel)]="name" name="clientName" class="form-control" placeholder="Client Name" aria-describedby="basic-addon1">
           </div>
         </div>
         <div class="col-md-2">
