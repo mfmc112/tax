@@ -37,11 +37,6 @@
   min-height:500px;
 }
 
-.steps-menu {
-
-
-}
-
 .area-menu {
    min-height:500px;
 }
@@ -54,4 +49,8 @@
 
 .panel-group .panel {
     border-radius: 0px;
+}
+
+a:hover {
+  text-decoration: none;
 }

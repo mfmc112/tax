@@ -1,47 +1,47 @@
-<div>
-  <div class="row">
-    <div class="col-md-1" style="position:relative; top:20px;">
-      <button type="button" id="myButton" (click)="open()" class="btn large-button large-button-blue" autocomplete="off">
-        <span class="glyphicon glyphicon-plus medium-button-icon"></span>
-        <span class="glyphicon glyphicon-user medium-button-icon"></span>
-        <div class="divider-5"></div>
-        New Client
-      </button>
-      <new-client-modal></new-client-modal>
-    </div>
-    <div class="col-md-11">
+<div class="container-fluid">
+  <div class="row" style="position:relative; top:20px;">
+    <div class="col-1 align-self-start">
       <div class="row">
-        <div class="col-md-2"><span class="year-font">2017</span></div>
-        <div class="col-md-10">&nbsp;</div>
+        <button type="button" id="myButton" (click)="open()" class="btn large-button large-button-blue" autocomplete="off">
+          <i class="fa fa-user-plus medium-button-icon" aria-hidden="true"></i>
+          <div class="divider-5"></div>
+          New Client
+        </button>
+        <new-client-modal></new-client-modal>
+      </div>
+    </div>
+    <div class="col-11 align-self-end">
+      <div class="row">
+        <div class="col-12" style="margin-bottom:-40px"><span class="year-font">2017</span></div>
       </div>
       <div class="row">
-        <div class="col-md-4">
-          <label for="clientName">&nbsp;</label>
+        <div class="col-4">
+          <label for="clientName" class="col-form-label-sm">&nbsp;</label>
           <div class="input-group">
             <span class="input-group-btn" id="basic-addon1">>
-                <button class="btn btn-default" type="button" (click)="findClients()" ><span class="glyphicon glyphicon-search"></span></button>
+                <button class="btn btn-default" type="button" (click)="findClients()" ><i class="fa fa-search" aria-hidden="true"></i></button>
             </span>
             <input type="text" [(ngModel)]="name" name="clientName" class="form-control" placeholder="Client Name" aria-describedby="basic-addon1">
           </div>
         </div>
-        <div class="col-md-2">
-            <label for="returnYear">Return Year</label>
+        <div class="col-2">
+            <label for="returnYear" class="col-form-label-sm">Return Year</label>
             <select name="returnYear" class="form-control">
               <option value="2017">2017</option>
               <option value="2016">2016</option>
               <option value="2015">2015</option>
             </select>
         </div>
-        <div class="col-md-2">
-            <label for="federalStatus">Federal Status</label>
+        <div class="col-2">
+            <label for="federalStatus" class="col-form-label-sm">Status</label>
             <select name="federalStatus" class="form-control">
               <option value="In Progress">In Progress</option>
               <option value="On Hold">On Hold</option>
               <option value="E-Filed">E-Filed</option>
             </select>
         </div>
-        <div class="col-md-4">
-            <label for="taxPreparer">Tax Preparer</label>
+        <div class="col-4">
+            <label for="taxPreparer" class="col-form-label-sm">Tax Preparer</label>
             <select name="taxPreparer" class="form-control">
               <option value="Josue Edgardo Albertp">Josue Edgardo Alberto</option>
               <option value="Marcos Costa">Marcos Costa</option>
@@ -53,10 +53,10 @@
     </div>
   </div>
 
-  <div class="divider-10"></div>
+  <div class="divider-30"></div>
   <!-- list starts here-->
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-12">
       <client-list></client-list>
     </div>
   </div>
