@@ -1,84 +1,74 @@
 <h4>FEDERAL FORMS</h4>
-<div class="panel-group steps-menu" id="accordion">
-  <!-- Client Information -->
-  <div class="panel panel-default">
-    <div class="panel-heading">
-        <h4 class="panel-title">
-            <a data-toggle="collapse" data-parent="#accordion" href="#client">
-              <span class="glyphicon glyphicon-user">&nbsp;</span>
-              Client Information
-            </a>
-        </h4>
-    </div>
-    <div id="client" class="panel-collapse collapse in">
-        <div class="panel-body">
-            <table class="table">
-                <tr>
-                    <td>
-                        <span class="glyphicon glyphicon-ok text-success"></span>&nbsp;<a>Personal Information</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span class="glyphicon glyphicon-ok text-success"></span>&nbsp;<a>Filing Information</a>
-                    </td>
-                </tr>
-            </table>
-        </div>
-    </div>
-  </div>
 
-  <div class="panel panel-default">
-      <div class="panel-heading">
-          <h4 class="panel-title">
-              <a data-toggle="collapse" data-parent="#accordion" href="#form1040">
-                <span class="glyphicon glyphicon-user">&nbsp;</span>
-                Form 1040
-              </a>
-          </h4>
+<div id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="card">
+    <div class="card-header" role="tab" id="headingOne">
+      <h6 class="mb-0">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              <i class="fa fa-user-o" aria-hidden="true"></i>
+              Client Information
+        </a>
+      </h6>
+    </div>
+
+    <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+      <div class="card-block">
+        <table class="table table-hover">
+            <tr>
+                <td><a>Personal Information</a>&nbsp;<i class="fa fa-check text-success" aria-hidden="true"></i></td>
+            </tr>
+            <tr>
+                <td><a>Filing Information</a>&nbsp;<i class="fa fa-check text-success" aria-hidden="true"></i></td>
+            </tr>
+        </table>
       </div>
-      <div id="form1040" class="panel-collapse collapse">
-          <div class="panel-body">
-              <table class="table">
-                  <tr>
-                      <td>
-                          <span class="glyphicon glyphicon-ok text-success"></span>&nbsp;<a>Page 1</a>
-                      </td>
-                  </tr>
-                  <tr>
-                      <td>
-                          <span class="glyphicon glyphicon-ok text-success"></span>&nbsp;<a>Page 2</a>
-                      </td>
-                  </tr>
-              </table>
-          </div>
-      </div>
+    </div>
   </div>
-  <!-- W-2 -->
-  <div class="panel panel-default">
-      <div class="panel-heading">
-          <h4 class="panel-title">
-              <a data-toggle="collapse" data-parent="#accordion" href="#w2">
-                <span class="glyphicon glyphicon-user">&nbsp;</span>
-                W-2
-              </a>
-          </h4>
+  <div class="card">
+    <div class="card-header" role="tab" id="headingTwo">
+      <h6 class="mb-0">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          <i class="fa fa-wpforms" aria-hidden="true"></i>
+          Form 1040
+        </a>
+      </h6>
+    </div>
+    <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div class="card-block">
+        <table class="table table-hover">
+            <tr>
+              <td><i class="fa fa-plus text-info" aria-hidden="true"></i>&nbsp;<a>Add Form 1040</a></td>
+            </tr>
+            <tr>
+              <td><a>Page 1</a>&nbsp;<i class="fa fa-check text-success" aria-hidden="true"></i></td>
+            </tr>
+            <tr>
+              <td><a>Page 2</a></td>
+            </tr>
+        </table>
       </div>
-      <div id="w2" class="panel-collapse collapse">
-          <div class="panel-body">
-              <table class="table">
-                  <tr>
-                      <td>
-                          <span class="glyphicon glyphicon-plus"></span>&nbsp;<a> Add W-2</a>
-                      </td>
-                  </tr>
-                  <tr>
-                      <td>
-                          <span class="glyphicon glyphicon-ok text-success"></span>&nbsp;<a>W-2 (T-AXXESS HEALTHCARE)</a>
-                      </td>
-                  </tr>
-              </table>
-          </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab" id="headingThree">
+      <h6 class="mb-0">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          <i class="fa fa-wpforms" aria-hidden="true"></i>
+          W-2
+        </a>
+      </h6>
+    </div>
+    <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
+      <div class="card-block">
+        <table class="table table-hover">
+            <tr>
+              <td><i class="fa fa-plus text-info" aria-hidden="true"></i>&nbsp;<a>Add W-2</a></td>
+            </tr>
+            <tr>
+              <td><a>W-2 (T-AXXESS HEALTHCARE)</a>&nbsp;<i class="fa fa-check text-success" aria-hidden="true"></i></td>
+            </tr>
+        </table>
       </div>
+    </div>
   </div>
 </div>

@@ -1,10 +1,10 @@
     <table *ngIf="clientList" class="table table-hover">
       <tr>
-        <td class="active"><input type="checkbox" class="checkbox"></td>
-        <td class="active">Client Name</td>
-        <td class="active">Status</td>
-        <td class="active">Preparer</td>
-        <td class="active">Last Updated</td>
+        <th class="active"><input type="checkbox" class="checkbox"></th>
+        <th class="active">Client Name</th>
+        <th class="active">Status</th>
+        <th class="active">Preparer</th>
+        <th class="active">Last Updated</th>
       </tr>
       <tr *ngFor="let client of clientList.clients" (click)="taxReturn(client._id)">
         <td class="info"><input type="checkbox" class="checkbox"></td>
