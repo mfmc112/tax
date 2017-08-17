@@ -19,6 +19,10 @@ import { TaxHeaderComponent } from './tax-return/tax-header.component';
 import { TaxMenuComponent } from './tax-return/tax-menu.component';
 import { TaxAreaComponent } from './tax-return/tax-area.component';
 import { TaxContentComponent } from './tax-return/tax-content.component';
+import { ApplicationComponent } from './application/application.component';
+import { ApplicationHeaderComponent } from './application/application-header.component';
+
+
 import { CommonService } from './common.service';
 import { WorkingClientService } from './working-client.service';
 import { WorkingTaxReturnService } from './working-tax-return.service';
@@ -52,6 +56,8 @@ import { HttpClientService } from './common/http-client.service';
     TaxMenuComponent,
     TaxAreaComponent,
     TaxContentComponent,
+    ApplicationComponent,
+    ApplicationHeaderComponent,
     NewClientComponent
   ],
   providers: [
