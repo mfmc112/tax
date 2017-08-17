@@ -5,6 +5,7 @@ import { Client } from '../common/client';
 import { TaxReturn } from '../common/tax-return';
 import { WorkingClientService } from '../working-client.service';
 import { WorkingTaxReturnService } from '../working-tax-return.service';
+
 @Component({
   selector: 'application',
   templateUrl: './templates/application.component.html',
@@ -15,7 +16,7 @@ export class ApplicationComponent {
   client: Client;
   taxReturn: TaxReturn;
   taxForm: FormGroup;
-  collapsedMenu: boolean = false;
+  selectedMenu: string;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -35,8 +36,15 @@ export class ApplicationComponent {
    }
 
   ngOnInit(): void {
+    let tr: TaxReturn = new TaxReturn();
+    tr.estimate = 1000;
+    tr.currentAGI = 30000;
+    this.workingTaxReturnService.setTaxReturn(tr);
     this.client = this.workingClientService.getClient();
     this.taxReturn = this.workingTaxReturnService.getTaxReturn();
+  }
+  setMenu(item): void {
+    this.selectedMenu = item;
   }
 
   submitForm(fields: any):void {

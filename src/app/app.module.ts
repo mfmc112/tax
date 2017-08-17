@@ -5,10 +5,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';  // NgModel l
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { Ng2Bs3ModalModule } from 'ng2-bs3-modal/ng2-bs3-modal';
-import {ToastModule} from 'ng2-toastr/ng2-toastr';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ToastModule } from 'ng2-toastr/ng2-toastr';
+
 
 import { MenuComponent } from './menu/menu.component';
 import { LoginComponent } from './login/login.component';
@@ -21,6 +21,8 @@ import { TaxAreaComponent } from './tax-return/tax-area.component';
 import { TaxContentComponent } from './tax-return/tax-content.component';
 import { ApplicationComponent } from './application/application.component';
 import { ApplicationHeaderComponent } from './application/application-header.component';
+import { TaxReturnFormComponent } from './tax-return-forms/tax-return-form.component';
+import { PersonalInfoFormComponent } from './tax-return-forms/personal-info-form.component';
 
 
 import { CommonService } from './common.service';
@@ -58,7 +60,9 @@ import { HttpClientService } from './common/http-client.service';
     TaxContentComponent,
     ApplicationComponent,
     ApplicationHeaderComponent,
-    NewClientComponent
+    NewClientComponent,
+    TaxReturnFormComponent,
+    PersonalInfoFormComponent
   ],
   providers: [
     CommonService,

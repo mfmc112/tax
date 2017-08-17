@@ -1,0 +1,49 @@
+<div class="page-header" style="background-color:#cccccc">
+    <h1>US<small><small> PERSONAL INFORMATION</small></small></h1>
+</div>
+<p class="lead">TAXPAYER INFORMATION</p>
+<hr>
+<div class="row">
+  <form [formGroup]="taxForm" (submit)="submitForm(taxForm.value)" style="min-height:150px">
+    <div class="col-12">
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label><br>First Name</label>
+            <input formControlName="firstName" type="text" placeholder="Client First Name" class="form-control">
+          </div>
+        </div>
+        <div class="col-sm-1">
+          <div class="form-group">
+            <label><br>Initial</label>
+            <input formControlName="middleName" type="text" class="form-control">
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label><br>Last Name</label>
+            <input formControlName="lastName" type="text" placeholder="Client Last Name" class="form-control">
+          </div>
+        </div>
+        <div class="col-sm-1">
+          <div class="form-group">
+            <label><br>Suffix</label>
+            <input formControlName="suffixName" type="text" class="form-control">
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label><br>SSN</label>
+            <input formControlName="ssnItin" type="text" placeholder="###-##-####" class="form-control">
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <!-- <button role="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo2" aria-expanded="true"> -->
+    <button role="button" class="btn btn-primary float-right">next</button>
+  </div>
+</div>

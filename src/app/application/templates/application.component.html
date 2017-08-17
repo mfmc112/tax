@@ -5,16 +5,17 @@
                   <div class="col-12 ammount-box">
                     <span class="big-value">${{taxReturn.estimate}}</span><br>
                     FEDERAL<div class="divider-5"></div>
-                    Current AGI: {{taxReturn.currentAGI}}
+                    Current AGI: {{taxReturn.currentAGI}}-{{selectedMenu}}
                   </div>
                 <a href="#menu1" class="list-group-item d-inline-block collapsed" data-toggle="collapse" data-parent="#sidebar" aria-expanded="false">
                   <i class="fa fa-user-o" aria-hidden="true"></i> <span class="d-none d-md-inline">Client Information</span>
                 </a>
                 <div class="collapse" id="menu1">
-                    <a href="#menu1sub1" class="list-group-item" data-toggle="collapse" aria-expanded="false">&nbsp;&nbsp;Personal Information&nbsp;<i class="fa fa-check text-success" aria-hidden="true"></i></a>
+                    <a (click)="setMenu('personal-info')" class="list-group-item d-inline-block collapsed" data-parent="#sidebar">&nbsp;&nbsp;Personal Information&nbsp;<i class="fa fa-check text-success" aria-hidden="true"></i></a>
+                    <a href="#menu1sub1" class="list-group-item" data-toggle="collapse" aria-expanded="false">&nbsp;&nbsp;Filing Information&nbsp;<i class="fa fa-check text-success" aria-hidden="true"></i></a>
                     <div class="collapse" id="menu1sub1">
-                        <a href="#" class="list-group-item" data-parent="#menu1sub1">&nbsp;&nbsp;&nbsp;&nbsp;Personal Info 1&nbsp;<i class="fa fa-check text-success" aria-hidden="true"></i></a>
-                        <a href="#" class="list-group-item" data-parent="#menu1sub1">&nbsp;&nbsp;&nbsp;&nbsp;Personal Info 2</a>
+                        <a href="#" class="list-group-item" data-parent="#menu1sub1">&nbsp;&nbsp;&nbsp;&nbsp;Filing Info 1&nbsp;<i class="fa fa-check text-success" aria-hidden="true"></i></a>
+                        <!-- <a href="#" class="list-group-item" data-parent="#menu1sub1">&nbsp;&nbsp;&nbsp;&nbsp;Personal Info 2</a> -->
                         <!-- <a href="#menu1sub1sub1" class="list-group-item" data-toggle="collapse" aria-expanded="false"><i class="fa fa-check text-success" aria-hidden="true"></i> Filing Information</a>
                         <div class="collapse" id="menu1sub1sub1">
                             <a href="#" class="list-group-item" data-parent="#menu1sub1sub1">Subitem 3 c.1</a>
@@ -53,56 +54,7 @@
         </div>
         <main class="col-md-8 float-left col px-5 pl-md-2 pt-2 main">
             <application-header-component></application-header-component>
-
-            <div class="page-header" style="background-color:#cccccc">
-                <h1>US<small><small> PERSONAL INFORMATION</small></small></h1>
-            </div>
-            <p class="lead">TAXPAYER INFORMATION</p>
-            <hr>
-            <div class="row">
-              <form [formGroup]="taxForm" (submit)="submitForm(taxForm.value)" style="min-height:150px">
-                <div class="col-12">
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <div class="form-group">
-                        <label><br>First Name</label>
-                        <input formControlName="firstName" type="text" placeholder="Client First Name" class="form-control">
-                      </div>
-                    </div>
-                    <div class="col-sm-1">
-                      <div class="form-group">
-                        <label><br>Initial</label>
-                        <input formControlName="middleName" type="text" class="form-control">
-                      </div>
-                    </div>
-                    <div class="col-sm-4">
-                      <div class="form-group">
-                        <label><br>Last Name</label>
-                        <input formControlName="lastName" type="text" placeholder="Client Last Name" class="form-control">
-                      </div>
-                    </div>
-                    <div class="col-sm-1">
-                      <div class="form-group">
-                        <label><br>Suffix</label>
-                        <input formControlName="suffixName" type="text" class="form-control">
-                      </div>
-                    </div>
-                    <div class="col-sm-3">
-                      <div class="form-group">
-                        <label><br>SSN</label>
-                        <input formControlName="ssnItin" type="text" placeholder="###-##-####" class="form-control">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </form>
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-                    <!-- <button role="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo2" aria-expanded="true"> -->
-                    <button role="button" class="btn btn-primary float-right">next</button>
-                </div>
-            </div>
+            <tax-form></tax-form>
         </main>
     </div>
 </div>
