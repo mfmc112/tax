@@ -9,11 +9,10 @@ import { WorkingClientService } from '../working-client.service';
 import { WorkingTaxReturnService } from '../working-tax-return.service';
 
 @Component({
-  selector: 'personal-info-form',
-  templateUrl: './templates/personal-info-form.component.html',
-  host: {class:'sss'}
+  selector: 'filing-info-form',
+  templateUrl: './templates/filing-info-form.component.html'
 })
-export class PersonalInfoFormComponent implements OnInit {
+export class FilingInfoFormComponent implements OnInit {
   @ViewChild('../application/application.component') applicationComponent: ApplicationComponent;
   taxForm: FormGroup;
   client: Client;

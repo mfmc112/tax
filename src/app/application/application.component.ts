@@ -10,7 +10,6 @@ import { WorkingTaxReturnService } from '../working-tax-return.service';
   selector: 'application',
   templateUrl: './templates/application.component.html',
   styleUrls: ['../tax-return/templates/tax-return.component.css']
-
 })
 export class ApplicationComponent {
   client: Client;

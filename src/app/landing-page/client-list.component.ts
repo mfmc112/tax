@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { UIRouterModule, UIRouter } from '@uirouter/angular';
 import { Client } from '../common/client';
 import { TaxReturn } from '../common/tax-return';
 import { WorkingClientService } from '../working-client.service';
@@ -16,7 +16,7 @@ export class ClientListComponent {
   public clientList: Client[];
 
   constructor(
-    private router: Router,
+    private _uiRouter: UIRouter,
     private workingClientService: WorkingClientService,
     private workingTaxReturnService: WorkingTaxReturnService,
     private clientApiService: ClientApiService
@@ -24,7 +24,7 @@ export class ClientListComponent {
    this.findClients({});
  }
 
-  taxReturn():void {
+  openApplication():void {
     let client: Client = new Client();
     client.setFirstName('Kristy');
     client.setMiddleName('L');
@@ -35,8 +35,7 @@ export class ClientListComponent {
     taxReturn.setEstimate(2500);
     taxReturn.setCurrentAGI(24858);
     this.workingTaxReturnService.setTaxReturn(taxReturn);
-
-    this.router.navigate(['./tax-return']);
+    this._uiRouter.stateService.go('menu.application')
   }
 
   findClients(filter: object) : void {

@@ -1,5 +1,5 @@
 import { Component, ViewChild, OnInit, Input } from '@angular/core';
-import { NewClientComponent } from '../client/new-client.component';
+import { NewClientComponent } from './new-client.component';
 import { ClientListComponent } from './client-list.component';
 import { CommonService } from '../common.service';
 import { User } from '../login/user';

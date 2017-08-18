@@ -1,0 +1,55 @@
+<div class="page-header" style="background-color:#cccccc">
+    <h1>US<small><small> FILING INFORMATION</small></small></h1>
+</div>
+<p class="lead">FILING STATUS AND EXEMPTIONS</p>
+<hr>
+<div class="row">
+  <form [formGroup]="taxForm" (submit)="submitForm(taxForm.value)" style="min-height:150px">
+    <div class="col-12">
+      <div class="row">
+        <div class="col-sm-12">
+
+          <fieldset class="form-group">
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input type="radio" class="form-check-input" name="statusExemption" id="optionsRadios1" value="1" checked>
+                  Single
+                </label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input type="radio" class="form-check-input" name="statusExemption" id="optionsRadios2" value="2">
+                  Married Filing Jointly (even if only one had income)
+                </label>
+              </div>
+              <div class="form-check disabled">
+                <label class="form-check-label">
+                  <input type="radio" class="form-check-input" name="statusExemption" id="optionsRadios3" value="3" disabled>
+                  Married Filing Separately
+                </label>
+              </div>
+              <div class="form-check disabled">
+                <label class="form-check-label">
+                  <input type="radio" class="form-check-input" name="statusExemption" id="optionsRadios3" value="4" disabled>
+                  Head of Household (with qualifying person)
+                </label>
+              </div>
+              <div class="form-check disabled">
+                <label class="form-check-label">
+                  <input type="radio" class="form-check-input" name="statusExemption" id="optionsRadios3" value="5" disabled>
+                  Qualified Widow(er) with dependent child. Year spouse died (2015 or 2016 only)
+                </label>
+              </div>
+            </fieldset>
+
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <!-- <button role="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo2" aria-expanded="true"> -->
+    <button role="button" class="btn btn-primary float-right">next</button>
+  </div>
+</div>
