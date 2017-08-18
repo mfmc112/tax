@@ -4,7 +4,9 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 
-if (!/localhost/.test(document.location.host)) {
+import 'rxjs/add/operator/map';
+
+if (environment.production) {
   enableProdMode();
 }
 

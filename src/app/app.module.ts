@@ -1,64 +1,57 @@
 import { BrowserModule } from '@angular/platform-browser';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgModule, NgModuleFactoryLoader, SystemJsNgModuleLoader } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';  // NgModel lives here, Reactive is for validation
 import { HttpClientModule } from '@angular/common/http';
-import { RouterModule, Routes } from '@angular/router';
-import { Ng2Bs3ModalModule } from 'ng2-bs3-modal/ng2-bs3-modal';
-import {ToastModule} from 'ng2-toastr/ng2-toastr';
+import { UIRouterModule, UIView } from '@uirouter/angular';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { MenuComponent } from './menu/menu.component';
-import { LoginComponent } from './login/login.component';
-import { LandingPageComponent } from './landing-page/landing-page.component'
-import { ClientListComponent } from './landing-page/client-list.component';
+import { MenuModule } from './menu/menu.module';
+import { LoginModule } from './login/login.module';
+import { LandingPageModule } from './landing-page/landing-page.module'
+
 import { TaxReturnComponent } from './tax-return/tax-return.component';
 import { TaxHeaderComponent } from './tax-return/tax-header.component';
 import { TaxMenuComponent } from './tax-return/tax-menu.component';
 import { TaxAreaComponent } from './tax-return/tax-area.component';
 import { TaxContentComponent } from './tax-return/tax-content.component';
-import { ApplicationComponent } from './application/application.component';
-import { ApplicationHeaderComponent } from './application/application-header.component';
-
 
 import { CommonService } from './common.service';
 import { WorkingClientService } from './working-client.service';
 import { WorkingTaxReturnService } from './working-tax-return.service';
 
-// client
-import { NewClientComponent } from './client/new-client.component';
-
 //Services
 import { ClientApiService } from './client/client-api.service';
 import { HttpClientService } from './common/http-client.service';
+
+import { APP_STATES } from './app.states';
+import { routerConfigFn } from './router.config';
 
 @NgModule({
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    ToastModule.forRoot(),
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule,
-    Ng2Bs3ModalModule
+    UIRouterModule.forRoot({
+      states: APP_STATES,
+      useHash: false,
+      otherwise: { state: 'login' },
+      config: routerConfigFn,
+    }),
+    MenuModule,
+    LoginModule,
+    LandingPageModule
   ],
   declarations: [
     AppComponent,
-    MenuComponent,
-    LandingPageComponent,
-    LoginComponent,
-    ClientListComponent,
     TaxReturnComponent,
     TaxHeaderComponent,
     TaxMenuComponent,
     TaxAreaComponent,
-    TaxContentComponent,
-    ApplicationComponent,
-    ApplicationHeaderComponent,
-    NewClientComponent
+    TaxContentComponent
   ],
   providers: [
     CommonService,

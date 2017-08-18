@@ -6,7 +6,7 @@
         <th class="active">Preparer</th>
         <th class="active">Last Updated</th>
       </tr>
-      <tr *ngFor="let client of clientList.clients" (click)="taxReturn(client._id)">
+      <tr *ngFor="let client of clientList.clients" (click)="openApplication(client._id)">
         <td class="info"><input type="checkbox" class="checkbox"></td>
         <td>{{client.firstName}} {{client.middleName}}{{(client.middleName)?'.':''}} {{client.lastName}}</td>
         <td>In Progress</td>
