@@ -1,7 +1,6 @@
 var express = require('express');
 var server = express();
 var bodyParser = require('body-parser');
-var parser = require('./server/mongo/SafeParser');
 
 var db = require('./server/core/mgsDB');
 var User = require('./server/core/schemas/user-schema.js');
@@ -32,9 +31,9 @@ server.use(function (req, res, next) {
 
 // The APIs need to be loaded after the server uses the body parser and the headers
 require('./server/api/client-api.js')(server);
+require('./server/api/user-api.js')(server);
 
 
-var clientsAPIName = 'clients';
 var addHeaderCORS = function(res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
 }

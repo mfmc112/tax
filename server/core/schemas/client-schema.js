@@ -11,9 +11,5 @@ var clientSchema = new Schema({
   itin: String
 });
 
-// clientSchema.methods.findById = function(id, cd) {
-//   return Client.find(ObjectId(id), cd);
-// };
-
 var Client = mongoose.model('Client', clientSchema);
 module.exports = Client;
