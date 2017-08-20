@@ -55,8 +55,8 @@ var ApplicationApi = function(server) {
    * Create a new client if it already do not exists
    */
   server.post(BaseApi.getEndPoint(config.endpoint), function(req,res) {
-    if (!req.body.client && !req.body.client._id) res.status(500).send("invalida client");
-    if (!req.body.user && !req.body.user._id) res.status(500).send("invalida user");
+    if (!req.body.client) res.status(500).send("invalida client");
+    if (!req.body.preparer) res.status(500).send("invalida preparer");
 
     console.log('executing POST for client' + req.body.client + ', year of : ' + req.body.year);
     Application.find({"clientId": req.body.clientId, "year": req.body.year}, function(error, response) {
@@ -84,6 +84,7 @@ var ApplicationApi = function(server) {
    */
   server.put(BaseApi.getEndPoint(config.endpoint, ':id'), function(req,res) {
     if (!req.body.client) res.status(500).send("invalida client");
+    if (!req.body.preparer) res.status(500).send("invalida preparer");
 
     console.log('executing PUT for client' + req.body.client + ', year of : ' + req.body.year);
     Application.update({_id: BaseApi.objectID(req.params.id)}, req.body, function(error, response) {
