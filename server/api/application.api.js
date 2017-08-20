@@ -59,7 +59,7 @@ var ApplicationApi = function(server) {
     if (!req.body.preparer) res.status(500).send("invalida preparer");
 
     console.log('executing POST for client' + req.body.client + ', year of : ' + req.body.year);
-    Application.find({"clientId": req.body.clientId, "year": req.body.year}, function(error, response) {
+    Application.find({"client": req.body.client, "year": req.body.year}, function(error, response) {
       if (!response || response.length === 0) {
         var application = new Application(req.body);
         Application.create(application, function(err, response){
