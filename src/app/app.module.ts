@@ -18,11 +18,13 @@ import { TaxAreaComponent } from './tax-return/tax-area.component';
 import { TaxContentComponent } from './tax-return/tax-content.component';
 
 import { CommonService } from './common.service';
+import { CurrentApplicationService } from './application/service/current-application.service';
 import { WorkingClientService } from './working-client.service';
 import { WorkingTaxReturnService } from './working-tax-return.service';
 
 //Services
 import { ClientApiService } from './client/client-api.service';
+import { ApplicationApiService } from './application/api/application-api.service';
 import { HttpClientService } from './common/http-client.service';
 
 import { APP_STATES } from './app.states';
@@ -37,7 +39,7 @@ import { routerConfigFn } from './router.config';
     ReactiveFormsModule,
     UIRouterModule.forRoot({
       states: APP_STATES,
-      useHash: false,
+      useHash: true,
       otherwise: { state: 'login' },
       config: routerConfigFn,
     }),
@@ -55,11 +57,13 @@ import { routerConfigFn } from './router.config';
   ],
   providers: [
     CommonService,
+    CurrentApplicationService,
     WorkingClientService,
     WorkingTaxReturnService,
     HttpClientModule,
     HttpClientService,
-    ClientApiService
+    ClientApiService,
+    ApplicationApiService
   ],
   bootstrap: [AppComponent]
 })

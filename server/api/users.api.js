@@ -1,13 +1,18 @@
+var BaseApi = require('../core/base-api');
 var ResponseDecorator = require('../core/response-decorator');
 var User = require('../core/schemas/user-schema.js');
-var ObjectId = require('mongodb').ObjectID;
 
 var UserApi = function(server) {
 
+  var config = {
+    endpoint: '/v1/users',
+    doc: 'users'
+  };
+
   var parseQuery = function(query) {
     var json = {};
-    if (query.id) json._id = ObjectId(query.id);
-    else if (query._id) json._id = ObjectId(query._id);
+    if (query.id) json._id = BaseApi.objectID(query.id);
+    else if (query._id) json._id = BaseApi.ObjectID(query._id);
 
     if (query.name) json.name = query.name;
     if (query.email) json.email = query.email;
@@ -18,13 +23,11 @@ var UserApi = function(server) {
   /**
    * Get by filter. Currently it can be ID, name, email and password
    */
-  server.get('/api/users', function(req, res) {
+   server.get(BaseApi.getEndPoint(config.endpoint), function(req, res) {
     var condition = parseQuery(req.query);
     var user = new User(condition);
     User.find(condition, function(error, response) {
-      //TODO: change this accordingly to PROD or dev environment
-      // addHeaderCORS(res);
-      if (!error) res.send(new ResponseDecorator().enrich(response, "users"));
+      if (!error) res.send(new ResponseDecorator().enrich(response, config.doc));
       else res.status(500).json("Error executing search");
     });
 
@@ -33,11 +36,9 @@ var UserApi = function(server) {
   /**
    * Get by Id (_id)
    */
-  server.get('/api/users/:id', function(req, res) {
+  server.get(BaseApi.getEndPoint(config.endpoint, ':id'), function(req, res) {
     console.log('executing GET by id: ' + req.params.id);
     User.findById(req.params.id,  function(error, response) {
-      //TODO: change this accordingly to PROD or dev environment
-      // addHeaderCORS(res);
       if (!error) res.send(response);
       else res.status(500).json("Error executing search");
     });
@@ -46,16 +47,14 @@ var UserApi = function(server) {
   /**
    * Create a new user if it already do not exists
    */
-  server.post('/api/users', function(req,res) {
+  server.post(BaseApi.getEndPoint(config.endpoint), function(req,res) {
     console.log('executing POST ' + req.body.name + " " + req.body.email);
     User.find({"name": req.body.name, "email": req.body.email}, function(error, response) {
-      //TODO: change this accordingly to PROD or dev environment
-      // addHeaderCORS(res);
       if (!response || response.length === 0) {
         var user = new User(req.body);
         User.create(user, function(err, response){
-          if (!error) res.status(200).send(response);
-          else res.status(500).send(error);
+          if (!err) res.status(200).send(response);
+          else res.status(500).send(err);
         });
       } else {
         res.status(500).json("A user with same name and email already exists on the system");
@@ -66,19 +65,16 @@ var UserApi = function(server) {
   /**
    * Update implemented to return the error
    */
-  server.put('/api/users', function(req,res) {
-    //TODO: change this accordingly to PROD or dev environment
-    // addHeaderCORS(res);
+  server.put(BaseApi.getEndPoint(config.endpoint), function(req,res) {
     res.status(500).json("This is an illegal update. It requires an :id");
   });
 
   /**
    * Update an existing user
    */
-  server.put('/api/users/:id', function(req,res) {
+  server.put(BaseApi.getEndPoint(config.endpoint, ':id'), function(req,res) {
     console.log('executing PUT ' + req.body.name);
-    User.update({_id: ObjectId(req.params.id)}, req.body, function(error, response) {
-      // addHeaderCORS(res);
+    User.update({_id: BaseApi.objectID(req.params.id)}, req.body, function(error, response) {
       if (!error) res.send(new ResponseDecorator().enrichPut(response, req));
       else res.status(500).send(error);
     });
@@ -87,11 +83,9 @@ var UserApi = function(server) {
   /**
    * Update an existing user
    */
-  server.delete('/api/users/:id', function(req,res) {
+  server.delete(BaseApi.getEndPoint(config.endpoint, ':id'), function(req,res) {
     console.log('executing DELETE ' + req.params.id);
-    User.remove({_id: ObjectId(req.params.id)}, function(error, response) {
-      //TODO: change this accordingly to PROD or dev environment
-      // addHeaderCORS(res);
+    User.remove({_id: BaseApi.objectID(req.params.id)}, function(error, response) {
       if (!error) {
         var enriched = new ResponseDecorator().enrichDelete(response, req.params.id)
         if (enriched._id) res.status(200).send(enriched);
@@ -101,7 +95,8 @@ var UserApi = function(server) {
     });
   });
 
-
+  BaseApi.logRegistered(config.endpoint);
+  BaseApi.logRegistered(config.endpoint, ':id');
 };
 
 module.exports = UserApi;

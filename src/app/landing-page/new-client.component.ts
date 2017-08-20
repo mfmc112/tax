@@ -33,7 +33,7 @@ export class NewClientComponent {
   }
 
   submitForm(fields: any):void {
-    let client: Client = new Client();
+    let client: Client = new Client({});
     if (fields.ssnItin && validationRules.ITIN_REGEXP.test(fields.ssnItin)) {
       client.setITIN(fields.ssnItin);
     } else {

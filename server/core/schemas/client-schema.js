@@ -1,4 +1,3 @@
-var ObjectId = require('mongodb').ObjectID;
 var mongoose = require('mongoose');
 
 var Schema = mongoose.Schema;

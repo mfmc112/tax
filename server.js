@@ -30,13 +30,10 @@ server.use(function (req, res, next) {
 });
 
 // The APIs need to be loaded after the server uses the body parser and the headers
-require('./server/api/client-api.js')(server);
-require('./server/api/user-api.js')(server);
-
-
-var addHeaderCORS = function(res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-}
+require('./server/api/clients.api')(server);
+require('./server/api/users.api')(server);
+require('./server/api/personal-info.api')(server);
+require('./server/api/application.api')(server);
 
 //application
 server.get('*', function(req,res) {

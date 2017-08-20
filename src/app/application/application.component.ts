@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { UIRouterModule, UIRouter } from '@uirouter/angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { validationRules } from '../validator/validator-rules.component';
 import { Client } from '../common/client';
 import { TaxReturn } from '../common/tax-return';
-import { WorkingClientService } from '../working-client.service';
-import { WorkingTaxReturnService } from '../working-tax-return.service';
+import { CurrentApplicationService } from './service/current-application.service';
 
 @Component({
   selector: 'application',
@@ -12,15 +12,17 @@ import { WorkingTaxReturnService } from '../working-tax-return.service';
   styleUrls: ['../tax-return/templates/tax-return.component.css']
 })
 export class ApplicationComponent {
-  client: Client;
-  taxReturn: TaxReturn;
+
   taxForm: FormGroup;
-  selectedMenu: string;
+  client: Client;
+  year: number;
+  estimate: number;
+  currentAgi: number;
 
   constructor(
+    private _uiRouter: UIRouter,
     private formBuilder: FormBuilder,
-    private workingClientService: WorkingClientService,
-    private workingTaxReturnService: WorkingTaxReturnService
+    private currentApplicationService: CurrentApplicationService
    ) {
      this.taxForm = formBuilder.group({
        'firstName' : [null, Validators.compose([Validators.required, Validators.maxLength(45)])],
@@ -30,20 +32,18 @@ export class ApplicationComponent {
        'returnYear': '2017',
        'ssnItin' : [null, Validators.compose([Validators.required, Validators.pattern(validationRules.SSN_REGEXP)])],
        'generateItin' : false
-
      });
    }
 
   ngOnInit(): void {
-    let tr: TaxReturn = new TaxReturn();
-    tr.estimate = 1000;
-    tr.currentAGI = 30000;
-    this.workingTaxReturnService.setTaxReturn(tr);
-    this.client = this.workingClientService.getClient();
-    this.taxReturn = this.workingTaxReturnService.getTaxReturn();
-  }
-  setMenu(item): void {
-    this.selectedMenu = item;
+    if (!this.currentApplicationService.getApplication()) {
+      this._uiRouter.stateService.go('menu.landingPage');
+    }else{
+      this.client = this.currentApplicationService.getClient();
+      this.year = this.currentApplicationService.getApplication().year;
+      this.estimate = this.currentApplicationService.getApplication().estimate;
+      this.currentAgi = this.currentApplicationService.getApplication().currentAgi;
+    }
   }
 
   submitForm(fields: any):void {

@@ -1,0 +1,18 @@
+    <table *ngIf="applicationList" class="table table-hover">
+      <tr>
+        <th class="active"><input type="checkbox" class="checkbox"></th>
+        <th class="active">Client Name</th>
+        <th class="active">Year</th>
+        <th class="active">Status</th>
+        <th class="active">Preparer</th>
+        <th class="active">Last Updated</th>
+      </tr>
+      <tr *ngFor="let application of applicationList" (click)="openApplication(application._id)">
+        <td class="info"><input type="checkbox" class="checkbox"></td>
+        <td>{{application.client.firstName}} {{application.client.middleName}}{{(application.client.middleName)?'.':''}} {{application.client.lastName}}</td>
+        <td>{{application.year}}</td>
+        <td>{{application.status}}</td>
+        <td>{{application.preparer.name}}</td>
+        <td>{{application.lastUpdated}}</td>
+      </tr>
+    </table>

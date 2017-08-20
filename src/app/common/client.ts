@@ -5,6 +5,14 @@ export class Client {
   ssn:string;
   itin:string;
 
+  constructor(private data: any) {
+    this.firstName = data.firstName;
+    this.lastName = data.lastName;
+    this.middleName = data.middleName;
+    this.ssn = data.ssn;
+    this.itin = data.itin;
+  }
+
   setFirstName(firstName: string) {
     this.firstName = firstName;
   }

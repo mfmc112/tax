@@ -25,11 +25,11 @@
           </div>
         </div>
         <div class="col-2">
-            <label for="returnYear" class="col-form-label-sm">Return Year</label>
-            <select name="returnYear" class="form-control">
-              <option value="2017">2017</option>
-              <option value="2016">2016</option>
-              <option value="2015">2015</option>
+            <label for="year" class="col-form-label-sm">Return Year</label>
+            <select [(ngModel)]="year" name="year" class="form-control">
+              <option value=2017>2017</option>
+              <option value=2016>2016</option>
+              <option value=2015>2015</option>
             </select>
         </div>
         <div class="col-2">
@@ -57,7 +57,7 @@
   <!-- list starts here-->
   <div class="row">
     <div class="col-12">
-      <client-list></client-list>
+      <application-list></application-list>
     </div>
   </div>
   <!-- list ends here-->

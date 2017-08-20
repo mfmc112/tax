@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClientService } from '../common/http-client.service';
-import { Client } from '../common/client';
+import { HttpClientService } from '../../common/http-client.service';
+import { Application } from '../../common/application';
 import 'rxjs/add/operator/map';
 
 @Injectable()
-export class ClientApiService {
+export class ApplicationApiService {
   result: any;
-  url: string = '/api/v1/clients';
+  url: string = '/api/v1/applications';
 
   constructor (private http: HttpClientService) {
   }
@@ -19,7 +19,7 @@ export class ClientApiService {
     return this.http.get(this.url + "/" + id);
   }
 
-  insert(client: Client): any {
-    return this.http.post(this.url, client);
+  insert(application: Application): any {
+    return this.http.post(this.url, application);
   }
 }

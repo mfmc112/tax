@@ -1,5 +1,5 @@
 import { LandingPageComponent } from './landing-page.component';
-import { ClientListComponent } from './client-list.component';
+import { ApplicationListComponent } from './application-list.component';
 import { NewClientComponent } from './new-client.component';
 
 export const landingPageState = {
@@ -9,9 +9,9 @@ export const landingPageState = {
 };
 
 export const clientListState = {
-  name: 'menu.landingPage.clientList',
-  url: '/client-list',
-  component: ClientListComponent
+  name: 'menu.landingPage.applicationList',
+  url: '/application-list',
+  component: ApplicationListComponent
 };
 
 export const newClientState = {
