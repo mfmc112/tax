@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
 
   }
 
-  gotoLandingPage(fields: any):void {
+  gotoLandingPage(fields: any, form: any):void {
     this.userApiService.matchUser(fields["user.email"], fields["user.password"]).subscribe(response => {
       if (!response.users || response.users.length <= 0) {
         this.loginFail = true;
