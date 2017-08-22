@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { environment } from '../../environments/environment';
-
+import * as _ from 'lodash';
 
 @Injectable()
 export class HttpClientService {
@@ -15,7 +15,22 @@ export class HttpClientService {
     //headers.set('Authorization', 'Basic ' + btoa('username:password'));
   }
 
-  get(url): Observable<Array<any>> {
+  // cleanEmpty(obj: any): void {
+  //   for (let propName in obj) {
+  //     if (obj[propName] === null || obj[propName] === undefined) {
+  //       delete obj[propName];
+  //     }
+  //   }
+  // }
+
+  get(url, filter): Observable<Array<any>> {
+    // this.cleanEmpty(filter);
+    let headers = new HttpHeaders();
+    this.createAuthorizationHeader(headers);
+    return this.http.get(this.urlBase + url, {headers: headers, params: filter});
+  }
+
+  getById(url): Observable<Array<any>> {
     let headers = new HttpHeaders();
     this.createAuthorizationHeader(headers);
     return this.http.get(this.urlBase + url, {headers: headers});
@@ -40,5 +55,14 @@ export class HttpClientService {
   //   this.addLocalhostHeader(headers);
   //   return this.http.delete(url, data, {headers: headers});
   // }
+
+  objToSearchParams(obj): URLSearchParams {
+    let params: URLSearchParams = new URLSearchParams();
+    for (var key in obj) {
+        if (obj.hasOwnProperty(key) && !_.isEmpty(obj[key]))
+            params.set(key, obj[key]);
+    }
+    return params;
+  }
 
 }

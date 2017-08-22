@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { UIRouterModule, UIRouter } from '@uirouter/angular';
 import { CommonService } from '../common.service';
+import { UserApiService } from '../user/api/user-api.service';
 import { User } from './user';
 import { Alert } from './alert';
 
@@ -11,14 +12,15 @@ import { Alert } from './alert';
   templateUrl: './templates/login.component.html'
 })
 export class LoginComponent implements OnInit {
-  loginForm: FormGroup;
-
   @Input() user: User = new User();
+  loginForm: FormGroup;
+  loginFail: boolean = false;
 
   constructor (
     private _uiRouter: UIRouter,
     private formBuilder: FormBuilder,
-    private commonService: CommonService
+    private commonService: CommonService,
+    private userApiService: UserApiService
   ) {
     this.loginForm = formBuilder.group({
       'user.email' : ['', Validators.compose([Validators.required, Validators.maxLength(45)])],
@@ -31,10 +33,14 @@ export class LoginComponent implements OnInit {
   }
 
   gotoLandingPage(fields: any):void {
-    // client.setITIN(fields.ssnItin);
-    this.user.name = 'Marcos Costa';
-    this.user.alerts = [new Alert(), new Alert(), new Alert()];
-    this.commonService.setUser( this.user );
-    this._uiRouter.stateService.go('menu')
+    this.userApiService.matchUser(fields["user.email"], fields["user.password"]).subscribe(response => {
+      if (!response.users || response.users.length <= 0) {
+        this.loginFail = true;
+      } else {
+        response.users[0].alerts = [new Alert(), new Alert(), new Alert()];
+        this.commonService.setUser( response.users[0] );
+        this._uiRouter.stateService.go('menu');
+      }
+    });
   }
 }

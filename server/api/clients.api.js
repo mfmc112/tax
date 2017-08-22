@@ -51,7 +51,7 @@ var ClientApi = function(server) {
    */
   server.post(BaseApi.getEndPoint(config.endpoint), function(req,res) {
     console.log('executing POST ' + req.body.firstName + " " + req.body.lastName);
-    Client.find({"firstName": req.body.firstName, "lastName": req.body.lastName}, function(error, response) {
+    Client.find({"firstName": req.body.firstName, "lastName": req.body.lastName, "ssn": req.body.ssn}, function(error, response) {
       if (!response || response.length === 0) {
         var client = new Client(req.body);
         Client.create(client, function(err, response){
@@ -59,7 +59,7 @@ var ClientApi = function(server) {
           else res.status(500).send(err);
         });
       } else {
-        res.status(500).json("A client with same First and Last Name already exists on the system");
+        res.status(500).json("A client with same First and Last Name and SSN is already on the system");
       }
     });
   });

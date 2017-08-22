@@ -24,6 +24,7 @@ import { WorkingTaxReturnService } from './working-tax-return.service';
 
 //Services
 import { ClientApiService } from './client/client-api.service';
+import { UserApiService } from './user/api/user-api.service';
 import { ApplicationApiService } from './application/api/application-api.service';
 import { HttpClientService } from './common/http-client.service';
 
@@ -63,6 +64,7 @@ import { routerConfigFn } from './router.config';
     HttpClientModule,
     HttpClientService,
     ClientApiService,
+    UserApiService,
     ApplicationApiService
   ],
   bootstrap: [AppComponent]

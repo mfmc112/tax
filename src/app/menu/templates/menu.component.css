@@ -33,6 +33,13 @@
   border-bottom-style: solid;
 }
 
+.nav-link.active {
+  color: #ffcc5c;
+  border-bottom-color: #ffcc5c;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+}
+
 .loggedAgent {
   position: relative;
   top: 10px;
