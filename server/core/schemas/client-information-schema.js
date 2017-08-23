@@ -4,8 +4,8 @@ var FilingInformation = require('./filing-info-schema');
 var Schema = mongoose.Schema;
 
 var clientInformationSchema = new Schema({
-  personalInformation: { type: PersonalInformation.schema }, //type: Schema.Types.ObjectId, ref: 'PersonalInformation' },
-  filingInformation: { type: FilingInformation.schema } //Schema.Types.ObjectId, ref: 'FilingInformation' }
+  personalInformation: { type: PersonalInformation.schema },
+  filingInformation: { type: FilingInformation.schema }
 });
 
 var ClientInformation = mongoose.model('ClientInformation', clientInformationSchema);

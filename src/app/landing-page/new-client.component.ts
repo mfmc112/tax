@@ -81,7 +81,7 @@ export class NewClientComponent {
     this.clientApi.findByFilter(application.client).subscribe(existingClient => {
       // If client Do not exists
       if (existingClient.clients.length === 0) {
-        self.clientApi.insert(application.client).subscribe(client => {
+        this.clientApi.insert(application.client).subscribe(client => {
           application.client = client._id;
           self.createApplication(application);
         });
@@ -94,7 +94,7 @@ export class NewClientComponent {
 
   createApplication(application: Application): void {
     this.applicationApi.insert(application).subscribe((application) => {
-      this.toastr.success('Application for ' + application.year + ' created successfully for client ' + application.client.firstName , 'Success!');
+      this.toastr.success('Application for ' + application.year + ' created successfully for client ' + application.clientInformation.personalInformation.firstName , 'Success!');
       this.close()
     });
   }

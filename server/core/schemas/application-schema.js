@@ -11,7 +11,7 @@ var applicationSchema = new Schema({
   currentAgi: Number,
   preparer: { type: Schema.Types.ObjectId, ref: 'User' },
   client: { type: Schema.Types.ObjectId, ref: 'Client' },
-  clientInformation: { type: ClientInformation.schema }, //Schema.Types.ObjectId, ref: 'ClientInformation' },
+  clientInformation: { type: ClientInformation.schema },
   lastUpdated: Date
 });
 
