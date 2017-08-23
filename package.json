@@ -37,6 +37,7 @@
     "lodash": "^4.17.4",
     "mongodb": "^2.2.31",
     "mongoose": "^4.11.7",
+    "mydatepicker": "^2.0.27",
     "ng2-bs3-modal": "^0.10.4",
     "ng2-toastr": "^4.1.2",
     "pluralize": "^6.0.0",

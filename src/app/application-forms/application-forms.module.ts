@@ -8,6 +8,8 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
 /* Add all the forms here */
 import { PersonalInfoFormComponent } from './personal-info-form.component';
 import { FilingInfoFormComponent } from './filing-info-form.component';
+import { MyDatePickerModule } from 'mydatepicker';
+
 
 @NgModule({
   imports: [
@@ -16,7 +18,8 @@ import { FilingInfoFormComponent } from './filing-info-form.component';
     Ng2Bs3ModalModule,
     ToastModule.forRoot(),
     SharedModule,
-    UIRouterModule.forChild({ states: APPLICATION_FORMS_STATES })
+    UIRouterModule.forChild({ states: APPLICATION_FORMS_STATES }),
+    MyDatePickerModule
   ],
   declarations: [
     PersonalInfoFormComponent,

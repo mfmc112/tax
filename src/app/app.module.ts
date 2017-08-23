@@ -4,6 +4,7 @@ import { NgModule, NgModuleFactoryLoader, SystemJsNgModuleLoader } from '@angula
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';  // NgModel lives here, Reactive is for validation
 import { HttpClientModule } from '@angular/common/http';
 import { UIRouterModule, UIView } from '@uirouter/angular';
+import { MyDatePickerModule } from 'mydatepicker';
 
 import { AppComponent } from './app.component';
 
@@ -44,6 +45,7 @@ import { routerConfigFn } from './router.config';
       otherwise: { state: 'login' },
       config: routerConfigFn,
     }),
+    MyDatePickerModule,
     MenuModule,
     LoginModule,
     LandingPageModule

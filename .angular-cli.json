@@ -22,15 +22,15 @@
         "styles.css",
         "../node_modules/bootstrap/dist/css/bootstrap.min.css",
         "../node_modules/font-awesome/css/font-awesome.css",
-        "../node_modules/ng2-toastr/bundles/ng2-toastr.min.css",
-        "../node_modules/lodash/lodash.js"
+        "../node_modules/ng2-toastr/bundles/ng2-toastr.min.css"
       ],
       "scripts": [
         "../node_modules/jquery/dist/jquery.js",
         "../node_modules/tether/dist/js/tether.js",
         "../node_modules/bootstrap/dist/js/bootstrap.js",
         "../node_modules/systemjs/dist/system.js",
-        "../node_modules/ng2-toastr/bundles/ng2-toastr.js"
+        "../node_modules/ng2-toastr/bundles/ng2-toastr.js",
+        "../node_modules/lodash/lodash.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
