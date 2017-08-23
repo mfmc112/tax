@@ -1,5 +1,4 @@
 var mongoose = require('mongoose');
-
 var Schema = mongoose.Schema;
 
 var personalInfoSchema = new Schema({
@@ -18,5 +17,5 @@ var personalInfoSchema = new Schema({
   }
 });
 
-var PersonalInfo = mongoose.model('PersonalInfo', personalInfoSchema);
-module.exports = PersonalInfo;
+var PersonalInformation = mongoose.model('PersonalInformation', personalInfoSchema);
+module.exports = PersonalInformation;

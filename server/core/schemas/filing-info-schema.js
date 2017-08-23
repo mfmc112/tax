@@ -2,10 +2,10 @@ var mongoose = require('mongoose');
 
 var Schema = mongoose.Schema;
 
-var filingInfoSchema = new Schema({
+var filingInformationSchema = new Schema({
   taxpayerDonateToPresidentialCampain: Number,
   spouseDonateToPresidentialCampain: Number
 });
 
-var FilingInfo = mongoose.model('FilingInfo', filingInfoSchema);
-module.exports = FilingInfo;
+var FilingInformation = mongoose.model('FilingInformation', filingInformationSchema);
+module.exports = FilingInformation;

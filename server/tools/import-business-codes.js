@@ -26,7 +26,7 @@ var ImportBusinessCodes = function() {
         !this.isNumber(currentRow.substring(0,6)) &&
         !this.isNumber(nextRow.substring(0,6))
       ) {
-        console.log("Main: " + currentRow);
+        // console.log("Main: " + currentRow);
         return true;
       }
       return false;
@@ -37,7 +37,7 @@ var ImportBusinessCodes = function() {
         !this.isNumber(currentRow.substring(0,6)) &&
         (this.isNumber(nextRow.substring(0,6)) || !nextRow)
       ) {
-        console.log("Primary: " + currentRow);
+        // console.log("Primary: " + currentRow);
         return true;
       }
       return false;
@@ -47,7 +47,7 @@ var ImportBusinessCodes = function() {
       return false;
     },
     saveMain: function(businessCode) {
-      console.log("SAVING----------"+ businessCode.name);
+      // console.log("SAVING----------"+ businessCode.name);
       BusinessCode.create(businessCode, function(err, response){
         console.log(businessCode.name + "saved successfully");
       });
@@ -75,7 +75,7 @@ var ImportBusinessCodes = function() {
           primaryIndex++;
           main.primary.push({name: row, secondary: []});
         } else if (this.isRowSecondary(row)) {
-          console.log("Secondary: " + row);
+          // console.log("Secondary: " + row);
           main.primary[primaryIndex].secondary.push({ code: row.substring(0,6), name: row.split(/-/)[1] });
         }
       }
