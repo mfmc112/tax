@@ -3,6 +3,7 @@ import { ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { validationRules } from '../validator/validator-rules.component';
+import { STATUSES } from '../enum/statuses.enum';
 import { ClientApiService } from '../client/client-api.service';
 import { ApplicationApiService } from '../application/api/application-api.service';
 import { CommonService } from '../common.service';
@@ -62,15 +63,25 @@ export class NewClientComponent {
   createApplicationObject(fields: any): Application {
     let application: Application = new Application();
     application.year = fields.returnYear;
+    application.status = STATUSES.CREATED;
+    application.estimate = 0;
+    application.currentAgi = 0;
     application.client = this.createClientObject(fields);
     application.clientInformation = this.createClientInfoObject(application.client);
     application.preparer = this.getPreparer()._id;
     return application;
   }
 
+  clearForm() : void {
+    this.clientForm.reset();
+  }
+
   open(): void { this.modal.open(); }
 
-  close(): void { this.modal.close(); }
+  close(): void {
+    this.clearForm();
+    this.modal.close();
+  }
 
   getPreparer(): any { return this.commonService.getUser(); }
 
@@ -78,7 +89,7 @@ export class NewClientComponent {
 
   saveApplication(application: Application) : void {
     let self = this;
-    this.clientApi.findByFilter(application.client).subscribe(existingClient => {
+    this.clientApi.findByFilter({ssn:application.client.ssn}).subscribe(existingClient => {
       // If client Do not exists
       if (existingClient.clients.length === 0) {
         this.clientApi.insert(application.client).subscribe(client => {
@@ -96,6 +107,12 @@ export class NewClientComponent {
     this.applicationApi.insert(application).subscribe((application) => {
       this.toastr.success('Application for ' + application.year + ' created successfully for client ' + application.clientInformation.personalInformation.firstName , 'Success!');
       this.close()
+    },
+    error => {
+      if (error.status === 409){
+        this.toastr.warning('There is already an application for ' + application.year + ' with this SSN', 'Warning!');
+      }
     });
   }
+
 }

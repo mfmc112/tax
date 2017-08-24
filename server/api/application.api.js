@@ -59,7 +59,7 @@ var ApplicationApi = function(server) {
     if (!req.body.preparer) res.status(500).send("invalida preparer");
 
     console.log('executing POST for client' + req.body.client + ', year of : ' + req.body.year);
-    Application.find({"client": req.body.client._id, "year": req.body.year}, function(error, response) {
+    Application.find({"client": BaseApi.objectID(req.body.client), "year": req.body.year}, function(error, response) {
       if (!error) {
         if (!response || response.length === 0) {
           var application = new Application(req.body);
@@ -68,7 +68,7 @@ var ApplicationApi = function(server) {
             else res.status(500).send(err);
           });
         } else {
-          res.status(500).json("An applications for the same client for the same year already exists");
+          res.status(409).json("An applications for the same client for the same year already exists");
         }
       } else {
         res.status(500).json("Error finding application before saving. " + error);
