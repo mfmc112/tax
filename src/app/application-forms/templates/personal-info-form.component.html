@@ -1,52 +1,55 @@
 <div class="page-header" style="background-color:#cccccc">
     <h1>US<small><small> PERSONAL INFORMATION</small></small></h1>
 </div>
-<p class="lead">TAXPAYER INFORMATION</p>
-<hr>
 <form [formGroup]="taxForm" (submit)="submitForm(taxForm.value)" style="min-height:150px" novalidate >
+
+  <p class="lead">TAXPAYER INFORMATION</p>
+  <hr>
   <div class="row">
     <div class="col-12">
       <div class="row">
         <div class="col-sm-3">
           <div class="form-group">
-            <label for="firstName"><br>First Name</label>
-            <input formControlName="firstName" type="text" id="firstName" placeholder="Client First Name" class="form-control" required>
+            <label for="firstName">First Name</label>
+            <input formControlName="firstName" type="text" id="firstName" placeholder="Client First Name" class="form-control">
           </div>
         </div>
         <div class="col-sm-1">
           <div class="form-group">
-            <label><br>Initial</label>
-            <input formControlName="middleName" type="text" class="form-control">
+            <label for="middleName">Initial</label>
+            <input formControlName="middleName" id="middleName" type="text" class="form-control">
           </div>
         </div>
         <div class="col-sm-4">
           <div class="form-group">
-            <label><br>Last Name</label>
-            <input formControlName="lastName" type="text" placeholder="Client Last Name" class="form-control">
+            <label for="lastName">Last Name</label>
+            <input formControlName="lastName" id="lastName" type="text" placeholder="Client Last Name" class="form-control">
           </div>
         </div>
         <div class="col-sm-1">
           <div class="form-group">
-            <label><br>Suffix</label>
-            <input formControlName="suffixName" type="text" class="form-control">
+            <label for="suffixName">Suffix</label>
+            <input formControlName="suffixName" id="suffixName" type="text" class="form-control">
           </div>
         </div>
         <div class="col-sm-3">
           <div class="form-group">
-            <label><br>SSN</label>
-            <input formControlName="ssn" type="text" class="form-control" disabled>
+            <label for="ssn">SSN</label>
+            <input formControlName="ssn" id="ssn" type="text" class="form-control">
           </div>
         </div>
       </div>
     </div>
   </div>
+
   <div class="row">
     <div class="col-12">
       <div class="row">
         <div class="col-sm-2">
           <div class="form-group">
-            <label><br>Date of Birth</label>
+            <label for="dateOfBirth">Date of Birth</label>
             <my-date-picker name="dateOfBirth"
+            id="dateOfBirth"
                     formControlName="dateOfBirth"
                     (dateChanged)="onDateChanged($event)">
             </my-date-picker>
@@ -54,14 +57,50 @@
         </div>
         <div class="col-sm-1">
           <div class="form-group">
-            <label><br>Age</label>
-            <input formControlName="age" type="text" class="form-control">
+            <label for="age">Age</label>
+            <input formControlName="age" id="age" type="text" class="form-control">
           </div>
         </div>
         <div class="col-sm-9">
           <div class="form-group">
-            <label><br>Occupation</label>
-            <input formControlName="occuppation" type="text" placeholder="Taxpayer Occupation" class="form-control">
+            <label for="occuppation">Occupation</label>
+            <input formControlName="occuppation" id="occuppation" type="text" placeholder="Taxpayer Occupation" class="form-control">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <div class="row">
+        <div class="col-sm-3" formGroupName="phone">
+          <div class="form-group">
+            <label for="mobile">Phone Number</label>
+            <input formControlName="mobile" id="mobile" type="text" class="form-control">
+          </div>
+        </div>
+        <div class="col-sm-3" formGroupName="phone">
+          <div class="form-group">
+            <label for="evening"><br></label>
+            <input formControlName="evening" id="evening" type="text" class="form-control">
+          </div>
+        </div>
+        <div class="col-sm-3" formGroupName="phone">
+          <div class="form-group">
+            <label for="other"><br></label>
+            <input formControlName="other" id="other" type="text" class="form-control" (change)="enableType(this)">
+          </div>
+        </div>
+        <div class="col-sm-3" formGroupName="phone">
+          <div class="form-group">
+            <label for="type"><br></label>
+            <select formControlName="type" id="type" class="form-control">
+              <option value=""></option>
+              <option value="fax">Fax</option>
+              <option value="work">Work</option>
+              <option value="other">Other</option>
+            </select>
           </div>
         </div>
       </div>
@@ -71,7 +110,7 @@
   <div class="row">
     <div class="col-md-12">
       <!-- <button role="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo2" aria-expanded="true"> -->
-      <button role="button" class="btn btn-primary float-right">next</button>
+      <button role="button" class="btn btn-primary float-right" [disabled]="!taxForm.valid">next</button>
     </div>
   </div>
 </form>

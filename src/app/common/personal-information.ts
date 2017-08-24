@@ -5,11 +5,11 @@ import { Phone } from './phone';
 export class PersonalInformation {
   spouseInformation: SpouseInformation;
   maillingAddress: MailingAddress;
-  
+
   firstName: string;
   initial: string;
   lastName: string;
-  sufix: string;
+  suffix: string;
   ssn: string;
   dateOfBirth: Date;
   age: number;

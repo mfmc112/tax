@@ -6,7 +6,7 @@ import { APPLICATION_STATES } from "./application.states";
 import { Ng2Bs3ModalModule } from 'ng2-bs3-modal/ng2-bs3-modal';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { ApplicationFormsModule } from '../application-forms/application-forms.module'
-
+import { ValidateCssDirective } from '../common/validate-css.directive';
 import { ApplicationComponent } from './application.component';
 import { ApplicationHeaderComponent } from './application-header.component';
 
@@ -22,6 +22,7 @@ import { ApplicationHeaderComponent } from './application-header.component';
     ApplicationFormsModule
   ],
   declarations: [
+    ValidateCssDirective,
     ApplicationComponent,
     ApplicationHeaderComponent
   ]
