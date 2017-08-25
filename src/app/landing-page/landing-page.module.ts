@@ -8,6 +8,7 @@ import { ApplicationListComponent } from "./application-list.component";
 import { Ng2Bs3ModalModule } from 'ng2-bs3-modal/ng2-bs3-modal';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { ApplicationModule } from '../application/application.module';
+import { TextMaskModule } from 'angular2-text-mask';
 
 import { NewClientComponent } from './new-client.component';
 
@@ -19,6 +20,7 @@ import { NewClientComponent } from './new-client.component';
     ToastModule.forRoot(),
     SharedModule,
     UIRouterModule.forChild({ states: LANDING_PAGE_STATES }),
+    TextMaskModule,
     ApplicationModule
   ],
   declarations: [

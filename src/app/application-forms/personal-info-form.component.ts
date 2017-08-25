@@ -1,5 +1,6 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { MASKS } from '../enum/masks.enum';
 import { validationRules } from '../validator/validator-rules.component';
 import { ApplicationComponent } from '../application/application.component';
 import { ClientApiService } from '../client/client-api.service';
@@ -8,7 +9,7 @@ import { Phone } from '../common/phone';
 import { Application } from '../common/application';
 import { PersonalInformation } from '../common/personal-information';
 import { CurrentApplicationService } from '../application/service/current-application.service';
-import { MyDatePickerModule, IMyDpOptions, IMyDateModel } from 'mydatepicker';
+import { MyDatePickerModule, IMyDefaultMonth, IMyDpOptions, IMyDateModel } from 'mydatepicker';
 
 
 @Component({
@@ -21,6 +22,10 @@ export class PersonalInfoFormComponent implements OnInit {
   client: Client;
   application: Application;
   pi: PersonalInformation;
+  phoneMask: Array<string | RegExp> = MASKS.PHONE;
+  ssnMask: Array<string | RegExp> = MASKS.SSN;
+  dateMask: Array<string | RegExp> = MASKS.DATE;
+  initialMask: Array<string | RegExp> = MASKS.INITIAL;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -30,13 +35,13 @@ export class PersonalInfoFormComponent implements OnInit {
     this.pi = this.application.clientInformation.personalInformation;
     if (!this.pi.phone) this.pi.phone = new Phone();
     this.taxForm = formBuilder.group({
-      'firstName' : [this.pi.firstName, Validators.compose([Validators.maxLength(45)])],
-      'middleName' : this.pi.initial,
-      'lastName': [ this.pi.lastName, Validators.compose([Validators.maxLength(45)])],
+      'firstName' : [this.pi.firstName, Validators.compose([Validators.required, Validators.maxLength(45)])],
+      'middleName' : [this.pi.initial, Validators.compose([Validators.maxLength(1)])],
+      'lastName': [ this.pi.lastName, Validators.compose([Validators.required, Validators.maxLength(45)])],
       'suffixName': this.pi.suffix,
       'ssn' : [{value: this.pi.ssn, disabled: true }, Validators.compose([Validators.required, Validators.pattern(validationRules.SSN_REGEXP)])],
       'dateOfBirth': [ this.pi.dateOfBirth, Validators.required],
-      'age': '0',
+      'age': [{value: '0', disabled: true }],
       'occuppation': this.pi.occupation,
       'phone': new FormGroup({
         'mobile': new FormControl(this.pi.phone.mobile, [Validators.pattern(validationRules.PHONE)]),
@@ -49,7 +54,6 @@ export class PersonalInfoFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log("1 - " + this.taxForm.get('dateOfBirth').value);
     if (this.taxForm.get('dateOfBirth').value && this.taxForm.get('dateOfBirth').value.date) {
       let date = new Date(
         this.taxForm.get('dateOfBirth').value.date.year,
@@ -58,18 +62,25 @@ export class PersonalInfoFormComponent implements OnInit {
       this.setDate(date);
       this.calculateAge(date);
     }
-    this.enableType(this.taxForm.get('phone').get('other').value);
-
+    this.enableType();
   }
 
-  enableType(field: any): void {
-    if (field.value && field.value !== "") this.taxForm.get('phone').get('type').enable();
+  enableType(): void {
+    if (this.taxForm.get('phone').get('other').value && this.taxForm.get('phone').get('other').value != "") this.taxForm.get('phone').get('type').enable();
     else this.taxForm.get('phone').get('type').disable();
+    this.taxForm.markAsDirty();
   }
 
-  private myDatePickerOptions: IMyDpOptions = {
-      maxYear: 2015
+  myDatePickerOptions: IMyDpOptions = {
+      // maxYear: 2015,
+      showTodayBtn: false,
+      dateFormat: 'mm/dd/yyyy'
+      // disableSince: {year: 2016, month: 1, day: 1}
   };
+
+  defaultMonth: IMyDefaultMonth = {
+      defMonth: '01/2015'
+  }
 
   setDate(date: Date): void {
       this.taxForm.patchValue({'dateOfBirth': {

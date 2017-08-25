@@ -18,7 +18,7 @@
           <div class="col-sm-4">
             <div class="form-group">
               <label>SSN/ITIN</label>
-              <input formControlName="ssnItin" type="text" placeholder="###-##-####" class="form-control">
+              <input formControlName="ssnItin" type="text" placeholder="###-##-####" class="form-control" [textMask]="{mask: ssnMask, guide:false}">
             </div>
           </div>
           <div class="col-sm-4">
@@ -40,7 +40,7 @@
           <div class="col-sm-2" style="text-align: center;">
             <div class="form-group">
               <label>Middle<br>Name</label>
-              <input formControlName="middleName" type="text" class="form-control">
+              <input formControlName="middleName" type="text" class="form-control" [textMask]="{mask:middleMask, guide: false}">
             </div>
           </div>
           <div class="col-sm-5">

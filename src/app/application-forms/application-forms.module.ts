@@ -9,6 +9,7 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { PersonalInfoFormComponent } from './personal-info-form.component';
 import { FilingInfoFormComponent } from './filing-info-form.component';
 import { MyDatePickerModule } from 'mydatepicker';
+import { TextMaskModule } from 'angular2-text-mask';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { MyDatePickerModule } from 'mydatepicker';
     ToastModule.forRoot(),
     SharedModule,
     UIRouterModule.forChild({ states: APPLICATION_FORMS_STATES }),
-    MyDatePickerModule
+    MyDatePickerModule,
+    TextMaskModule
   ],
   declarations: [
     PersonalInfoFormComponent,

@@ -17,6 +17,7 @@ var ClientApi = function(server) {
     if (query.firstName) json.firstName = query.firstName;
     if (query.lastName) json.lastName = query.lastName;
     if (query.email) json.email = query.email;
+    if (query.ssn) json.ssn = query.ssn;
     return json;
   };
 

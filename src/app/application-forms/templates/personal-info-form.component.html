@@ -17,7 +17,7 @@
         <div class="col-sm-1">
           <div class="form-group">
             <label for="middleName">Initial</label>
-            <input formControlName="middleName" id="middleName" type="text" class="form-control">
+            <input formControlName="middleName" id="middleName" type="text" class="form-control" [textMask]="{mask: initialMask, guide:false}">
           </div>
         </div>
         <div class="col-sm-4">
@@ -35,7 +35,7 @@
         <div class="col-sm-3">
           <div class="form-group">
             <label for="ssn">SSN</label>
-            <input formControlName="ssn" id="ssn" type="text" class="form-control">
+            <input formControlName="ssn" id="ssn" type="text" class="form-control" [textMask]="{mask: ssnMask, guide:false}">
           </div>
         </div>
       </div>
@@ -49,8 +49,10 @@
           <div class="form-group">
             <label for="dateOfBirth">Date of Birth</label>
             <my-date-picker name="dateOfBirth"
-            id="dateOfBirth"
+                    id="dateOfBirth"
                     formControlName="dateOfBirth"
+                    [options]="myDatePickerOptions"
+                    [defaultMonth]="defaultMonth"
                     (dateChanged)="onDateChanged($event)">
             </my-date-picker>
           </div>
@@ -77,19 +79,19 @@
         <div class="col-sm-3" formGroupName="phone">
           <div class="form-group">
             <label for="mobile">Phone Number</label>
-            <input formControlName="mobile" id="mobile" type="text" class="form-control">
+            <input formControlName="mobile" id="mobile" type="text" class="form-control" [textMask]="{mask: phoneMask, guide: false}">
           </div>
         </div>
         <div class="col-sm-3" formGroupName="phone">
           <div class="form-group">
             <label for="evening"><br></label>
-            <input formControlName="evening" id="evening" type="text" class="form-control">
+            <input formControlName="evening" id="evening" type="text" class="form-control" [textMask]="{mask: phoneMask, guide: false}">
           </div>
         </div>
         <div class="col-sm-3" formGroupName="phone">
           <div class="form-group">
             <label for="other"><br></label>
-            <input formControlName="other" id="other" type="text" class="form-control" (change)="enableType(this)">
+            <input formControlName="other" id="other" type="text" class="form-control" (keyup)="enableType()" [textMask]="{mask: phoneMask, guide: false}">
           </div>
         </div>
         <div class="col-sm-3" formGroupName="phone">
