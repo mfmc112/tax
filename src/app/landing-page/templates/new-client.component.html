@@ -1,4 +1,4 @@
-<modal #newClientModal>
+<modal #newClientModal [keyboard]="false" [backdrop]="'static'" (onClose)="closeCallBack(application)">
   <modal-header [show-close]="true">
       <h4 class="modal-title">NEW CLIENT</h4>
   </modal-header>

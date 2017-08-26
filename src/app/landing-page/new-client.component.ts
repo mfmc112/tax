@@ -28,6 +28,7 @@ export class NewClientComponent {
   ssnMask: Array<string | RegExp> = MASKS.SSN;
   middleMask: Array<string | RegExp> = MASKS.INITIAL;
   application: Application;
+  applicationId: string;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -104,15 +105,11 @@ export class NewClientComponent {
   }
 
   createApplication(application: Application): void {
+    let self = this;
     this.applicationApi.insert(application).subscribe((result) => {
+      this.cloneApplication(application);
+      this.applicationId = result._id;
       this.close();
-      this.toastr.success('Application for ' + application.year + ' created successfully for client ' + result.clientInformation.personalInformation.firstName , 'Success!');
-      this.applicationApi.findById(result._id).subscribe(data => {
-        this.currentApplicationService.setApplication(data);
-        this._uiRouter.stateService.go('menu.application');
-      }, error => {
-        this.toastr.warning('Could not load the application.',' Try to refresh the list and load it from there', 'Warning!');
-      });
     },
     error => {
       if (error.status === 409){
@@ -121,6 +118,16 @@ export class NewClientComponent {
     });
   }
 
+  closeCallBack(application: Application): void {
+    // Dont need to add Successful message since it is opening the application
+    // this.toastr.success('Application for ' + application.year + ' created successfully for client ' + name, 'Success!');
+    this.applicationApi.findById(this.applicationId).subscribe(data => {
+      this.currentApplicationService.setApplication(data);
+      this._uiRouter.stateService.go('^.application.personalInfo');
+    }, error => {
+      this.toastr.warning('Could not load the application.',' Try to refresh the list and load it from there', 'Warning!');
+    });
+  }
 
   clearForm() : void {
     this.clientForm.reset();

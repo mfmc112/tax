@@ -21,7 +21,7 @@
             <span class="input-group-btn" id="basic-addon1">>
                 <button class="btn btn-default" type="button" (click)="findClients()" ><i class="fa fa-search" aria-hidden="true"></i></button>
             </span>
-            <input type="text" [(ngModel)]="name" name="clientName" class="form-control" placeholder="Client Name" aria-describedby="basic-addon1">
+            <input type="text" [(ngModel)]="name" name="name" class="form-control" placeholder="Client Name" aria-describedby="basic-addon1">
           </div>
         </div>
         <div class="col-2">
@@ -33,20 +33,17 @@
             </select>
         </div>
         <div class="col-2">
-            <label for="federalStatus" class="col-form-label-sm">Status</label>
-            <select name="federalStatus" class="form-control">
+            <label for="status" class="col-form-label-sm">Status</label>
+            <select (ngModel)="status" name="status" class="form-control">
               <option value="In Progress">In Progress</option>
               <option value="On Hold">On Hold</option>
               <option value="E-Filed">E-Filed</option>
             </select>
         </div>
         <div class="col-4">
-            <label for="taxPreparer" class="col-form-label-sm">Tax Preparer</label>
-            <select name="taxPreparer" class="form-control">
-              <option value="Josue Edgardo Albertp">Josue Edgardo Alberto</option>
-              <option value="Marcos Costa">Marcos Costa</option>
-              <option value="Kristy Campbell">Kristy Campbell</option>
-              <option value="Val V">Valerie Osipenko</option>
+            <label for="preparer" class="col-form-label-sm">Tax Preparer</label>
+            <select (ngModel)="preparer" name="preparer" class="form-control">
+              <option *ngFor="let u of userList" [value]="u._id">{{u.name}}</option>
             </select>
         </div>
       </div>
