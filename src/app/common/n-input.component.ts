@@ -8,7 +8,7 @@ import { TextMaskModule } from 'angular2-text-mask';
   */
 @Component({
   selector: 'n-input',
-  inputs:['colSize', 'mask', 'name', 'label', 'placeHolder', 'fGroup', 'groupedBy'],
+  inputs:['mask', 'name', 'label', 'placeHolder', 'fGroup', 'groupedBy'],
   styleUrls: ['./templates/n-input.component.css'],
   template: `
     <div class="form-group" [formGroup]="fGroup">
@@ -20,6 +20,9 @@ import { TextMaskModule } from 'angular2-text-mask';
   `
 })
 export class NInputComponent {
+  @Input('placeHolder') placeHolder: string;
+  @Input('name') name: string;
+  @Input('label') label: string;
   @Input('mask') mask: any;
   @Input('fGroup') fGroup: any;
   @Input('groupedBy') groupedBy: string;
