@@ -1,18 +1,22 @@
-import { SpouseInformation } from './spouse-information';
-import { MailingAddress } from './mailing-address';
-import { Phone } from './phone';
+import { Phone, Client, MailingAddress, BasicInformation } from './';
 
 export class PersonalInformation {
-  spouseInformation: SpouseInformation;
-  maillingAddress: MailingAddress;
+  taxPayer: BasicInformation;
+  spouse: BasicInformation;
+  mailingAddress: MailingAddress;
 
-  firstName: string;
-  initial: string;
-  lastName: string;
-  suffix: string;
-  ssn: string;
-  dateOfBirth: Date;
-  age: number;
-  occupation: string;
-  phone : Phone;
+  constructor(client: Client) {
+    this.taxPayer = new BasicInformation();
+    this.spouse = new BasicInformation();
+    this.mailingAddress = new MailingAddress();
+
+    this.setClient(client);
+  }
+
+  setClient(client: Client): void {
+    this.taxPayer.firstName = client.firstName;
+    this.taxPayer.initial = client.middleName;
+    this.taxPayer.lastName = client.lastName;
+    this.taxPayer.ssn = client.ssn;
+  }
 }

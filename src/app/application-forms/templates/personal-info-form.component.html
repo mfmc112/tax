@@ -8,44 +8,13 @@
   <div class="row">
     <div class="col-12">
       <div class="row">
-        <div class="col-sm-3">
-          <div class="form-group">
-            <label for="firstName">First Name</label>
-            <input formControlName="firstName" type="text" id="firstName" placeholder="Client First Name" class="form-control">
-          </div>
-        </div>
-        <div class="col-sm-1">
-          <div class="form-group">
-            <label for="middleName">Initial</label>
-            <input formControlName="middleName" id="middleName" type="text" class="form-control" [textMask]="{mask: initialMask, guide:false}">
-          </div>
-        </div>
-        <div class="col-sm-4">
-          <div class="form-group">
-            <label for="lastName">Last Name</label>
-            <input formControlName="lastName" id="lastName" type="text" placeholder="Client Last Name" class="form-control">
-          </div>
-        </div>
-        <div class="col-sm-1">
-          <div class="form-group">
-            <label for="suffixName">Suffix</label>
-            <input formControlName="suffixName" id="suffixName" type="text" class="form-control">
-          </div>
-        </div>
-        <div class="col-sm-3">
-          <div class="form-group">
-            <label for="ssn">SSN</label>
-            <input formControlName="ssn" id="ssn" type="text" class="form-control" [textMask]="{mask: ssnMask, guide:false}">
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+        <n-input class="col-sm-3" name="firstName" label="First Name" placeHolder="Taxpayer First Name" [fGroup]="taxForm"></n-input>
+        <n-input class="col-sm-1" name="middleName" label="Initial" [mask]="initialMask" [fGroup]="taxForm"></n-input>
+        <n-input class="col-sm-4" name="lastName" label="Last Name" placeHolder="Taxpayer Last Name" [fGroup]="taxForm"></n-input>
+        <n-input class="col-sm-1" name="suffixName" label="Suffix" [fGroup]="taxForm"></n-input>
+        <n-input class="col-sm-3" name="ssn" label="SSN" [mask]="ssnMask" placeHolder="Taxpayer SSN" [fGroup]="taxForm"></n-input>
 
-  <div class="row">
-    <div class="col-12">
-      <div class="row">
-        <div class="col-sm-2">
+        <div class="col-sm-3">
           <div class="form-group">
             <label for="dateOfBirth">Date of Birth</label>
             <my-date-picker name="dateOfBirth"
@@ -57,52 +26,108 @@
             </my-date-picker>
           </div>
         </div>
-        <div class="col-sm-1">
-          <div class="form-group">
-            <label for="age">Age</label>
-            <input formControlName="age" id="age" type="text" class="form-control">
-          </div>
-        </div>
-        <div class="col-sm-9">
-          <div class="form-group">
-            <label for="occuppation">Occupation</label>
-            <input formControlName="occuppation" id="occuppation" type="text" placeholder="Taxpayer Occupation" class="form-control">
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+        <n-input class="col-sm-2" name="age" label="Age" [fGroup]="taxForm"></n-input>
+        <n-input class="col-sm-7" name="occuppation" label="Occupation" [mask]="ssnMask" placeHolder="Taxpayer Occupation" [fGroup]="taxForm"></n-input>
 
-  <div class="row">
-    <div class="col-12">
-      <div class="row">
+        <n-input class="col-sm-3" name="mobile"  groupedBy="phone" [mask]="phoneMask" label="Phone Numbers" placeHolder="Taxpayer Mobile Phone" [fGroup]="payerPhoneGroup"></n-input>
+        <n-input class="col-sm-3" name="evening" groupedBy="phone" [mask]="phoneMask" label=" " placeHolder="Taxpayer Evening Phone" [fGroup]="payerPhoneGroup"></n-input>
+        <n-input class="col-sm-3" name="other"   groupedBy="phone" [mask]="phoneMask" label=" " placeHolder="Taxpayer Other Phone" [fGroup]="payerPhoneGroup" (keyup)="enableType('phone')"></n-input>
         <div class="col-sm-3" formGroupName="phone">
           <div class="form-group">
-            <label for="mobile">Phone Number</label>
-            <input formControlName="mobile" id="mobile" type="text" class="form-control" [textMask]="{mask: phoneMask, guide: false}">
-          </div>
-        </div>
-        <div class="col-sm-3" formGroupName="phone">
-          <div class="form-group">
-            <label for="evening"><br></label>
-            <input formControlName="evening" id="evening" type="text" class="form-control" [textMask]="{mask: phoneMask, guide: false}">
-          </div>
-        </div>
-        <div class="col-sm-3" formGroupName="phone">
-          <div class="form-group">
-            <label for="other"><br></label>
-            <input formControlName="other" id="other" type="text" class="form-control" (keyup)="enableType()" [textMask]="{mask: phoneMask, guide: false}">
-          </div>
-        </div>
-        <div class="col-sm-3" formGroupName="phone">
-          <div class="form-group">
-            <label for="type"><br></label>
+            <label></label>
             <select formControlName="type" id="type" class="form-control">
               <option value=""></option>
               <option value="fax">Fax</option>
               <option value="work">Work</option>
               <option value="other">Other</option>
             </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider-50"></div>
+  <p class="lead">SPOUSE INFORMATION</p>
+  <hr>
+  <span class="sub-heading">Enter the Spouse's name HERE for <b>Married Filing Joint</b> or <b>Married Filing Separate</b> returns</span>
+  <div class="row">
+    <div class="col-12">
+      <div class="row">
+        <n-input class="col-sm-3" name="sFirstName" label="First Name" placeHolder="Spouse First Name" [fGroup]="taxForm"></n-input>
+        <n-input class="col-sm-1" name="sMiddleName" label="Initial" [mask]="initialMask" [fGroup]="taxForm"></n-input>
+        <n-input class="col-sm-4" name="sLastName" label="Last Name" placeHolder="Spouse Last Name" [fGroup]="taxForm"></n-input>
+        <n-input class="col-sm-1" name="sSuffixName" label="Suffix" [fGroup]="taxForm"></n-input>
+        <n-input class="col-sm-3" name="sSsn" label="SSN" [mask]="ssnMask" placeHolder="Spouse SSN" [fGroup]="taxForm"></n-input>
+
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="dateOfBirth">Date of Birth</label>
+            <my-date-picker name="dateOfBirth"
+                    id="dateOfBirth"
+                    formControlName="dateOfBirth"
+                    [options]="myDatePickerOptions"
+                    [defaultMonth]="defaultMonth"
+                    (dateChanged)="onDateChanged($event)">
+            </my-date-picker>
+          </div>
+        </div>
+        <n-input class="col-sm-2" name="age" label="Age" [fGroup]="taxForm"></n-input>
+        <n-input class="col-sm-7" name="occuppation" label="Occupation" [mask]="ssnMask" placeHolder="Spouse Occupation" [fGroup]="taxForm"></n-input>
+
+        <n-input class="col-sm-3" name="mobile"  groupedBy="phone" [mask]="phoneMask" label="Phone Numbers" placeHolder="Spouse Mobile Phone" [fGroup]="spousePhoneGroup"></n-input>
+        <n-input class="col-sm-3" name="evening" groupedBy="phone" [mask]="phoneMask" label=" " placeHolder="Spouse Evening Phone" [fGroup]="spousePhoneGroup"></n-input>
+        <n-input class="col-sm-3" name="other"   groupedBy="phone" [mask]="phoneMask" label=" " placeHolder="Spouse Other Phone" [fGroup]="spousePhoneGroup" (keyup)="enableType('sPhone')"></n-input>
+        <div class="col-sm-3" formGroupName="sPhone">
+          <div class="form-group">
+            <label></label>
+            <select formControlName="type" id="type" class="form-control">
+              <option value=""></option>
+              <option value="fax">Fax</option>
+              <option value="work">Work</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider-50"></div>
+  <p class="lead">MAILING INFORMATION</p>
+  <hr>
+  <div class="row">
+    <div class="col-12">
+      <div class="row">
+        <n-input class="col-sm-4" name="careFirstName" label="In Care Of" placeHolder="First Name" [fGroup]="mailingAddressGroup"></n-input>
+        <n-input class="col-sm-4" name="careLastName" label=" " placeHolder="Last Name" [fGroup]="mailingAddressGroup"></n-input>
+        <n-input class="col-sm-12" name="home1" label="Present Home Address" placeHolder="Home Address Line 1" [fGroup]="mailingAddressGroup"></n-input>
+        <n-input class="col-sm-12" name="home2" label="Present Home Address Line 2" placeHolder="Home Address Line 2" [fGroup]="mailingAddressGroup"></n-input>
+        <n-input class="col-sm-2" name="zip"    label="Zip Code" [fGroup]="mailingAddressGroup" [mask]="zipMask"></n-input>
+        <n-input class="col-sm-5" name="city"   label="City"     [fGroup]="mailingAddressGroup"></n-input>
+        <n-input class="col-sm-2" name="state"  label="State"    [fGroup]="mailingAddressGroup" [mask]="stateMask"></n-input>
+        <n-input class="col-sm-9" name="email"  label="Email Address"    [fGroup]="mailingAddressGroup"></n-input>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider-50"></div>
+  <p class="lead">DEPENDENTS</p>
+  <hr>
+  <div class="row">
+    <div class="col-12">
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="form-inline">
+            <div class="form-group">
+              <label class="form-control-static">Do you have any dependents?&nbsp;&nbsp;&nbsp;</label>
+              <div class="form-check form-check-inline">
+                <label class="form-check-label"><input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Yes</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <label class="form-check-label"><input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> No</label>
+              </div>
+            </div>
           </div>
         </div>
       </div>

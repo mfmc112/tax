@@ -1,20 +1,13 @@
+var BasicInformation = require('./basic-info-schema');
+var MailingAddress = require('./mailing-address-schema');
+
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var personalInfoSchema = new Schema({
-  firstName: String,
-  initial: String,
-  lastName: String,
-  sufix: String,
-  ssn: String,
-  dateOfBirth: Date,
-  age: Number,
-  occupation: String,
-  phone : {
-    mobile: Number,
-    evening: Number,
-    other: Number
-  }
+  taxPayer: { type: BasicInformation.schema },
+  spouse: { type: BasicInformation.schema },
+  mailingAddress: { type: MailingAddress.schema }
 });
 
 var PersonalInformation = mongoose.model('PersonalInformation', personalInfoSchema);

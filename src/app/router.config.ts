@@ -10,5 +10,5 @@ export function routerConfigFn(router: UIRouter) {
   // googleAnalyticsHook(transitionService);
 
   // router.trace.enable(Category.TRANSITION);
-  router.plugin(Visualizer);
+  // router.plugin(Visualizer);
 }

@@ -10,6 +10,7 @@ import { PersonalInfoFormComponent } from './personal-info-form.component';
 import { FilingInfoFormComponent } from './filing-info-form.component';
 import { MyDatePickerModule } from 'mydatepicker';
 import { TextMaskModule } from 'angular2-text-mask';
+import { NInputComponent } from '../common/n-input.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { TextMaskModule } from 'angular2-text-mask';
   ],
   declarations: [
     PersonalInfoFormComponent,
-    FilingInfoFormComponent
+    FilingInfoFormComponent,
+    NInputComponent
   ]
 })
 export class ApplicationFormsModule { }

@@ -1,11 +1,11 @@
 import { Phone } from './phone';
 
 export class MailingAddress {
-  firstName: string;
-  lastName: string;
-  homeAddress: string;
-  homeAddressLine2: string;
-  zipcode: number;
+  careFirstName: string;
+  careLastName: string;
+  home1: string;
+  home2: string;
+  zip: number;
   city: string;
   state: string;
   email: string;
