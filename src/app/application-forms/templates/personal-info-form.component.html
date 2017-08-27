@@ -120,12 +120,12 @@
         <div class="col-sm-3">
           <div class="form-inline">
             <div class="form-group">
-              <label class="form-control-static">Do you have any dependents?&nbsp;&nbsp;&nbsp;</label>
+              <label class="form-control-static" for="dependentsY">Do you have any dependents?&nbsp;&nbsp;&nbsp;</label>
               <div class="form-check form-check-inline">
-                <label class="form-check-label"><input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Yes</label>
+                <label class="form-check-label"><input formControlName="dependents" class="form-check-input" type="radio" name="dependents" id="dependentsY" [value]="true"> Yes</label>
               </div>
               <div class="form-check form-check-inline">
-                <label class="form-check-label"><input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> No</label>
+                <label class="form-check-label"><input formControlName="dependents" class="form-check-input" type="radio" name="dependents" id="dependentsN" [value]="false"> No</label>
               </div>
             </div>
           </div>

@@ -1,52 +1,197 @@
 <div class="page-header" style="background-color:#cccccc">
     <h1>US<small><small> FILING INFORMATION</small></small></h1>
 </div>
-<p class="lead">FILING STATUS AND EXEMPTIONS</p>
-<hr>
-<div class="row">
-  <form [formGroup]="taxForm" (submit)="submitForm(taxForm.value)" style="min-height:150px">
+<form [formGroup]="taxForm" (submit)="submitForm(taxForm.value)" style="min-height:150px" novalidate >
+
+  <p class="lead">FILING STATUS AND EXEMPTIONS</p>
+  <hr>
+  <div class="row">
     <div class="col-12">
       <div class="row">
         <div class="col-sm-12">
-
-          <fieldset class="form-group">
-              <div class="form-check">
-                <label class="form-check-label">
-                  <input type="radio" class="form-check-input" name="statusExemption" id="optionsRadios1" value="1" checked>
-                  Single
-                </label>
-              </div>
-              <div class="form-check">
-                <label class="form-check-label">
-                  <input type="radio" class="form-check-input" name="statusExemption" id="optionsRadios2" value="2">
-                  Married Filing Jointly (even if only one had income)
-                </label>
-              </div>
-              <div class="form-check disabled">
-                <label class="form-check-label">
-                  <input type="radio" class="form-check-input" name="statusExemption" id="optionsRadios3" value="3" disabled>
-                  Married Filing Separately
-                </label>
-              </div>
-              <div class="form-check disabled">
-                <label class="form-check-label">
-                  <input type="radio" class="form-check-input" name="statusExemption" id="optionsRadios3" value="4" disabled>
-                  Head of Household (with qualifying person)
-                </label>
-              </div>
-              <div class="form-check disabled">
-                <label class="form-check-label">
-                  <input type="radio" class="form-check-input" name="statusExemption" id="optionsRadios3" value="5" disabled>
-                  Qualified Widow(er) with dependent child. Year spouse died (2015 or 2016 only)
-                </label>
-              </div>
-            </fieldset>
-
+          <div class="radio radio-primary">
+            <input formControlName="status" type="radio" name="status" id="status1" value="single">
+            <label for="status1">
+              Single
+            </label>
+          </div>
+        </div>
+        <div class="col-sm-12">
+          <div class="radio radio-primary">
+            <input formControlName="status" type="radio" name="status" id="status2" value="jointly">
+            <label for="status2">
+              Married Filing Jointly (even if only had one income)
+            </label>
+          </div>
+        </div>
+        <div class="col-sm-12">
+          <div class="radio radio-primary">
+            <input formControlName="status" type="radio" name="status" id="status3" value="separate">
+            <label for="status3">
+              Married Filing Separate
+            </label>
+          </div>
+        </div>
+        <div class="col-sm-12">
+          <div class="radio radio-primary">
+            <input formControlName="status" type="radio" name="status" id="status4" value="head">
+            <label for="status4">
+              Head of Household (with qualifying person)
+            </label>
+          </div>
+        </div>
+        <div class="col-sm-12">
+          <div class="radio radio-primary">
+            <input formControlName="status" type="radio" name="status" id="status5" value="widow">
+            <label for="status5">
+              Qualified Widow(er) with dependent child. Year spouse died (2016 or 2017 only)
+            </label>
+          </div>
         </div>
       </div>
     </div>
-  </form>
-</div>
+  </div>
+
+  <div class="divider-30"></div>
+
+  <div class="row">
+    <div class="col-12">
+      <div class="row">
+        <div class="col-sm-12">
+          <label>Exemptions Choose if Any Apply:</label>
+        </div>
+        <div class="col-sm-12">
+          <div class="checkbox checkbox-primary">
+            <input formControlName="claimAnother" type="checkbox" name="claimAnother" id="claimAnother">
+            <label for="claimAnother">
+                You can be claimed on another person's return
+            </label>
+          </div>
+        </div>
+        <div class="col-sm-12">
+          <div class="checkbox checkbox-primary">
+            <input formControlName="spouseAnother" type="checkbox" name="spouseAnother" id="spouseAnother">
+            <label for="spouseAnother">
+              Filing status 2 and spouse can be on another person's return
+            </label>
+          </div>
+        </div>
+        <div class="col-sm-12">
+          <div class="checkbox checkbox-primary">
+            <input formControlName="nonResidentialSpouse" type="checkbox" name="nonResidentialSpouse" id="nonResidentialSpouse">
+            <label for="nonResidentialSpouse">
+              You are using filing status 4 and claiming nonresidential alien spouse
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider-50"></div>
+  <p class="lead">SPECIAL PROCESSING</p>
+  <hr>
+  <div class="row">
+    <div class="col-12">
+      <div class="row">
+        <n-input class="col-sm-12" name="disaster" label="Disaster Designation - IRS e-filing filed" [fGroup]="taxForm"></n-input>
+
+        <div class="col-sm-6">
+          <span for="payerStudent"><br>Student</span>
+        </div>
+        <div class="col-sm-3">
+          <label>Taxpayer</label>
+          <select formControlName="payerStudent" id="payerStudent" class="form-control">
+            <option value=""></option>
+            <option value="no">No</option>
+            <option value="full-time">Full-Time</option>
+            <option value="part-time">Part-Time</option>
+          </select>
+        </div>
+        <div class="col-sm-3">
+          <label>Spouse</label>
+          <select formControlName="spouseStudent" id="spouseStudent" class="form-control">
+            <option value=""></option>
+            <option value="no">No</option>
+            <option value="full-time">Full-Time</option>
+            <option value="part-time">Part-Time</option>
+          </select>
+        </div>
+
+        <div class="col-sm-6">
+          <label for="payerArmedForces">Member of Armed Forces</label>
+        </div>
+        <div class="col-sm-3">
+          <select formControlName="payerArmedForces" id="payerAForces" class="form-control">
+            <option value=""></option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+          </select>
+        </div>
+        <div class="col-sm-3">
+          <select formControlName="spouseArmedForces" id="spouseAForces" class="form-control">
+            <option value=""></option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+          </select>
+        </div>
+
+        <div class="col-sm-6">
+          <label for="payerArmedForces">Check if Blind</label>
+        </div>
+        <div class="col-sm-3">
+          <div class="checkbox checkbox-primary" style="padding-left:0px">
+            <input formControlName="payerBlind" type="checkbox" name="payerBlind" id="payerBlind">
+            <label for="payerBlind"> </label>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="checkbox checkbox-primary" style="padding-left:0px">
+            <input formControlName="spouseBlind" type="checkbox" name="spouseBlind" id="spouseBlind">
+            <label for="spouseBlind"> </label>
+          </div>
+        </div>
+        <div class="col-sm-6" style="margin-top: 10px;">
+          <p>Check if Totally and Permanently Disabled</p>
+        </div>
+        <div class="col-sm-3">
+          <div class="checkbox checkbox-primary" style="padding-left:0px">
+            <input formControlName="payerDisabled" type="checkbox" name="payerDisabled" id="payerDisabled">
+            <label for="payerDisabled"> </label>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="checkbox checkbox-primary" style="padding-left:0px">
+            <input formControlName="spouseDisabled" type="checkbox" name="spouseDisabled" id="spouseDisabled">
+            <label for="spouseDisabled"> </label>
+          </div>
+        </div>
+        <div class="col-sm-6" style="margin-top: 10px;">
+          <p>Date of Death ONLY if in 2016 or 2017</p>
+        </div>
+        <div class="col-sm-3">
+            <my-date-picker name="taxpayerDeath"
+                    id="taxpayerDeath"
+                    formControlName="taxpayerDeath"
+                    [options]="myDatePickerOptions"
+                    [defaultMonth]="defaultMonth">
+            </my-date-picker>
+        </div>
+        <div class="col-sm-3">
+            <my-date-picker name="spouseDeath"
+                    id="spouseDeath"
+                    formControlName="spouseDeath"
+                    [options]="myDatePickerOptions"
+                    [defaultMonth]="defaultMonth">
+            </my-date-picker>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</form>
 <div class="row">
   <div class="col-md-12">
     <!-- <button role="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo2" aria-expanded="true"> -->

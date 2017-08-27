@@ -7,7 +7,8 @@ var Schema = mongoose.Schema;
 var personalInfoSchema = new Schema({
   taxPayer: { type: BasicInformation.schema },
   spouse: { type: BasicInformation.schema },
-  mailingAddress: { type: MailingAddress.schema }
+  mailingAddress: { type: MailingAddress.schema },
+  dependents: Boolean
 });
 
 var PersonalInformation = mongoose.model('PersonalInformation', personalInfoSchema);

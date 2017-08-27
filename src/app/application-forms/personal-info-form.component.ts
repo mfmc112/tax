@@ -62,7 +62,8 @@ export class PersonalInfoFormComponent implements OnInit {
       'sAge': [ {value: '0', disabled: true }],
       'sOccuppation': this.pi.spouse.occupation,
       'sPhone': this.spousePhoneGroup,
-      'address': this.mailingAddressGroup
+      'address': this.mailingAddressGroup,
+      'dependents': [false, Validators.required]
     });
   }
 
@@ -105,7 +106,7 @@ export class PersonalInfoFormComponent implements OnInit {
       'zip': new FormControl(pi.mailingAddress.zip, Validators.compose([Validators.required])),
       'city': new FormControl(pi.mailingAddress.city, Validators.compose([Validators.required])),
       'state': new FormControl(pi.mailingAddress.state, Validators.compose([Validators.required])),
-      'email': new FormControl(pi.mailingAddress.email, Validators.compose([Validators.required]))
+      'email': new FormControl(pi.mailingAddress.email, Validators.compose([Validators.required, Validators.email]))
     });
   }
 
