@@ -1,11 +1,11 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { NInputComponent, NRadioListComponent } from '../common/n-components/';
 import { CurrentApplicationService } from '../application/service/current-application.service';
 import { validationRules } from '../validator/validator-rules.component';
 import { ApplicationComponent } from '../application/application.component';
 import { ClientApiService } from '../client/client-api.service';
-import { Client } from '../common';
+import { Client, Application, FilingInformation, SpecialProcessing } from '../common';
 import { MyDatePickerModule, IMyDefaultMonth, IMyDpOptions, IMyDateModel } from 'mydatepicker';
 
 @Component({
@@ -17,6 +17,10 @@ export class FilingInfoFormComponent implements OnInit {
   @ViewChild('../common/n-components/n-input.component') nInput: NInputComponent;
   @ViewChild('../common/n-components/n-radio-list.component') nRadio: NRadioListComponent;
   taxForm: FormGroup;
+  payerSpecialGroup: FormGroup;
+  spouseSpecialGroup: FormGroup;
+  application: Application;
+  fi: FilingInformation;
   client: Client;
   yesNoList: any;
   studentTypeList: any;
@@ -27,24 +31,20 @@ export class FilingInfoFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     private currentApplicationService: CurrentApplicationService ){
 
+    this.application = this.currentApplicationService.getApplication();
+    this.fi = this.application.clientInformation.filingInformation;
+    if (!this.fi) this.fi = new FilingInformation();
+
+    this.payerSpecialGroup = this.createSpecialProcessig(this.fi.payerSpecialProcessing);
+    this.spouseSpecialGroup = this.createSpecialProcessig(this.fi.spouseSpecialProcessing);
     this.taxForm = formBuilder.group({
-      'disaster': [null, Validators.required],
       'status' : [null, Validators.compose([Validators.required])],
       'claimAnother' : '',
-      'spouseAnother' : '',
-      'nonResidentialSpouse' : '',
-      'payerStudent': [null, Validators.compose([Validators.required, Validators.minLength(2)])],
-      'spouseStudent': [null, Validators.compose([Validators.required, Validators.minLength(2)])],
-      'payerArmedForces': [null, Validators.compose([Validators.required, Validators.minLength(2)])],
-      'spouseArmedForces' : [null, Validators.compose([Validators.required, Validators.minLength(2)])],
-      'payerBlind': null,
-      'spouseBlind': null,
-      'payerDisabled': null,
-      'spouseDisabled': null,
-      'taxpayerDeath': null,
-      'spouseDeath': null,
-      'payerSpecialMilitary': null,
-      'spouseSpecialMilitary': null,
+      'filingJointlyButSpouseInAnotherPersons' : '',
+      'headClaimNonResidentialAlienSpouse' : '',
+      'disasterDesignation': [null, Validators.required],
+      'payerSpecialProcessing': this.payerSpecialGroup,
+      'spouseSpecialProcessing': this.spouseSpecialGroup,
       'deploymentDate': null,
       'payerDonate': null,
       'spouseDonate': null,
@@ -85,6 +85,18 @@ export class FilingInfoFormComponent implements OnInit {
         {name:"Operation Allied Force", value:"Operation Allied Force"},
         {name:"UN Operation", value:"UN Operation"}
     ]
+  }
+
+  createSpecialProcessig(sp: SpecialProcessing): FormGroup {
+    if (!sp) sp = new SpecialProcessing();
+    return new FormGroup({
+      'student': new FormControl(sp.student),
+      'armedForces': new FormControl(sp.armedForces),
+      'blind': new FormControl(sp.blind),
+      'disabled': new FormControl(sp.disabled),
+      'death': new FormControl(sp.death),
+      'specialMilitary': new FormControl(sp.specialMilitary)
+    });
   }
 
   myDatePickerOptions: IMyDpOptions = {

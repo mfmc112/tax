@@ -6,5 +6,6 @@ export * from './dependent';
 export * from './filing-information';
 export * from './mailing-address';
 export * from './personal-information';
+export * from './special-processing';
 export * from './phone';
-export * from './user'; 
+export * from './user';

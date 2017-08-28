@@ -24,10 +24,10 @@
         <n-checkbox nName="claimAnother" [fGroup]="taxForm" nValue="true" nLabel="You can be claimed on another person's return"></n-checkbox>
       </div>
       <div class="row">
-        <n-checkbox nName="spouseAnother" [fGroup]="taxForm" nValue="true" nLabel="Filing status 2 and spouse can be on another person's return"></n-checkbox>
+        <n-checkbox nName="filingJointlyButSpouseInAnotherPersons" [fGroup]="taxForm" nValue="true" nLabel="Filing status 2 and spouse can be on another person's return"></n-checkbox>
       </div>
       <div class="row">
-        <n-checkbox nName="nonResidentialSpouse" [fGroup]="taxForm" nValue="true" nLabel="You are using filing status 4 and claiming nonresidential alien spouse"></n-checkbox>
+        <n-checkbox nName="headClaimNonResidentialAlienSpouse" [fGroup]="taxForm" nValue="true" nLabel="You are using filing status 4 and claiming nonresidential alien spouse"></n-checkbox>
       </div>
     </div>
   </div>
@@ -36,7 +36,7 @@
   <p class="lead">SPECIAL PROCESSING</p>
   <hr>
   <div class="row">
-    <n-input class="col-sm-12" name="disaster" label="Disaster Designation - IRS e-filing filed" [fGroup]="taxForm"></n-input>
+    <n-input class="col-sm-12" name="disasterDesignation" label="Disaster Designation - IRS e-filing filed" [fGroup]="taxForm"></n-input>
   </div>
   <div class="row">
     <div class="offset-sm-6 col-sm-3">
@@ -50,14 +50,14 @@
     <div class="col-sm-6">
       <label>Student</label>
     </div>
-    <div class="col-sm-3" style="padding-bottom: 6px;">
-      <select formControlName="payerStudent" id="payerStudent" class="form-control">
+    <div class="col-sm-3" style="padding-bottom: 6px;" formGroupName="payerSpecialProcessing">
+      <select formControlName="student" id="payerStudent" class="form-control">
         <option value=""></option>
         <option *ngFor="let o of studentTypeList" value="{{o.value}}">{{o.name}}</option>
       </select>
     </div>
-    <div class="col-sm-3">
-      <select formControlName="spouseStudent" id="spouseStudent" class="form-control">
+    <div class="col-sm-3" formGroupName="spouseSpecialProcessing">
+      <select formControlName="student" id="spouseStudent" class="form-control">
         <option value=""></option>
         <option *ngFor="let o of studentTypeList" value="{{o.value}}">{{o.name}}</option>
       </select>
@@ -67,14 +67,14 @@
     <div class="col-sm-6">
       <label>Member of Armed Forces</label>
     </div>
-    <div class="col-sm-3" style="padding-bottom: 6px;">
-      <select formControlName="payerArmedForces" id="payerAForces" class="form-control">
+    <div class="col-sm-3" style="padding-bottom: 6px;" formGroupName="payerSpecialProcessing">
+      <select formControlName="armedForces" id="payerAForces" class="form-control">
         <option value=""></option>
         <option *ngFor="let o of yesNoList" value="{{o.value}}">{{o.name}}</option>
       </select>
     </div>
-    <div class="col-sm-3">
-      <select formControlName="spouseArmedForces" id="spouseAForces" class="form-control">
+    <div class="col-sm-3" formGroupName="spouseSpecialProcessing">
+      <select formControlName="armedForces" id="spouseAForces" class="form-control">
         <option value=""></option>
         <option *ngFor="let o of yesNoList" value="{{o.value}}">{{o.name}}</option>
       </select>
@@ -85,10 +85,10 @@
       <label for="payerArmedForces">Check if Blind</label>
     </div>
     <div class="col-sm-3" style="padding-bottom: 6px;">
-      <n-checkbox nName="payerBlind" [fGroup]="taxForm" nValue="true" nLabel=" " nClass="checkbox-padding"></n-checkbox>
+      <n-checkbox nName="payerBlind" controlForm="blind" [fGroup]="payerSpecialGroup" nValue="true" nLabel=" " nClass="checkbox-padding"></n-checkbox>
     </div>
     <div class="col-sm-3">
-      <n-checkbox nName="spouseBlind" [fGroup]="taxForm" nValue="true" nLabel=" " nClass="checkbox-padding"></n-checkbox>
+      <n-checkbox nName="spouseBlind" controlForm="blind" [fGroup]="spouseSpecialGroup" nValue="true" nLabel=" " nClass="checkbox-padding"></n-checkbox>
     </div>
   </div>
   <div class="row">
@@ -96,28 +96,28 @@
       <label for="payerDisabled">Check if Totally and Permanently Disabled</label>
     </div>
     <div class="col-sm-3" style="padding-bottom: 6px;">
-      <n-checkbox nName="payerDisabled" [fGroup]="taxForm" nValue="true" nLabel=" " nClass="checkbox-padding"></n-checkbox>
+      <n-checkbox nName="payerDisabled" controlForm="disabled" [fGroup]="payerSpecialGroup" nValue="true" nLabel=" " nClass="checkbox-padding"></n-checkbox>
     </div>
     <div class="col-sm-3">
-      <n-checkbox nName="spouseDisabled" [fGroup]="taxForm" nValue="true" nLabel=" " nClass="checkbox-padding"></n-checkbox>
+      <n-checkbox nName="spouseDisabled" controlForm="disabled" [fGroup]="spouseSpecialGroup" nValue="true" nLabel=" " nClass="checkbox-padding"></n-checkbox>
     </div>
   </div>
   <div class="row">
     <div class="col-sm-6">
       <label for="taxpayerDeath">Date of Death ONLY if in 2016 or 2017</label>
     </div>
-    <div class="col-sm-3">
+    <div class="col-sm-3" formGroupName="payerSpecialProcessing">
         <my-date-picker name="taxpayerDeath"
                 id="taxpayerDeath"
-                formControlName="taxpayerDeath"
+                formControlName="death"
                 [options]="myDatePickerOptions"
                 [defaultMonth]="defaultMonth">
         </my-date-picker>
     </div>
-    <div class="col-sm-3">
+    <div class="col-sm-3" formGroupName="spouseSpecialProcessing">
         <my-date-picker name="spouseDeath"
                 id="spouseDeath"
-                formControlName="spouseDeath"
+                formControlName="death"
                 [options]="myDatePickerOptions"
                 [defaultMonth]="defaultMonth">
         </my-date-picker>
@@ -127,14 +127,14 @@
         <div class="col-sm-6">
           <label for="payerSpecialMilitary">Special Military Processing</label>
         </div>
-        <div class="col-sm-3" style="padding-bottom: 6px;">
-          <select formControlName="payerSpecialMilitary" name="payerSpecialMilitary" id="payerSpecialMilitary"  class="form-control">
+        <div class="col-sm-3" style="padding-bottom: 6px;" formGroupName="payerSpecialProcessing">
+          <select formControlName="specialMilitary" name="payerSpecialMilitary" id="payerSpecialMilitary"  class="form-control">
             <option value=""></option>
             <option *ngFor="let o of specialMilitaryList" value="{{o.value}}">{{o.name}}</option>
           </select>
         </div>
-        <div class="col-sm-3">
-          <select formControlName="spouseSpecialMilitary" name="spouseSpecialMilitary" id="spouseSpecialMilitary"  class="form-control">
+        <div class="col-sm-3" formGroupName="spouseSpecialProcessing">
+          <select formControlName="specialMilitary" name="spouseSpecialMilitary" id="spouseSpecialMilitary"  class="form-control">
             <option value=""></option>
             <option *ngFor="let o of specialMilitaryList" value="{{o.value}}">{{o.name}}</option>
           </select>

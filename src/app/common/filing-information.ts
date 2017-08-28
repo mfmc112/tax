@@ -4,22 +4,27 @@ import { FilingStatus } from './filing-status';
 import { PinAuth } from './pin-auth';
 
 export class FilingInformation {
-  filingStatus: FilingStatus;
-  specialProcessing: SpecialProcessing;
-  taxpayerDonateToPresidentialCampain: number;
-  spouseDonateToPresidentialCampain: number;
-  returnInfo: ReturnInfo;
+  status: string; // single, Married Filing Jointly (even if one had income), Marries filing Separately, Head of household (with qualifying person)
+  claimAnother: boolean;
+  filingJointlyButSpouseInAnotherPersons: boolean;
+  headClaimNonResidentialAlienSpouse: boolean;
 
+  disasterDesignation: string;
+  payerSpecialProcessing: SpecialProcessing;
+  spouseSpecialProcessing: SpecialProcessing;
+  deploymentDate: Date;
+  payerDonate: boolean;
+  spouseDonate: boolean;
+
+
+  returnInfo: ReturnInfo;
   eroPin: string;
   isPratictionerPin: boolean;
   formsWithPin: string[];
-
   taxPayerPinsAuth: PinAuth;
   spousePinAuth: PinAuth;
-
   // THIRD PARTY DESIGNEE
   thirdPartyDesignee: boolean;
-
   // CLIENT AQUISITION
   clientAquired: string
 }
