@@ -1,6 +1,6 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { NInputComponent } from '../common/n-input.component';
+import { NInputComponent } from '../common/n-components/';
 import { MASKS } from '../enum/masks.enum';
 import { validationRules } from '../validator/validator-rules.component';
 import { ApplicationComponent } from '../application/application.component';
@@ -12,12 +12,11 @@ import { MyDatePickerModule, IMyDefaultMonth, IMyDpOptions, IMyDateModel } from 
 
 @Component({
   selector: 'personal-info-form',
-  templateUrl: './templates/personal-info-form.component.html',
-  styleUrls: ['../common/templates/n-input.component.css']
+  templateUrl: './templates/personal-info-form.component.html'
 })
 export class PersonalInfoFormComponent implements OnInit {
   @ViewChild('../application/application.component') applicationComponent: ApplicationComponent;
-  @ViewChild('../common/n-input.component') nInput: NInputComponent;
+  @ViewChild('../common/n-components/n-input.component') nInput: NInputComponent;
   phoneMask: Array<string | RegExp> = MASKS.PHONE;
   ssnMask: Array<string | RegExp> = MASKS.SSN;
   dateMask: Array<string | RegExp> = MASKS.DATE;
@@ -53,12 +52,12 @@ export class PersonalInfoFormComponent implements OnInit {
       'age': [ {value: '0', disabled: true }],
       'occuppation': this.pi.taxPayer.occupation,
       'phone': this.payerPhoneGroup,
-      'sFirstName' : [ this.pi.spouse.firstName, Validators.compose([Validators.required, Validators.maxLength(45)])],
+      'sFirstName' : [ this.pi.spouse.firstName, Validators.compose([ Validators.maxLength(45)])],
       'sMiddleName' : [ this.pi.spouse.initial, Validators.compose([Validators.maxLength(1)])],
-      'sLastName': [ this.pi.spouse.lastName, Validators.compose([Validators.required, Validators.maxLength(45)])],
+      'sLastName': [ this.pi.spouse.lastName, Validators.compose([Validators.maxLength(45)])],
       'sSuffixName': this.pi.spouse.suffix,
-      'sSsn' : [ this.pi.spouse.ssn, Validators.compose([Validators.required, Validators.pattern(validationRules.SSN_REGEXP)])],
-      'sDateOfBirth': [ this.pi.spouse.dateOfBirth, Validators.required],
+      'sSsn' : [ this.pi.spouse.ssn, Validators.compose([Validators.pattern(validationRules.SSN_REGEXP)])],
+      'sDateOfBirth': this.pi.spouse.dateOfBirth,
       'sAge': [ {value: '0', disabled: true }],
       'sOccuppation': this.pi.spouse.occupation,
       'sPhone': this.spousePhoneGroup,

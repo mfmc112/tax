@@ -8,11 +8,11 @@
   <div class="row">
     <div class="col-12">
       <div class="row">
-        <n-input class="col-sm-3" name="firstName" label="First Name" placeHolder="Taxpayer First Name" [fGroup]="taxForm"></n-input>
+        <n-input class="col-sm-3" name="firstName" label="First Name" [fGroup]="taxForm"></n-input>
         <n-input class="col-sm-1" name="middleName" label="Initial" [mask]="initialMask" [fGroup]="taxForm"></n-input>
-        <n-input class="col-sm-4" name="lastName" label="Last Name" placeHolder="Taxpayer Last Name" [fGroup]="taxForm"></n-input>
+        <n-input class="col-sm-4" name="lastName" label="Last Name" [fGroup]="taxForm"></n-input>
         <n-input class="col-sm-1" name="suffixName" label="Suffix" [fGroup]="taxForm"></n-input>
-        <n-input class="col-sm-3" name="ssn" label="SSN" [mask]="ssnMask" placeHolder="Taxpayer SSN" [fGroup]="taxForm"></n-input>
+        <n-input class="col-sm-3" name="ssn" label="SSN" [mask]="ssnMask" [fGroup]="taxForm"></n-input>
 
         <div class="col-sm-3">
           <div class="form-group">
@@ -27,11 +27,11 @@
           </div>
         </div>
         <n-input class="col-sm-2" name="age" label="Age" [fGroup]="taxForm"></n-input>
-        <n-input class="col-sm-7" name="occuppation" label="Occupation" [mask]="ssnMask" placeHolder="Taxpayer Occupation" [fGroup]="taxForm"></n-input>
+        <n-input class="col-sm-7" name="occuppation" label="Occupation" [mask]="ssnMask" [fGroup]="taxForm"></n-input>
 
-        <n-input class="col-sm-3" name="mobile"  groupedBy="phone" [mask]="phoneMask" label="Phone Numbers" placeHolder="Taxpayer Mobile Phone" [fGroup]="payerPhoneGroup"></n-input>
-        <n-input class="col-sm-3" name="evening" groupedBy="phone" [mask]="phoneMask" label=" " placeHolder="Taxpayer Evening Phone" [fGroup]="payerPhoneGroup"></n-input>
-        <n-input class="col-sm-3" name="other"   groupedBy="phone" [mask]="phoneMask" label=" " placeHolder="Taxpayer Other Phone" [fGroup]="payerPhoneGroup" (keyup)="enableType('phone')"></n-input>
+        <n-input class="col-sm-3" name="mobile"  groupedBy="phone" [mask]="phoneMask" label="Phone Numbers" placeHolder="Mobile" [fGroup]="payerPhoneGroup"></n-input>
+        <n-input class="col-sm-3" name="evening" groupedBy="phone" [mask]="phoneMask" label=" " placeHolder="Evening" [fGroup]="payerPhoneGroup"></n-input>
+        <n-input class="col-sm-3" name="other"   groupedBy="phone" [mask]="phoneMask" label=" " placeHolder="Other" [fGroup]="payerPhoneGroup" (keyup)="enableType('phone')"></n-input>
         <div class="col-sm-3" formGroupName="phone">
           <div class="form-group">
             <label></label>
@@ -54,11 +54,11 @@
   <div class="row">
     <div class="col-12">
       <div class="row">
-        <n-input class="col-sm-3" name="sFirstName" label="First Name" placeHolder="Spouse First Name" [fGroup]="taxForm"></n-input>
+        <n-input class="col-sm-3" name="sFirstName" label="First Name" [fGroup]="taxForm"></n-input>
         <n-input class="col-sm-1" name="sMiddleName" label="Initial" [mask]="initialMask" [fGroup]="taxForm"></n-input>
-        <n-input class="col-sm-4" name="sLastName" label="Last Name" placeHolder="Spouse Last Name" [fGroup]="taxForm"></n-input>
+        <n-input class="col-sm-4" name="sLastName" label="Last Name" [fGroup]="taxForm"></n-input>
         <n-input class="col-sm-1" name="sSuffixName" label="Suffix" [fGroup]="taxForm"></n-input>
-        <n-input class="col-sm-3" name="sSsn" label="SSN" [mask]="ssnMask" placeHolder="Spouse SSN" [fGroup]="taxForm"></n-input>
+        <n-input class="col-sm-3" name="sSsn" label="SSN" [mask]="ssnMask" [fGroup]="taxForm"></n-input>
 
         <div class="col-sm-3">
           <div class="form-group">
@@ -73,11 +73,11 @@
           </div>
         </div>
         <n-input class="col-sm-2" name="age" label="Age" [fGroup]="taxForm"></n-input>
-        <n-input class="col-sm-7" name="occuppation" label="Occupation" [mask]="ssnMask" placeHolder="Spouse Occupation" [fGroup]="taxForm"></n-input>
+        <n-input class="col-sm-7" name="occuppation" label="Occupation" [mask]="ssnMask" [fGroup]="taxForm"></n-input>
 
-        <n-input class="col-sm-3" name="mobile"  groupedBy="phone" [mask]="phoneMask" label="Phone Numbers" placeHolder="Spouse Mobile Phone" [fGroup]="spousePhoneGroup"></n-input>
-        <n-input class="col-sm-3" name="evening" groupedBy="phone" [mask]="phoneMask" label=" " placeHolder="Spouse Evening Phone" [fGroup]="spousePhoneGroup"></n-input>
-        <n-input class="col-sm-3" name="other"   groupedBy="phone" [mask]="phoneMask" label=" " placeHolder="Spouse Other Phone" [fGroup]="spousePhoneGroup" (keyup)="enableType('sPhone')"></n-input>
+        <n-input class="col-sm-3" name="mobile"  groupedBy="phone" [mask]="phoneMask" label="Phone Numbers" placeHolder="Mobile" [fGroup]="spousePhoneGroup"></n-input>
+        <n-input class="col-sm-3" name="evening" groupedBy="phone" [mask]="phoneMask" label=" " placeHolder="Evening" [fGroup]="spousePhoneGroup"></n-input>
+        <n-input class="col-sm-3" name="other"   groupedBy="phone" [mask]="phoneMask" label=" " placeHolder="Other" [fGroup]="spousePhoneGroup" (keyup)="enableType('sPhone')"></n-input>
         <div class="col-sm-3" formGroupName="sPhone">
           <div class="form-group">
             <label></label>
@@ -101,8 +101,8 @@
       <div class="row">
         <n-input class="col-sm-4" name="careFirstName" label="In Care Of" placeHolder="First Name" [fGroup]="mailingAddressGroup"></n-input>
         <n-input class="col-sm-4" name="careLastName" label=" " placeHolder="Last Name" [fGroup]="mailingAddressGroup"></n-input>
-        <n-input class="col-sm-12" name="home1" label="Present Home Address" placeHolder="Home Address Line 1" [fGroup]="mailingAddressGroup"></n-input>
-        <n-input class="col-sm-12" name="home2" label="Present Home Address Line 2" placeHolder="Home Address Line 2" [fGroup]="mailingAddressGroup"></n-input>
+        <n-input class="col-sm-12" name="home1" label="Present Home Address" [fGroup]="mailingAddressGroup"></n-input>
+        <n-input class="col-sm-12" name="home2" label="Present Home Address Line 2" [fGroup]="mailingAddressGroup"></n-input>
         <n-input class="col-sm-2" name="zip"    label="Zip Code" [fGroup]="mailingAddressGroup" [mask]="zipMask"></n-input>
         <n-input class="col-sm-5" name="city"   label="City"     [fGroup]="mailingAddressGroup"></n-input>
         <n-input class="col-sm-2" name="state"  label="State"    [fGroup]="mailingAddressGroup" [mask]="stateMask"></n-input>

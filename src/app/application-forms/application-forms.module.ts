@@ -10,7 +10,7 @@ import { PersonalInfoFormComponent } from './personal-info-form.component';
 import { FilingInfoFormComponent } from './filing-info-form.component';
 import { MyDatePickerModule } from 'mydatepicker';
 import { TextMaskModule } from 'angular2-text-mask';
-import { NInputComponent } from '../common/n-input.component';
+import { NInputComponent, NRadioComponent, NRadioListComponent, NCheckboxComponent } from '../common/n-components';
 
 
 @NgModule({
@@ -27,7 +27,10 @@ import { NInputComponent } from '../common/n-input.component';
   declarations: [
     PersonalInfoFormComponent,
     FilingInfoFormComponent,
-    NInputComponent
+    NInputComponent,
+    NRadioComponent,
+    NRadioListComponent,
+    NCheckboxComponent
   ]
 })
 export class ApplicationFormsModule { }

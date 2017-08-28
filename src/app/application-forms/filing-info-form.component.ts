@@ -1,23 +1,27 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { NInputComponent } from '../common/n-input.component';
+import { NInputComponent, NRadioListComponent } from '../common/n-components/';
 import { CurrentApplicationService } from '../application/service/current-application.service';
 import { validationRules } from '../validator/validator-rules.component';
 import { ApplicationComponent } from '../application/application.component';
 import { ClientApiService } from '../client/client-api.service';
-import { Client } from '../common/';
+import { Client } from '../common';
 import { MyDatePickerModule, IMyDefaultMonth, IMyDpOptions, IMyDateModel } from 'mydatepicker';
 
 @Component({
   selector: 'filing-info-form',
-  templateUrl: './templates/filing-info-form.component.html',
-  styleUrls: ['../common/templates/n-input.component.css']
+  templateUrl: './templates/filing-info-form.component.html'
 })
 export class FilingInfoFormComponent implements OnInit {
   @ViewChild('../application/application.component') applicationComponent: ApplicationComponent;
-  @ViewChild('../common/n-input.component') nInput: NInputComponent;
+  @ViewChild('../common/n-components/n-input.component') nInput: NInputComponent;
+  @ViewChild('../common/n-components/n-radio-list.component') nRadio: NRadioListComponent;
   taxForm: FormGroup;
   client: Client;
+  yesNoList: any;
+  studentTypeList: any;
+  statusRadio: any;
+  specialMilitaryList: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -38,12 +42,49 @@ export class FilingInfoFormComponent implements OnInit {
       'payerDisabled': null,
       'spouseDisabled': null,
       'taxpayerDeath': null,
-      'spouseDeath': null
+      'spouseDeath': null,
+      'payerSpecialMilitary': null,
+      'spouseSpecialMilitary': null,
+      'deploymentDate': null,
+      'payerDonate': null,
+      'spouseDonate': null,
     });
   }
 
   ngOnInit(): void {
+    this.yesNoList = [
+      {value: "yes", name:"Yes"},
+      {value: "no", name:"No"},
+    ];
 
+    this.studentTypeList = [
+      {name:"No", value:"no"},
+      {name:"Full-Time", value:"full-time"},
+      {name:"Part-Time", value:"part-time"},
+    ];
+
+    this.statusRadio = [
+      {value: "single", label:"Single"},
+      {value: "jointly", label:"Married Filing Jointly (even if only had one income)"},
+      {value: "separate", label:"Married Filing Separate"},
+      {value: "head", label:"Head of Household (with qualifying person)"},
+      {value: "widow", label:"Qualified Widow(er) with dependent child. Year spouse died (2016 or 2017 only)"}
+    ];
+
+    this.specialMilitaryList = [
+        {name:"Desert Storm", value:"Desert Storm"},
+        {name:"Enduring Freedom", value:"Enduring Freedom"},
+        {name:"Former Yugoslavia", value:"Former Yugoslavia"},
+        {name:"Haiti", value:"Haiti"},
+        {name:"Iraqi Freedom", value:"Iraqi Freedom"},
+        {name:"Joint Guard", value:"Joint Guard"},
+        {name:"Joint Forge", value:"Joint Forge"},
+        {name:"Kosovo Operations", value:"Kosovo Operations"},
+        {name:"Northern Forge", value:"Northern Forge"},
+        {name:"Northern Watch", value:"Northern Watch"},
+        {name:"Operation Allied Force", value:"Operation Allied Force"},
+        {name:"UN Operation", value:"UN Operation"}
+    ]
   }
 
   myDatePickerOptions: IMyDpOptions = {

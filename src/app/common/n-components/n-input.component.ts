@@ -9,7 +9,7 @@ import { TextMaskModule } from 'angular2-text-mask';
 @Component({
   selector: 'n-input',
   inputs:['mask', 'name', 'label', 'placeHolder', 'fGroup', 'groupedBy'],
-  styleUrls: ['./templates/n-input.component.css'],
+  styleUrls: ['./templates/n-components.css'],
   template: `
     <div class="form-group" [formGroup]="fGroup">
         <label *ngIf="label" for={{name}}>{{label}}</label>
