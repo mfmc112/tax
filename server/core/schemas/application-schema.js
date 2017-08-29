@@ -13,7 +13,7 @@ var applicationSchema = new Schema({
   preparer: { type: Schema.Types.ObjectId, ref: 'User' },
   client: { type: Schema.Types.ObjectId, ref: 'Client' },
   clientInformation: { type: ClientInformation.schema },
-  w2Forms [{ type: W2Form.schema}],
+  w2Forms: [{ type: W2Form.schema}],
   lastUpdated: Date
 });
 
