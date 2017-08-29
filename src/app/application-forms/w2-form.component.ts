@@ -74,7 +74,7 @@ export class W2FormComponent {
     }
 
     getW2(index: number, client: Client): W2Form {
-      if (!this.application.w2Forms) return new W2Form(client);
+      if (!this.application.w2Forms || this.application.w2Forms.length === 0) return new W2Form(client);
       if (!this.application.w2Forms[index]) return null;
       return this.application.w2Forms[index];
     }
