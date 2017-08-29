@@ -1,4 +1,4 @@
-import { Component, ViewChild } from  '@angular/core';
+import { Component, ViewChild, DoCheck } from  '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { ApplicationComponent } from '../application/application.component';
 import { CurrentApplicationService } from '../application/service/current-application.service';
@@ -29,6 +29,7 @@ export class W2FormComponent {
     private formBuilder: FormBuilder,
     private currentApplicationService: CurrentApplicationService ){
       this.application = this.currentApplicationService.getApplication();
+      this.application.estimate = 5000;
       this.w2Form = this.getW2(0, this.application.client);
       // Add the address from personal information prepopulated into the employee fields
       this.address = this.createAddressGroup(this.w2Form.employeeAddress);
@@ -60,6 +61,12 @@ export class W2FormComponent {
         'field9': this.w2Form.field9,
         'field10': this.w2Form.field10
       });
+    }
+
+    changeEstimate(): void {
+      if(this.currentApplicationService.getApplication()) {
+        this.currentApplicationService.getApplication().estimate = this.taxForm.get('field2').value;
+      }
     }
 
     createAddressGroup(address: MailingAddress): FormGroup {

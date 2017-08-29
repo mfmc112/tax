@@ -8,14 +8,16 @@ import { TextMaskModule } from 'angular2-text-mask';
   */
 @Component({
   selector: 'n-input',
-  inputs:['mask', 'name', 'label', 'placeHolder', 'fGroup'],
+  inputs:['mask', 'name', 'label', 'placeHolder', 'fGroup', 'nChange', 'nKeyup'],
   styleUrls: ['./templates/n-components.css'],
   template: `
     <div class="form-group" [formGroup]="fGroup">
         <label *ngIf="label" for={{name}}>{{label}}</label>
         <input formControlName={{name}} type="text" id="{{name}}" class="form-control"
         [attr.placeholder]="placeHolder ? placeHolder : null"
-        [textMask]="{mask: mask, guide:false}">
+        [textMask]="{mask: mask, guide:false}"
+        (change)="nChange"
+        (keyup)="nKeyup">
     </div>
   `
 })
@@ -25,6 +27,8 @@ export class NInputComponent {
   @Input('label') label: string;
   @Input('mask') mask: any;
   @Input('fGroup') fGroup: any;
+  @Input('nChange') nChange: any;
+  @Input('nKeyup') nKeyup: any;
 
   constructor() {
     if (!this.mask) this.mask = false;

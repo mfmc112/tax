@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 import { UIRouterModule, UIRouter } from '@uirouter/angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { validationRules } from '../validator/validator-rules.component';
@@ -44,6 +44,10 @@ export class ApplicationComponent {
       this.estimate = this.currentApplicationService.getApplication().estimate;
       this.currentAgi = this.currentApplicationService.getApplication().currentAgi;
     }
+  }
+
+  ngDoCheck(): void {
+    this.estimate = this.currentApplicationService.getApplication().estimate;
   }
 
   submitForm(fields: any):void {
