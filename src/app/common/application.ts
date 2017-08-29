@@ -1,6 +1,4 @@
-import { User } from './user';
-import { Client } from './client';
-import { ClientInformation } from './client-information';
+import { User, Client, ClientInformation, W2Form } from './';
 
 export class Application {
     year: number;
@@ -10,5 +8,6 @@ export class Application {
     preparer: User;
     client: Client;
     clientInformation: ClientInformation;
+    w2Forms: W2Form[];
     lastUpdated: Date;
 }

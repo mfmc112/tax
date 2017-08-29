@@ -1,8 +1,6 @@
-<div class="page-header" style="background-color:#cccccc">
-    <h1>US<small><small> PERSONAL INFORMATION</small></small></h1>
-</div>
-<form [formGroup]="taxForm" (submit)="submitForm(taxForm.value)" style="min-height:150px" novalidate >
+<form-header nTitle="PERSONAL INFORMATION"></form-header>
 
+<form [formGroup]="taxForm" (submit)="submitForm(taxForm.value)" style="min-height:150px" novalidate >
   <p class="lead">TAXPAYER INFORMATION</p>
   <hr>
   <div class="row">
@@ -29,9 +27,9 @@
         <n-input class="col-sm-2" name="age" label="Age" [fGroup]="taxForm"></n-input>
         <n-input class="col-sm-7" name="occuppation" label="Occupation" [mask]="ssnMask" [fGroup]="taxForm"></n-input>
 
-        <n-input class="col-sm-3" name="mobile"  groupedBy="phone" [mask]="phoneMask" label="Phone Numbers" placeHolder="Mobile" [fGroup]="payerPhoneGroup"></n-input>
-        <n-input class="col-sm-3" name="evening" groupedBy="phone" [mask]="phoneMask" label=" " placeHolder="Evening" [fGroup]="payerPhoneGroup"></n-input>
-        <n-input class="col-sm-3" name="other"   groupedBy="phone" [mask]="phoneMask" label=" " placeHolder="Other" [fGroup]="payerPhoneGroup" (keyup)="enableType('phone')"></n-input>
+        <n-input class="col-sm-3" name="mobile"  [mask]="phoneMask" label="Phone Numbers" placeHolder="Mobile" [fGroup]="payerPhoneGroup"></n-input>
+        <n-input class="col-sm-3" name="evening" [mask]="phoneMask" label=" " placeHolder="Evening" [fGroup]="payerPhoneGroup"></n-input>
+        <n-input class="col-sm-3" name="other"   [mask]="phoneMask" label=" " placeHolder="Other" [fGroup]="payerPhoneGroup" (keyup)="enableType('phone')"></n-input>
         <div class="col-sm-3" formGroupName="phone">
           <div class="form-group">
             <label></label>
@@ -75,9 +73,9 @@
         <n-input class="col-sm-2" name="age" label="Age" [fGroup]="taxForm"></n-input>
         <n-input class="col-sm-7" name="occuppation" label="Occupation" [mask]="ssnMask" [fGroup]="taxForm"></n-input>
 
-        <n-input class="col-sm-3" name="mobile"  groupedBy="phone" [mask]="phoneMask" label="Phone Numbers" placeHolder="Mobile" [fGroup]="spousePhoneGroup"></n-input>
-        <n-input class="col-sm-3" name="evening" groupedBy="phone" [mask]="phoneMask" label=" " placeHolder="Evening" [fGroup]="spousePhoneGroup"></n-input>
-        <n-input class="col-sm-3" name="other"   groupedBy="phone" [mask]="phoneMask" label=" " placeHolder="Other" [fGroup]="spousePhoneGroup" (keyup)="enableType('sPhone')"></n-input>
+        <n-input class="col-sm-3" name="mobile"  [mask]="phoneMask" label="Phone Numbers" placeHolder="Mobile" [fGroup]="spousePhoneGroup"></n-input>
+        <n-input class="col-sm-3" name="evening" [mask]="phoneMask" label=" " placeHolder="Evening" [fGroup]="spousePhoneGroup"></n-input>
+        <n-input class="col-sm-3" name="other"   [mask]="phoneMask" label=" " placeHolder="Other" [fGroup]="spousePhoneGroup" (keyup)="enableType('sPhone')"></n-input>
         <div class="col-sm-3" formGroupName="sPhone">
           <div class="form-group">
             <label></label>
@@ -103,7 +101,7 @@
         <n-input class="col-sm-4" name="careLastName" label=" " placeHolder="Last Name" [fGroup]="mailingAddressGroup"></n-input>
         <n-input class="col-sm-12" name="home1" label="Present Home Address" [fGroup]="mailingAddressGroup"></n-input>
         <n-input class="col-sm-12" name="home2" label="Present Home Address Line 2" [fGroup]="mailingAddressGroup"></n-input>
-        <n-input class="col-sm-2" name="zip"    label="Zip Code" [fGroup]="mailingAddressGroup" [mask]="zipMask"></n-input>
+        <n-input class="col-sm-3" name="zip"    label="Zip Code" [fGroup]="mailingAddressGroup" [mask]="zipMask"></n-input>
         <n-input class="col-sm-5" name="city"   label="City"     [fGroup]="mailingAddressGroup"></n-input>
         <n-input class="col-sm-2" name="state"  label="State"    [fGroup]="mailingAddressGroup" [mask]="stateMask"></n-input>
         <n-input class="col-sm-9" name="email"  label="Email Address"    [fGroup]="mailingAddressGroup"></n-input>

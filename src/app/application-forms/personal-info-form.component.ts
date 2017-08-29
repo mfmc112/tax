@@ -43,9 +43,9 @@ export class PersonalInfoFormComponent implements OnInit {
     this.mailingAddressGroup = this.createMailingAddressGroup(this.pi);
 
     this.taxForm = formBuilder.group({
-      'firstName' : [ this.pi.taxPayer.firstName, Validators.compose([Validators.required, Validators.maxLength(45)])],
-      'middleName' : [ this.pi.taxPayer.initial, Validators.compose([Validators.maxLength(1)])],
-      'lastName': [ this.pi.taxPayer.lastName, Validators.compose([Validators.required, Validators.maxLength(45)])],
+      'firstName' : [ this.pi.taxPayer.firstName, Validators.compose([Validators.required, Validators.maxLength(45), Validators.pattern(validationRules.STRING)])],
+      'middleName' : [ this.pi.taxPayer.initial, Validators.compose([Validators.maxLength(1), Validators.pattern(validationRules.STRING)])],
+      'lastName': [ this.pi.taxPayer.lastName, Validators.compose([Validators.required, Validators.maxLength(45), Validators.pattern(validationRules.STRING)])],
       'suffixName': this.pi.taxPayer.suffix,
       'ssn' : [ {value: this.pi.taxPayer.ssn, disabled: true }, Validators.compose([Validators.required, Validators.pattern(validationRules.SSN_REGEXP)])],
       'dateOfBirth': [ this.pi.taxPayer.dateOfBirth, Validators.required],

@@ -1,6 +1,7 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { NInputComponent, NRadioListComponent } from '../common/n-components/';
+import { FormHeaderComponent } from './utils/form-header.component';
 import { CurrentApplicationService } from '../application/service/current-application.service';
 import { validationRules } from '../validator/validator-rules.component';
 import { ApplicationComponent } from '../application/application.component';
@@ -16,6 +17,7 @@ export class FilingInfoFormComponent implements OnInit {
   @ViewChild('../application/application.component') applicationComponent: ApplicationComponent;
   @ViewChild('../common/n-components/n-input.component') nInput: NInputComponent;
   @ViewChild('../common/n-components/n-radio-list.component') nRadio: NRadioListComponent;
+  @ViewChild('./utils/form-header.component') formHeader: FormHeaderComponent;
   taxForm: FormGroup;
   payerSpecialGroup: FormGroup;
   spouseSpecialGroup: FormGroup;

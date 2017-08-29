@@ -1,8 +1,6 @@
-<div class="page-header" style="background-color:#cccccc">
-    <h1>US<small><small> FILING INFORMATION</small></small></h1>
-</div>
-<form [formGroup]="taxForm" (submit)="submitForm(taxForm.value)" style="min-height:150px" novalidate >
+<form-header nTitle="FILING INFORMATION"></form-header>
 
+<form [formGroup]="taxForm" (submit)="submitForm(taxForm.value)" style="min-height:150px" novalidate >
   <p class="lead">FILING STATUS AND EXEMPTIONS</p>
   <hr>
   <div class="row">

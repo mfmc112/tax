@@ -8,6 +8,8 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
 /* Add all the forms here */
 import { PersonalInfoFormComponent } from './personal-info-form.component';
 import { FilingInfoFormComponent } from './filing-info-form.component';
+import { W2FormComponent } from './w2-form.component';
+import { FormHeaderComponent } from './utils/form-header.component';
 import { MyDatePickerModule } from 'mydatepicker';
 import { TextMaskModule } from 'angular2-text-mask';
 import { NInputComponent, NRadioComponent, NRadioListComponent, NCheckboxComponent } from '../common/n-components';
@@ -27,10 +29,12 @@ import { NInputComponent, NRadioComponent, NRadioListComponent, NCheckboxCompone
   declarations: [
     PersonalInfoFormComponent,
     FilingInfoFormComponent,
+    W2FormComponent,
     NInputComponent,
     NRadioComponent,
     NRadioListComponent,
-    NCheckboxComponent
+    NCheckboxComponent,
+    FormHeaderComponent
   ]
 })
 export class ApplicationFormsModule { }

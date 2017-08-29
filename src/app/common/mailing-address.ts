@@ -1,5 +1,3 @@
-import { Phone } from './phone';
-
 export class MailingAddress {
   careFirstName: string;
   careLastName: string;
