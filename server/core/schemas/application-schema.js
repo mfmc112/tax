@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var Client = require('./client-schema');
 var User = require('./user-schema');
+var W2Form = require('./w2-form-schema');
 var ClientInformation = require('./client-information-schema');
 var Schema = mongoose.Schema;
 

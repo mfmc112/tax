@@ -1,0 +1,76 @@
+<div class="container-fluid" *ngIf="client">
+    <div class="row d-flex d-md-block flex-nowrap wrapper">
+        <div class="col-md-3 float-left col-1 pl-0 pr-0 collapse width show" id="sidebar">
+                <div class="list-group border-0 card text-center text-md-left">
+                  <div class="col-12 ammount-box">
+                    CLIENT// {{client.firstName}} {{client.middleName}}{{(client.middleName)?'.':''}} {{client.lastName}}<BR>
+                    <span class="big-value">{{estimate | currency:'USD':true}}</span><br>
+                    FEDERAL<div class="divider-5"></div>
+                    Current AGI: {{currentAgi | currency:'USD':true}}
+                  </div>
+                <a href="#menu1" class="list-group-item d-inline-block collapsed" data-toggle="collapse" data-parent="#sidebar" aria-expanded="false">
+                  <i class="fa fa-user-o" aria-hidden="true"></i> <span class="d-none d-md-inline">Client Information</span>
+                </a>
+                <div class="collapse show" id="menu1">
+                    <a uiSref="menu.application.personalInfo" uiSrefActive="active" class="list-group-item">&nbsp;&nbsp;Personal Information&nbsp;<i class="fa fa-check text-success" aria-hidden="true"></i></a>
+                    <a uiSref="menu.application.filingInfo" uiSrefActive="active" class="list-group-item">&nbsp;&nbsp;Filing Information&nbsp;<i class="fa fa-check text-success" aria-hidden="true"></i></a>
+<!--
+                    <a href="#menu1sub1" class="list-group-item" data-toggle="collapse" aria-expanded="false">&nbsp;&nbsp;Filing Information&nbsp;<i class="fa fa-check text-success" aria-hidden="true"></i></a>
+                    <div class="collapse" id="menu1sub1">
+                        <a href="#" class="list-group-item" data-parent="#menu1sub1">&nbsp;&nbsp;&nbsp;&nbsp;Filing Info 1&nbsp;<i class="fa fa-check text-success" aria-hidden="true"></i></a>
+                        <a href="#" class="list-group-item" data-parent="#menu1sub1">&nbsp;&nbsp;&nbsp;&nbsp;Personal Info 2</a>
+                        <a href="#menu1sub1sub1" class="list-group-item" data-toggle="collapse" aria-expanded="false"><i class="fa fa-check text-success" aria-hidden="true"></i> Filing Information</a>
+                        <div class="collapse" id="menu1sub1sub1">
+                            <a href="#" class="list-group-item" data-parent="#menu1sub1sub1">Subitem 3 c.1</a>
+                            <a href="#" class="list-group-item" data-parent="#menu1sub1sub1">Subitem 3 c.2</a>
+                        </div>
+                        <a href="#" class="list-group-item" data-parent="#menu1sub1">Subitem 4 d</a>
+                        <a href="#menu1sub1sub2" class="list-group-item" data-toggle="collapse" aria-expanded="false">Subitem 5 e </a>
+                        <div class="collapse" id="menu1sub1sub2">
+                            <a href="#" class="list-group-item" data-parent="#menu1sub1sub2">Subitem 5 e.1</a>
+                            <a href="#" class="list-group-item" data-parent="#menu1sub1sub2">Subitem 5 e.2</a>
+                        </div>
+                    </div> -->
+                    <!-- <a href="#" class="list-group-item" data-parent="#menu1">Subitem 2</a>
+                    <a href="#" class="list-group-item" data-parent="#menu1">Subitem 3</a> -->
+                </div>
+                <a uiSref="menu.application.w2Form" uiSrefActive="active" class="list-group-item d-inline-block">&nbsp;&nbsp;W2&nbsp;</a>
+
+                <a href="#menu2" class="list-group-item d-inline-block collapsed" data-toggle="collapse" data-parent="#sidebar" aria-expanded="false">
+                  <i class="fa fa-wpforms" aria-hidden="true"></i> <span class="d-none d-md-inline">&nbsp;&nbsp;Form 1040</span>
+                </a>
+                <div class="collapse show" id="menu2">
+                    <a href="#" class="list-group-item" data-parent="#menu2">&nbsp;&nbsp;Page 1&nbsp;&nbsp;<i class="fa fa-check text-success" aria-hidden="true"></i></a>
+                    <a href="#" class="list-group-item" data-parent="#menu2">&nbsp;&nbsp;Page 2</a>
+                </div>
+
+                <a href="#menu4" class="list-group-item d-inline-block collapsed" data-toggle="collapse" data-parent="#sidebar" aria-expanded="false">
+                  <i class="fa fa-wpforms" aria-hidden="true"></i> <span class="d-none d-md-inline">&nbsp;&nbsp;Dependents</span>
+                </a>
+                <!-- <div class="collapse show" id="menu4"> -->
+                  <!-- <a href="#" class="list-group-item" data-parent="#menu4">&nbsp;&nbsp;Add Dependent</a> -->
+                <!-- </div> -->
+
+
+                <!-- <a href="#menu3" class="list-group-item d-inline-block collapsed" data-toggle="collapse" data-parent="#sidebar" aria-expanded="false">
+                  <i class="fa fa-wpforms" aria-hidden="true"></i> <span class="d-none d-md-inline">&nbsp;&nbsp;Form W-2</span>
+                </a> -->
+                <!-- <div class="collapse show" id="menu3"> -->
+                  <!-- <a href="#" class="list-group-item" data-parent="#menu3">&nbsp;&nbsp;Add Form W-2</a> -->
+                  <!-- <a href="#" class="list-group-item" data-parent="#menu3">&nbsp;&nbsp;W-2 (COMPANY NAME HERE)&nbsp;&nbsp;<i class="fa fa-check text-success" aria-hidden="true"></i></a> -->
+                <!-- </div> -->
+
+                <a href="#" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-star"></i> <span class="d-none d-md-inline">Price</span></a>
+                <a href="#" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-star"></i> <span class="d-none d-md-inline">Schedule EIC</span></a>
+                <a href="#" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-star"></i> <span class="d-none d-md-inline">Worksheet 8</span></a>
+            </div>
+        </div>
+        <div class="px-1 float-left">
+          <a href="#" data-target="#sidebar" data-toggle="collapse"><i class="fa fa-navicon fa-1x py-2 p-1"></i></a>
+        </div>
+        <main class="col-md-8 float-left col px-5 pl-md-2 pt-2 main">
+            <application-header-component></application-header-component>
+            <ui-view></ui-view>
+        </main>
+    </div>
+</div>
