@@ -47,7 +47,10 @@ export class ApplicationComponent {
   }
 
   ngDoCheck(): void {
-    this.estimate = this.currentApplicationService.getApplication().estimate;
+    this.estimate = 0;
+    if (this.currentApplicationService.getApplication()) {
+      this.estimate = this.currentApplicationService.getApplication().estimate;
+    }
   }
 
   submitForm(fields: any):void {

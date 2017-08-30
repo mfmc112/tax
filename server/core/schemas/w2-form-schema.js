@@ -28,7 +28,26 @@ var w2FormSchema = new Schema({
   field7: Number,
   field8: Number,
   field9: Number,
-  field10: Number
+  field10: Number,
+  field12a1: String,
+  field12a2: Number,
+  field12b1: String,
+  field12b2: Number,
+  field12c1: String,
+  field12c2: Number,
+  field12d1: String,
+  field12d2: Number,
+  field13Statutory: Boolean,
+  field13Retirement: Boolean,
+  field13SickPay: Boolean,
+  field14: String,
+  field16: Number,
+  field17: Number,
+  field18: Number,
+  field19: Number,
+  field20: String,
+  state: String,
+  esin: String
 });
 
 var W2Form = mongoose.model('W2Form', w2FormSchema);

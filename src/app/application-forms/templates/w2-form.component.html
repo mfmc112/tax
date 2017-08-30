@@ -87,9 +87,58 @@
         <n-input class="col-sm-5" name="field9" label="9-Reserved" [fGroup]="taxForm"></n-input>
         <n-input class="col-sm-5" name="field10" label="10-Dependent care benefits" [fGroup]="taxForm"></n-input>
       </div>
+
+      <div class="row">
+        <div class="col-sm-5">
+          <div class="row">
+            <div class="col-sm-6">
+              <label>11-Nonqualified plans</label>
+            </div>
+          </div>
+          <div class="row">
+            <n-input class="col-sm-12" name="field11" [fGroup]="taxForm"></n-input>
+            <n-textarea class="col-sm-12" name="field14" label="14-Other" nRows="4" [fGroup]="taxForm"></n-textarea>
+          </div>
+        </div>
+        <div class="col-sm-5">
+          <div class="row">
+            <div class="col-sm-6">
+              <label>12-Codes</label>
+            </div>
+          </div>
+          <div class="row">
+            <n-w2-field12 class="col-sm-12" nField="12a" [fGroup]="taxForm"></n-w2-field12>
+            <n-w2-field12 class="col-sm-12" nField="12b" [fGroup]="taxForm"></n-w2-field12>
+            <n-w2-field12 class="col-sm-12" nField="12c" [fGroup]="taxForm"></n-w2-field12>
+            <n-w2-field12 class="col-sm-12" nField="12d" [fGroup]="taxForm"></n-w2-field12>
+          </div>
+
+        </div>
+      </div>
     </div>
   </div>
 
+
+  <p class="lead">WAGES, SALARIES AND TIPS</p>
+  <hr>
+  <div class="row">
+    <div class="col-12">
+
+      <div class="row">
+        <n-input class="col-sm-2" name="state" label="State"  [fGroup]="taxForm" [mask]="stateMask"></n-input>
+        <n-input class="col-sm-4" name="esin" label="Employer's state ID no." [fGroup]="taxForm"></n-input>
+        <n-input class="col-sm-4" name="field16" label="16-State wages, tips, etc." [fGroup]="taxForm"></n-input>
+      </div>
+      <div class="row">
+        <n-input class="col-sm-5" name="field17" label="17-State Income Tax" [fGroup]="taxForm"></n-input>
+        <n-input class="offset-sm-1 col-sm-4" name="field18" label="8-Local wages, tips, etc." [fGroup]="taxForm"></n-input>
+      </div>
+      <div class="row">
+        <n-input class="col-sm-5" name="field19" label="19-Local Income Tax" [fGroup]="taxForm"></n-input>
+        <n-input class="offset-sm-1 col-sm-4" name="field20" label="20-Locality name" [fGroup]="taxForm"></n-input>
+      </div>
+    </div>
+  </div>
 </form>
 
 <div class="divider-30"></div>

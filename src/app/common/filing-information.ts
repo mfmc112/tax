@@ -12,7 +12,6 @@ export class FilingInformation {
   disasterDesignation: string;
   payerSpecialProcessing: SpecialProcessing;
   spouseSpecialProcessing: SpecialProcessing;
-  deploymentDate: Date;
   payerDonate: boolean;
   spouseDonate: boolean;
 

@@ -47,7 +47,6 @@ export class FilingInfoFormComponent implements OnInit {
       'disasterDesignation': [null, Validators.required],
       'payerSpecialProcessing': this.payerSpecialGroup,
       'spouseSpecialProcessing': this.spouseSpecialGroup,
-      'deploymentDate': null,
       'payerDonate': null,
       'spouseDonate': null,
     });
@@ -97,7 +96,8 @@ export class FilingInfoFormComponent implements OnInit {
       'blind': new FormControl(sp.blind),
       'disabled': new FormControl(sp.disabled),
       'death': new FormControl(sp.death),
-      'specialMilitary': new FormControl(sp.specialMilitary)
+      'specialMilitary': new FormControl(sp.specialMilitary),
+      'deploymentDate': new FormControl(null)
     });
   }
 

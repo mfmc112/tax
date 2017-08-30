@@ -12,7 +12,8 @@ import { W2FormComponent } from './w2-form.component';
 import { FormHeaderComponent } from './utils/form-header.component';
 import { MyDatePickerModule } from 'mydatepicker';
 import { TextMaskModule } from 'angular2-text-mask';
-import { NInputComponent, NRadioComponent, NRadioListComponent, NCheckboxComponent } from '../common/n-components';
+import { NInputComponent, NTextareaComponent, NRadioComponent, NRadioListComponent, NCheckboxComponent } from '../common/n-components';
+import { NW2Field12Component } from '../common/n-components/n-w2-field12.component';
 
 
 @NgModule({
@@ -31,9 +32,11 @@ import { NInputComponent, NRadioComponent, NRadioListComponent, NCheckboxCompone
     FilingInfoFormComponent,
     W2FormComponent,
     NInputComponent,
+    NTextareaComponent,
     NRadioComponent,
     NRadioListComponent,
     NCheckboxComponent,
+    NW2Field12Component,
     FormHeaderComponent
   ]
 })

@@ -142,10 +142,17 @@
         <div class="col-sm-6">
           <label for="deploymentDate">Deployment Date</label>
         </div>
-        <div class="col-sm-3" style="padding-bottom: 6px;"><br></div>
-        <div class="col-sm-3">
-            <my-date-picker name="deploymentDate"
-                    id="deploymentDate"
+        <div class="col-sm-3" style="padding-bottom: 6px;" formGroupName="payerSpecialProcessing">
+          <my-date-picker name="payerDeploymentDate"
+                  id="payerDeploymentDate"
+                  formControlName="deploymentDate"
+                  [options]="myDatePickerOptions"
+                  [defaultMonth]="defaultMonth">
+          </my-date-picker>
+        </div>
+        <div class="col-sm-3" formGroupName="spouseSpecialProcessing">
+            <my-date-picker name="spouseDeploymentDate"
+                    id="spouseDeploymentDate"
                     formControlName="deploymentDate"
                     [options]="myDatePickerOptions"
                     [defaultMonth]="defaultMonth">

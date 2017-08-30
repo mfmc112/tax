@@ -5,7 +5,8 @@ import { CurrentApplicationService } from '../application/service/current-applic
 import { validationRules } from '../validator/validator-rules.component';
 import { MASKS } from '../enum/masks.enum';
 import { Application, W2Form, MailingAddress, Client } from '../common/';
-import { NInputComponent, NCheckboxComponent } from '../common/n-components/';
+import { NInputComponent, NTextareaComponent, NCheckboxComponent } from '../common/n-components/';
+import { NW2Field12Component } from '../common/n-components/n-w2-field12.component';
 
 @Component({
   selector:'w2-form',
@@ -15,6 +16,9 @@ export class W2FormComponent {
   @ViewChild('../application/application.component') applicationComponent: ApplicationComponent;
   @ViewChild('../common/n-components/n-input.component') nInput: NInputComponent;
   @ViewChild('../common/n-components/n-checkbox.component') nCheckbox: NCheckboxComponent;
+  @ViewChild('../common/n-components/n-textarea.component') nTextarea: NTextareaComponent;
+  @ViewChild('../common/n-components/n-w2-field12.component') nW2Field12: NW2Field12Component;
+
   ssnMask: Array<string | RegExp> = MASKS.SSN;
   zipMask:  Array<string | RegExp> = MASKS.ZIP;
   stateMask:  Array<string | RegExp> = MASKS.STATE;
@@ -59,7 +63,27 @@ export class W2FormComponent {
         'field7': this.w2Form.field7,
         'field8': this.w2Form.field8,
         'field9': this.w2Form.field9,
-        'field10': this.w2Form.field10
+        'field10': this.w2Form.field10,
+        'field11': this.w2Form.field10,
+        'field12a1': this.w2Form.field12a1,
+        'field12a2': this.w2Form.field12a2,
+        'field12b1': this.w2Form.field12b1,
+        'field12b2': this.w2Form.field12b2,
+        'field12c1': this.w2Form.field12c1,
+        'field12c2': this.w2Form.field12c2,
+        'field12d1': this.w2Form.field12d1,
+        'field12d2': this.w2Form.field12d2,
+        'field13Statutory': this.w2Form.field13Statutory,
+        'field13Retirement': this.w2Form.field13Retirement,
+        'field13SickPay': this.w2Form.field13SickPay,
+        'field14': this.w2Form.field14,
+        'field16': this.w2Form.field16,
+        'field17': this.w2Form.field17,
+        'field18': this.w2Form.field18,
+        'field19': this.w2Form.field19,
+        'field20': this.w2Form.field20,
+        'state': this.w2Form.state,
+        'esin': this.w2Form.esin
       });
     }
 

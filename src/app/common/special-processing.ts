@@ -5,4 +5,5 @@ export class SpecialProcessing {
   disabled: boolean;
   death: Date;
   specialMilitary: string;
+  deploymentDate: Date;
 }
