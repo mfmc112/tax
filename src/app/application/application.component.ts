@@ -9,7 +9,7 @@ import { CurrentApplicationService } from './service/current-application.service
 @Component({
   selector: 'application',
   templateUrl: './templates/application.component.html',
-  styleUrls: ['../tax-return/templates/tax-return.component.css']
+  styleUrls: ['./templates/application.component.css']
 })
 export class ApplicationComponent {
 
@@ -47,9 +47,13 @@ export class ApplicationComponent {
   }
 
   ngDoCheck(): void {
-    this.estimate = 0;
     if (this.currentApplicationService.getApplication()) {
-      this.estimate = this.currentApplicationService.getApplication().estimate;
+      this.currentApplicationService.calculate();
+      this.estimate = this.currentApplicationService.getEstimate();
+      this.currentAgi = this.currentApplicationService.getCurrentAGI();
+    } else {
+      this.estimate = 0;
+      this.currentAgi = 0;
     }
   }
 

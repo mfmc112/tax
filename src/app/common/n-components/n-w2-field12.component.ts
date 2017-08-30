@@ -1,10 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { TextMaskModule } from 'angular2-text-mask';
+import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 
 @Component({
   selector: 'n-w2-field12',
-  inputs:['mask', 'fGroup', 'nField', 'nChange', 'nKeyup'],
+  inputs:['fGroup', 'nField', 'nChange', 'nKeyup'],
   styleUrls: ['./templates/n-components.css'],
   template: `
     <div class="row" style="margin-bottom:10px;">
@@ -23,7 +24,7 @@ import { TextMaskModule } from 'angular2-text-mask';
       </div>
       <div class="col-sm-7" [formGroup]="fGroup">
           <input formControlName='{{"field"+nField+"2"}}' type="text" id="field{{nField}}2" class="form-control"
-          [textMask]="{mask: mask, guide:false}"
+          [textMask]="{mask: numberMask, guide:false}"
           (change)="nChange"
           (keyup)="nKeyup">
       </div>
@@ -32,13 +33,13 @@ import { TextMaskModule } from 'angular2-text-mask';
 })
 export class NW2Field12Component {
   @Input('nField') nField: string;
-  @Input('mask') mask: any;
   @Input('fGroup') fGroup: any;
   @Input('nChange') nChange: any;
   @Input('nKeyup') nKeyup: any;
 
-  constructor() {
-    if (!this.mask) this.mask = false;
-  }
+  numberMask = createNumberMask({
+    prefix: '$',
+    suffix: ''
+  })
 
 }

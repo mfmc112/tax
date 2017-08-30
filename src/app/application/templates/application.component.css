@@ -1,0 +1,67 @@
+
+.ammount-box {
+  /*background-color: #9EBA7E;*/
+  font-size: 15px;
+  font-family: Arial!important;
+  /*border: #000000;*/
+  /*border-width: 1px;*/
+  /*border-bottom-width: 0;*/
+  /*border-style: solid;*/
+  /*border-right-width: 0;*/
+}
+.ammount-box-green {
+
+}
+
+.ammount-box-red {
+
+}
+
+.ammount-box-yellow {
+
+}
+
+.big-value {
+  font-size: 30px;
+}
+
+.tax-header-row {
+  height: 100px;
+}
+
+.tax-header-button {
+  margin-top: 5px;
+}
+
+.tax-header-border-right{
+  border-left: #000000;
+  border-left-style: solid;
+  border-left-width: 1px;
+}
+
+.step-menu-border {
+  border: #000000;
+  border-width: 1px;
+  border-right-width: 0;
+  border-style: solid;
+  background-color: #bfbfbf;
+  min-height:500px;
+}
+
+.area-menu {
+   min-height:500px;
+}
+
+.area-menu-border {
+  border: #000000;
+  border-width: 1px;
+  border-style: solid;
+}
+
+.panel-group .panel {
+    border-radius: 0px;
+}
+
+a:hover {
+  text-decoration: none;
+}

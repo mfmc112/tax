@@ -4,6 +4,7 @@ import { ApplicationComponent } from '../application/application.component';
 import { CurrentApplicationService } from '../application/service/current-application.service';
 import { validationRules } from '../validator/validator-rules.component';
 import { MASKS } from '../enum/masks.enum';
+import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 import { Application, W2Form, MailingAddress, Client } from '../common/';
 import { NInputComponent, NTextareaComponent, NCheckboxComponent } from '../common/n-components/';
 import { NW2Field12Component } from '../common/n-components/n-w2-field12.component';
@@ -22,7 +23,7 @@ export class W2FormComponent {
   ssnMask: Array<string | RegExp> = MASKS.SSN;
   zipMask:  Array<string | RegExp> = MASKS.ZIP;
   stateMask:  Array<string | RegExp> = MASKS.STATE;
-
+  numberMask = createNumberMask({ prefix: '$', suffix: '' });
   taxForm: FormGroup;
   application: Application;
   w2Form: W2Form;
@@ -33,7 +34,6 @@ export class W2FormComponent {
     private formBuilder: FormBuilder,
     private currentApplicationService: CurrentApplicationService ){
       this.application = this.currentApplicationService.getApplication();
-      this.application.estimate = 5000;
       this.w2Form = this.getW2(0, this.application.client);
       // Add the address from personal information prepopulated into the employee fields
       this.address = this.createAddressGroup(this.w2Form.employeeAddress);
@@ -87,9 +87,25 @@ export class W2FormComponent {
       });
     }
 
-    changeEstimate(): void {
+    addCurrencyField(obj, field, form): void {
+      if (form && form.value) {
+        obj[field] = form.value.replace(/[^0-9]*/g,"");
+      }
+    }
+
+    calculate(): void {
       if(this.currentApplicationService.getApplication()) {
-        this.currentApplicationService.getApplication().estimate = this.taxForm.get('field2').value;
+        this.addCurrencyField(this.w2Form, "field1", this.taxForm.get('field1'));
+        this.addCurrencyField(this.w2Form, "field2", this.taxForm.get('field2'));
+        this.addCurrencyField(this.w2Form, "field3", this.taxForm.get('field3'));
+        this.addCurrencyField(this.w2Form, "field4", this.taxForm.get('field4'));
+        this.addCurrencyField(this.w2Form, "field5", this.taxForm.get('field5'));
+        this.addCurrencyField(this.w2Form, "field6", this.taxForm.get('field6'));
+        this.addCurrencyField(this.w2Form, "field7", this.taxForm.get('field7'));
+        this.addCurrencyField(this.w2Form, "field8", this.taxForm.get('field8'));
+        this.addCurrencyField(this.w2Form, "field9", this.taxForm.get('field9'));
+        this.addCurrencyField(this.w2Form, "field10", this.taxForm.get('field10'));
+        this.currentApplicationService.calculate();
       }
     }
 
@@ -105,7 +121,11 @@ export class W2FormComponent {
     }
 
     getW2(index: number, client: Client): W2Form {
-      if (!this.application.w2Forms || this.application.w2Forms.length === 0) return new W2Form(client);
+      if (!this.application.w2Forms || this.application.w2Forms.length === 0) {
+        this.application.w2Forms = [];
+        this.application.w2Forms.push(new W2Form(client));
+        return this.application.w2Forms[index];
+      }
       if (!this.application.w2Forms[index]) return null;
       return this.application.w2Forms[index];
     }
