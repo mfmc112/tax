@@ -1,4 +1,16 @@
 
+label {
+  margin-bottom: 0px!important;
+}
+
+.no-margin {
+  margin-bottom: 0px!important;
+}
+
+.add-margin {
+    margin-bottom: .5rem;
+}
+
 input.ng-valid[required], input.ng-valid.required  {
   border: 1px solid #42A948;
 }
