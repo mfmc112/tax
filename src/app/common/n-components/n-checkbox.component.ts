@@ -7,7 +7,7 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
   */
 @Component({
   selector: 'n-checkbox',
-  inputs:['nName', 'nValue', 'nLabel', 'nClass', 'fGroup', 'controlForm'],
+  inputs:['nName', 'nValue', 'nLabel', 'nClass', 'fGroup', 'controlForm', 'nChange'],
   styleUrls: ['./templates/n-components.css'],
   template: `
       <div class="checkbox checkbox-primary {{nClass}}" [formGroup]="fGroup">
@@ -22,6 +22,7 @@ export class NCheckboxComponent implements OnInit {
   @Input('nLabel') nLabel: string;
   @Input('nClass') nClass: string;
   @Input('fGroup') fGroup: any;
+  @Input('nChange') nChange: any;
   @Input('controlForm') controlForm: string;
 
   ngOnInit(): void {

@@ -1,5 +1,6 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit, ViewContainerRef } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { NInputComponent } from '../common/n-components/';
 import { MASKS } from '../enum/masks.enum';
 import { validationRules } from '../validator/validator-rules.component';
@@ -33,8 +34,11 @@ export class PersonalInfoFormComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
+    public toastr: ToastsManager, vcr: ViewContainerRef,
     private currentApplicationService: CurrentApplicationService
   ){
+    this.toastr.setRootViewContainerRef(vcr);
+
     this.application = this.currentApplicationService.getApplication();
     this.pi = this.application.clientInformation.personalInformation;
 
@@ -145,7 +149,10 @@ export class PersonalInfoFormComponent implements OnInit {
  }
 
   submitForm(fields: any):void {
-
+    this.pi.mailingAddress = this.mailingAddressGroup.value;
+    //
+    // this.currentApplicationService.setPersonalInformation(this.pi.value);
+    this.toastr.success('Personal Information saved sucessfully', 'Success!');
   }
 
 }

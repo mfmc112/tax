@@ -47,7 +47,8 @@ export class W2Form {
   esin: string;
 
   constructor(client: Client) {
-    this.employeeName = client.firstName + " " + client.middleName + " " + client.lastName;
+    let middleName = ((client.middleName)?client.middleName + ".":"");
+    this.employeeName = client.firstName + " " + middleName + client.lastName;
     this.ssn = client.ssn;
   }
 }

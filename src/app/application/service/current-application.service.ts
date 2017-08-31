@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Application } from '../../common/Application';
-import { Client } from '../../common/Client';
-import { User } from '../../common/User';
+import { Application, Client, User, PersonalInformation } from '../../common/';
 import * as _ from 'lodash';
 @Injectable()
 export class CurrentApplicationService {
@@ -30,6 +28,10 @@ export class CurrentApplicationService {
 
   getCurrentAGI(): number {
     return (this.application && this.application.currentAgi) ? Number(this.application.currentAgi) : 0;
+  }
+
+  setPersonalInformation(pi: PersonalInformation): void {
+    this.application.clientInformation.personalInformation = pi;
   }
 
   calculate(): void {

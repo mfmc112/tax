@@ -12,9 +12,7 @@ import { ApplicationApiService } from '../application/api/application-api.servic
 import { ClientApiService } from '../client/client-api.service';
 import { ClientInformation } from '../common/client-information';
 import { CommonService } from '../common.service';
-import { Application } from '../common/application';
-import { Client } from '../common/client';
-import { User } from '../login/user';
+import { Application, Client, User } from '../common/';
 import * as _ from "lodash";
 
 @Component({

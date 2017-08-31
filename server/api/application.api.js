@@ -31,6 +31,9 @@ var ApplicationApi = function(server) {
     Application.find(condition).
     populate('client').
     populate('preparer').
+    populate('clientInformation').
+    // populate('clientInformation.personalInformation').
+    populate('w2Forms').
     exec(function(error, response) {
       if (!error) res.send(new ResponseDecorator().enrich(response, config.doc));
       else res.status(500).json("Error executing search");

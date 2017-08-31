@@ -1,4 +1,4 @@
-import { Component, ViewChild, DoCheck } from  '@angular/core';
+import { Component, OnInit, ViewChild, DoCheck } from  '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { ApplicationComponent } from '../application/application.component';
 import { CurrentApplicationService } from '../application/service/current-application.service';
@@ -13,7 +13,7 @@ import { NW2Field12Component } from '../common/n-components/n-w2-field12.compone
   selector:'w2-form',
   templateUrl: './templates/w2-form.component.html'
 })
-export class W2FormComponent {
+export class W2FormComponent implements OnInit {
   @ViewChild('../application/application.component') applicationComponent: ApplicationComponent;
   @ViewChild('../common/n-components/n-input.component') nInput: NInputComponent;
   @ViewChild('../common/n-components/n-checkbox.component') nCheckbox: NCheckboxComponent;
@@ -85,6 +85,26 @@ export class W2FormComponent {
         'state': this.w2Form.state,
         'esin': this.w2Form.esin
       });
+    }
+
+    ngOnInit():void {
+      this.sameAddress();
+    }
+
+    sameAddress(): void {
+      if (this.taxForm.get('sameAddressAsHome').value) {
+        this.taxForm.get('employeeAddress').get('home1').patchValue(this.application.clientInformation.personalInformation.mailingAddress.home1);
+        this.taxForm.get('employeeAddress').get('home2').patchValue(this.application.clientInformation.personalInformation.mailingAddress.home2);
+        this.taxForm.get('employeeAddress').get('zip').patchValue(this.application.clientInformation.personalInformation.mailingAddress.zip);
+        this.taxForm.get('employeeAddress').get('city').patchValue(this.application.clientInformation.personalInformation.mailingAddress.city);
+        this.taxForm.get('employeeAddress').get('state').patchValue(this.application.clientInformation.personalInformation.mailingAddress.state);
+      } else {
+        this.taxForm.get('employeeAddress').get('home1').reset();
+        this.taxForm.get('employeeAddress').get('home2').reset();
+        this.taxForm.get('employeeAddress').get('zip').reset();
+        this.taxForm.get('employeeAddress').get('city').reset();
+        this.taxForm.get('employeeAddress').get('state').reset();
+      }
     }
 
     addCurrencyField(obj, field, form): void {

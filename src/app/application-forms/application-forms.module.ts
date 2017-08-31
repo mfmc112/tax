@@ -5,7 +5,7 @@ import { SharedModule } from "../shared.module";
 import { APPLICATION_FORMS_STATES } from "./application-forms.states";
 import { Ng2Bs3ModalModule } from 'ng2-bs3-modal/ng2-bs3-modal';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
-/* Add all the forms here */
+
 import { PersonalInfoFormComponent } from './personal-info-form.component';
 import { FilingInfoFormComponent } from './filing-info-form.component';
 import { W2FormComponent } from './w2-form.component';

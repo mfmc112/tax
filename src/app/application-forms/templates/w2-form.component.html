@@ -27,7 +27,7 @@
         <n-checkbox nName="payerAddressShown" [fGroup]="taxForm" nValue="true" nLabel="Check here if the taxpayer's address is shown on the W-2"></n-checkbox>
       </div>
       <div class="row">
-        <n-checkbox nName="sameAddressAsHome" [fGroup]="taxForm" nValue="true" nLabel="Check here if the recipient's address is the same as the present home address"></n-checkbox>
+        <n-checkbox nName="sameAddressAsHome" [fGroup]="taxForm" nValue="true" nLabel="Check here if the recipient's address is the same as the present home address" [nChange]="sameAddress()"></n-checkbox>
       </div>
 
 
