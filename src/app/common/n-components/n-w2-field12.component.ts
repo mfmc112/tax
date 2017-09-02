@@ -5,7 +5,7 @@ import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 
 @Component({
   selector: 'n-w2-field12',
-  inputs:['fGroup', 'nField', 'nChange', 'nKeyup'],
+  inputs:['fGroup', 'nField'],
   styleUrls: ['./templates/n-components.css'],
   template: `
     <div class="row" style="margin-bottom:10px;">
@@ -24,9 +24,7 @@ import createNumberMask from 'text-mask-addons/dist/createNumberMask';
       </div>
       <div class="col-sm-7" [formGroup]="fGroup">
           <input formControlName='{{"field"+nField+"2"}}' type="text" id="field{{nField}}2" class="form-control"
-          [textMask]="{mask: numberMask, guide:false}"
-          (change)="nChange"
-          (keyup)="nKeyup">
+          [textMask]="{mask: numberMask, guide:false}">
       </div>
     </div>
   `
@@ -34,8 +32,6 @@ import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 export class NW2Field12Component {
   @Input('nField') nField: string;
   @Input('fGroup') fGroup: any;
-  @Input('nChange') nChange: any;
-  @Input('nKeyup') nKeyup: any;
 
   numberMask = createNumberMask({
     prefix: '$',

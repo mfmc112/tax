@@ -5,6 +5,7 @@ import { validationRules } from '../validator/validator-rules.component';
 import { Client } from '../common/client';
 import { TaxReturn } from '../common/tax-return';
 import { CurrentApplicationService } from './service/current-application.service';
+import * as _ from 'lodash'
 
 @Component({
   selector: 'application',
@@ -43,6 +44,7 @@ export class ApplicationComponent {
       this.year = this.currentApplicationService.getApplication().year;
       this.estimate = this.currentApplicationService.getApplication().estimate;
       this.currentAgi = this.currentApplicationService.getApplication().currentAgi;
+      if (_.isEmpty(this.currentAgi)) this.currentAgi = 0;
     }
   }
 

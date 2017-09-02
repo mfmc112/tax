@@ -27,7 +27,7 @@
         <n-checkbox nName="payerAddressShown" [fGroup]="taxForm" nValue="true" nLabel="Check here if the taxpayer's address is shown on the W-2"></n-checkbox>
       </div>
       <div class="row">
-        <n-checkbox nName="sameAddressAsHome" [fGroup]="taxForm" nValue="true" nLabel="Check here if the recipient's address is the same as the present home address" [nChange]="sameAddress()"></n-checkbox>
+        <n-checkbox nName="sameAddressAsHome" [fGroup]="taxForm" nValue="true" nLabel="Check here if the recipient's address is the same as the present home address" (change)="sameAddress($event)"></n-checkbox>
       </div>
 
 
@@ -69,17 +69,17 @@
         <n-input class="col-sm-2" name="state"  label="State"    [fGroup]="employerAddress" [mask]="stateMask"></n-input>
       </div>
       <div class="row">
-        <n-checkbox nName="autoCalculate3and6" [fGroup]="taxForm" nValue="true" nLabel="Check here to automatically calculate fields 3 and 6"></n-checkbox>
+        <n-checkbox nName="autoCalculate3and6" [fGroup]="taxForm" nValue="true" nLabel="Check here to automatically calculate fields 3 through 6" (change)="autoCalculate($event)"></n-checkbox>
       </div>
       <div class="row">
-        <n-input class="col-sm-5" name="field1" label="1-Wages,tips, other compensation" [mask]="numberMask" [fGroup]="taxForm" [nKeyup]="calculate()"></n-input>
-        <n-input class="col-sm-5" name="field2" label="2-Federal income tax withheld" [mask]="numberMask" [fGroup]="taxForm" [nKeyup]="calculate()"></n-input>
+        <n-input class="col-sm-5" name="field1" label="1-Wages,tips, other compensation" [mask]="numberMask" [fGroup]="taxForm" (keyup)="calculate($event)"></n-input>
+        <n-input class="col-sm-5" name="field2" label="2-Federal income tax withheld" [mask]="numberMask" [fGroup]="taxForm" (keyup)="calculate($event)"></n-input>
 
-        <n-input class="col-sm-5" name="field3" label="3-Social security wages" [mask]="numberMask" [fGroup]="taxForm"></n-input>
-        <n-input class="col-sm-5" name="field4" label="4-Social security tax withheld" [mask]="numberMask" [fGroup]="taxForm"></n-input>
+        <n-input class="col-sm-5" name="field3" label="3-Social security wages" [mask]="numberMask" [fGroup]="taxForm" (keyup)="calculate($event)"></n-input>
+        <n-input class="col-sm-5" name="field4" label="4-Social security tax withheld" [mask]="numberMask" [fGroup]="taxForm" (keyup)="calculate($event)"></n-input>
 
-        <n-input class="col-sm-5" name="field5" label="5-Medicare wages and tips" [mask]="numberMask" [fGroup]="taxForm"></n-input>
-        <n-input class="col-sm-5" name="field6" label="6-Medicaretax withheld" [mask]="numberMask" [fGroup]="taxForm"></n-input>
+        <n-input class="col-sm-5" name="field5" label="5-Medicare wages and tips" [mask]="numberMask" [fGroup]="taxForm" (keyup)="calculate($event)"></n-input>
+        <n-input class="col-sm-5" name="field6" label="6-Medicaretax withheld" [mask]="numberMask" [fGroup]="taxForm" (keyup)="calculate($event)"></n-input>
 
         <n-input class="col-sm-5" name="field7" label="7-Social security tips" [mask]="numberMask" [fGroup]="taxForm"></n-input>
         <n-input class="col-sm-5" name="field8" label="8-Alocated tips" [mask]="numberMask" [fGroup]="taxForm"></n-input>

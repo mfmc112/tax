@@ -26,6 +26,7 @@ export class W2Form {
   field8: number;
   field9: number;
   field10: number;
+  field11: number;
   field12a1: string;
   field12a2: number;
   field12b1: string;

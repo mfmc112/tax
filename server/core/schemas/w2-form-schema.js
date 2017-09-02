@@ -29,6 +29,7 @@ var w2FormSchema = new Schema({
   field8: Number,
   field9: Number,
   field10: Number,
+  field11: Number,
   field12a1: String,
   field12a2: Number,
   field12b1: String,

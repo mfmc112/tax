@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Application, Client, User, PersonalInformation } from '../../common/';
 import * as _ from 'lodash';
+
 @Injectable()
 export class CurrentApplicationService {
 
@@ -34,29 +35,50 @@ export class CurrentApplicationService {
     this.application.clientInformation.personalInformation = pi;
   }
 
+  calculateBox2(amount: number): number {
+    let box2 = 0;
+    if (amount) box2 = Math.round(amount * 0.10);
+    return box2;
+  }
+
+  calculateBox4(amount: number): number {
+    let box4 = 0;
+    if (amount) box4 = Math.round(amount * 0.062);
+    return box4;
+  }
+
+  calculateBox6(amount: number): number {
+    let box6 = 0;
+    if (amount) box6 = Math.round(amount * 0.0145);
+    return box6;
+  }
+
   calculate(): void {
     this.application.estimate = 0;
     this.application.currentAgi = 0;
     _.each(this.application.w2Forms, form => {
-      if (!_.isEmpty(form.field1)) {
+      if (!_.isEmpty(form.field1) || form.field1 >= 0) {
         this.application.currentAgi = this.getCurrentAGI() + Number(form.field1);
-        let percent = (form.field1*0.10);
-        if (_.isEmpty(form.field2)) form.field2 = 0;
-        this.application.estimate += this.getEstimate() + ((form.field2 > percent) ? (Number(form.field2)-percent) : (Number(form.field2)-percent));
+        let estimated = this.calculateBox2(form.field1);
+        let paid = Number(form.field2);
+        this.addToEstimate(estimated, paid);
       }
-      if (!_.isEmpty(form.field3)) {
-        this.application.currentAgi = this.getCurrentAGI() + Number(form.field3);
-        let percent = (form.field3*0.062);
-        if (_.isEmpty(form.field4)) form.field4 = 0;
-        this.application.estimate += this.getEstimate() + ((form.field4 > percent) ? (Number(form.field4)-percent) : (Number(form.field4)-percent));
+      if (!_.isEmpty(form.field3) || form.field3 >= 0) {
+        let estimated = this.calculateBox4(form.field3);
+        let paid = Number(form.field4);
+        this.addToEstimate(estimated, paid);
       }
-      if (!_.isEmpty(form.field5)) {
-        this.application.currentAgi = this.getCurrentAGI() + Number(form.field5);
-        let percent = (form.field5*0.0145);
-        if (_.isEmpty(form.field6)) form.field6 = 0;
-        this.application.estimate += this.getEstimate() + ((form.field6 > percent) ? (Number(form.field6)-percent) : (Number(form.field6)-percent));
+      if (!_.isEmpty(form.field5) || form.field5 >= 0) {
+        let estimated = this.calculateBox6(form.field5);
+        let paid = Number(form.field6);
+        this.addToEstimate(estimated, paid);
       }
     });
+  }
+
+  addToEstimate(estimated: number, paid: number): void {
+    if (!_.isNumber(paid)) paid = 0;
+    this.application.estimate += Math.round(paid-estimated);
   }
 
 }

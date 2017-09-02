@@ -8,16 +8,15 @@ import { TextMaskModule } from 'angular2-text-mask';
   */
 @Component({
   selector: 'n-textarea',
-  inputs:['name', 'label', 'placeHolder', 'nRows', 'fGroup', 'nChange', 'nKeyup'],
+  inputs:['name', 'label', 'placeHolder', 'nRows', 'fGroup'],
   styleUrls: ['./templates/n-components.css'],
   template: `
     <div class="form-group" [formGroup]="fGroup">
         <label *ngIf="label" for={{name}}>{{label}}</label>
         <textarea formControlName={{name}} type="text" id="{{name}}" class="form-control"
-        [attr.rows]="nRows ? nRows : null"
-        [attr.placeholder]="placeHolder ? placeHolder : null"
-        (change)="nChange"
-        (keyup)="nKeyup"></textarea>
+          [attr.rows]="nRows ? nRows : null"
+          [attr.placeholder]="placeHolder ? placeHolder : null">
+        </textarea>
     </div>
   `
 })

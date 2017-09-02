@@ -10,3 +10,5 @@ export * from './w2-form';
 export * from './special-processing';
 export * from './phone';
 export * from './user';
+
+export * from './utils';

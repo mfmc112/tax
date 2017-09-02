@@ -5,7 +5,7 @@ import { CurrentApplicationService } from '../application/service/current-applic
 import { validationRules } from '../validator/validator-rules.component';
 import { MASKS } from '../enum/masks.enum';
 import createNumberMask from 'text-mask-addons/dist/createNumberMask';
-import { Application, W2Form, MailingAddress, Client } from '../common/';
+import { Application, W2Form, MailingAddress, Client, Utils } from '../common/';
 import { NInputComponent, NTextareaComponent, NCheckboxComponent } from '../common/n-components/';
 import { NW2Field12Component } from '../common/n-components/n-w2-field12.component';
 
@@ -24,6 +24,7 @@ export class W2FormComponent implements OnInit {
   zipMask:  Array<string | RegExp> = MASKS.ZIP;
   stateMask:  Array<string | RegExp> = MASKS.STATE;
   numberMask = createNumberMask({ prefix: '$', suffix: '' });
+  utils: Utils = new Utils();
   taxForm: FormGroup;
   application: Application;
   w2Form: W2Form;
@@ -64,7 +65,7 @@ export class W2FormComponent implements OnInit {
         'field8': this.w2Form.field8,
         'field9': this.w2Form.field9,
         'field10': this.w2Form.field10,
-        'field11': this.w2Form.field10,
+        'field11': this.w2Form.field11,
         'field12a1': this.w2Form.field12a1,
         'field12a2': this.w2Form.field12a2,
         'field12b1': this.w2Form.field12b1,
@@ -89,15 +90,16 @@ export class W2FormComponent implements OnInit {
 
     ngOnInit():void {
       this.sameAddress();
+      this.autoCalculate(null);
     }
 
     sameAddress(): void {
       if (this.taxForm.get('sameAddressAsHome').value) {
-        this.taxForm.get('employeeAddress').get('home1').patchValue(this.application.clientInformation.personalInformation.mailingAddress.home1);
-        this.taxForm.get('employeeAddress').get('home2').patchValue(this.application.clientInformation.personalInformation.mailingAddress.home2);
-        this.taxForm.get('employeeAddress').get('zip').patchValue(this.application.clientInformation.personalInformation.mailingAddress.zip);
-        this.taxForm.get('employeeAddress').get('city').patchValue(this.application.clientInformation.personalInformation.mailingAddress.city);
-        this.taxForm.get('employeeAddress').get('state').patchValue(this.application.clientInformation.personalInformation.mailingAddress.state);
+        this.taxForm.get('employeeAddress').get('home1').setValue(this.application.clientInformation.personalInformation.mailingAddress.home1);
+        this.taxForm.get('employeeAddress').get('home2').setValue(this.application.clientInformation.personalInformation.mailingAddress.home2);
+        this.taxForm.get('employeeAddress').get('zip').setValue(this.application.clientInformation.personalInformation.mailingAddress.zip);
+        this.taxForm.get('employeeAddress').get('city').setValue(this.application.clientInformation.personalInformation.mailingAddress.city);
+        this.taxForm.get('employeeAddress').get('state').setValue(this.application.clientInformation.personalInformation.mailingAddress.state);
       } else {
         this.taxForm.get('employeeAddress').get('home1').reset();
         this.taxForm.get('employeeAddress').get('home2').reset();
@@ -107,33 +109,61 @@ export class W2FormComponent implements OnInit {
       }
     }
 
-    addCurrencyField(obj, field, form): void {
-      if (form && form.value) {
-        obj[field] = form.value.replace(/[^0-9]*/g,"");
+    calculate(event): void {
+      if(this.currentApplicationService.getApplication()) {
+        this.removeCurrencyMask();
+        this.populateCalculation();
+        this.currentApplicationService.calculate();
       }
     }
 
-    calculate(): void {
-      if(this.currentApplicationService.getApplication()) {
-        this.addCurrencyField(this.w2Form, "field1", this.taxForm.get('field1'));
-        this.addCurrencyField(this.w2Form, "field2", this.taxForm.get('field2'));
-        this.addCurrencyField(this.w2Form, "field3", this.taxForm.get('field3'));
-        this.addCurrencyField(this.w2Form, "field4", this.taxForm.get('field4'));
-        this.addCurrencyField(this.w2Form, "field5", this.taxForm.get('field5'));
-        this.addCurrencyField(this.w2Form, "field6", this.taxForm.get('field6'));
-        this.addCurrencyField(this.w2Form, "field7", this.taxForm.get('field7'));
-        this.addCurrencyField(this.w2Form, "field8", this.taxForm.get('field8'));
-        this.addCurrencyField(this.w2Form, "field9", this.taxForm.get('field9'));
-        this.addCurrencyField(this.w2Form, "field10", this.taxForm.get('field10'));
-        this.currentApplicationService.calculate();
+    /**
+     * remove the currency from box1 through 10 and add to the w2Form obj
+     */
+    removeCurrencyMask(): void {
+      for (let i=1; i<=10; i++) {
+        this.w2Form['field'+i] = this.utils.removeCurrencyFormat(this.taxForm.get('field'+i).value);
       }
+    }
+
+    autoCalculate(event: object): void {
+      if (this.populateCalculation()) {
+        this.taxForm.get('field3').disable();
+        this.taxForm.get('field4').disable();
+        this.taxForm.get('field5').disable();
+        this.taxForm.get('field6').disable();
+        this.calculate(event);
+      } else {
+        this.taxForm.get('field3').reset();
+        this.taxForm.get('field4').reset();
+        this.taxForm.get('field5').reset();
+        this.taxForm.get('field6').reset();
+        this.w2Form.field3 = 0;
+        this.w2Form.field4 = 0;
+        this.w2Form.field5 = 0;
+        this.w2Form.field6 = 0;
+        this.taxForm.get('field3').enable();
+        this.taxForm.get('field4').enable();
+        this.taxForm.get('field5').enable();
+        this.taxForm.get('field6').enable();
+      }
+    }
+
+    populateCalculation(): boolean {
+      if (this.taxForm.get('autoCalculate3and6').value) {
+        this.taxForm.get('field3').setValue(this.w2Form.field1);
+        this.taxForm.get('field4').setValue(this.currentApplicationService.calculateBox4(this.w2Form.field1));
+        this.taxForm.get('field5').setValue(this.w2Form.field1);
+        this.taxForm.get('field6').setValue(this.currentApplicationService.calculateBox6(this.w2Form.field1));
+      }
+      return (this.taxForm.get('autoCalculate3and6').value);
     }
 
     createAddressGroup(address: MailingAddress): FormGroup {
       if (!address) address = new MailingAddress();
       return new FormGroup({
         'home1': new FormControl(address.home1, Validators.compose([Validators.required])),
-        'home2': new FormControl(address.home2, Validators.compose([Validators.required])),
+        'home2': new FormControl(address.home2),
         'zip': new FormControl(address.zip, Validators.compose([Validators.required])),
         'city': new FormControl(address.city, Validators.compose([Validators.required])),
         'state': new FormControl(address.state, Validators.compose([Validators.required]))
