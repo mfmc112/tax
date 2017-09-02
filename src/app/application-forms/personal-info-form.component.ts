@@ -105,7 +105,7 @@ export class PersonalInfoFormComponent implements OnInit {
       'careFirstName': new FormControl(pi.mailingAddress.careFirstName, Validators.compose([Validators.required, Validators.maxLength(45)])),
       'careLastName': new FormControl(pi.mailingAddress.careLastName, Validators.compose([Validators.required, Validators.maxLength(45)])),
       'home1': new FormControl(pi.mailingAddress.home1, Validators.compose([Validators.required])),
-      'home2': new FormControl(pi.mailingAddress.home2, Validators.compose([Validators.required])),
+      'home2': new FormControl(pi.mailingAddress.home2),
       'zip': new FormControl(pi.mailingAddress.zip, Validators.compose([Validators.required])),
       'city': new FormControl(pi.mailingAddress.city, Validators.compose([Validators.required])),
       'state': new FormControl(pi.mailingAddress.state, Validators.compose([Validators.required])),
