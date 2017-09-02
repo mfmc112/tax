@@ -89,11 +89,11 @@ export class W2FormComponent implements OnInit {
     }
 
     ngOnInit():void {
-      this.sameAddress();
+      this.sameAddress(null);
       this.autoCalculate(null);
     }
 
-    sameAddress(): void {
+    sameAddress($event): void {
       if (this.taxForm.get('sameAddressAsHome').value) {
         this.taxForm.get('employeeAddress').get('home1').setValue(this.application.clientInformation.personalInformation.mailingAddress.home1);
         this.taxForm.get('employeeAddress').get('home2').setValue(this.application.clientInformation.personalInformation.mailingAddress.home2);
