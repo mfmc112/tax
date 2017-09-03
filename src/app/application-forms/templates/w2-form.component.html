@@ -59,7 +59,7 @@
         <n-input class="col-sm-5" name="ein" label="b-Employer Identification Number (EIN)" [fGroup]="taxForm"></n-input>
       </div>
       <div class="row">
-        <n-input class="col-sm-8" name="employerName" label="c-Employer's Name" [fGroup]="taxForm"></n-input>
+        <n-input class="col-sm-8" name="employerName" label="c-Employer's Name" [fGroup]="taxForm" (keyup)="populateENC($event)"></n-input>
         <n-input class="col-sm-4" name="employerNameControl" label="d-Employer Name Control" [fGroup]="taxForm"></n-input>
 
         <n-input class="col-sm-12" name="home1" label="Street Address 1" [fGroup]="employerAddress"></n-input>

@@ -8,6 +8,7 @@ import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 import { Application, PersonalInformation,  W2Form, MailingAddress, Client, Utils } from '../common/';
 import { NInputComponent, NTextareaComponent, NCheckboxComponent } from '../common/n-components/';
 import { NW2Field12Component } from '../common/n-components/n-w2-field12.component';
+import * as _ from 'lodash';
 
 @Component({
   selector:'w2-form',
@@ -91,6 +92,14 @@ export class W2FormComponent implements OnInit {
     ngOnInit():void {
       this.sameAddress(null);
       this.autoCalculate(null);
+      this.populateENC(null);
+    }
+
+    populateENC($event): void {
+      if (this.taxForm.get('employerName').value) {
+        let controlName = this.taxForm.get('employerName').value.substring(0,(this.taxForm.get('employerName').value.length > 4 ? 4 : this.taxForm.get('employerName').value.length ));
+        this.taxForm.get('employerNameControl').patchValue(_.toUpper(controlName));
+      }
     }
 
     sameAddress($event): void {
