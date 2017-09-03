@@ -112,12 +112,34 @@
             <n-w2-field12 class="col-sm-12" nField="12c" [fGroup]="taxForm"></n-w2-field12>
             <n-w2-field12 class="col-sm-12" nField="12d" [fGroup]="taxForm"></n-w2-field12>
           </div>
-
         </div>
       </div>
+
+      <div class="row">
+        <div class="col-sm-10">
+          <div class="row">
+            <div class="col-sm-12">
+              <table style="width:100%;min-height:90px;">
+                <tr>
+                  <td>13</td>
+                  <td style="width:32%;display:table-cell;vertical-align: middle;text-align: center;height: 50px;border: 1px solid #cccccc;border-right-width:0px;">
+                    <n-checkbox nName="field13Statutory" [fGroup]="taxForm" nValue="true" [nLabelUp]="true" nClass="checkbox-padding" nLabel="Statutory Employee"></n-checkbox>
+                  </td>
+                  <td style="width:32%;display:table-cell;vertical-align: middle;text-align: center;height: 50px;border: 1px solid #cccccc;border-right-width:0px;">
+                    <n-checkbox nName="field13Retirement" [fGroup]="taxForm" nValue="true" [nLabelUp]="true" nClass="checkbox-padding" nLabel="Retirement Plan"></n-checkbox>
+                  </td>
+                  <td style="width:32%;display:table-cell;vertical-align: middle;text-align: center;height: 50px;border: 1px solid #cccccc;">
+                    <n-checkbox nName="field13SickPay" [fGroup]="taxForm" nValue="true" [nLabelUp]="true" nClass="checkbox-padding" nLabel="Third-party sick pay"></n-checkbox>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
-
 
   <form-sub-header nTitle="STATE INFORMATION"></form-sub-header>
 
