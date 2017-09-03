@@ -8,7 +8,7 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
   template: `
       <div class="checkbox checkbox-primary {{nClass}}" [formGroup]="fGroup">
         <input  type="checkbox" [attr.name]="nName" formControlName={{controlForm}} [attr.id]="nName" >
-        <label [attr.for]="nName">{{nLabel}}</label>
+        <label [attr.for]="nName" [attr.class]="nLabel===' '?'top': 'normal'">{{nLabel}}</label>
       </div>
   `
 })

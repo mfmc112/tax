@@ -21,6 +21,8 @@
     position: relative;
     left: 3px;
     padding-left: 5px; }
+    .checkbox label.top {
+      top: -10px; }
     .checkbox label::before {
       content: "";
       display: inline-block;
