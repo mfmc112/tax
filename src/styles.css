@@ -3,6 +3,11 @@ label {
   margin-bottom: 0px!important;
 }
 
+.sub-header-hr {
+  position:relative;
+  top:-15px;
+}
+
 .no-margin {
   margin-bottom: 0px!important;
 }

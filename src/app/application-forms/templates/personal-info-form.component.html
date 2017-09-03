@@ -1,8 +1,8 @@
 <form-header nTitle="PERSONAL INFORMATION"></form-header>
 
 <form [formGroup]="taxForm" (submit)="submitForm(taxForm.value)" style="min-height:150px" novalidate >
-  <p class="lead">TAXPAYER INFORMATION</p>
-  <hr>
+  <form-sub-header nTitle="TAXPAYER INFORMATION"></form-sub-header>
+
   <div class="row">
     <div class="col-12">
       <div class="row">
@@ -46,8 +46,8 @@
   </div>
 
   <div class="divider-50"></div>
-  <p class="lead">SPOUSE INFORMATION</p>
-  <hr>
+  <form-sub-header nTitle="SPOUSE INFORMATION"></form-sub-header>
+
   <span class="sub-heading">Enter the Spouse's name HERE for <b>Married Filing Joint</b> or <b>Married Filing Separate</b> returns</span>
   <div class="row">
     <div class="col-12">
@@ -92,8 +92,8 @@
   </div>
 
   <div class="divider-50"></div>
-  <p class="lead">MAILING INFORMATION</p>
-  <hr>
+  <form-sub-header nTitle="MAILING INFORMATION"></form-sub-header>
+
   <div class="row">
     <div class="col-12">
       <div class="row">
@@ -110,8 +110,8 @@
   </div>
 
   <div class="divider-50"></div>
-  <p class="lead">DEPENDENTS</p>
-  <hr>
+  <form-sub-header nTitle="DEPENDENTS"></form-sub-header>
+
   <div class="row">
     <div class="col-12">
       <div class="row">

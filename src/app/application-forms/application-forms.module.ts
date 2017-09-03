@@ -10,6 +10,7 @@ import { PersonalInfoFormComponent } from './personal-info-form.component';
 import { FilingInfoFormComponent } from './filing-info-form.component';
 import { W2FormComponent } from './w2-form.component';
 import { FormHeaderComponent } from './utils/form-header.component';
+import { FormSubHeaderComponent } from './utils/form-sub-header.component';
 import { MyDatePickerModule } from 'mydatepicker';
 import { TextMaskModule } from 'angular2-text-mask';
 import { NInputComponent, NTextareaComponent, NRadioComponent, NRadioListComponent, NCheckboxComponent } from '../common/n-components';
@@ -37,7 +38,8 @@ import { NW2Field12Component } from '../common/n-components/n-w2-field12.compone
     NRadioListComponent,
     NCheckboxComponent,
     NW2Field12Component,
-    FormHeaderComponent
+    FormHeaderComponent,
+    FormSubHeaderComponent
   ]
 })
 export class ApplicationFormsModule { }

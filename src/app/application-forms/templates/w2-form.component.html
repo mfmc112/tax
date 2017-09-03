@@ -1,8 +1,8 @@
 <form-header nTitle="W2" nSubTitle="Wage and Tax Statement"></form-header>
 
 <form [formGroup]="taxForm" (submit)="submitForm(taxForm.value)" style="min-height:150px" novalidate >
-  <p class="lead">EMPLOYEE INFORMATION</p>
-  <hr>
+  <form-sub-header nTitle="EMPLOYEE INFORMATION"></form-sub-header>
+
   <div class="row">
     <div class="col-12">
 
@@ -50,8 +50,8 @@
     </div>
   </div>
 
-  <p class="lead">WAGES, SALARIES AND TIPS</p>
-  <hr>
+  <form-sub-header nTitle="WAGES, SALARIES AND TIPS"></form-sub-header>
+
   <div class="row">
     <div class="col-12">
 
@@ -119,8 +119,8 @@
   </div>
 
 
-  <p class="lead">WAGES, SALARIES AND TIPS</p>
-  <hr>
+  <form-sub-header nTitle="STATE INFORMATION"></form-sub-header>
+
   <div class="row">
     <div class="col-12">
 

@@ -1,8 +1,8 @@
 <form-header nTitle="FILING INFORMATION"></form-header>
 
 <form [formGroup]="taxForm" (submit)="submitForm(taxForm.value)" style="min-height:150px" novalidate >
-  <p class="lead">FILING STATUS AND EXEMPTIONS</p>
-  <hr>
+  <form-sub-header nTitle="FILING STATUS AND EXEMPTIONS"></form-sub-header>
+
   <div class="row">
     <div class="col-12">
       <n-radio-list [labelValue]="statusRadio" [fGroup]="taxForm" nName="status"></n-radio-list>
@@ -31,8 +31,8 @@
   </div>
 
   <div class="divider-50"></div>
-  <p class="lead">SPECIAL PROCESSING</p>
-  <hr>
+  <form-sub-header nTitle="SPECIAL PROCESSING"></form-sub-header>
+
   <div class="row">
     <n-input class="col-sm-12" name="disasterDesignation" label="Disaster Designation - IRS e-filing field" [fGroup]="taxForm"></n-input>
   </div>
@@ -163,8 +163,8 @@
 
 
   <div class="divider-50"></div>
-  <p class="lead">PRESIDENTIAL ELECTION CAMPAIGN</p>
-  <hr>
+  <form-sub-header nTitle="PRESIDENTIAL ELECTION CAMPAIGN"></form-sub-header>
+
   <div class="row">
     <div class="col-12">
       <div class="row">
