@@ -5,7 +5,7 @@ import { CurrentApplicationService } from '../application/service/current-applic
 import { validationRules } from '../validator/validator-rules.component';
 import { MASKS } from '../enum/masks.enum';
 import createNumberMask from 'text-mask-addons/dist/createNumberMask';
-import { Application, W2Form, MailingAddress, Client, Utils } from '../common/';
+import { Application, PersonalInformation,  W2Form, MailingAddress, Client, Utils } from '../common/';
 import { NInputComponent, NTextareaComponent, NCheckboxComponent } from '../common/n-components/';
 import { NW2Field12Component } from '../common/n-components/n-w2-field12.component';
 
@@ -52,7 +52,7 @@ export class W2FormComponent implements OnInit {
         'securityInfo': this.w2Form.securityInfo,
         'ein': this.w2Form.ein,
         'employerName': this.w2Form.employerName,
-        'employerNameControl': this.w2Form.employerNameControl,
+        'employerNameControl': [{value:this.w2Form.employerNameControl, disabled:true}],
         'employerAddress': this.employerAddress,
         'autoCalculate3and6': this.w2Form.autoCalculate3and6,
         'field1': this.w2Form.field1,
@@ -63,7 +63,7 @@ export class W2FormComponent implements OnInit {
         'field6': this.w2Form.field6,
         'field7': this.w2Form.field7,
         'field8': this.w2Form.field8,
-        'field9': this.w2Form.field9,
+        'field9': [{value: this.w2Form.field9, disabled:true}],
         'field10': this.w2Form.field10,
         'field11': this.w2Form.field11,
         'field12a1': this.w2Form.field12a1,
@@ -95,11 +95,12 @@ export class W2FormComponent implements OnInit {
 
     sameAddress($event): void {
       if (this.taxForm.get('sameAddressAsHome').value) {
-        this.taxForm.get('employeeAddress').get('home1').setValue(this.application.clientInformation.personalInformation.mailingAddress.home1);
-        this.taxForm.get('employeeAddress').get('home2').setValue(this.application.clientInformation.personalInformation.mailingAddress.home2);
-        this.taxForm.get('employeeAddress').get('zip').setValue(this.application.clientInformation.personalInformation.mailingAddress.zip);
-        this.taxForm.get('employeeAddress').get('city').setValue(this.application.clientInformation.personalInformation.mailingAddress.city);
-        this.taxForm.get('employeeAddress').get('state').setValue(this.application.clientInformation.personalInformation.mailingAddress.state);
+        let address: MailingAddress = this.application.clientInformation.personalInformation.mailingAddress;
+        this.taxForm.get('employeeAddress').get('home1').setValue(address.home1);
+        this.taxForm.get('employeeAddress').get('home2').setValue(address.home2);
+        this.taxForm.get('employeeAddress').get('zip').setValue(address.zip);
+        this.taxForm.get('employeeAddress').get('city').setValue(address.city);
+        this.taxForm.get('employeeAddress').get('state').setValue(address.state);
       } else {
         this.taxForm.get('employeeAddress').get('home1').reset();
         this.taxForm.get('employeeAddress').get('home2').reset();

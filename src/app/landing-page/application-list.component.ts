@@ -26,7 +26,7 @@ export class ApplicationListComponent {
   openApplication(id):void {
     this.applicationApi.findById(id).subscribe(data => {
       this.currentApplicationService.setApplication(data);
-      this._uiRouter.stateService.go('menu.application');
+      this._uiRouter.stateService.go('menu.application.personalInfo');
     });
   }
 

@@ -4,7 +4,7 @@ import { Component, Input } from '@angular/core';
   selector: 'form-header',
   inputs:['nTitle', 'nSubTitle'],
   template: `
-    <div class="page-header" style="background-color:#cccccc">
+    <div class="page-header" style="background-color:#cccccc; margin-bottom: 20px;">
         <h1>US<small><small> {{nTitle}} <small *ngIf="nSubTitle"><small>{{nSubTitle}}</small></small></small></small></h1>
     </div>
   `
