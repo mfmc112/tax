@@ -12,6 +12,7 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
   template: `
   <div class="row" *ngFor="let o of labelValue; let i = index">
     <div class="radio radio-primary" [formGroup]="fGroup">
+      <span *ngIf="o.box !== undefined"><b>{{o.box}}</b>&nbsp;&nbsp;</span>
       <input [attr.name]="nName" formControlName={{nName}} type="radio" [attr.id]="nName + i" [attr.value]="o.value">
       <label [attr.for]="nName + i">{{o.label}}</label>
     </div>

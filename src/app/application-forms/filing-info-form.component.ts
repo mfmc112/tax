@@ -1,12 +1,11 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { NInputComponent, NRadioListComponent } from '../common/n-components/';
-import { FormHeaderComponent } from './utils/form-header.component';
 import { CurrentApplicationService } from '../application/service/current-application.service';
 import { validationRules } from '../validator/validator-rules.component';
 import { ApplicationComponent } from '../application/application.component';
 import { ClientApiService } from '../client/client-api.service';
 import { Client, Application, FilingInformation, SpecialProcessing } from '../common';
+import { NInputComponent, NRadioListComponent } from '../common/n-components/';
 import { MyDatePickerModule, IMyDefaultMonth, IMyDpOptions, IMyDateModel } from 'mydatepicker';
 
 @Component({
@@ -17,7 +16,6 @@ export class FilingInfoFormComponent implements OnInit {
   @ViewChild('../application/application.component') applicationComponent: ApplicationComponent;
   @ViewChild('../common/n-components/n-input.component') nInput: NInputComponent;
   @ViewChild('../common/n-components/n-radio-list.component') nRadio: NRadioListComponent;
-  @ViewChild('./utils/form-header.component') formHeader: FormHeaderComponent;
   taxForm: FormGroup;
   payerSpecialGroup: FormGroup;
   spouseSpecialGroup: FormGroup;
@@ -47,8 +45,8 @@ export class FilingInfoFormComponent implements OnInit {
       'disasterDesignation': [null, Validators.required],
       'payerSpecialProcessing': this.payerSpecialGroup,
       'spouseSpecialProcessing': this.spouseSpecialGroup,
-      'payerDonate': null,
-      'spouseDonate': null,
+      'payerDonate': false,
+      'spouseDonate': false
     });
   }
 

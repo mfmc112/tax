@@ -10,7 +10,6 @@ import { Application, Client, Phone, PersonalInformation, BasicInformation, Mail
 import { CurrentApplicationService } from '../application/service/current-application.service';
 import { MyDatePickerModule, IMyDefaultMonth, IMyDpOptions, IMyDateModel } from 'mydatepicker';
 
-
 @Component({
   selector: 'personal-info-form',
   templateUrl: './templates/personal-info-form.component.html'
