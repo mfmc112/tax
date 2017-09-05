@@ -24,7 +24,9 @@ export class PersonalInfoFormComponent implements OnInit {
   zipMask:  Array<string | RegExp> = MASKS.ZIP;
   stateMask:  Array<string | RegExp> = MASKS.STATE;
   taxForm: FormGroup;
+  taxPayerGroup: FormGroup;
   payerPhoneGroup: FormGroup;
+  spouseGroup: FormGroup;
   spousePhoneGroup: FormGroup;
   mailingAddressGroup: FormGroup;
   client: Client;
@@ -40,52 +42,59 @@ export class PersonalInfoFormComponent implements OnInit {
 
     this.application = this.currentApplicationService.getApplication();
     this.pi = this.application.clientInformation.personalInformation;
-
     this.payerPhoneGroup = this.createPhoneGroup(this.pi.taxPayer);
     this.spousePhoneGroup = this.createPhoneGroup(this.pi.spouse);
+
+    this.taxPayerGroup = this.createBasicInfoGroup(this.pi.taxPayer, this.payerPhoneGroup);
+    this.spouseGroup = this.createBasicInfoGroup(this.pi.spouse, this.spousePhoneGroup);
+
     this.mailingAddressGroup = this.createMailingAddressGroup(this.pi);
 
     this.taxForm = formBuilder.group({
-      'firstName' : [ this.pi.taxPayer.firstName, Validators.compose([Validators.required, Validators.maxLength(45), Validators.pattern(validationRules.STRING)])],
-      'middleName' : [ this.pi.taxPayer.initial, Validators.compose([Validators.maxLength(1), Validators.pattern(validationRules.STRING)])],
-      'lastName': [ this.pi.taxPayer.lastName, Validators.compose([Validators.required, Validators.maxLength(45), Validators.pattern(validationRules.STRING)])],
-      'suffixName': this.pi.taxPayer.suffix,
-      'ssn' : [ {value: this.pi.taxPayer.ssn, disabled: true }, Validators.compose([Validators.required, Validators.pattern(validationRules.SSN_REGEXP)])],
-      'dateOfBirth': [ this.pi.taxPayer.dateOfBirth, Validators.required],
-      'age': [ {value: '0', disabled: true }],
-      'occuppation': this.pi.taxPayer.occupation,
-      'phone': this.payerPhoneGroup,
-      'sFirstName' : [ this.pi.spouse.firstName, Validators.compose([ Validators.maxLength(45)])],
-      'sMiddleName' : [ this.pi.spouse.initial, Validators.compose([Validators.maxLength(1)])],
-      'sLastName': [ this.pi.spouse.lastName, Validators.compose([Validators.maxLength(45)])],
-      'sSuffixName': this.pi.spouse.suffix,
-      'sSsn' : [ this.pi.spouse.ssn, Validators.compose([Validators.pattern(validationRules.SSN_REGEXP)])],
-      'sDateOfBirth': this.pi.spouse.dateOfBirth,
-      'sAge': [ {value: '0', disabled: true }],
-      'sOccuppation': this.pi.spouse.occupation,
-      'sPhone': this.spousePhoneGroup,
-      'address': this.mailingAddressGroup,
+      'taxPayer': this.taxPayerGroup,
+      'spouse': this.spouseGroup,
+      'mailingAddress': this.mailingAddressGroup,
       'dependents': [false, Validators.required]
     });
   }
 
   ngOnInit(): void {
-    if (this.taxForm.get('dateOfBirth').value && this.taxForm.get('dateOfBirth').value.date) {
+    this.setDateOfBirth(this.taxForm.get('taxPayer'));
+    this.setDateOfBirth(this.taxForm.get('taxPayer'));
+    this.enableType(this.taxForm.get('taxPayer'));
+    this.enableType(this.taxForm.get('spouse'));
+  }
+
+  setDateOfBirth(group: any) {
+    if (group.get('dateOfBirth').value && group.get('dateOfBirth').value.date) {
       let date = new Date(
-        this.taxForm.get('dateOfBirth').value.date.year,
-        this.taxForm.get('dateOfBirth').value.date.month,
-        this.taxForm.get('dateOfBirth').value.date.day);
+        group.get('dateOfBirth').value.date.year,
+        group.get('dateOfBirth').value.date.month,
+        group.get('dateOfBirth').value.date.day
+      );
       this.setDate(date);
       this.calculateAge(date);
     }
-    this.enableType("phone");
-    this.enableType("sPhone");
   }
 
-  enableType(type: string): void {
-    if (this.taxForm.get(type).get('other').value && this.taxForm.get(type).get('other').value != "") this.taxForm.get(type).get('type').enable();
-    else this.taxForm.get(type).get('type').disable();
+  enableType(group: any): void {
+    if (group.get('phone').get('other').value && group.get('phone').get('other').value != "") group.get('phone').get('type').enable();
+    else group.get('phone').get('type').disable();
     this.taxForm.markAsDirty();
+  }
+
+  createBasicInfoGroup(basic: BasicInformation, phoneGroup: FormGroup): FormGroup {
+    return new FormGroup({
+      'firstName': new FormControl(basic.firstName, Validators.compose([Validators.required, Validators.maxLength(45), Validators.pattern(validationRules.STRING)])),
+      'middleName': new FormControl(basic.initial, Validators.compose([Validators.maxLength(1), Validators.pattern(validationRules.STRING)])),
+      'lastName': new FormControl(basic.lastName, Validators.compose([Validators.required, Validators.maxLength(45), Validators.pattern(validationRules.STRING)])),
+      'suffixName': new FormControl(basic.suffix),
+      'ssn': new FormControl({value: basic.ssn, disabled: true }, Validators.compose([Validators.required, Validators.pattern(validationRules.SSN_REGEXP)])),
+      'dateOfBirth': new FormControl(basic.dateOfBirth, Validators.required),
+      'age': new FormControl({value: '0', disabled: true }),
+      'occuppation': new FormControl(basic.occupation),
+      'phone': phoneGroup
+    });
   }
 
   createPhoneGroup(basicInfo: BasicInformation): FormGroup {
@@ -142,15 +151,14 @@ export class PersonalInfoFormComponent implements OnInit {
   }
 
   calculateAge(birthday:Date) {
-   var ageDifMs = Date.now() - birthday.getTime();
-   var ageDate = new Date(ageDifMs);
-   return Math.abs(ageDate.getUTCFullYear() - 1970);
- }
+     var ageDifMs = Date.now() - birthday.getTime();
+     var ageDate = new Date(ageDifMs);
+     return Math.abs(ageDate.getUTCFullYear() - 1970);
+  }
 
   submitForm(fields: any):void {
-    this.pi.mailingAddress = this.mailingAddressGroup.value;
-    //
-    // this.currentApplicationService.setPersonalInformation(this.pi.value);
+    this.pi = this.taxForm.value;
+    this.currentApplicationService.setPersonalInformation(this.pi);
     this.toastr.success('Personal Information saved sucessfully', 'Success!');
   }
 

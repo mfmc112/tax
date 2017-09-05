@@ -16,6 +16,14 @@ label {
     margin-bottom: .5rem;
 }
 
+.border-right {
+    border-right: 1px solid #cccccc;  
+}
+
+.border-left {
+    border-left: 1px solid #cccccc;
+}
+
 input.ng-valid[required], input.ng-valid.required  {
   border: 1px solid #42A948;
 }

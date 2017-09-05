@@ -6,14 +6,14 @@
   <div class="row">
     <div class="col-12">
       <div class="row">
-        <n-input class="col-sm-3" name="firstName" label="First Name" [fGroup]="taxForm"></n-input>
-        <n-input class="col-sm-1" name="middleName" label="Initial" [mask]="initialMask" [fGroup]="taxForm"></n-input>
-        <n-input class="col-sm-4" name="lastName" label="Last Name" [fGroup]="taxForm"></n-input>
-        <n-input class="col-sm-1" name="suffixName" label="Suffix" [fGroup]="taxForm"></n-input>
-        <n-input class="col-sm-3" name="ssn" label="SSN" [mask]="ssnMask" [fGroup]="taxForm"></n-input>
+        <n-input class="col-sm-3" name="firstName" label="First Name" [fGroup]="taxPayerGroup"></n-input>
+        <n-input class="col-sm-1" name="middleName" label="Initial" [mask]="initialMask" [fGroup]="taxPayerGroup"></n-input>
+        <n-input class="col-sm-4" name="lastName" label="Last Name" [fGroup]="taxPayerGroup"></n-input>
+        <n-input class="col-sm-1" name="suffixName" label="Suffix" [fGroup]="taxPayerGroup"></n-input>
+        <n-input class="col-sm-3" name="ssn" label="SSN" [mask]="ssnMask" [fGroup]="taxPayerGroup"></n-input>
 
         <div class="col-sm-3">
-          <div class="form-group">
+          <div class="form-group" formGroupName="taxPayer">
             <label for="dateOfBirth" class="no-margin">Date of Birth</label>
             <my-date-picker name="dateOfBirth"
                     id="dateOfBirth"
@@ -24,14 +24,14 @@
             </my-date-picker>
           </div>
         </div>
-        <n-input class="col-sm-2" name="age" label="Age" [fGroup]="taxForm"></n-input>
-        <n-input class="col-sm-7" name="occuppation" label="Occupation" [mask]="ssnMask" [fGroup]="taxForm"></n-input>
+        <n-input class="col-sm-2" name="age" label="Age" [fGroup]="taxPayerGroup"></n-input>
+        <n-input class="col-sm-7" name="occuppation" label="Occupation" [mask]="ssnMask" [fGroup]="taxPayerGroup"></n-input>
 
         <n-input class="col-sm-3" name="mobile"  [mask]="phoneMask" label="Phone Numbers" placeHolder="Mobile" [fGroup]="payerPhoneGroup"></n-input>
         <n-input class="col-sm-3" name="evening" [mask]="phoneMask" label=" " placeHolder="Evening" [fGroup]="payerPhoneGroup" [addMargin]="true"></n-input>
         <n-input class="col-sm-3" name="other"   [mask]="phoneMask" label=" " placeHolder="Other" [fGroup]="payerPhoneGroup" [addMargin]="true" (keyup)="enableType('phone')"></n-input>
-        <div class="col-sm-3" formGroupName="phone">
-          <div class="form-group">
+        <div class="col-sm-3" formGroupName="taxPayer">
+          <div class="form-group"  formGroupName="phone">
             <label class="add-margin"></label>
             <select formControlName="type" id="type" class="form-control">
               <option value=""></option>
@@ -51,14 +51,14 @@
   <div class="row">
     <div class="col-12">
       <div class="row">
-        <n-input class="col-sm-3" name="sFirstName" label="First Name" [fGroup]="taxForm"></n-input>
-        <n-input class="col-sm-1" name="sMiddleName" label="Initial" [mask]="initialMask" [fGroup]="taxForm"></n-input>
-        <n-input class="col-sm-4" name="sLastName" label="Last Name" [fGroup]="taxForm"></n-input>
-        <n-input class="col-sm-1" name="sSuffixName" label="Suffix" [fGroup]="taxForm"></n-input>
-        <n-input class="col-sm-3" name="sSsn" label="SSN" [mask]="ssnMask" [fGroup]="taxForm"></n-input>
+        <n-input class="col-sm-3" name="firstName" label="First Name" [fGroup]="spouseGroup"></n-input>
+        <n-input class="col-sm-1" name="middleName" label="Initial" [mask]="initialMask" [fGroup]="spouseGroup"></n-input>
+        <n-input class="col-sm-4" name="lastName" label="Last Name" [fGroup]="spouseGroup"></n-input>
+        <n-input class="col-sm-1" name="suffixName" label="Suffix" [fGroup]="spouseGroup"></n-input>
+        <n-input class="col-sm-3" name="ssn" label="SSN" [mask]="ssnMask" [fGroup]="spouseGroup"></n-input>
 
         <div class="col-sm-3">
-          <div class="form-group">
+          <div class="form-group" formGroupName="spouse">
             <label for="dateOfBirth" class="no-margin">Date of Birth</label>
             <my-date-picker name="dateOfBirth"
                     id="dateOfBirth"
@@ -69,14 +69,14 @@
             </my-date-picker>
           </div>
         </div>
-        <n-input class="col-sm-2" name="age" label="Age" [fGroup]="taxForm"></n-input>
-        <n-input class="col-sm-7" name="occuppation" label="Occupation" [mask]="ssnMask" [fGroup]="taxForm"></n-input>
+        <n-input class="col-sm-2" name="age" label="Age" [fGroup]="spouseGroup"></n-input>
+        <n-input class="col-sm-7" name="occuppation" label="Occupation" [mask]="ssnMask" [fGroup]="spouseGroup"></n-input>
 
         <n-input class="col-sm-3" name="mobile"  [mask]="phoneMask" label="Phone Numbers" placeHolder="Mobile" [fGroup]="spousePhoneGroup"></n-input>
         <n-input class="col-sm-3" name="evening" [mask]="phoneMask" label=" " placeHolder="Evening" [addMargin]="true" [fGroup]="spousePhoneGroup"></n-input>
         <n-input class="col-sm-3" name="other"   [mask]="phoneMask" label=" " placeHolder="Other" [addMargin]="true" [fGroup]="spousePhoneGroup" (keyup)="enableType('sPhone')"></n-input>
-        <div class="col-sm-3" formGroupName="sPhone">
-          <div class="form-group">
+        <div class="col-sm-3" formGroupName="spouse">
+          <div class="form-group"  formGroupName="phone">
             <label class="add-margin"></label>
             <select formControlName="type" id="type" class="form-control">
               <option value=""></option>
