@@ -6,7 +6,7 @@ import { CurrentApplicationService } from '../application/service/current-applic
 import { validationRules } from '../validator/validator-rules.component';
 import { MASKS } from '../enum/masks.enum';
 import { PersonalInfoFormComponent } from './personal-info-form.component';
-import { Application, PersonalInformation, FilingInformation, W2Form, MailingAddress, Client, Utils } from '../common/';
+import { Application, PersonalInformation, FilingInformation, Dependent, W2Form, MailingAddress, Client, Utils } from '../common/';
 import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 
 @Component({
@@ -22,6 +22,7 @@ export class Form1040Page1Component implements OnInit {
   application: Application;
   pi: PersonalInformation;
   fi: FilingInformation;
+  dependents: Array<Dependent>;
   w2Forms: W2Form[];
   taxForm: FormGroup;
   mailingAddressGroup: FormGroup;
@@ -40,7 +41,7 @@ export class Form1040Page1Component implements OnInit {
     this.fi = this.application.clientInformation.filingInformation;
     this.w2Forms = this.application.w2Forms;
     this.w2FormSummary = this.buildW2Summary();
-
+    this.dependents = this.mockDependents();
     this.taxForm = formBuilder.group({
       'firstName': [{value: this.pi.taxPayer.firstName, disabled: true}],
       'middleName': [{value: this.pi.taxPayer.initial, disabled: true}],
@@ -60,10 +61,32 @@ export class Form1040Page1Component implements OnInit {
     });
   }
 
+  mockDependents(): Array<Dependent> {
+    let dependents: Array<Dependent> = new Array<Dependent>();
+
+    let dp1 = new Dependent();
+    dp1.firstName ="Cloe";
+    dp1.lastName = "Campbell";
+    dp1.ssn ='111221122';
+    dp1.relationship = 'Daughter';
+    dependents.push(dp1);
+
+    let dp2 = new Dependent();
+    dp2.firstName ="Mixirica";
+    dp2.lastName = "Costa";
+    dp2.ssn ='3212245665';
+    dp2.relationship = 'Daughter';
+    dependents.push(dp2);
+    return dependents;
+  }
+
   buildW2Summary(): FormGroup {
     let w2 = this.w2Forms[0];
     if (!w2) w2 = new W2Form(this.application.client);
     return new FormGroup({
+      'box6a': new FormControl(false),
+      'box6b': new FormControl(false),
+      'box6ab': new FormControl(null),
       'box7': new FormControl({value: w2.field1, disabled: true }),
       'box8a': new FormControl({value: "0", disabled: true }),
       'box8b': new FormControl({value: "0", disabled: true }),
@@ -107,7 +130,7 @@ export class Form1040Page1Component implements OnInit {
       'box34': new FormControl({value: "0", disabled: true }),
       'box35': new FormControl({value: "0", disabled: true }),
       'box36': new FormControl({value: "0", disabled: true }),
-      'box37': new FormControl({value: "0", disabled: true })
+      'box37': new FormControl({value: w2.field1, disabled: true })
     });
   }
 

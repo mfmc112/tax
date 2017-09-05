@@ -59,6 +59,35 @@
     </div>
   </div>
 
+  <form-sub-header nTitle="DEPENDENTS"></form-sub-header>
+  <div class="row">
+    <div class="col-12">
+      <span><b>6c</b></span>
+    </div>
+    <div class="col-12">
+      <table class="table table-sm">
+        <thead>
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>SSN</th>
+            <th>Relation to You</th>
+            <th>CTC</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let d of dependents">
+            <td>{{d.firstName}}</td>
+            <td>{{d.lastName}}</td>
+            <td>{{d.ssn}}</td>
+            <td>{{d.relationship}}</td>
+            <td style="width:50px;"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
   <form-sub-header nTitle="INCOME"></form-sub-header>
   <div class="row">
     <div class="col-12">
@@ -247,7 +276,7 @@
         <div class="col-sm-3 border-left"></div>
 
         <div class="col-sm-6">
-          <span><b>27</b>&nbsp;&nbsp;</span>Deductible part of self-employment tax. Attach Schedule ...
+          <span><b>27</b>&nbsp;&nbsp;</span>Deductible part of self-employment tax. Attach Schedule SE
         </div>
         <n-input class="col-sm-3" name="box27" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
         <div class="col-sm-3 border-left"></div>
