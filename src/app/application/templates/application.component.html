@@ -29,22 +29,34 @@
           <!-- <button class="application-control" (click)="_toggleOpened()">Close sidebar</button> -->
           <!-- <p><a closeSidebar>This will close the sidebar too</a></p> -->
           <hr>
-          <!-- <a uiSref="menu.application.personalInfo" uiSrefActive="active" class="list-group-item">&nbsp;&nbsp;Personal Information&nbsp;<i class="fa fa-check text-success" aria-hidden="true"></i></a>
-          <a uiSref="menu.application.filingInfo" uiSrefActive="active" class="list-group-item">&nbsp;&nbsp;Filing Information&nbsp;<i class="fa fa-check text-success" aria-hidden="true"></i></a>
-          <a uiSref="menu.application.w2Form" uiSrefActive="active" class="list-group-item d-inline-block">&nbsp;&nbsp;W2&nbsp;</a>
-          <a uiSref="menu.application.form1040Page1" uiSrefActive="active" class="list-group-item d-inline-block">&nbsp;&nbsp;Form 1040&nbsp;</a> -->
-
-                  <div class="list-group border-0 card text-center text-md-left">
-                      <a href="#menu1" class="list-group-item d-inline-block collapsed" data-toggle="collapse" data-parent="#sidebar" aria-expanded="false">
-                        <i class="fa fa-user-o" aria-hidden="true"></i> <span class="d-none d-md-inline">Client Information</span>
-                      </a>
-                      <div class="collapse show" id="menu1">
-                          <a uiSref="menu.application.personalInfo" uiSrefActive="active" class="list-group-item">&nbsp;&nbsp;Personal Information&nbsp;<i class="fa fa-check text-success" aria-hidden="true"></i></a>
-                          <a uiSref="menu.application.filingInfo" uiSrefActive="active" class="list-group-item">&nbsp;&nbsp;Filing Information&nbsp;<i class="fa fa-check text-success" aria-hidden="true"></i></a>
-                      </div>
-                      <a uiSref="menu.application.w2Form" uiSrefActive="active" class="list-group-item d-inline-block">&nbsp;&nbsp;W2&nbsp;</a>
-                      <a uiSref="menu.application.form1040Page1" uiSrefActive="active" class="list-group-item d-inline-block">&nbsp;&nbsp;Form 1040&nbsp;</a>
+          <div style="min-height:98%;background-color:#f0f0f0">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a uiSref="menu.application.personalInfo" uiSrefActive="active" class="dropdown-item" href="#">Personal Information</a>
+              </li>
+              <li class="nav-item">
+                <a uiSref="menu.application.filingInfo" uiSrefActive="active" class="dropdown-item" href="#">Filing Information</a>
+              </li>
+              <li class="nav-item">
+                <a uiSref="menu.application.w2Form" uiSrefActive="active" class="dropdown-item" href="#">W2</a>
+              </li>
+              <li class="nav-item">
+                <a uiSref="menu.application.form1040Page1" uiSrefActive="active" class="dropdown-item" href="#">Form 1040</a>
+              </li>
+            </ul>
           </div>
+
+        <!-- <div class="list-group border-0 card text-center text-md-left">
+            <a href="#menu1" class="list-group-item d-inline-block collapsed" data-toggle="collapse" data-parent="#sidebar" aria-expanded="false">
+              <i class="fa fa-user-o" aria-hidden="true"></i> <span class="d-none d-md-inline">Client Information</span>
+            </a>
+            <div class="collapse show" id="menu1">
+                <a uiSref="menu.application.personalInfo" uiSrefActive="active" class="list-group-item">&nbsp;&nbsp;Personal Information&nbsp;<i class="fa fa-check text-success" aria-hidden="true"></i></a>
+                <a uiSref="menu.application.filingInfo" uiSrefActive="active" class="list-group-item">&nbsp;&nbsp;Filing Information&nbsp;<i class="fa fa-check text-success" aria-hidden="true"></i></a>
+            </div>
+            <a uiSref="menu.application.w2Form" uiSrefActive="active" class="list-group-item d-inline-block">&nbsp;&nbsp;W2&nbsp;</a>
+            <a uiSref="menu.application.form1040Page1" uiSrefActive="active" class="list-group-item d-inline-block">&nbsp;&nbsp;Form 1040&nbsp;</a>
+          </div> -->
 
         </ng-sidebar>
         <div ng-sidebar-content>
