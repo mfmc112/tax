@@ -10,6 +10,7 @@ export class Dependent {
   identityProtectionPin: string;
   relationship: string;
   monthsInHome: number;
+  ctc: boolean;
   code: number;
   eicCode: number;
   taxCreditEIC: TaxCreditEIC;

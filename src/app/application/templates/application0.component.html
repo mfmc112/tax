@@ -1,0 +1,30 @@
+<div class="container-fluid" *ngIf="client">
+    <div class="row d-flex d-md-block flex-nowrap wrapper">
+        <div class="col-md-3 float-left col-1 pl-0 pr-0 collapse width show" id="sidebar">
+                <div class="list-group border-0 card text-center text-md-left">
+                  <div class="col-12 ammount-box alert" [class.alert-success]="estimate > 0" [class.alert-grey]="estimate === 0" [class.alert-danger]="estimate < 0">
+                    CLIENT// {{client.firstName}} {{client.middleName}}{{(client.middleName)?'.':''}} {{client.lastName}}<BR>
+                    <span class="big-value">{{estimate | currency:'USD':true}}</span><br>
+                    FEDERAL<div class="divider-5"></div>
+                    Current AGI: {{currentAgi | currency:'USD':true}}
+                  </div>
+                <a href="#menu1" class="list-group-item d-inline-block collapsed" data-toggle="collapse" data-parent="#sidebar" aria-expanded="false">
+                  <i class="fa fa-user-o" aria-hidden="true"></i> <span class="d-none d-md-inline">Client Information</span>
+                </a>
+                <div class="collapse show" id="menu1">
+                    <a uiSref="menu.application.personalInfo" uiSrefActive="active" class="list-group-item">&nbsp;&nbsp;Personal Information&nbsp;<i class="fa fa-check text-success" aria-hidden="true"></i></a>
+                    <a uiSref="menu.application.filingInfo" uiSrefActive="active" class="list-group-item">&nbsp;&nbsp;Filing Information&nbsp;<i class="fa fa-check text-success" aria-hidden="true"></i></a>
+                </div>
+                <a uiSref="menu.application.w2Form" uiSrefActive="active" class="list-group-item d-inline-block">&nbsp;&nbsp;W2&nbsp;</a>
+                <a uiSref="menu.application.form1040Page1" uiSrefActive="active" class="list-group-item d-inline-block">&nbsp;&nbsp;Form 1040&nbsp;</a>
+            </div>
+        </div>
+        <div class="px-1 float-left">
+          <a href="#" data-target="#sidebar" data-toggle="collapse"><i class="fa fa-navicon fa-1x py-2 p-1"></i></a>
+        </div>
+        <main class="col-md-8 float-left col px-5 pl-md-2 pt-2 main">
+            <application-header-component></application-header-component>
+            <ui-view></ui-view>
+        </main>
+    </div>
+</div>

@@ -57,7 +57,14 @@ export class Form1040Page1Component implements OnInit {
       'payerDonate': false,
       'spouseDonate': false,
       'status': [null, Validators.compose([Validators.required])],
-      'w2Summary': this.w2FormSummary
+      'w2Summary': this.w2FormSummary,
+      'box6a': new FormControl(false),
+      'box6b': new FormControl(false),
+      'box6ab': new FormControl(null),
+      'box6cLiveWithYou': new FormControl(null),
+      'box6cNotLiveDueDivorce': new FormControl(null),
+      'box6cNotListedAbove': new FormControl(null),
+      'box6d': new FormControl(null)
     });
   }
 
@@ -67,15 +74,17 @@ export class Form1040Page1Component implements OnInit {
     let dp1 = new Dependent();
     dp1.firstName ="Cloe";
     dp1.lastName = "Campbell";
-    dp1.ssn ='111221122';
+    dp1.ssn ='111-22-1122';
     dp1.relationship = 'Daughter';
+    dp1.ctc = true;
     dependents.push(dp1);
 
     let dp2 = new Dependent();
     dp2.firstName ="Mixirica";
     dp2.lastName = "Costa";
-    dp2.ssn ='3212245665';
+    dp2.ssn ='321-22-5665';
     dp2.relationship = 'Daughter';
+    dp2.ctc = true;
     dependents.push(dp2);
     return dependents;
   }
@@ -84,9 +93,6 @@ export class Form1040Page1Component implements OnInit {
     let w2 = this.w2Forms[0];
     if (!w2) w2 = new W2Form(this.application.client);
     return new FormGroup({
-      'box6a': new FormControl(false),
-      'box6b': new FormControl(false),
-      'box6ab': new FormControl(null),
       'box7': new FormControl({value: w2.field1, disabled: true }),
       'box8a': new FormControl({value: "0", disabled: true }),
       'box8b': new FormControl({value: "0", disabled: true }),
@@ -129,6 +135,16 @@ export class Form1040Page1Component implements OnInit {
       'box33': new FormControl({value: "0", disabled: true }),
       'box34': new FormControl({value: "0", disabled: true }),
       'box35': new FormControl({value: "0", disabled: true }),
+      'box35Reforestation': new FormControl({value: "0", disabled: true }),
+      'box35SubPay': new FormControl({value: "0", disabled: true }),
+      'box35JuryDuty': new FormControl({value: "0", disabled: true }),
+      'box35PensionPlan': new FormControl({value: "0", disabled: true }),
+      'box35PPR': new FormControl({value: "0", disabled: true }),
+      'box35Form2555': new FormControl({value: "0", disabled: true }),
+      'box35ArcherMSA': new FormControl({value: "0", disabled: true }),
+      'box35BlowerFees': new FormControl({value: "0", disabled: true }),
+      'box35Other': new FormControl({value: null, disabled: true }),
+      'box35OtherAmount': new FormControl({value: "0", disabled: true }),
       'box36': new FormControl({value: "0", disabled: true }),
       'box37': new FormControl({value: w2.field1, disabled: true })
     });

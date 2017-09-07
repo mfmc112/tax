@@ -34,10 +34,10 @@
 }
 
 .nav-link.active {
-  color: #ffcc5c;
-  border-bottom-color: #ffcc5c;
-  border-bottom-width: 1px;
-  border-bottom-style: solid;
+  color: #ffcc5c!important;
+  border-bottom-color: #ffcc5c!important;
+  border-bottom-width: 1px!important;
+  border-bottom-style: solid!important;
 }
 
 .loggedAgent {

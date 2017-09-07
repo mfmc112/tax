@@ -59,6 +59,40 @@
     </div>
   </div>
 
+  <form-sub-header nTitle="EXEMPTIONS"></form-sub-header>
+  <div class="row">
+    <div class="col-12">
+      <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-1" style="text-align:center;">
+          <h5><small>Taxpayer</small></h5>
+        </div>
+        <div class="col-sm-1"></div>
+        <div class="col-sm-1" style="text-align:center;">
+          <h5><small>Spouse</small></h5>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-1">
+          <span><b>6a</b></span>
+        </div>
+        <div class="col-sm-1" style="text-align:center;">
+          <n-checkbox nName="box6a" [fGroup]="taxForm" nValue="true" nLabel=" " nClass="checkbox-padding"></n-checkbox>
+        </div>
+        <div class="col-sm-1" style="text-align:right;">
+          <span><b>6b</b></span>
+        </div>
+        <div class="col-sm-1" style="text-align:center;">
+          <n-checkbox nName="box6b" [fGroup]="taxForm" nValue="true" nLabel=" " nClass="checkbox-padding"></n-checkbox>
+        </div>
+        <div class="col-sm-7" style="text-align:right;">
+          <label style="margin-top:6px;">Boxes checked on 6a and 6b</label>
+        </div>
+        <n-input class="col-sm-1" name="box6ab" [fGroup]="taxForm"></n-input>
+      </div>
+    </div>
+  </div>
+
   <form-sub-header nTitle="DEPENDENTS"></form-sub-header>
   <div class="row">
     <div class="col-12">
@@ -76,15 +110,39 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let d of dependents">
+          <tr *ngFor="let d of dependents; let i = index">
             <td>{{d.firstName}}</td>
             <td>{{d.lastName}}</td>
             <td>{{d.ssn}}</td>
             <td>{{d.relationship}}</td>
-            <td style="width:50px;"></td>
+            <td style="width:50px;">
+              <i class="fa fa-check-square-o" style="color:#cccccc" aria-hidden="true"></i>
+            </td>
           </tr>
         </tbody>
       </table>
+
+      <div class="row" style="border:1px solid #cccccc;">
+        <div class="col-sm-12"><br></div>
+
+        <div class="col-sm-10">Children on 6c who live with you</div>
+        <n-input class="col-sm-2" name="box6cLiveWithYou" [fGroup]="taxForm"></n-input>
+
+        <div class="col-sm-10">Children on 6c who didn't live with you due to divorce or separation</div>
+        <n-input class="col-sm-2" name="box6cNotLiveDueDivorce" [fGroup]="taxForm"></n-input>
+
+        <div class="col-sm-10">Children listed 6c not listed above</div>
+        <n-input class="col-sm-2" name="box6cNotListedAbove" [fGroup]="taxForm"></n-input>
+      </div>
+      <div class="divider-20"></div>
+      <div class="row">
+        <div class="col-1">
+          <span><b>6d</b></span>
+        </div>
+        <div class="col-sm-9">Total Number of Exemptions Claimed</div>
+        <n-input class="col-sm-2" name="box6d" [fGroup]="taxForm"></n-input>
+      </div>
+
     </div>
   </div>
 
@@ -328,6 +386,62 @@
         </div>
         <n-input class="col-sm-3" name="box35" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
         <div class="col-sm-3 border-left"></div>
+
+        <div class="col-sm-3">
+          <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>Other:</b>
+        </div>
+        <div class="col-sm-9"></div>
+
+        <div class="col-sm-2"></div>
+        <div class="col-sm-4">Reforestation</div>
+        <n-input class="col-sm-3" name="box35Reforestation" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+        <div class="col-sm-3 border-left"></div>
+
+        <div class="col-sm-2"></div>
+        <div class="col-sm-4">Sub-pay (Trade Act)</div>
+        <n-input class="col-sm-3" name="box35SubPay" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+        <div class="col-sm-3 border-left"></div>
+
+        <div class="col-sm-2"></div>
+        <div class="col-sm-4">Jury-duty pay you gave to your employer</div>
+        <n-input class="col-sm-3" name="box35JuryDuty" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+        <div class="col-sm-3 border-left"></div>
+
+        <div class="col-sm-2"></div>
+        <div class="col-sm-4">501(c) 18 pension plan</div>
+        <n-input class="col-sm-3" name="box35PensionPlan" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+        <div class="col-sm-3 border-left"></div>
+
+        <div class="col-sm-2"></div>
+        <div class="col-sm-4">PPR</div>
+        <n-input class="col-sm-3" name="box35PPR" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+        <div class="col-sm-3 border-left"></div>
+
+        <div class="col-sm-2"></div>
+        <div class="col-sm-4">Form 2555; line 50</div>
+        <n-input class="col-sm-3" name="box35Form2555" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+        <div class="col-sm-3 border-left"></div>
+
+        <div class="col-sm-2"></div>
+        <div class="col-sm-4">Archer MSA deduction. Form 8853</div>
+        <n-input class="col-sm-3" name="box35ArcherMSA" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+        <div class="col-sm-3 border-left"></div>
+
+        <div class="col-sm-2"></div>
+        <div class="col-sm-4">Deduction for whistle blower fees</div>
+        <n-input class="col-sm-3" name="box35BlowerFees" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+        <div class="col-sm-3 border-left"></div>
+
+        <div class="col-sm-2"></div>
+        <n-input class="col-sm-4" name="box35Other" [fGroup]="w2FormSummary"></n-input>
+        <n-input class="col-sm-3" name="box35OtherAmount" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+        <div class="col-sm-3 border-left"></div>
+
+        <div class="col-sm-6">
+          <span><b>36</b>&nbsp;&nbsp;</span>Total adjustment. Add lines 23 through 35
+        </div>
+        <n-input class="offset-sm-3 col-sm-3 border-left" name="box36" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+
 
         <div class="col-sm-6">
           <span><b>36</b>&nbsp;&nbsp;</span>Total adjustment. Add lines 23 through 35
