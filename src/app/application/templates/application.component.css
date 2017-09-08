@@ -3,14 +3,9 @@
 }
 
 .ammount-box {
-  /*background-color: #9EBA7E;*/
   font-size: 15px;
   font-family: Arial!important;
-  /*border: #000000;*/
-  /*border-width: 1px;*/
-  /*border-bottom-width: 0;*/
-  /*border-style: solid;*/
-  /*border-right-width: 0;*/
+  border: 1px solid #000000;
 }
 
 .big-value {
@@ -42,11 +37,17 @@ application {
 
 .application-header {
   align-items: center;
-  background: $brand;
+  background: #E8E8E8;
   box-shadow: 0 0.1em 1.5em rgba(#A9A9A9, 0.5);
   color: #000000;
   display: flex;
   padding: 1em;
+}
+
+
+.application-contents {
+  padding: 0 2em;
+  background: #E8E8E8;
 }
 
   .application-header__toggle {
@@ -80,10 +81,6 @@ application {
   &.ng-sidebar--opened.ng-sidebar--over {
     box-shadow: 0 0 2.5em rgba(85, 85, 85, 0.5);
   }
-}
-
-.application-contents {
-  padding: 0 2em;
 }
 
 .application-control {

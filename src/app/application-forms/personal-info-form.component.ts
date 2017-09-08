@@ -145,9 +145,9 @@ export class PersonalInfoFormComponent implements OnInit {
       this.taxForm.patchValue({dateOfBirth: null});
   }
 
-  onDateChanged(event: IMyDateModel) {
+  onDateChanged(event: IMyDateModel, type: string) {
     if (!event.jsdate) return;
-    this.taxForm.patchValue({'age': this.calculateAge(event.jsdate)});
+    this.taxForm.get(type).patchValue({'age': this.calculateAge(event.jsdate)});
   }
 
   calculateAge(birthday:Date) {

@@ -1,4 +1,4 @@
-  <ng-sidebar-container style="height: 100vh;background-color:#f8f8f8" *ngIf="client">
+  <ng-sidebar-container style="height: 100vh;background-color:#A9A9A9" *ngIf="client">
         <ng-sidebar
           [(opened)]="_opened"
           [mode]="_MODES[_modeNum]"
@@ -20,6 +20,7 @@
           (onOpened)="_onOpened()"
           (onCloseStart)="_onCloseStart()"
           (onClosed)="_onClosed()">
+          
           <div class="col-12 ammount-box alert" [class.alert-success]="estimate > 0" [class.alert-grey]="estimate === 0" [class.alert-danger]="estimate < 0">
             CLIENT// {{client.firstName}} {{client.middleName}}{{(client.middleName)?'.':''}} {{client.lastName}}<BR>
             <span class="big-value">{{estimate | currency:'USD':true}}</span><br>
@@ -28,8 +29,8 @@
           </div>
           <!-- <button class="application-control" (click)="_toggleOpened()">Close sidebar</button> -->
           <!-- <p><a closeSidebar>This will close the sidebar too</a></p> -->
-          <hr>
-          <div style="min-height:98%;background-color:#f0f0f0">
+          <!-- <hr> -->
+          <div>
             <ul class="nav flex-column">
               <li class="nav-item">
                 <a uiSref="menu.application.personalInfo" uiSrefActive="active" class="dropdown-item" href="#">Personal Information</a>
