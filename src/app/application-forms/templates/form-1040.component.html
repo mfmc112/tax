@@ -1,12 +1,12 @@
-<div>
-  <form-header nTitle="FORM 1040 PG1" nSubTitle="U.S. Individual Income Tax Return"></form-header>
+<div style="min-height:800px;">
+  <form-header nTitle="FORM 1040 PG {{tab}}" nSubTitle="U.S. Individual Income Tax Return"></form-header>
 
   <ul class="nav nav-tabs">
     <li class="nav-item active">
-      <a uiSref="menu.application.form1040.page1" class="nav-link active" href="#">Form 1040 Pg 1</a>
+      <a uiSref="menu.application.form1040.page1" class="nav-link active" [ngClass]="{'active': tab === 1 }" href="#" (click)="selectTab(1)">Form 1040 Pg 1</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link">Form 1040 Pg 2</a>
+      <a uiSref="menu.application.form1040.page2" class="nav-link" [ngClass]="{'active': tab === 2 }" href="#" (click)="selectTab(2)">Form 1040 Pg 2</a>
     </li>
     <li class="nav-item">
       <a class="nav-link">Form 1040 Pg 3</a>

@@ -11,6 +11,7 @@ import { FilingInfoFormComponent } from './filing-info-form.component';
 import { W2FormComponent } from './w2-form.component';
 import { Form1040Component } from './form-1040.component';
 import { Form1040Page1Component } from './form-1040-page1.component';
+import { Form1040Page2Component } from './form-1040-page2.component';
 import { FormHeaderComponent } from './utils/form-header.component';
 import { FormSubHeaderComponent } from './utils/form-sub-header.component';
 import { MyDatePickerModule } from 'mydatepicker';
@@ -36,6 +37,7 @@ import { NW2Field12Component } from '../common/n-components/n-w2-field12.compone
     W2FormComponent,
     Form1040Component,
     Form1040Page1Component,
+    Form1040Page2Component,
     NInputComponent,
     NTextareaComponent,
     NRadioComponent,
