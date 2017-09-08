@@ -24,11 +24,15 @@ label {
     border-left: 1px solid #cccccc;
 }
 
-input.ng-valid[required], input.ng-valid.required  {
+.form-control:disabled {
+  color: #808080;
+}
+
+input.ng-valid[required], input.ng-valid.required {
   border: 1px solid #42A948;
 }
 
-input.ng-invalid:not(form)  {
+input.ng-invalid:not(form) {
   border: 1px solid #a94442;
 }
 
