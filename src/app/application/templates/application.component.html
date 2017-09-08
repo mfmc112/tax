@@ -1,4 +1,4 @@
-  <ng-sidebar-container style="height: 100vh;background-color:#A9A9A9" *ngIf="client">
+  <ng-sidebar-container style="height: 100vh;background-color:#A9A9A9;border:1px solid #000000;" *ngIf="client">
         <ng-sidebar
           [(opened)]="_opened"
           [mode]="_MODES[_modeNum]"
@@ -20,7 +20,6 @@
           (onOpened)="_onOpened()"
           (onCloseStart)="_onCloseStart()"
           (onClosed)="_onClosed()">
-
           <div class="col-12 ammount-box alert" [class.alert-success]="estimate > 0" [class.alert-grey]="estimate === 0" [class.alert-danger]="estimate < 0">
             CLIENT// {{client.firstName}} {{client.middleName}}{{(client.middleName)?'.':''}} {{client.lastName}}<BR>
             <span class="big-value">{{estimate | currency:'USD':true}}</span><br>
@@ -34,7 +33,7 @@
           <div class="col-12"><b><i class="fa fa-plus-circle fa-1x text-primary" aria-hidden="true"></i> Add Form</b></div>
           <div class="divider-5"></div>
           <div>
-            <ul class="nav flex-column" style="background-color:#FFFFFF">
+            <ul class="nav flex-column" style="background-color:#FFFFFF;margin-right:3px;margin-left:3px;border:1px solid #000000;">
               <li class="nav-item">
                 <a uiSref="menu.application.personalInfo" uiSrefActive="active" class="dropdown-item" href="#">- Personal Information</a>
               </li>
@@ -50,7 +49,7 @@
             </ul>
           </div>
         </ng-sidebar>
-        <div ng-sidebar-content>
+        <div ng-sidebar-content style="border-left:1px solid #000000;">
           <header class="application-header">
             <span (click)="_toggleOpened()"><i class="fa fa-bars" aria-hidden="true"></i></span>&nbsp;&nbsp;&nbsp;&nbsp;
             <application-header-component style="width:100%"></application-header-component>
