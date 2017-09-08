@@ -1,169 +1,174 @@
 <div class="form-body">
   <form-header nTitle="W2" nSubTitle="Wage and Tax Statement"></form-header>
+  <div class="col-12">
+    <form [formGroup]="taxForm" (submit)="submitForm(taxForm.value)" class="form" novalidate >
+      <form-sub-header nTitle="EMPLOYEE INFORMATION"></form-sub-header>
 
-  <form [formGroup]="taxForm" (submit)="submitForm(taxForm.value)" class="form" novalidate >
-    <form-sub-header nTitle="EMPLOYEE INFORMATION"></form-sub-header>
+      <div class="row">
+        <div class="col-12">
 
-    <div class="row">
-      <div class="col-12">
-
-        <div class="row">
-          <div class="col-sm-3">
-            <div class="form-group">
-              <label for="w2For">This W-2 is for:</label>
-              <select formControlName="w2For" id="w2For" class="form-control">
-                <option value="taxpayer">Taxpayer</option>
-                <option value="spouse">Spouse</option>
-              </select>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="w2For">This W-2 is for:</label>
+                <select formControlName="w2For" id="w2For" class="form-control">
+                  <option value="taxpayer">Taxpayer</option>
+                  <option value="spouse">Spouse</option>
+                </select>
+              </div>
+            </div>
+            <n-input class="col-sm-5" name="employeeName" label="e-Employee Name" [fGroup]="taxForm"></n-input>
+            <n-input class="col-sm-4" name="ssn" label="a-SSN" [mask]="ssnMask" [fGroup]="taxForm"></n-input>
+            <div class="offset-sm-8 col-sm-4" style="margin-top: -10px;">
+              <n-checkbox nName="ssnDoesntMatch" [fGroup]="taxForm" nValue="true" nClass="font-13" nLabel="Check here if the SSN on the W-2 does not match the SSN above"></n-checkbox>
             </div>
           </div>
-          <n-input class="col-sm-5" name="employeeName" label="e-Employee Name" [fGroup]="taxForm"></n-input>
-          <n-input class="col-sm-4" name="ssn" label="a-SSN" [mask]="ssnMask" [fGroup]="taxForm"></n-input>
-          <div class="offset-sm-8 col-sm-4" style="margin-top: -10px;">
-            <n-checkbox nName="ssnDoesntMatch" [fGroup]="taxForm" nValue="true" nClass="font-13" nLabel="Check here if the SSN on the W-2 does not match the SSN above"></n-checkbox>
+
+          <div class="row">
+            <n-checkbox nName="payerAddressShown" [fGroup]="taxForm" nValue="true" nLabel="Check here if the taxpayer's address is shown on the W-2"></n-checkbox>
           </div>
-        </div>
-
-        <div class="row">
-          <n-checkbox nName="payerAddressShown" [fGroup]="taxForm" nValue="true" nLabel="Check here if the taxpayer's address is shown on the W-2"></n-checkbox>
-        </div>
-        <div class="row">
-          <n-checkbox nName="sameAddressAsHome" [fGroup]="taxForm" nValue="true" nLabel="Check here if the recipient's address is the same as the present home address" (change)="sameAddress($event)"></n-checkbox>
-        </div>
-
-
-        <div class="row">
-          <n-input class="col-sm-12" name="home1" label="f-Employee's Address 1" [fGroup]="address"></n-input>
-          <n-input class="col-sm-12" name="home2" label="Employee's Address 1" [fGroup]="address"></n-input>
-          <n-input class="col-sm-3" name="zip"    label="Zip Code" [fGroup]="address" [mask]="zipMask"></n-input>
-          <n-input class="col-sm-5" name="city"   label="City"     [fGroup]="address"></n-input>
-          <n-input class="col-sm-2" name="state"  label="State"    [fGroup]="address" [mask]="stateMask"></n-input>
-        </div>
-
-
-        <div class="row">
-          <div class="col-sm-8">
-            <n-checkbox nName="alteredOrHandwritten" [fGroup]="taxForm" nValue="true" nClass="checkbox-padding" nLabel="Check here if this W-2 is altered or handwritten"></n-checkbox>
-            <n-checkbox nName="corrected" [fGroup]="taxForm" nValue="true" nClass="checkbox-padding" nLabel="Check here if this is a corrected W-2"></n-checkbox>
+          <div class="row">
+            <n-checkbox nName="sameAddressAsHome" [fGroup]="taxForm" nValue="true" nLabel="Check here if the recipient's address is the same as the present home address" (change)="sameAddress($event)"></n-checkbox>
           </div>
-          <n-input class="col-sm-4" name="securityInfo" label="W-2 Security Information" [fGroup]="taxForm"></n-input>
+
+
+          <div class="row">
+            <n-input class="col-sm-12" name="home1" label="f-Employee's Address 1" [fGroup]="address"></n-input>
+            <n-input class="col-sm-12" name="home2" label="Employee's Address 1" [fGroup]="address"></n-input>
+            <n-input class="col-sm-3" name="zip"    label="Zip Code" [fGroup]="address" [mask]="zipMask"></n-input>
+            <n-input class="col-sm-5" name="city"   label="City"     [fGroup]="address"></n-input>
+            <n-input class="col-sm-2" name="state"  label="State"    [fGroup]="address" [mask]="stateMask"></n-input>
+          </div>
+
+
+          <div class="row">
+            <div class="col-sm-8">
+              <n-checkbox nName="alteredOrHandwritten" [fGroup]="taxForm" nValue="true" nClass="checkbox-padding" nLabel="Check here if this W-2 is altered or handwritten"></n-checkbox>
+              <n-checkbox nName="corrected" [fGroup]="taxForm" nValue="true" nClass="checkbox-padding" nLabel="Check here if this is a corrected W-2"></n-checkbox>
+            </div>
+            <n-input class="col-sm-4" name="securityInfo" label="W-2 Security Information" [fGroup]="taxForm"></n-input>
+          </div>
         </div>
       </div>
-    </div>
 
-    <form-sub-header nTitle="WAGES, SALARIES AND TIPS"></form-sub-header>
+      <form-sub-header nTitle="WAGES, SALARIES AND TIPS"></form-sub-header>
 
-    <div class="row">
-      <div class="col-12">
+      <div class="row">
+        <div class="col-12">
 
-        <div class="row">
-          <n-input class="col-sm-5" name="ein" label="b-Employer Identification Number (EIN)" [fGroup]="taxForm"></n-input>
-        </div>
-        <div class="row">
-          <n-input class="col-sm-8" name="employerName" label="c-Employer's Name" [fGroup]="taxForm" (keyup)="populateENC($event)"></n-input>
-          <n-input class="col-sm-4" name="employerNameControl" label="d-Employer Name Control" [fGroup]="taxForm"></n-input>
+          <div class="row">
+            <n-input class="col-sm-5" name="ein" label="b-Employer Identification Number (EIN)" [fGroup]="taxForm"></n-input>
+          </div>
+          <div class="row">
+            <n-input class="col-sm-8" name="employerName" label="c-Employer's Name" [fGroup]="taxForm" (keyup)="populateENC($event)"></n-input>
+            <n-input class="col-sm-4" name="employerNameControl" label="d-Employer Name Control" [fGroup]="taxForm"></n-input>
 
-          <n-input class="col-sm-12" name="home1" label="Street Address 1" [fGroup]="employerAddress"></n-input>
-          <n-input class="col-sm-12" name="home2" label="Street Address 1" [fGroup]="employerAddress"></n-input>
-          <n-input class="col-sm-3" name="zip"    label="Zip Code" [fGroup]="employerAddress" [mask]="zipMask"></n-input>
-          <n-input class="col-sm-5" name="city"   label="City"     [fGroup]="employerAddress"></n-input>
-          <n-input class="col-sm-2" name="state"  label="State"    [fGroup]="employerAddress" [mask]="stateMask"></n-input>
-        </div>
-        <div class="row">
-          <n-checkbox nName="autoCalculate3and6" [fGroup]="taxForm" nValue="true" nLabel="Check here to automatically calculate fields 3 through 6" (change)="autoCalculate($event)"></n-checkbox>
-        </div>
-        <div class="row">
-          <n-input class="col-sm-5" name="field1" label="1-Wages,tips, other compensation" [mask]="numberMask" [fGroup]="taxForm" (keyup)="calculate($event)"></n-input>
-          <n-input class="col-sm-5" name="field2" label="2-Federal income tax withheld" [mask]="numberMask" [fGroup]="taxForm" (keyup)="calculate($event)"></n-input>
+            <n-input class="col-sm-12" name="home1" label="Street Address 1" [fGroup]="employerAddress"></n-input>
+            <n-input class="col-sm-12" name="home2" label="Street Address 1" [fGroup]="employerAddress"></n-input>
+            <n-input class="col-sm-3" name="zip"    label="Zip Code" [fGroup]="employerAddress" [mask]="zipMask"></n-input>
+            <n-input class="col-sm-5" name="city"   label="City"     [fGroup]="employerAddress"></n-input>
+            <n-input class="col-sm-2" name="state"  label="State"    [fGroup]="employerAddress" [mask]="stateMask"></n-input>
+          </div>
+          <div class="row">
+            <n-checkbox nName="autoCalculate3and6" [fGroup]="taxForm" nValue="true" nLabel="Check here to automatically calculate fields 3 through 6" (change)="autoCalculate($event)"></n-checkbox>
+          </div>
+          <div class="row">
+            <n-input class="col-sm-5" name="field1" label="1-Wages,tips, other compensation" [mask]="numberMask" [fGroup]="taxForm" (keyup)="calculate($event)"></n-input>
+            <n-input class="col-sm-5" name="field2" label="2-Federal income tax withheld" [mask]="numberMask" [fGroup]="taxForm" (keyup)="calculate($event)"></n-input>
 
-          <n-input class="col-sm-5" name="field3" label="3-Social security wages" [mask]="numberMask" [fGroup]="taxForm" (keyup)="calculate($event)"></n-input>
-          <n-input class="col-sm-5" name="field4" label="4-Social security tax withheld" [mask]="numberMask" [fGroup]="taxForm" (keyup)="calculate($event)"></n-input>
+            <n-input class="col-sm-5" name="field3" label="3-Social security wages" [mask]="numberMask" [fGroup]="taxForm" (keyup)="calculate($event)"></n-input>
+            <n-input class="col-sm-5" name="field4" label="4-Social security tax withheld" [mask]="numberMask" [fGroup]="taxForm" (keyup)="calculate($event)"></n-input>
 
-          <n-input class="col-sm-5" name="field5" label="5-Medicare wages and tips" [mask]="numberMask" [fGroup]="taxForm" (keyup)="calculate($event)"></n-input>
-          <n-input class="col-sm-5" name="field6" label="6-Medicaretax withheld" [mask]="numberMask" [fGroup]="taxForm" (keyup)="calculate($event)"></n-input>
+            <n-input class="col-sm-5" name="field5" label="5-Medicare wages and tips" [mask]="numberMask" [fGroup]="taxForm" (keyup)="calculate($event)"></n-input>
+            <n-input class="col-sm-5" name="field6" label="6-Medicaretax withheld" [mask]="numberMask" [fGroup]="taxForm" (keyup)="calculate($event)"></n-input>
 
-          <n-input class="col-sm-5" name="field7" label="7-Social security tips" [mask]="numberMask" [fGroup]="taxForm"></n-input>
-          <n-input class="col-sm-5" name="field8" label="8-Allocated tips" [mask]="numberMask" [fGroup]="taxForm"></n-input>
+            <n-input class="col-sm-5" name="field7" label="7-Social security tips" [mask]="numberMask" [fGroup]="taxForm"></n-input>
+            <n-input class="col-sm-5" name="field8" label="8-Allocated tips" [mask]="numberMask" [fGroup]="taxForm"></n-input>
 
-          <n-input class="col-sm-5" name="field9" label="9-Reserved" [mask]="numberMask" [fGroup]="taxForm"></n-input>
-          <n-input class="col-sm-5" name="field10" label="10-Dependent care benefits" [mask]="numberMask" [fGroup]="taxForm"></n-input>
-        </div>
+            <n-input class="col-sm-5" name="field9" label="9-Reserved" [mask]="numberMask" [fGroup]="taxForm"></n-input>
+            <n-input class="col-sm-5" name="field10" label="10-Dependent care benefits" [mask]="numberMask" [fGroup]="taxForm"></n-input>
+          </div>
 
-        <div class="row">
-          <div class="col-sm-5">
-            <div class="row">
-              <div class="col-sm-12">
-                <label>11-Nonqualified plans</label>
+          <div class="row">
+            <div class="col-sm-5">
+              <div class="row">
+                <div class="col-sm-12">
+                  <label>11-Nonqualified plans</label>
+                </div>
+              </div>
+              <div class="row">
+                <n-input class="col-sm-12" name="field11" [fGroup]="taxForm"></n-input>
+                <n-textarea class="col-sm-12" name="field14" label="14-Other" nRows="4" [fGroup]="taxForm"></n-textarea>
               </div>
             </div>
-            <div class="row">
-              <n-input class="col-sm-12" name="field11" [fGroup]="taxForm"></n-input>
-              <n-textarea class="col-sm-12" name="field14" label="14-Other" nRows="4" [fGroup]="taxForm"></n-textarea>
-            </div>
-          </div>
-          <div class="col-sm-5">
-            <div class="row">
-              <div class="col-sm-6">
-                <label>12-Codes</label>
+            <div class="col-sm-5">
+              <div class="row">
+                <div class="col-sm-6">
+                  <label>12-Codes</label>
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <n-w2-field12 class="col-sm-12" nField="12a" [fGroup]="taxForm"></n-w2-field12>
-              <n-w2-field12 class="col-sm-12" nField="12b" [fGroup]="taxForm"></n-w2-field12>
-              <n-w2-field12 class="col-sm-12" nField="12c" [fGroup]="taxForm"></n-w2-field12>
-              <n-w2-field12 class="col-sm-12" nField="12d" [fGroup]="taxForm"></n-w2-field12>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-sm-10">
-            <div class="row">
-              <div class="col-sm-12">
-                <table style="width:100%;min-height:90px;">
-                  <tr>
-                    <td>13</td>
-                    <td style="width:32%;display:table-cell;vertical-align: middle;text-align: center;height: 50px;border: 1px solid #cccccc;border-right-width:0px;">
-                      <n-checkbox nName="field13Statutory" [fGroup]="taxForm" nValue="true" [nLabelUp]="true" nClass="checkbox-padding" nLabel="Statutory Employee"></n-checkbox>
-                    </td>
-                    <td style="width:32%;display:table-cell;vertical-align: middle;text-align: center;height: 50px;border: 1px solid #cccccc;border-right-width:0px;">
-                      <n-checkbox nName="field13Retirement" [fGroup]="taxForm" nValue="true" [nLabelUp]="true" nClass="checkbox-padding" nLabel="Retirement Plan"></n-checkbox>
-                    </td>
-                    <td style="width:32%;display:table-cell;vertical-align: middle;text-align: center;height: 50px;border: 1px solid #cccccc;">
-                      <n-checkbox nName="field13SickPay" [fGroup]="taxForm" nValue="true" [nLabelUp]="true" nClass="checkbox-padding" nLabel="Third-party sick pay"></n-checkbox>
-                    </td>
-                  </tr>
-                </table>
+              <div class="row">
+                <n-w2-field12 class="col-sm-12" nField="12a" [fGroup]="taxForm"></n-w2-field12>
+                <n-w2-field12 class="col-sm-12" nField="12b" [fGroup]="taxForm"></n-w2-field12>
+                <n-w2-field12 class="col-sm-12" nField="12c" [fGroup]="taxForm"></n-w2-field12>
+                <n-w2-field12 class="col-sm-12" nField="12d" [fGroup]="taxForm"></n-w2-field12>
               </div>
             </div>
           </div>
-        </div>
 
+          <div class="row">
+            <div class="col-sm-10">
+              <div class="row">
+                <div class="col-sm-12">
+                  <table style="width:100%;min-height:90px;">
+                    <tr>
+                      <td>13</td>
+                      <td style="width:32%;display:table-cell;vertical-align: middle;text-align: center;height: 50px;border: 1px solid #cccccc;border-right-width:0px;">
+                        <n-checkbox nName="field13Statutory" [fGroup]="taxForm" nValue="true" [nLabelUp]="true" nClass="checkbox-padding" nLabel="Statutory Employee"></n-checkbox>
+                      </td>
+                      <td style="width:32%;display:table-cell;vertical-align: middle;text-align: center;height: 50px;border: 1px solid #cccccc;border-right-width:0px;">
+                        <n-checkbox nName="field13Retirement" [fGroup]="taxForm" nValue="true" [nLabelUp]="true" nClass="checkbox-padding" nLabel="Retirement Plan"></n-checkbox>
+                      </td>
+                      <td style="width:32%;display:table-cell;vertical-align: middle;text-align: center;height: 50px;border: 1px solid #cccccc;">
+                        <n-checkbox nName="field13SickPay" [fGroup]="taxForm" nValue="true" [nLabelUp]="true" nClass="checkbox-padding" nLabel="Third-party sick pay"></n-checkbox>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
-    </div>
 
-    <div class="divider-50"></div>
-    <form-sub-header nTitle="STATE INFORMATION"></form-sub-header>
+      <div class="divider-50"></div>
+      <form-sub-header nTitle="STATE INFORMATION"></form-sub-header>
 
-    <div class="row">
-      <div class="col-12">
+      <div class="row">
+        <div class="col-12">
 
-        <div class="row">
-          <n-input class="col-sm-2" name="state" label="State" [fGroup]="taxForm" [mask]="stateMask"></n-input>
-          <n-input class="col-sm-4" name="esin" label="Employer's state ID no." [fGroup]="taxForm"></n-input>
-          <n-input class="col-sm-4" name="field16" label="16-State wages, tips, etc." [mask]="numberMask" [fGroup]="taxForm"></n-input>
-        </div>
-        <div class="row">
-          <n-input class="col-sm-5" name="field17" label="17-State Income Tax" [mask]="numberMask" [fGroup]="taxForm"></n-input>
-          <n-input class="offset-sm-1 col-sm-4" name="field18" label="8-Local wages, tips, etc." [mask]="numberMask" [fGroup]="taxForm"></n-input>
-        </div>
-        <div class="row">
-          <n-input class="col-sm-5" name="field19" label="19-Local Income Tax" [mask]="numberMask" [fGroup]="taxForm"></n-input>
-          <n-input class="offset-sm-1 col-sm-4" name="field20" label="20-Locality name" [fGroup]="taxForm"></n-input>
+          <div class="row">
+            <n-input class="col-sm-2" name="state" label="State" [fGroup]="taxForm" [mask]="stateMask"></n-input>
+            <n-input class="col-sm-4" name="esin" label="Employer's state ID no." [fGroup]="taxForm"></n-input>
+            <n-input class="col-sm-4" name="field16" label="16-State wages, tips, etc." [mask]="numberMask" [fGroup]="taxForm"></n-input>
+          </div>
+          <div class="row">
+            <n-input class="col-sm-5" name="field17" label="17-State Income Tax" [mask]="numberMask" [fGroup]="taxForm"></n-input>
+            <n-input class="offset-sm-1 col-sm-4" name="field18" label="8-Local wages, tips, etc." [mask]="numberMask" [fGroup]="taxForm"></n-input>
+          </div>
+          <div class="row">
+            <n-input class="col-sm-5" name="field19" label="19-Local Income Tax" [mask]="numberMask" [fGroup]="taxForm"></n-input>
+            <n-input class="offset-sm-1 col-sm-4" name="field20" label="20-Locality name" [fGroup]="taxForm"></n-input>
+          </div>
         </div>
       </div>
-    </div>
-  </form>
-
-  <div class="divider-30"></div>
+      <div class="row">
+        <div class="col-md-12">
+          <button role="button" class="btn btn-primary float-right">save</button>
+        </div>
+      </div>
+      <div class="divider-30"></div>
+    </form>
+  </div>
 </div>

@@ -1,459 +1,467 @@
 <div class="form-body-tabs">
-  <form [formGroup]="taxForm" (submit)="submitForm(taxForm.value)" class="form" novalidate >
-    <form-sub-header nTitle="PERSONAL INFORMATION"></form-sub-header>
+  <div class="col-12">
+    <form [formGroup]="taxForm" (submit)="submitForm(taxForm.value)" class="form" novalidate >
+      <form-sub-header nTitle="PERSONAL INFORMATION"></form-sub-header>
 
-    <div class="row">
-      <div class="col-12">
-        <div class="row">
-          <n-input class="col-sm-3" name="firstName" label="Taxpayer's First Name" [fGroup]="taxForm"></n-input>
-          <n-input class="col-sm-1" name="middleName" label="Initial" [fGroup]="taxForm"></n-input>
-          <n-input class="col-sm-4" name="lastName" label="Last Name" [fGroup]="taxForm"></n-input>
-          <n-input class="col-sm-1" name="suffixName" label="Suffix" [fGroup]="taxForm"></n-input>
-          <n-input class="col-sm-3" name="ssn" label="SSN" [mask]="ssnMask" [fGroup]="taxForm"></n-input>
+      <div class="row">
+        <div class="col-12">
+          <div class="row">
+            <n-input class="col-sm-3" name="firstName" label="Taxpayer's First Name" [fGroup]="taxForm"></n-input>
+            <n-input class="col-sm-1" name="middleName" label="Initial" [fGroup]="taxForm"></n-input>
+            <n-input class="col-sm-4" name="lastName" label="Last Name" [fGroup]="taxForm"></n-input>
+            <n-input class="col-sm-1" name="suffixName" label="Suffix" [fGroup]="taxForm"></n-input>
+            <n-input class="col-sm-3" name="ssn" label="SSN" [mask]="ssnMask" [fGroup]="taxForm"></n-input>
 
-          <n-input class="col-sm-3" name="sFirstName" label="Spouse's First Name" [fGroup]="taxForm"></n-input>
-          <n-input class="col-sm-1" name="sMiddleName" label="Initial" [fGroup]="taxForm"></n-input>
-          <n-input class="col-sm-4" name="sLastName" label="Last Name" [fGroup]="taxForm"></n-input>
-          <n-input class="col-sm-1" name="sSuffixName" label="Suffix" [fGroup]="taxForm"></n-input>
-          <n-input class="col-sm-3" name="sSsn" label="SSN" [mask]="ssnMask" [fGroup]="taxForm"></n-input>
+            <n-input class="col-sm-3" name="sFirstName" label="Spouse's First Name" [fGroup]="taxForm"></n-input>
+            <n-input class="col-sm-1" name="sMiddleName" label="Initial" [fGroup]="taxForm"></n-input>
+            <n-input class="col-sm-4" name="sLastName" label="Last Name" [fGroup]="taxForm"></n-input>
+            <n-input class="col-sm-1" name="sSuffixName" label="Suffix" [fGroup]="taxForm"></n-input>
+            <n-input class="col-sm-3" name="sSsn" label="SSN" [mask]="ssnMask" [fGroup]="taxForm"></n-input>
 
-          <n-input class="col-sm-12" name="home1" label="Present Home Address" [fGroup]="mailingAddressGroup"></n-input>
-          <n-input class="col-sm-12" name="home2" label="Present Home Address Line 2" [fGroup]="mailingAddressGroup"></n-input>
-          <n-input class="col-sm-3" name="zip"    label="Zip Code" [fGroup]="mailingAddressGroup" [mask]="zipMask"></n-input>
-          <n-input class="col-sm-5" name="city"   label="City"     [fGroup]="mailingAddressGroup"></n-input>
-          <n-input class="col-sm-2" name="state"  label="State"    [fGroup]="mailingAddressGroup"></n-input>
-        </div>
-      </div>
-    </div>
-
-    <form-sub-header nTitle="PRESIDENTIAL ELECTION CAMPAIGN"></form-sub-header>
-    <div class="row">
-      <div class="col-12">
-        <div class="row">
-          <div class="offset-sm-6 col-sm-3" style="text-align:center;">
-            <h5><small>Taxpayer</small></h5>
-          </div>
-          <div class="col-sm-3" style="text-align:center;">
-            <h5><small>Spouse</small></h5>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-6">
-            <p>Check here if you, or your spouse if a joint return, want $3 to go to this fund</p>
-          </div>
-          <div class="col-sm-3" style="text-align:center;">
-            <n-checkbox nName="payerDonate" [fGroup]="taxForm" nValue="true" nLabel=" " nClass="checkbox-padding"></n-checkbox>
-          </div>
-          <div class="col-sm-3" style="text-align:center;">
-            <n-checkbox nName="spouseDonate" [fGroup]="taxForm" nValue="true" nLabel=" " nClass="checkbox-padding"></n-checkbox>
+            <n-input class="col-sm-12" name="home1" label="Present Home Address" [fGroup]="mailingAddressGroup"></n-input>
+            <n-input class="col-sm-12" name="home2" label="Present Home Address Line 2" [fGroup]="mailingAddressGroup"></n-input>
+            <n-input class="col-sm-3" name="zip"    label="Zip Code" [fGroup]="mailingAddressGroup" [mask]="zipMask"></n-input>
+            <n-input class="col-sm-5" name="city"   label="City"     [fGroup]="mailingAddressGroup"></n-input>
+            <n-input class="col-sm-2" name="state"  label="State"    [fGroup]="mailingAddressGroup"></n-input>
           </div>
         </div>
       </div>
-    </div>
 
-    <form-sub-header nTitle="FILING STATUS"></form-sub-header>
-    <div class="row">
-      <div class="col-12">
-        <n-radio-list [labelValue]="statusRadio" [fGroup]="taxForm" nName="status"></n-radio-list>
-      </div>
-    </div>
-
-    <form-sub-header nTitle="EXEMPTIONS"></form-sub-header>
-    <div class="row">
-      <div class="col-12">
-        <div class="row">
-          <div class="col-sm-1"></div>
-          <div class="col-sm-1" style="text-align:center;">
-            <h5><small>Taxpayer</small></h5>
-          </div>
-          <div class="col-sm-1"></div>
-          <div class="col-sm-1" style="text-align:center;">
-            <h5><small>Spouse</small></h5>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-1">
-            <span><b>6a</b></span>
-          </div>
-          <div class="col-sm-1" style="text-align:center;">
-            <n-checkbox nName="box6a" [fGroup]="taxForm" nValue="true" nLabel=" " nClass="checkbox-padding"></n-checkbox>
-          </div>
-          <div class="col-sm-1" style="text-align:right;">
-            <span><b>6b</b></span>
-          </div>
-          <div class="col-sm-1" style="text-align:center;">
-            <n-checkbox nName="box6b" [fGroup]="taxForm" nValue="true" nLabel=" " nClass="checkbox-padding"></n-checkbox>
-          </div>
-          <div class="col-sm-7" style="text-align:right;">
-            <label style="margin-top:6px;">Boxes checked on 6a and 6b</label>
-          </div>
-          <n-input class="col-sm-1" name="box6ab" [fGroup]="taxForm"></n-input>
-        </div>
-      </div>
-    </div>
-
-    <form-sub-header nTitle="DEPENDENTS"></form-sub-header>
-    <div class="row">
-      <div class="col-12">
-        <span><b>6c</b></span>
-      </div>
-      <div class="col-12">
-        <table class="table table-sm">
-          <thead>
-            <tr>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>SSN</th>
-              <th>Relation to You</th>
-              <th>CTC</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let d of dependents; let i = index">
-              <td>{{d.firstName}}</td>
-              <td>{{d.lastName}}</td>
-              <td>{{d.ssn}}</td>
-              <td>{{d.relationship}}</td>
-              <td style="width:50px;">
-                <i class="fa fa-check-square-o" style="color:#cccccc" aria-hidden="true"></i>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-
-        <div class="row" style="border:1px solid #cccccc;">
-          <div class="col-sm-12"><br></div>
-
-          <div class="col-sm-10">Children on 6c who live with you</div>
-          <n-input class="col-sm-2" name="box6cLiveWithYou" [fGroup]="taxForm"></n-input>
-
-          <div class="col-sm-10">Children on 6c who didn't live with you due to divorce or separation</div>
-          <n-input class="col-sm-2" name="box6cNotLiveDueDivorce" [fGroup]="taxForm"></n-input>
-
-          <div class="col-sm-10">Children listed 6c not listed above</div>
-          <n-input class="col-sm-2" name="box6cNotListedAbove" [fGroup]="taxForm"></n-input>
-        </div>
-        <div class="divider-20"></div>
-        <div class="row">
-          <div class="col-1">
-            <span><b>6d</b></span>
-          </div>
-          <div class="col-sm-9">Total Number of Exemptions Claimed</div>
-          <n-input class="col-sm-2" name="box6d" [fGroup]="taxForm"></n-input>
-        </div>
-
-      </div>
-    </div>
-
-    <form-sub-header nTitle="INCOME"></form-sub-header>
-    <div class="row">
-      <div class="col-12">
-        <div class="row" style="border:1px solid #cccccc;">
-          <div class="col-sm-12"><br></div>
-
-          <div class="col-sm-6">
-            <span><b>7&nbsp;</b>&nbsp;&nbsp;</span>Wages, salaries, tips, etc.
-          </div>
-          <n-input class="offset-sm-3 col-sm-3 border-left" name="box7" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
-
-          <div class="col-sm-6">
-            <span><b>8a</b>&nbsp;&nbsp;</span><b>Tax-exempt</b> interest. <b>Do not</b> included on line 8a
-          </div>
-          <n-input class="offset-sm-3 col-sm-3 border-left" name="box8a" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
-
-          <div class="col-sm-6">
-            <span><b>8b</b>&nbsp;&nbsp;</span>Ordinary dividends. Attach Schedule B if required
-          </div>
-          <n-input class="col-sm-3" name="box8b" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
-          <div class="col-sm-3 border-left"></div>
-
-          <div class="col-sm-6">
-            <span><b>9a</b>&nbsp;&nbsp;</span><b>Taxable</b> interest. Attach Schedule B if required
-          </div>
-          <n-input class="offset-sm-3 col-sm-3 border-left" name="box9a" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
-
-          <div class="col-sm-6">
-            <span><b>9b</b>&nbsp;&nbsp;</span>Qualifying dividends
-          </div>
-          <n-input class="col-sm-3" name="box9b" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
-          <div class="col-sm-3 border-left"></div>
-
-          <div class="col-sm-9">
-            Did you itemize deductions last year and receive state or local tax refunds, credits, or offsets? No, if you deducted state tax instead of state income tax
-          </div>
-          <div class="col-sm-3" formGroupName="w2Summary">
-            <div class="form-group">
-              <select formControlName="itemized" id="itemized" class="form-control">
-                <option value=""></option>
-                <option value="true">Yes</option>
-                <option value="false">No</option>
-              </select>
+      <form-sub-header nTitle="PRESIDENTIAL ELECTION CAMPAIGN"></form-sub-header>
+      <div class="row">
+        <div class="col-12">
+          <div class="row">
+            <div class="offset-sm-6 col-sm-3" style="text-align:center;">
+              <h5><small>Taxpayer</small></h5>
+            </div>
+            <div class="col-sm-3" style="text-align:center;">
+              <h5><small>Spouse</small></h5>
             </div>
           </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <p>Check here if you, or your spouse if a joint return, want $3 to go to this fund</p>
+            </div>
+            <div class="col-sm-3" style="text-align:center;">
+              <n-checkbox nName="payerDonate" [fGroup]="taxForm" nValue="true" nLabel=" " nClass="checkbox-padding"></n-checkbox>
+            </div>
+            <div class="col-sm-3" style="text-align:center;">
+              <n-checkbox nName="spouseDonate" [fGroup]="taxForm" nValue="true" nLabel=" " nClass="checkbox-padding"></n-checkbox>
+            </div>
+          </div>
+        </div>
+      </div>
 
-          <div class="col-sm-9">
-            <span><b>10</b>&nbsp;&nbsp;</span>Taxable refunds, credits, or offset of state and local income taxes
-          </div>
-          <n-input class="col-sm-3 border-left" name="box10" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+      <form-sub-header nTitle="FILING STATUS"></form-sub-header>
+      <div class="row">
+        <div class="col-12">
+          <n-radio-list [labelValue]="statusRadio" [fGroup]="taxForm" nName="status"></n-radio-list>
+        </div>
+      </div>
 
-          <div class="col-sm-6">
-            <span><b>11</b>&nbsp;&nbsp;</span>Alimony received
+      <form-sub-header nTitle="EXEMPTIONS"></form-sub-header>
+      <div class="row">
+        <div class="col-12">
+          <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-1" style="text-align:center;">
+              <h5><small>Taxpayer</small></h5>
+            </div>
+            <div class="col-sm-1"></div>
+            <div class="col-sm-1" style="text-align:center;">
+              <h5><small>Spouse</small></h5>
+            </div>
           </div>
-          <n-input class="offset-sm-3 col-sm-3 border-left" name="box11" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+          <div class="row">
+            <div class="col-sm-1">
+              <span><b>6a</b></span>
+            </div>
+            <div class="col-sm-1" style="text-align:center;">
+              <n-checkbox nName="box6a" [fGroup]="taxForm" nValue="true" nLabel=" " nClass="checkbox-padding"></n-checkbox>
+            </div>
+            <div class="col-sm-1" style="text-align:right;">
+              <span><b>6b</b></span>
+            </div>
+            <div class="col-sm-1" style="text-align:center;">
+              <n-checkbox nName="box6b" [fGroup]="taxForm" nValue="true" nLabel=" " nClass="checkbox-padding"></n-checkbox>
+            </div>
+            <div class="col-sm-7" style="text-align:right;">
+              <label style="margin-top:6px;">Boxes checked on 6a and 6b</label>
+            </div>
+            <n-input class="col-sm-1" name="box6ab" [fGroup]="taxForm"></n-input>
+          </div>
+        </div>
+      </div>
 
-          <div class="col-sm-9">
-            <span><b>12</b>&nbsp;&nbsp;</span>Businesss income or (loss). Attach Schedule C or C-EZ
-          </div>
-          <n-input class="col-sm-3 border-left" name="box12" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+      <form-sub-header nTitle="DEPENDENTS"></form-sub-header>
+      <div class="row">
+        <div class="col-12">
+          <span><b>6c</b></span>
+        </div>
+        <div class="col-12">
+          <table class="table table-sm">
+            <thead>
+              <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>SSN</th>
+                <th>Relation to You</th>
+                <th>CTC</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let d of dependents; let i = index">
+                <td>{{d.firstName}}</td>
+                <td>{{d.lastName}}</td>
+                <td>{{d.ssn}}</td>
+                <td>{{d.relationship}}</td>
+                <td style="width:50px;">
+                  <i class="fa fa-check-square-o" style="color:#cccccc" aria-hidden="true"></i>
+                </td>
+              </tr>
+            </tbody>
+          </table>
 
-          <div class="col-sm-6">
-            <span><b>13</b>&nbsp;&nbsp;</span>Capital gain or (loss)
-          </div>
-          <div class="col-sm-3" style="margin-top:10px;">
-            <n-checkbox nName="dNotRequired" [fGroup]="w2FormSummary" nValue="true" nClass="font-13" nLabel="Schedule D not required"></n-checkbox>
-          </div>
-          <n-input class="col-sm-3 border-left" name="box13" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+          <div class="row" style="border:1px solid #cccccc">
+            <div class="col-sm-12"><br></div>
 
-          <div class="col-sm-6">
-            <span><b>14</b>&nbsp;&nbsp;</span>Other gains or (losses). Attach from 4797
-          </div>
-          <n-input class="offset-sm-3 col-sm-3 border-left" name="box14" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+            <div class="col-sm-10">Children on 6c who live with you</div>
+            <n-input class="col-sm-2" name="box6cLiveWithYou" [fGroup]="taxForm"></n-input>
 
-          <div class="col-sm-4">
-            <span><b>15a</b>&nbsp;&nbsp;</span>IRA distributions Total.
-          </div>
-          <div class="col-sm-2">
-            <span class="form-group" formGroupName="w2Summary">
-              <select formControlName="box15arollover" id="box15arollover" class="form-control">
-                <option value=""></option>
-                <option value="true">Yes</option>
-                <option value="false">No</option>
-              </select>
-            </span>
-          </div>
-          <n-input class="col-sm-3" name="box15a" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
-          <div class="col-sm-3 border-left"></div>
+            <div class="col-sm-10">Children on 6c who didn't live with you due to divorce or separation</div>
+            <n-input class="col-sm-2" name="box6cNotLiveDueDivorce" [fGroup]="taxForm"></n-input>
 
-          <div class="col-sm-6">
-            <span><b>15b</b>&nbsp;&nbsp;</span>Taxable amount
+            <div class="col-sm-10">Children listed 6c not listed above</div>
+            <n-input class="col-sm-2" name="box6cNotListedAbove" [fGroup]="taxForm"></n-input>
           </div>
-          <n-input class="offset-sm-3 col-sm-3 border-left" name="box15b" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
-
-          <div class="col-sm-6">
-            <span><b>16a</b>&nbsp;&nbsp;</span>Pention and annuities Total
+          <div class="divider-20"></div>
+          <div class="row">
+            <div class="col-1">
+              <span><b>6d</b></span>
+            </div>
+            <div class="col-sm-9">Total Number of Exemptions Claimed</div>
+            <n-input class="col-sm-2" name="box6d" [fGroup]="taxForm"></n-input>
           </div>
-          <n-input class="col-sm-3" name="box16a" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
-          <div class="col-sm-3 border-left"></div>
-
-          <div class="col-sm-6">
-            <span><b>16b</b>&nbsp;&nbsp;</span>Taxable amount
-          </div>
-          <div class="col-sm-3" style="margin-top:10px;">
-              <n-checkbox nName="box16arollover" [fGroup]="w2FormSummary" nValue="true" nClass="font-13" nLabel="Check if any amount rolled over"></n-checkbox>
-          </div>
-          <n-input class="col-sm-3 border-left" name="box16b" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
-
-          <div class="col-sm-9">
-            <span><b>17</b>&nbsp;&nbsp;</span>Rental real state, royalties, partnerships, S corporations, trust, etc. Attach Schedule E
-          </div>
-          <n-input class="col-sm-3 border-left" name="box17" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
-
-          <div class="col-sm-6">
-            <span><b>18</b>&nbsp;&nbsp;</span>Farm income or (loss). Attach Schedule F
-          </div>
-          <n-input class="offset-sm-3 col-sm-3 border-left" name="box18" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
-
-          <div class="col-sm-6">
-            <span><b>19</b>&nbsp;&nbsp;</span>Unemployment compensation
-          </div>
-          <n-input class="col-sm-3" name="box19" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
-          <div class="col-sm-3 border-left"></div>
-
-          <div class="col-sm-6">
-            Repayment of 2016 unemployment compensation
-          </div>
-          <n-input class="col-sm-3" name="repaymentPreviousYear1" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
-          <n-input class="col-sm-3 border-left" name="repaymentPreviousYear2" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
-
-          <div class="col-sm-6">
-            <span><b>20a</b>&nbsp;&nbsp;</span>Social security benefits
-          </div>
-          <n-input class="col-sm-3" name="box20a" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
-          <div class="col-sm-3 border-left"></div>
-
-          <div class="col-sm-6">
-            <span><b>20b</b>&nbsp;&nbsp;</span>Taxable amount
-          </div>
-          <n-input class="offset-sm-3 col-sm-3 border-left" name="box20b" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
-
-          <div class="col-sm-5">
-            <span><b>21</b>&nbsp;&nbsp;</span>Other income. List type and amount
-          </div>
-          <n-input class="col-sm-4" name="box21Type" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
-          <n-input class="col-sm-3 border-left" name="box21Amount" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
-
-          <div class="col-sm-5">
-            <span><b>22</b>&nbsp;&nbsp;</span>Combine the amount in the far right column for lines 7 though 21. This is your <b>total income</b>
-          </div>
-          <n-input class="col-sm-4" name="box22_1" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
-          <n-input class="col-sm-3 border-left" name="box22_2" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
 
         </div>
       </div>
-    </div>
 
-    <form-sub-header nTitle="ADJUSTMENTS TO INCOME"></form-sub-header>
-    <div class="row">
-      <div class="col-12">
-        <div class="row" style="border:1px solid #cccccc;">
-          <div class="col-sm-12"><br></div>
+      <form-sub-header nTitle="INCOME"></form-sub-header>
+      <div class="row">
+        <div class="col-12">
+          <div class="row" style="border:1px solid #cccccc;">
+            <div class="col-sm-12"><br></div>
 
-          <div class="col-sm-6">
-            <span><b>23</b>&nbsp;&nbsp;</span>Educator expenses
+            <div class="col-sm-6">
+              <span><b>7&nbsp;</b>&nbsp;&nbsp;</span>Wages, salaries, tips, etc.
+            </div>
+            <n-input class="offset-sm-3 col-sm-3 border-left" name="box7" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+
+            <div class="col-sm-6">
+              <span><b>8a</b>&nbsp;&nbsp;</span><b>Tax-exempt</b> interest. <b>Do not</b> included on line 8a
+            </div>
+            <n-input class="offset-sm-3 col-sm-3 border-left" name="box8a" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+
+            <div class="col-sm-6">
+              <span><b>8b</b>&nbsp;&nbsp;</span>Ordinary dividends. Attach Schedule B if required
+            </div>
+            <n-input class="col-sm-3" name="box8b" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+            <div class="col-sm-3 border-left"></div>
+
+            <div class="col-sm-6">
+              <span><b>9a</b>&nbsp;&nbsp;</span><b>Taxable</b> interest. Attach Schedule B if required
+            </div>
+            <n-input class="offset-sm-3 col-sm-3 border-left" name="box9a" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+
+            <div class="col-sm-6">
+              <span><b>9b</b>&nbsp;&nbsp;</span>Qualifying dividends
+            </div>
+            <n-input class="col-sm-3" name="box9b" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+            <div class="col-sm-3 border-left"></div>
+
+            <div class="col-sm-9">
+              Did you itemize deductions last year and receive state or local tax refunds, credits, or offsets? No, if you deducted state tax instead of state income tax
+            </div>
+            <div class="col-sm-3" formGroupName="w2Summary">
+              <div class="form-group">
+                <select formControlName="itemized" id="itemized" class="form-control">
+                  <option value=""></option>
+                  <option value="true">Yes</option>
+                  <option value="false">No</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-sm-9">
+              <span><b>10</b>&nbsp;&nbsp;</span>Taxable refunds, credits, or offset of state and local income taxes
+            </div>
+            <n-input class="col-sm-3 border-left" name="box10" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+
+            <div class="col-sm-6">
+              <span><b>11</b>&nbsp;&nbsp;</span>Alimony received
+            </div>
+            <n-input class="offset-sm-3 col-sm-3 border-left" name="box11" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+
+            <div class="col-sm-9">
+              <span><b>12</b>&nbsp;&nbsp;</span>Businesss income or (loss). Attach Schedule C or C-EZ
+            </div>
+            <n-input class="col-sm-3 border-left" name="box12" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+
+            <div class="col-sm-6">
+              <span><b>13</b>&nbsp;&nbsp;</span>Capital gain or (loss)
+            </div>
+            <div class="col-sm-3" style="margin-top:10px;">
+              <n-checkbox nName="dNotRequired" [fGroup]="w2FormSummary" nValue="true" nClass="font-13" nLabel="Schedule D not required"></n-checkbox>
+            </div>
+            <n-input class="col-sm-3 border-left" name="box13" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+
+            <div class="col-sm-6">
+              <span><b>14</b>&nbsp;&nbsp;</span>Other gains or (losses). Attach from 4797
+            </div>
+            <n-input class="offset-sm-3 col-sm-3 border-left" name="box14" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+
+            <div class="col-sm-4">
+              <span><b>15a</b>&nbsp;&nbsp;</span>IRA distributions Total.
+            </div>
+            <div class="col-sm-2">
+              <span class="form-group" formGroupName="w2Summary">
+                <select formControlName="box15arollover" id="box15arollover" class="form-control">
+                  <option value=""></option>
+                  <option value="true">Yes</option>
+                  <option value="false">No</option>
+                </select>
+              </span>
+            </div>
+            <n-input class="col-sm-3" name="box15a" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+            <div class="col-sm-3 border-left"></div>
+
+            <div class="col-sm-6">
+              <span><b>15b</b>&nbsp;&nbsp;</span>Taxable amount
+            </div>
+            <n-input class="offset-sm-3 col-sm-3 border-left" name="box15b" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+
+            <div class="col-sm-6">
+              <span><b>16a</b>&nbsp;&nbsp;</span>Pention and annuities Total
+            </div>
+            <n-input class="col-sm-3" name="box16a" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+            <div class="col-sm-3 border-left"></div>
+
+            <div class="col-sm-6">
+              <span><b>16b</b>&nbsp;&nbsp;</span>Taxable amount
+            </div>
+            <div class="col-sm-3" style="margin-top:10px;">
+                <n-checkbox nName="box16arollover" [fGroup]="w2FormSummary" nValue="true" nClass="font-13" nLabel="Check if any amount rolled over"></n-checkbox>
+            </div>
+            <n-input class="col-sm-3 border-left" name="box16b" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+
+            <div class="col-sm-9">
+              <span><b>17</b>&nbsp;&nbsp;</span>Rental real state, royalties, partnerships, S corporations, trust, etc. Attach Schedule E
+            </div>
+            <n-input class="col-sm-3 border-left" name="box17" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+
+            <div class="col-sm-6">
+              <span><b>18</b>&nbsp;&nbsp;</span>Farm income or (loss). Attach Schedule F
+            </div>
+            <n-input class="offset-sm-3 col-sm-3 border-left" name="box18" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+
+            <div class="col-sm-6">
+              <span><b>19</b>&nbsp;&nbsp;</span>Unemployment compensation
+            </div>
+            <n-input class="col-sm-3" name="box19" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+            <div class="col-sm-3 border-left"></div>
+
+            <div class="col-sm-6">
+              Repayment of 2016 unemployment compensation
+            </div>
+            <n-input class="col-sm-3" name="repaymentPreviousYear1" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+            <n-input class="col-sm-3 border-left" name="repaymentPreviousYear2" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+
+            <div class="col-sm-6">
+              <span><b>20a</b>&nbsp;&nbsp;</span>Social security benefits
+            </div>
+            <n-input class="col-sm-3" name="box20a" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+            <div class="col-sm-3 border-left"></div>
+
+            <div class="col-sm-6">
+              <span><b>20b</b>&nbsp;&nbsp;</span>Taxable amount
+            </div>
+            <n-input class="offset-sm-3 col-sm-3 border-left" name="box20b" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+
+            <div class="col-sm-5">
+              <span><b>21</b>&nbsp;&nbsp;</span>Other income. List type and amount
+            </div>
+            <n-input class="col-sm-4" name="box21Type" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+            <n-input class="col-sm-3 border-left" name="box21Amount" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+
+            <div class="col-sm-5">
+              <span><b>22</b>&nbsp;&nbsp;</span>Combine the amount in the far right column for lines 7 though 21. This is your <b>total income</b>
+            </div>
+            <n-input class="col-sm-4" name="box22_1" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+            <n-input class="col-sm-3 border-left" name="box22_2" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+
           </div>
-          <n-input class="col-sm-3" name="box23" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
-          <div class="col-sm-3 border-left"></div>
-
-          <div class="col-sm-6">
-            <span><b>24</b>&nbsp;&nbsp;</span>Certain business expenses of reservists, performing artists, and fee-based government officials. Form 2106 or 2106-EZ
-          </div>
-          <n-input class="col-sm-3" name="box24" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
-          <div class="col-sm-3 border-left"></div>
-
-          <div class="col-sm-6">
-            <span><b>25</b>&nbsp;&nbsp;</span>Health savings account deduction. Form 8889
-          </div>
-          <n-input class="col-sm-3" name="box25" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
-          <div class="col-sm-3 border-left"></div>
-
-          <div class="col-sm-6">
-            <span><b>26</b>&nbsp;&nbsp;</span>Moving expenses. Form 3903
-          </div>
-          <n-input class="col-sm-3" name="box26" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
-          <div class="col-sm-3 border-left"></div>
-
-          <div class="col-sm-6">
-            <span><b>27</b>&nbsp;&nbsp;</span>Deductible part of self-employment tax. Attach Schedule SE
-          </div>
-          <n-input class="col-sm-3" name="box27" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
-          <div class="col-sm-3 border-left"></div>
-
-          <div class="col-sm-6">
-            <span><b>28</b>&nbsp;&nbsp;</span>Self employed SEP, SIMPLE, and qualified plans
-          </div>
-          <n-input class="col-sm-3" name="box28" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
-          <div class="col-sm-3 border-left"></div>
-
-          <div class="col-sm-6">
-            <span><b>29</b>&nbsp;&nbsp;</span>Self employed health insurance deduction
-          </div>
-          <n-input class="col-sm-3" name="box29" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
-          <div class="col-sm-3 border-left"></div>
-
-          <div class="col-sm-6">
-            <span><b>30</b>&nbsp;&nbsp;</span>Penalty on early withdrawal of savings
-          </div>
-          <n-input class="col-sm-3" name="box30" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
-          <div class="col-sm-3 border-left"></div>
-
-          <div class="col-sm-6">
-            <span><b>31</b>&nbsp;&nbsp;</span>Alimony paid
-          </div>
-          <n-input class="col-sm-3" name="box31" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
-          <div class="col-sm-3 border-left"></div>
-
-          <div class="col-sm-6">
-            <span><b>32</b>&nbsp;&nbsp;</span>IRA deduction
-          </div>
-          <n-input class="col-sm-3" name="box32" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
-          <div class="col-sm-3 border-left"></div>
-
-          <div class="col-sm-6">
-            <span><b>33</b>&nbsp;&nbsp;</span>Student loan interest deduction
-          </div>
-          <n-input class="col-sm-3" name="box33" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
-          <div class="col-sm-3 border-left"></div>
-
-          <div class="col-sm-6">
-            <span><b>34</b>&nbsp;&nbsp;</span>Tuition and fees. Form 8917
-          </div>
-          <n-input class="col-sm-3" name="box34" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
-          <div class="col-sm-3 border-left"></div>
-
-          <div class="col-sm-6">
-            <span><b>35</b>&nbsp;&nbsp;</span>Domestic production activities deduction. Form 8903
-          </div>
-          <n-input class="col-sm-3" name="box35" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
-          <div class="col-sm-3 border-left"></div>
-
-          <div class="col-sm-3">
-            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>Other:</b>
-          </div>
-          <div class="col-sm-9"></div>
-
-          <div class="col-sm-2"></div>
-          <div class="col-sm-4">Reforestation</div>
-          <n-input class="col-sm-3" name="box35Reforestation" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
-          <div class="col-sm-3 border-left"></div>
-
-          <div class="col-sm-2"></div>
-          <div class="col-sm-4">Sub-pay (Trade Act)</div>
-          <n-input class="col-sm-3" name="box35SubPay" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
-          <div class="col-sm-3 border-left"></div>
-
-          <div class="col-sm-2"></div>
-          <div class="col-sm-4">Jury-duty pay you gave to your employer</div>
-          <n-input class="col-sm-3" name="box35JuryDuty" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
-          <div class="col-sm-3 border-left"></div>
-
-          <div class="col-sm-2"></div>
-          <div class="col-sm-4">501(c) 18 pension plan</div>
-          <n-input class="col-sm-3" name="box35PensionPlan" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
-          <div class="col-sm-3 border-left"></div>
-
-          <div class="col-sm-2"></div>
-          <div class="col-sm-4">PPR</div>
-          <n-input class="col-sm-3" name="box35PPR" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
-          <div class="col-sm-3 border-left"></div>
-
-          <div class="col-sm-2"></div>
-          <div class="col-sm-4">Form 2555; line 50</div>
-          <n-input class="col-sm-3" name="box35Form2555" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
-          <div class="col-sm-3 border-left"></div>
-
-          <div class="col-sm-2"></div>
-          <div class="col-sm-4">Archer MSA deduction. Form 8853</div>
-          <n-input class="col-sm-3" name="box35ArcherMSA" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
-          <div class="col-sm-3 border-left"></div>
-
-          <div class="col-sm-2"></div>
-          <div class="col-sm-4">Deduction for whistle blower fees</div>
-          <n-input class="col-sm-3" name="box35BlowerFees" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
-          <div class="col-sm-3 border-left"></div>
-
-          <div class="col-sm-2"></div>
-          <n-input class="col-sm-4" name="box35Other" [fGroup]="w2FormSummary"></n-input>
-          <n-input class="col-sm-3" name="box35OtherAmount" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
-          <div class="col-sm-3 border-left"></div>
-
-          <div class="col-sm-6">
-            <span><b>36</b>&nbsp;&nbsp;</span>Total adjustment. Add lines 23 through 35
-          </div>
-          <n-input class="offset-sm-3 col-sm-3 border-left" name="box36" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
-
-
-          <div class="col-sm-6">
-            <span><b>36</b>&nbsp;&nbsp;</span>Total adjustment. Add lines 23 through 35
-          </div>
-          <n-input class="offset-sm-3 col-sm-3 border-left" name="box36" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
-
-          <div class="col-sm-6">
-            <span><b>37</b>&nbsp;&nbsp;</span>Subtract line 36 from line 22. this is your <b>adjusted gross income</b>
-          </div>
-          <n-input class="offset-sm-3 col-sm-3 border-left" name="box37" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
-
         </div>
       </div>
-    </div>
-  </form>
+
+      <form-sub-header nTitle="ADJUSTMENTS TO INCOME"></form-sub-header>
+      <div class="row">
+        <div class="col-12">
+          <div class="row" style="border:1px solid #cccccc;">
+            <div class="col-sm-12"><br></div>
+
+            <div class="col-sm-6">
+              <span><b>23</b>&nbsp;&nbsp;</span>Educator expenses
+            </div>
+            <n-input class="col-sm-3" name="box23" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+            <div class="col-sm-3 border-left"></div>
+
+            <div class="col-sm-6">
+              <span><b>24</b>&nbsp;&nbsp;</span>Certain business expenses of reservists, performing artists, and fee-based government officials. Form 2106 or 2106-EZ
+            </div>
+            <n-input class="col-sm-3" name="box24" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+            <div class="col-sm-3 border-left"></div>
+
+            <div class="col-sm-6">
+              <span><b>25</b>&nbsp;&nbsp;</span>Health savings account deduction. Form 8889
+            </div>
+            <n-input class="col-sm-3" name="box25" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+            <div class="col-sm-3 border-left"></div>
+
+            <div class="col-sm-6">
+              <span><b>26</b>&nbsp;&nbsp;</span>Moving expenses. Form 3903
+            </div>
+            <n-input class="col-sm-3" name="box26" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+            <div class="col-sm-3 border-left"></div>
+
+            <div class="col-sm-6">
+              <span><b>27</b>&nbsp;&nbsp;</span>Deductible part of self-employment tax. Attach Schedule SE
+            </div>
+            <n-input class="col-sm-3" name="box27" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+            <div class="col-sm-3 border-left"></div>
+
+            <div class="col-sm-6">
+              <span><b>28</b>&nbsp;&nbsp;</span>Self employed SEP, SIMPLE, and qualified plans
+            </div>
+            <n-input class="col-sm-3" name="box28" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+            <div class="col-sm-3 border-left"></div>
+
+            <div class="col-sm-6">
+              <span><b>29</b>&nbsp;&nbsp;</span>Self employed health insurance deduction
+            </div>
+            <n-input class="col-sm-3" name="box29" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+            <div class="col-sm-3 border-left"></div>
+
+            <div class="col-sm-6">
+              <span><b>30</b>&nbsp;&nbsp;</span>Penalty on early withdrawal of savings
+            </div>
+            <n-input class="col-sm-3" name="box30" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+            <div class="col-sm-3 border-left"></div>
+
+            <div class="col-sm-6">
+              <span><b>31</b>&nbsp;&nbsp;</span>Alimony paid
+            </div>
+            <n-input class="col-sm-3" name="box31" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+            <div class="col-sm-3 border-left"></div>
+
+            <div class="col-sm-6">
+              <span><b>32</b>&nbsp;&nbsp;</span>IRA deduction
+            </div>
+            <n-input class="col-sm-3" name="box32" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+            <div class="col-sm-3 border-left"></div>
+
+            <div class="col-sm-6">
+              <span><b>33</b>&nbsp;&nbsp;</span>Student loan interest deduction
+            </div>
+            <n-input class="col-sm-3" name="box33" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+            <div class="col-sm-3 border-left"></div>
+
+            <div class="col-sm-6">
+              <span><b>34</b>&nbsp;&nbsp;</span>Tuition and fees. Form 8917
+            </div>
+            <n-input class="col-sm-3" name="box34" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+            <div class="col-sm-3 border-left"></div>
+
+            <div class="col-sm-6">
+              <span><b>35</b>&nbsp;&nbsp;</span>Domestic production activities deduction. Form 8903
+            </div>
+            <n-input class="col-sm-3" name="box35" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+            <div class="col-sm-3 border-left"></div>
+
+            <div class="col-sm-3">
+              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>Other:</b>
+            </div>
+            <div class="col-sm-9"></div>
+
+            <div class="col-sm-2"></div>
+            <div class="col-sm-4">Reforestation</div>
+            <n-input class="col-sm-3" name="box35Reforestation" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+            <div class="col-sm-3 border-left"></div>
+
+            <div class="col-sm-2"></div>
+            <div class="col-sm-4">Sub-pay (Trade Act)</div>
+            <n-input class="col-sm-3" name="box35SubPay" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+            <div class="col-sm-3 border-left"></div>
+
+            <div class="col-sm-2"></div>
+            <div class="col-sm-4">Jury-duty pay you gave to your employer</div>
+            <n-input class="col-sm-3" name="box35JuryDuty" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+            <div class="col-sm-3 border-left"></div>
+
+            <div class="col-sm-2"></div>
+            <div class="col-sm-4">501(c) 18 pension plan</div>
+            <n-input class="col-sm-3" name="box35PensionPlan" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+            <div class="col-sm-3 border-left"></div>
+
+            <div class="col-sm-2"></div>
+            <div class="col-sm-4">PPR</div>
+            <n-input class="col-sm-3" name="box35PPR" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+            <div class="col-sm-3 border-left"></div>
+
+            <div class="col-sm-2"></div>
+            <div class="col-sm-4">Form 2555; line 50</div>
+            <n-input class="col-sm-3" name="box35Form2555" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+            <div class="col-sm-3 border-left"></div>
+
+            <div class="col-sm-2"></div>
+            <div class="col-sm-4">Archer MSA deduction. Form 8853</div>
+            <n-input class="col-sm-3" name="box35ArcherMSA" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+            <div class="col-sm-3 border-left"></div>
+
+            <div class="col-sm-2"></div>
+            <div class="col-sm-4">Deduction for whistle blower fees</div>
+            <n-input class="col-sm-3" name="box35BlowerFees" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+            <div class="col-sm-3 border-left"></div>
+
+            <div class="col-sm-2"></div>
+            <n-input class="col-sm-4" name="box35Other" [fGroup]="w2FormSummary"></n-input>
+            <n-input class="col-sm-3" name="box35OtherAmount" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+            <div class="col-sm-3 border-left"></div>
+
+            <div class="col-sm-6">
+              <span><b>36</b>&nbsp;&nbsp;</span>Total adjustment. Add lines 23 through 35
+            </div>
+            <n-input class="offset-sm-3 col-sm-3 border-left" name="box36" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+
+
+            <div class="col-sm-6">
+              <span><b>36</b>&nbsp;&nbsp;</span>Total adjustment. Add lines 23 through 35
+            </div>
+            <n-input class="offset-sm-3 col-sm-3 border-left" name="box36" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+
+            <div class="col-sm-6">
+              <span><b>37</b>&nbsp;&nbsp;</span>Subtract line 36 from line 22. this is your <b>adjusted gross income</b>
+            </div>
+            <n-input class="offset-sm-3 col-sm-3 border-left" name="box37" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <!-- <button role="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo2" aria-expanded="true"> -->
+          <button role="button" class="btn btn-primary float-right" [disabled]="!taxForm.valid">save</button>
+        </div>
+      </div>
+      <div class="divider-30"></div>
+    </form>
+  </div>
 </div>

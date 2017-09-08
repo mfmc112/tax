@@ -20,7 +20,7 @@
           (onOpened)="_onOpened()"
           (onCloseStart)="_onCloseStart()"
           (onClosed)="_onClosed()">
-          
+
           <div class="col-12 ammount-box alert" [class.alert-success]="estimate > 0" [class.alert-grey]="estimate === 0" [class.alert-danger]="estimate < 0">
             CLIENT// {{client.firstName}} {{client.middleName}}{{(client.middleName)?'.':''}} {{client.lastName}}<BR>
             <span class="big-value">{{estimate | currency:'USD':true}}</span><br>
@@ -49,10 +49,10 @@
         </ng-sidebar>
         <div ng-sidebar-content>
           <header class="application-header">
-            <span (click)="_toggleOpened()"><i class="fa fa-bars" aria-hidden="true"></i></span>
+            <span (click)="_toggleOpened()"><i class="fa fa-bars" aria-hidden="true"></i></span>&nbsp;&nbsp;&nbsp;&nbsp;
+            <application-header-component style="width:100%"></application-header-component>
           </header>
           <section class="application-contents">
-            <application-header-component></application-header-component>
             <ui-view></ui-view>
           </section>
         </div>
