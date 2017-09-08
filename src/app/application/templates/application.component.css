@@ -96,3 +96,7 @@ application {
     color: #FFFFFF;
   }
 }
+
+.dropdown-item.active, .dropdown-item:active {
+  background-color: #BEBEBE;
+}
