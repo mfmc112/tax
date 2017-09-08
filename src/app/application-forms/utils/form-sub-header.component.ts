@@ -4,8 +4,7 @@ import { Component, Input } from '@angular/core';
   selector: 'form-sub-header',
   inputs:['nTitle'],
   template: `
-
-    <div class="divider-20"></div>
+    <div class="divider-20">&nbsp;</div>
     <p class="lead">{{nTitle}}</p>
     <hr class="sub-header-hr">
   `

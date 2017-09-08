@@ -121,10 +121,18 @@ input.ng-invalid:not(form) {
   top: -13px;
 }
 
-/*.col-sm-1 {
-  padding-right: 0px!important;
+.form {
+  margin-right:10px;
+  margin-left:10px
 }
 
-.col-sm-3 {
-  padding-right: 0px!important;
-}*/
+.form-body {
+  background-color:#ffffff;
+  border:1px solid #E0E0E0;
+}
+
+.form-body-tabs {
+  background-color:#ffffff;
+  border:1px solid #E0E0E0;
+  border-top-width:0px;
+}

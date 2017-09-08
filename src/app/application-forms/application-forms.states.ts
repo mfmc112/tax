@@ -2,6 +2,7 @@ import { PersonalInfoFormComponent } from './personal-info-form.component';
 import { FilingInfoFormComponent } from './filing-info-form.component';
 import { W2FormComponent } from './w2-form.component';
 import { Form1040Page1Component } from './form-1040-page1.component';
+import { Form1040Component } from './form-1040.component';
 
 export const personalInfoState = {
   name: 'menu.application.personalInfo',
@@ -21,8 +22,14 @@ export const w2FormState = {
   component: W2FormComponent
 };
 
+export const form1040State = {
+  name: 'menu.application.form1040',
+  url: '/form-1040',
+  component: Form1040Component
+};
+
 export const form1040Page1State = {
-  name: 'menu.application.form1040Page1',
+  name: 'menu.application.form1040.page1',
   url: '/form-1040-page1',
   component: Form1040Page1Component
 };
@@ -31,5 +38,6 @@ export const APPLICATION_FORMS_STATES = [
   personalInfoState,
   filingInfoState,
   w2FormState,
+  form1040State,
   form1040Page1State
 ];

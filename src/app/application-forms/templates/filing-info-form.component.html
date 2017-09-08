@@ -1,188 +1,190 @@
-<form-header nTitle="FILING INFORMATION"></form-header>
+<div class="form-body">
+  <form-header nTitle="FILING INFORMATION"></form-header>
 
-<form [formGroup]="taxForm" (submit)="submitForm(taxForm.value)" style="min-height:150px" novalidate >
-  <form-sub-header nTitle="FILING STATUS AND EXEMPTIONS"></form-sub-header>
+  <form [formGroup]="taxForm" (submit)="submitForm(taxForm.value)" class="form" novalidate >
+    <form-sub-header nTitle="FILING STATUS AND EXEMPTIONS"></form-sub-header>
 
-  <div class="row">
-    <div class="col-12">
-      <n-radio-list [labelValue]="statusRadio" [fGroup]="taxForm" nName="status"></n-radio-list>
-    </div>
-  </div>
-
-  <div class="divider-30"></div>
-
-  <div class="row">
-    <div class="col-12">
-      <div class="row">
-        <div class="col-12">
-          <label>Exemptions Choose if Any Apply:</label>
-        </div>
-      </div>
-      <div class="row">
-        <n-checkbox nName="claimAnother" [fGroup]="taxForm" nValue="true" nLabel="You can be claimed on another person's return"></n-checkbox>
-      </div>
-      <div class="row">
-        <n-checkbox nName="filingJointlyButSpouseInAnotherPersons" [fGroup]="taxForm" nValue="true" nLabel="Filing status 2 and spouse can be on another person's return"></n-checkbox>
-      </div>
-      <div class="row">
-        <n-checkbox nName="headClaimNonResidentialAlienSpouse" [fGroup]="taxForm" nValue="true" nLabel="You are using filing status 4 and claiming nonresidential alien spouse"></n-checkbox>
+    <div class="row">
+      <div class="col-12">
+        <n-radio-list [labelValue]="statusRadio" [fGroup]="taxForm" nName="status"></n-radio-list>
       </div>
     </div>
-  </div>
 
-  <form-sub-header nTitle="SPECIAL PROCESSING"></form-sub-header>
+    <div class="divider-30"></div>
 
-  <div class="row">
-    <n-input class="col-sm-12" name="disasterDesignation" label="Disaster Designation - IRS e-filing field" [fGroup]="taxForm"></n-input>
-  </div>
-  <div class="row">
-    <div class="offset-sm-6 col-sm-3">
-      <h5><small>Taxpayer</small></h5>
-    </div>
-    <div class="col-sm-3">
-      <h5><small>Spouse</small></h5>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-6">
-      <label>Student</label>
-    </div>
-    <div class="col-sm-3" style="padding-bottom: 6px;" formGroupName="payerSpecialProcessing">
-      <select formControlName="student" id="payerStudent" class="form-control">
-        <option value=""></option>
-        <option *ngFor="let o of studentTypeList" value="{{o.value}}">{{o.name}}</option>
-      </select>
-    </div>
-    <div class="col-sm-3" formGroupName="spouseSpecialProcessing">
-      <select formControlName="student" id="spouseStudent" class="form-control">
-        <option value=""></option>
-        <option *ngFor="let o of studentTypeList" value="{{o.value}}">{{o.name}}</option>
-      </select>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-6">
-      <label>Member of Armed Forces</label>
-    </div>
-    <div class="col-sm-3" style="padding-bottom: 6px;" formGroupName="payerSpecialProcessing">
-      <select formControlName="armedForces" id="payerAForces" class="form-control">
-        <option value=""></option>
-        <option *ngFor="let o of yesNoList" value="{{o.value}}">{{o.name}}</option>
-      </select>
-    </div>
-    <div class="col-sm-3" formGroupName="spouseSpecialProcessing">
-      <select formControlName="armedForces" id="spouseAForces" class="form-control">
-        <option value=""></option>
-        <option *ngFor="let o of yesNoList" value="{{o.value}}">{{o.name}}</option>
-      </select>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-6" style="min-height:40px;">
-      <label for="payerArmedForces">Check if Blind</label>
-    </div>
-    <div class="col-sm-3" style="padding-bottom: 6px;">
-      <n-checkbox nName="payerBlind" controlForm="blind" [fGroup]="payerSpecialGroup" nValue="true" nLabel=" " nClass="checkbox-padding"></n-checkbox>
-    </div>
-    <div class="col-sm-3">
-      <n-checkbox nName="spouseBlind" controlForm="blind" [fGroup]="spouseSpecialGroup" nValue="true" nLabel=" " nClass="checkbox-padding"></n-checkbox>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-6" style="min-height:40px;">
-      <label for="payerDisabled">Check if Totally and Permanently Disabled</label>
-    </div>
-    <div class="col-sm-3" style="padding-bottom: 6px;">
-      <n-checkbox nName="payerDisabled" controlForm="disabled" [fGroup]="payerSpecialGroup" nValue="true" nLabel=" " nClass="checkbox-padding"></n-checkbox>
-    </div>
-    <div class="col-sm-3">
-      <n-checkbox nName="spouseDisabled" controlForm="disabled" [fGroup]="spouseSpecialGroup" nValue="true" nLabel=" " nClass="checkbox-padding"></n-checkbox>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-6">
-      <label for="taxpayerDeath">Date of Death ONLY if in 2016 or 2017</label>
-    </div>
-    <div class="col-sm-3" formGroupName="payerSpecialProcessing">
-        <my-date-picker name="taxpayerDeath"
-                id="taxpayerDeath"
-                formControlName="death"
-                [options]="myDatePickerOptions"
-                [defaultMonth]="defaultMonth">
-        </my-date-picker>
-    </div>
-    <div class="col-sm-3" formGroupName="spouseSpecialProcessing">
-        <my-date-picker name="spouseDeath"
-                id="spouseDeath"
-                formControlName="death"
-                [options]="myDatePickerOptions"
-                [defaultMonth]="defaultMonth">
-        </my-date-picker>
-    </div>
-  </div>
-      <div class="row">
-        <div class="col-sm-6">
-          <label for="payerSpecialMilitary">Special Military Processing</label>
+    <div class="row">
+      <div class="col-12">
+        <div class="row">
+          <div class="col-12">
+            <label>Exemptions Choose if Any Apply:</label>
+          </div>
         </div>
-        <div class="col-sm-3" style="padding-bottom: 6px;" formGroupName="payerSpecialProcessing">
-          <select formControlName="specialMilitary" name="payerSpecialMilitary" id="payerSpecialMilitary"  class="form-control">
-            <option value=""></option>
-            <option *ngFor="let o of specialMilitaryList" value="{{o.value}}">{{o.name}}</option>
-          </select>
+        <div class="row">
+          <n-checkbox nName="claimAnother" [fGroup]="taxForm" nValue="true" nLabel="You can be claimed on another person's return"></n-checkbox>
         </div>
-        <div class="col-sm-3" formGroupName="spouseSpecialProcessing">
-          <select formControlName="specialMilitary" name="spouseSpecialMilitary" id="spouseSpecialMilitary"  class="form-control">
-            <option value=""></option>
-            <option *ngFor="let o of specialMilitaryList" value="{{o.value}}">{{o.name}}</option>
-          </select>
+        <div class="row">
+          <n-checkbox nName="filingJointlyButSpouseInAnotherPersons" [fGroup]="taxForm" nValue="true" nLabel="Filing status 2 and spouse can be on another person's return"></n-checkbox>
+        </div>
+        <div class="row">
+          <n-checkbox nName="headClaimNonResidentialAlienSpouse" [fGroup]="taxForm" nValue="true" nLabel="You are using filing status 4 and claiming nonresidential alien spouse"></n-checkbox>
         </div>
       </div>
-      <div class="row">
-        <div class="col-sm-6">
-          <label for="deploymentDate">Deployment Date</label>
-        </div>
-        <div class="col-sm-3" style="padding-bottom: 6px;" formGroupName="payerSpecialProcessing">
-          <my-date-picker name="payerDeploymentDate"
-                  id="payerDeploymentDate"
-                  formControlName="deploymentDate"
+    </div>
+
+    <form-sub-header nTitle="SPECIAL PROCESSING"></form-sub-header>
+
+    <div class="row">
+      <n-input class="col-sm-12" name="disasterDesignation" label="Disaster Designation - IRS e-filing field" [fGroup]="taxForm"></n-input>
+    </div>
+    <div class="row">
+      <div class="offset-sm-6 col-sm-3">
+        <h5><small>Taxpayer</small></h5>
+      </div>
+      <div class="col-sm-3">
+        <h5><small>Spouse</small></h5>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <label>Student</label>
+      </div>
+      <div class="col-sm-3" style="padding-bottom: 6px;" formGroupName="payerSpecialProcessing">
+        <select formControlName="student" id="payerStudent" class="form-control">
+          <option value=""></option>
+          <option *ngFor="let o of studentTypeList" value="{{o.value}}">{{o.name}}</option>
+        </select>
+      </div>
+      <div class="col-sm-3" formGroupName="spouseSpecialProcessing">
+        <select formControlName="student" id="spouseStudent" class="form-control">
+          <option value=""></option>
+          <option *ngFor="let o of studentTypeList" value="{{o.value}}">{{o.name}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <label>Member of Armed Forces</label>
+      </div>
+      <div class="col-sm-3" style="padding-bottom: 6px;" formGroupName="payerSpecialProcessing">
+        <select formControlName="armedForces" id="payerAForces" class="form-control">
+          <option value=""></option>
+          <option *ngFor="let o of yesNoList" value="{{o.value}}">{{o.name}}</option>
+        </select>
+      </div>
+      <div class="col-sm-3" formGroupName="spouseSpecialProcessing">
+        <select formControlName="armedForces" id="spouseAForces" class="form-control">
+          <option value=""></option>
+          <option *ngFor="let o of yesNoList" value="{{o.value}}">{{o.name}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6" style="min-height:40px;">
+        <label for="payerArmedForces">Check if Blind</label>
+      </div>
+      <div class="col-sm-3" style="padding-bottom: 6px;">
+        <n-checkbox nName="payerBlind" controlForm="blind" [fGroup]="payerSpecialGroup" nValue="true" nLabel=" " nClass="checkbox-padding"></n-checkbox>
+      </div>
+      <div class="col-sm-3">
+        <n-checkbox nName="spouseBlind" controlForm="blind" [fGroup]="spouseSpecialGroup" nValue="true" nLabel=" " nClass="checkbox-padding"></n-checkbox>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6" style="min-height:40px;">
+        <label for="payerDisabled">Check if Totally and Permanently Disabled</label>
+      </div>
+      <div class="col-sm-3" style="padding-bottom: 6px;">
+        <n-checkbox nName="payerDisabled" controlForm="disabled" [fGroup]="payerSpecialGroup" nValue="true" nLabel=" " nClass="checkbox-padding"></n-checkbox>
+      </div>
+      <div class="col-sm-3">
+        <n-checkbox nName="spouseDisabled" controlForm="disabled" [fGroup]="spouseSpecialGroup" nValue="true" nLabel=" " nClass="checkbox-padding"></n-checkbox>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <label for="taxpayerDeath">Date of Death ONLY if in 2016 or 2017</label>
+      </div>
+      <div class="col-sm-3" formGroupName="payerSpecialProcessing">
+          <my-date-picker name="taxpayerDeath"
+                  id="taxpayerDeath"
+                  formControlName="death"
                   [options]="myDatePickerOptions"
                   [defaultMonth]="defaultMonth">
           </my-date-picker>
+      </div>
+      <div class="col-sm-3" formGroupName="spouseSpecialProcessing">
+          <my-date-picker name="spouseDeath"
+                  id="spouseDeath"
+                  formControlName="death"
+                  [options]="myDatePickerOptions"
+                  [defaultMonth]="defaultMonth">
+          </my-date-picker>
+      </div>
+    </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <label for="payerSpecialMilitary">Special Military Processing</label>
+          </div>
+          <div class="col-sm-3" style="padding-bottom: 6px;" formGroupName="payerSpecialProcessing">
+            <select formControlName="specialMilitary" name="payerSpecialMilitary" id="payerSpecialMilitary"  class="form-control">
+              <option value=""></option>
+              <option *ngFor="let o of specialMilitaryList" value="{{o.value}}">{{o.name}}</option>
+            </select>
+          </div>
+          <div class="col-sm-3" formGroupName="spouseSpecialProcessing">
+            <select formControlName="specialMilitary" name="spouseSpecialMilitary" id="spouseSpecialMilitary"  class="form-control">
+              <option value=""></option>
+              <option *ngFor="let o of specialMilitaryList" value="{{o.value}}">{{o.name}}</option>
+            </select>
+          </div>
         </div>
-        <div class="col-sm-3" formGroupName="spouseSpecialProcessing">
-            <my-date-picker name="spouseDeploymentDate"
-                    id="spouseDeploymentDate"
+        <div class="row">
+          <div class="col-sm-6">
+            <label for="deploymentDate">Deployment Date</label>
+          </div>
+          <div class="col-sm-3" style="padding-bottom: 6px;" formGroupName="payerSpecialProcessing">
+            <my-date-picker name="payerDeploymentDate"
+                    id="payerDeploymentDate"
                     formControlName="deploymentDate"
                     [options]="myDatePickerOptions"
                     [defaultMonth]="defaultMonth">
             </my-date-picker>
+          </div>
+          <div class="col-sm-3" formGroupName="spouseSpecialProcessing">
+              <my-date-picker name="spouseDeploymentDate"
+                      id="spouseDeploymentDate"
+                      formControlName="deploymentDate"
+                      [options]="myDatePickerOptions"
+                      [defaultMonth]="defaultMonth">
+              </my-date-picker>
+          </div>
         </div>
-      </div>
 
 
 
-  <form-sub-header nTitle="PRESIDENTIAL ELECTION CAMPAIGN"></form-sub-header>
+    <form-sub-header nTitle="PRESIDENTIAL ELECTION CAMPAIGN"></form-sub-header>
 
-  <div class="row">
-    <div class="col-12">
-      <div class="row">
-        <div class="col-sm-6" style="margin-top: 15px;">
-          <p>Check here if you, or your spouse if a joint return, want $3 to go to this fund</p>
-        </div>
-        <div class="col-sm-3">
-          <n-checkbox nName="payerDonate" [fGroup]="taxForm" nValue="true" nLabel=" " nClass="checkbox-padding"></n-checkbox>
-        </div>
-        <div class="col-sm-3">
-          <n-checkbox nName="spouseDonate" [fGroup]="taxForm" nValue="true" nLabel=" " nClass="checkbox-padding"></n-checkbox>
+    <div class="row">
+      <div class="col-12">
+        <div class="row">
+          <div class="col-sm-6" style="margin-top: 15px;">
+            <p>Check here if you, or your spouse if a joint return, want $3 to go to this fund</p>
+          </div>
+          <div class="col-sm-3">
+            <n-checkbox nName="payerDonate" [fGroup]="taxForm" nValue="true" nLabel=" " nClass="checkbox-padding"></n-checkbox>
+          </div>
+          <div class="col-sm-3">
+            <n-checkbox nName="spouseDonate" [fGroup]="taxForm" nValue="true" nLabel=" " nClass="checkbox-padding"></n-checkbox>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-</form>
-<div class="row">
-  <div class="col-md-12">
-    <!-- <button role="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo2" aria-expanded="true"> -->
-    <button role="button" class="btn btn-primary float-right">next</button>
+  </form>
+  <div class="row">
+    <div class="col-md-12">
+      <!-- <button role="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo2" aria-expanded="true"> -->
+      <button role="button" class="btn btn-primary float-right">next</button>
+    </div>
   </div>
 </div>

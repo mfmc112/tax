@@ -1,138 +1,140 @@
-<form-header nTitle="PERSONAL INFORMATION"></form-header>
+<div class="form-body">
+  <form-header nTitle="PERSONAL INFORMATION"></form-header>
 
-<form [formGroup]="taxForm" (submit)="submitForm(taxForm.value)" style="min-height:150px" novalidate >
-  <form-sub-header nTitle="TAXPAYER INFORMATION"></form-sub-header>
+  <form [formGroup]="taxForm" (submit)="submitForm(taxForm.value)" class="form" novalidate >
+    <form-sub-header nTitle="TAXPAYER INFORMATION"></form-sub-header>
 
-  <div class="row">
-    <div class="col-12">
-      <div class="row">
-        <n-input class="col-sm-3" name="firstName" label="First Name" [fGroup]="taxPayerGroup"></n-input>
-        <n-input class="col-sm-1" name="middleName" label="Initial" [mask]="initialMask" [fGroup]="taxPayerGroup"></n-input>
-        <n-input class="col-sm-4" name="lastName" label="Last Name" [fGroup]="taxPayerGroup"></n-input>
-        <n-input class="col-sm-1" name="suffixName" label="Suffix" [fGroup]="taxPayerGroup"></n-input>
-        <n-input class="col-sm-3" name="ssn" label="SSN" [mask]="ssnMask" [fGroup]="taxPayerGroup"></n-input>
+    <div class="row">
+      <div class="col-12">
+        <div class="row">
+          <n-input class="col-sm-3" name="firstName" label="First Name" [fGroup]="taxPayerGroup"></n-input>
+          <n-input class="col-sm-1" name="middleName" label="Initial" [mask]="initialMask" [fGroup]="taxPayerGroup"></n-input>
+          <n-input class="col-sm-4" name="lastName" label="Last Name" [fGroup]="taxPayerGroup"></n-input>
+          <n-input class="col-sm-1" name="suffixName" label="Suffix" [fGroup]="taxPayerGroup"></n-input>
+          <n-input class="col-sm-3" name="ssn" label="SSN" [mask]="ssnMask" [fGroup]="taxPayerGroup"></n-input>
 
-        <div class="col-sm-3">
-          <div class="form-group" formGroupName="taxPayer">
-            <label for="dateOfBirth" class="no-margin">Date of Birth</label>
-            <my-date-picker name="dateOfBirth"
-                    id="dateOfBirth"
-                    formControlName="dateOfBirth"
-                    [options]="myDatePickerOptions"
-                    [defaultMonth]="defaultMonth"
-                    (dateChanged)="onDateChanged($event)">
-            </my-date-picker>
+          <div class="col-sm-3">
+            <div class="form-group" formGroupName="taxPayer">
+              <label for="dateOfBirth" class="no-margin">Date of Birth</label>
+              <my-date-picker name="dateOfBirth"
+                      id="dateOfBirth"
+                      formControlName="dateOfBirth"
+                      [options]="myDatePickerOptions"
+                      [defaultMonth]="defaultMonth"
+                      (dateChanged)="onDateChanged($event)">
+              </my-date-picker>
+            </div>
           </div>
-        </div>
-        <n-input class="col-sm-2" name="age" label="Age" [fGroup]="taxPayerGroup"></n-input>
-        <n-input class="col-sm-7" name="occuppation" label="Occupation" [mask]="ssnMask" [fGroup]="taxPayerGroup"></n-input>
+          <n-input class="col-sm-2" name="age" label="Age" [fGroup]="taxPayerGroup"></n-input>
+          <n-input class="col-sm-7" name="occuppation" label="Occupation" [mask]="ssnMask" [fGroup]="taxPayerGroup"></n-input>
 
-        <n-input class="col-sm-3" name="mobile"  [mask]="phoneMask" label="Phone Numbers" placeHolder="Mobile" [fGroup]="payerPhoneGroup"></n-input>
-        <n-input class="col-sm-3" name="evening" [mask]="phoneMask" label=" " placeHolder="Evening" [fGroup]="payerPhoneGroup" [addMargin]="true"></n-input>
-        <n-input class="col-sm-3" name="other"   [mask]="phoneMask" label=" " placeHolder="Other" [fGroup]="payerPhoneGroup" [addMargin]="true" (keyup)="enableType('phone')"></n-input>
-        <div class="col-sm-3" formGroupName="taxPayer">
-          <div class="form-group"  formGroupName="phone">
-            <label class="add-margin"></label>
-            <select formControlName="type" id="type" class="form-control">
-              <option value=""></option>
-              <option value="fax">Fax</option>
-              <option value="work">Work</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <form-sub-header nTitle="SPOUSE INFORMATION"></form-sub-header>
-
-  <span class="sub-heading">Enter the Spouse's name HERE for <b>Married Filing Joint</b> or <b>Married Filing Separate</b> returns</span>
-  <div class="row">
-    <div class="col-12">
-      <div class="row">
-        <n-input class="col-sm-3" name="firstName" label="First Name" [fGroup]="spouseGroup"></n-input>
-        <n-input class="col-sm-1" name="middleName" label="Initial" [mask]="initialMask" [fGroup]="spouseGroup"></n-input>
-        <n-input class="col-sm-4" name="lastName" label="Last Name" [fGroup]="spouseGroup"></n-input>
-        <n-input class="col-sm-1" name="suffixName" label="Suffix" [fGroup]="spouseGroup"></n-input>
-        <n-input class="col-sm-3" name="ssn" label="SSN" [mask]="ssnMask" [fGroup]="spouseGroup"></n-input>
-
-        <div class="col-sm-3">
-          <div class="form-group" formGroupName="spouse">
-            <label for="dateOfBirth" class="no-margin">Date of Birth</label>
-            <my-date-picker name="dateOfBirth"
-                    id="dateOfBirth"
-                    formControlName="dateOfBirth"
-                    [options]="myDatePickerOptions"
-                    [defaultMonth]="defaultMonth"
-                    (dateChanged)="onDateChanged($event)">
-            </my-date-picker>
-          </div>
-        </div>
-        <n-input class="col-sm-2" name="age" label="Age" [fGroup]="spouseGroup"></n-input>
-        <n-input class="col-sm-7" name="occuppation" label="Occupation" [mask]="ssnMask" [fGroup]="spouseGroup"></n-input>
-
-        <n-input class="col-sm-3" name="mobile"  [mask]="phoneMask" label="Phone Numbers" placeHolder="Mobile" [fGroup]="spousePhoneGroup"></n-input>
-        <n-input class="col-sm-3" name="evening" [mask]="phoneMask" label=" " placeHolder="Evening" [addMargin]="true" [fGroup]="spousePhoneGroup"></n-input>
-        <n-input class="col-sm-3" name="other"   [mask]="phoneMask" label=" " placeHolder="Other" [addMargin]="true" [fGroup]="spousePhoneGroup" (keyup)="enableType('sPhone')"></n-input>
-        <div class="col-sm-3" formGroupName="spouse">
-          <div class="form-group"  formGroupName="phone">
-            <label class="add-margin"></label>
-            <select formControlName="type" id="type" class="form-control">
-              <option value=""></option>
-              <option value="fax">Fax</option>
-              <option value="work">Work</option>
-              <option value="other">Other</option>
-            </select>
+          <n-input class="col-sm-3" name="mobile"  [mask]="phoneMask" label="Phone Numbers" placeHolder="Mobile" [fGroup]="payerPhoneGroup"></n-input>
+          <n-input class="col-sm-3" name="evening" [mask]="phoneMask" label=" " placeHolder="Evening" [fGroup]="payerPhoneGroup" [addMargin]="true"></n-input>
+          <n-input class="col-sm-3" name="other"   [mask]="phoneMask" label=" " placeHolder="Other" [fGroup]="payerPhoneGroup" [addMargin]="true" (keyup)="enableType('phone')"></n-input>
+          <div class="col-sm-3" formGroupName="taxPayer">
+            <div class="form-group"  formGroupName="phone">
+              <label class="add-margin"></label>
+              <select formControlName="type" id="type" class="form-control">
+                <option value=""></option>
+                <option value="fax">Fax</option>
+                <option value="work">Work</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <form-sub-header nTitle="MAILING INFORMATION"></form-sub-header>
+    <form-sub-header nTitle="SPOUSE INFORMATION"></form-sub-header>
 
-  <div class="row">
-    <div class="col-12">
-      <div class="row">
-        <n-input class="col-sm-4" name="careFirstName" label="In Care Of" placeHolder="First Name" [fGroup]="mailingAddressGroup"></n-input>
-        <n-input class="col-sm-4" name="careLastName" label=" " placeHolder="Last Name" [fGroup]="mailingAddressGroup"></n-input>
-        <n-input class="col-sm-12" name="home1" label="Present Home Address" [fGroup]="mailingAddressGroup"></n-input>
-        <n-input class="col-sm-12" name="home2" label="Present Home Address Line 2" [fGroup]="mailingAddressGroup"></n-input>
-        <n-input class="col-sm-3" name="zip"    label="Zip Code" [fGroup]="mailingAddressGroup" [mask]="zipMask"></n-input>
-        <n-input class="col-sm-5" name="city"   label="City"     [fGroup]="mailingAddressGroup"></n-input>
-        <n-input class="col-sm-2" name="state"  label="State"    [fGroup]="mailingAddressGroup" [mask]="stateMask"></n-input>
-        <n-input class="col-sm-9" name="email"  label="Email Address"    [fGroup]="mailingAddressGroup"></n-input>
+    <span class="sub-heading">Enter the Spouse's name HERE for <b>Married Filing Joint</b> or <b>Married Filing Separate</b> returns</span>
+    <div class="row">
+      <div class="col-12">
+        <div class="row">
+          <n-input class="col-sm-3" name="firstName" label="First Name" [fGroup]="spouseGroup"></n-input>
+          <n-input class="col-sm-1" name="middleName" label="Initial" [mask]="initialMask" [fGroup]="spouseGroup"></n-input>
+          <n-input class="col-sm-4" name="lastName" label="Last Name" [fGroup]="spouseGroup"></n-input>
+          <n-input class="col-sm-1" name="suffixName" label="Suffix" [fGroup]="spouseGroup"></n-input>
+          <n-input class="col-sm-3" name="ssn" label="SSN" [mask]="ssnMask" [fGroup]="spouseGroup"></n-input>
+
+          <div class="col-sm-3">
+            <div class="form-group" formGroupName="spouse">
+              <label for="dateOfBirth" class="no-margin">Date of Birth</label>
+              <my-date-picker name="dateOfBirth"
+                      id="dateOfBirth"
+                      formControlName="dateOfBirth"
+                      [options]="myDatePickerOptions"
+                      [defaultMonth]="defaultMonth"
+                      (dateChanged)="onDateChanged($event)">
+              </my-date-picker>
+            </div>
+          </div>
+          <n-input class="col-sm-2" name="age" label="Age" [fGroup]="spouseGroup"></n-input>
+          <n-input class="col-sm-7" name="occuppation" label="Occupation" [mask]="ssnMask" [fGroup]="spouseGroup"></n-input>
+
+          <n-input class="col-sm-3" name="mobile"  [mask]="phoneMask" label="Phone Numbers" placeHolder="Mobile" [fGroup]="spousePhoneGroup"></n-input>
+          <n-input class="col-sm-3" name="evening" [mask]="phoneMask" label=" " placeHolder="Evening" [addMargin]="true" [fGroup]="spousePhoneGroup"></n-input>
+          <n-input class="col-sm-3" name="other"   [mask]="phoneMask" label=" " placeHolder="Other" [addMargin]="true" [fGroup]="spousePhoneGroup" (keyup)="enableType('sPhone')"></n-input>
+          <div class="col-sm-3" formGroupName="spouse">
+            <div class="form-group"  formGroupName="phone">
+              <label class="add-margin"></label>
+              <select formControlName="type" id="type" class="form-control">
+                <option value=""></option>
+                <option value="fax">Fax</option>
+                <option value="work">Work</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
 
-  <form-sub-header nTitle="DEPENDENTS"></form-sub-header>
+    <form-sub-header nTitle="MAILING INFORMATION"></form-sub-header>
 
-  <div class="row">
-    <div class="col-12">
-      <div class="row">
-        <div class="col-sm-3">
-          <div class="form-inline">
-            <div class="form-group">
-              <label class="form-control-static" for="dependentsY">Do you have any dependents?&nbsp;&nbsp;&nbsp;</label>
-              <div class="form-check form-check-inline">
-                <label class="form-check-label"><input formControlName="dependents" class="form-check-input" type="radio" name="dependents" id="dependentsY" [value]="true"> Yes</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <label class="form-check-label"><input formControlName="dependents" class="form-check-input" type="radio" name="dependents" id="dependentsN" [value]="false"> No</label>
+    <div class="row">
+      <div class="col-12">
+        <div class="row">
+          <n-input class="col-sm-4" name="careFirstName" label="In Care Of" placeHolder="First Name" [fGroup]="mailingAddressGroup"></n-input>
+          <n-input class="col-sm-4" name="careLastName" label=" " placeHolder="Last Name" [fGroup]="mailingAddressGroup"></n-input>
+          <n-input class="col-sm-12" name="home1" label="Present Home Address" [fGroup]="mailingAddressGroup"></n-input>
+          <n-input class="col-sm-12" name="home2" label="Present Home Address Line 2" [fGroup]="mailingAddressGroup"></n-input>
+          <n-input class="col-sm-3" name="zip"    label="Zip Code" [fGroup]="mailingAddressGroup" [mask]="zipMask"></n-input>
+          <n-input class="col-sm-5" name="city"   label="City"     [fGroup]="mailingAddressGroup"></n-input>
+          <n-input class="col-sm-2" name="state"  label="State"    [fGroup]="mailingAddressGroup" [mask]="stateMask"></n-input>
+          <n-input class="col-sm-9" name="email"  label="Email Address"    [fGroup]="mailingAddressGroup"></n-input>
+        </div>
+      </div>
+    </div>
+
+    <form-sub-header nTitle="DEPENDENTS"></form-sub-header>
+
+    <div class="row">
+      <div class="col-12">
+        <div class="row">
+          <div class="col-sm-3">
+            <div class="form-inline">
+              <div class="form-group">
+                <label class="form-control-static" for="dependentsY">Do you have any dependents?&nbsp;&nbsp;&nbsp;</label>
+                <div class="form-check form-check-inline">
+                  <label class="form-check-label"><input formControlName="dependents" class="form-check-input" type="radio" name="dependents" id="dependentsY" [value]="true"> Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <label class="form-check-label"><input formControlName="dependents" class="form-check-input" type="radio" name="dependents" id="dependentsN" [value]="false"> No</label>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="col-md-12">
-      <!-- <button role="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo2" aria-expanded="true"> -->
-      <button role="button" class="btn btn-primary float-right" [disabled]="!taxForm.valid">save</button>
+    <div class="row">
+      <div class="col-md-12">
+        <!-- <button role="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo2" aria-expanded="true"> -->
+        <button role="button" class="btn btn-primary float-right" [disabled]="!taxForm.valid">save</button>
+      </div>
     </div>
-  </div>
-</form>
+  </form>
+</div>
