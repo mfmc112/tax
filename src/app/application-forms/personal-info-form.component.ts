@@ -129,7 +129,7 @@ export class PersonalInfoFormComponent implements OnInit {
   };
 
   defaultMonth: IMyDefaultMonth = {
-      defMonth: '01/2015'
+      defMonth: '01/'+ (new Date().getFullYear()-15)
   }
 
   setDate(date: Date): void {
