@@ -90,7 +90,7 @@ export class Form1040Page2Component implements OnInit {
       'fullYearCoverage': new FormControl(false),
       'box62': new FormControl({value: "0", disabled: true }),
       'form8959': new FormControl(false),
-      'form5960': new FormControl(false),
+      'form8960': new FormControl(false),
       'otherForm': new FormControl(false),
       'box63': new FormControl({value: "0", disabled: true })
     });
