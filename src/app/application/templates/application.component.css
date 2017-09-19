@@ -99,5 +99,5 @@ application {
 
 
 .dropdown-item.active, .dropdown-item:active {
-  background-color: #BEBEBE;
+  background-color: #BEBEBE!important;
 }

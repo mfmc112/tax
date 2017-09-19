@@ -45,8 +45,8 @@ export class PersonalInfoFormComponent implements OnInit {
     this.payerPhoneGroup = this.createPhoneGroup(this.pi.taxPayer);
     this.spousePhoneGroup = this.createPhoneGroup(this.pi.spouse);
 
-    this.taxPayerGroup = this.createBasicInfoGroup(this.pi.taxPayer, this.payerPhoneGroup);
-    this.spouseGroup = this.createBasicInfoGroup(this.pi.spouse, this.spousePhoneGroup);
+    this.taxPayerGroup = this.createBasicInfoTaxPayerGroup(this.pi.taxPayer, this.payerPhoneGroup);
+    this.spouseGroup = this.createBasicInfoSpouseGroup(this.pi.spouse, this.spousePhoneGroup);
 
     this.mailingAddressGroup = this.createMailingAddressGroup(this.pi);
 
@@ -83,7 +83,7 @@ export class PersonalInfoFormComponent implements OnInit {
     this.taxForm.markAsDirty();
   }
 
-  createBasicInfoGroup(basic: BasicInformation, phoneGroup: FormGroup): FormGroup {
+  createBasicInfoTaxPayerGroup(basic: BasicInformation, phoneGroup: FormGroup): FormGroup {
     return new FormGroup({
       'firstName': new FormControl(basic.firstName, Validators.compose([Validators.required, Validators.maxLength(45), Validators.pattern(validationRules.STRING)])),
       'middleName': new FormControl(basic.initial, Validators.compose([Validators.maxLength(1), Validators.pattern(validationRules.STRING)])),
@@ -91,6 +91,20 @@ export class PersonalInfoFormComponent implements OnInit {
       'suffixName': new FormControl(basic.suffix),
       'ssn': new FormControl({value: basic.ssn, disabled: true }, Validators.compose([Validators.required, Validators.pattern(validationRules.SSN_REGEXP)])),
       'dateOfBirth': new FormControl(basic.dateOfBirth, Validators.required),
+      'age': new FormControl({value: '0', disabled: true }),
+      'occuppation': new FormControl(basic.occupation),
+      'phone': phoneGroup
+    });
+  }
+
+  createBasicInfoSpouseGroup(basic: BasicInformation, phoneGroup: FormGroup): FormGroup {
+    return new FormGroup({
+      'firstName': new FormControl(basic.firstName, Validators.compose([Validators.maxLength(45), Validators.pattern(validationRules.STRING)])),
+      'middleName': new FormControl(basic.initial, Validators.compose([Validators.maxLength(1), Validators.pattern(validationRules.STRING)])),
+      'lastName': new FormControl(basic.lastName, Validators.compose([Validators.maxLength(45), Validators.pattern(validationRules.STRING)])),
+      'suffixName': new FormControl(basic.suffix),
+      'ssn': new FormControl({value: basic.ssn, disabled: true }, Validators.compose([Validators.pattern(validationRules.SSN_REGEXP)])),
+      'dateOfBirth': new FormControl(basic.dateOfBirth),
       'age': new FormControl({value: '0', disabled: true }),
       'occuppation': new FormControl(basic.occupation),
       'phone': phoneGroup
@@ -110,8 +124,8 @@ export class PersonalInfoFormComponent implements OnInit {
   createMailingAddressGroup(pi: PersonalInformation): FormGroup {
     if (!pi.mailingAddress) pi.mailingAddress = new MailingAddress();
     return new FormGroup({
-      'careFirstName': new FormControl(pi.mailingAddress.careFirstName, Validators.compose([Validators.required, Validators.maxLength(45)])),
-      'careLastName': new FormControl(pi.mailingAddress.careLastName, Validators.compose([Validators.required, Validators.maxLength(45)])),
+      'careFirstName': new FormControl(pi.mailingAddress.careFirstName, Validators.compose([Validators.maxLength(45)])),
+      'careLastName': new FormControl(pi.mailingAddress.careLastName, Validators.compose([Validators.maxLength(45)])),
       'home1': new FormControl(pi.mailingAddress.home1, Validators.compose([Validators.required])),
       'home2': new FormControl(pi.mailingAddress.home2),
       'zip': new FormControl(pi.mailingAddress.zip, Validators.compose([Validators.required])),
