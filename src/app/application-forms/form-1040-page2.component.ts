@@ -35,14 +35,49 @@ export class Form1040Page2Component implements OnInit {
     this.fi = this.application.clientInformation.filingInformation;
 
     this.taxForm = formBuilder.group({
-      'firstName': [{value: this.pi.taxPayer.firstName, disabled: true}]
+      'box38': new FormControl({value: "0", disabled: true }),
+      'box39a65OrOlderTaxpayer': new FormControl(false),
+      'box39a65OrOlderSpouse': new FormControl(false),
+      'box39aBlindTaxpayer': new FormControl(false),
+      'box39aBlindSpouse': new FormControl(false),
+      'box39aBoxesChecked': new FormControl({value: "0", disabled: true }),
+      'box39b1': new FormControl(false),
+      'box39b2': new FormControl(false),
+      'box40': new FormControl({value: "0", disabled: true }),
+      'box41': new FormControl({value: "0", disabled: true }),
+      'box42': new FormControl({value: "0", disabled: true }),
+      'box43': new FormControl({value: "0", disabled: true }),
+      'irsScheduleQ': new FormControl(false),
+      'divCapGains': new FormControl(false),
+      'divCapGainsAmount': new FormControl({value: "0", disabled: true }),
+      'taxWorksheet': new FormControl(false),
+      'taxWorksheetAmount': new FormControl({value: "0", disabled: true }),
+      'form8814': new FormControl(false),
+      'form8814Amount': new FormControl({value: "0", disabled: true }),
+      'form4972': new FormControl(false),
+      'form4972Amount': new FormControl({value: "0", disabled: true }),
+      'educationRecaptureAmount': new FormControl({value: "0", disabled: true }),
+      'totalTax': new FormControl({value: "0", disabled: true }),
+      'box45': new FormControl({value: "0", disabled: true }),
+      'box46': new FormControl({value: "0", disabled: true }),
+      'box47': new FormControl({value: "0", disabled: true })
     });
   }
 
   ngOnInit():void {
+    this.boxChecked(null);
+  }
 
+  boxChecked(event): void {
+    let count = 0;
+    if (!!this.taxForm.get('box39a65OrOlderTaxpayer').value){ count++; }
+    if (!!this.taxForm.get('box39a65OrOlderSpouse').value){ count++; }
+    if (!!this.taxForm.get('box39aBlindTaxpayer').value){ count++; }
+    if (!!this.taxForm.get('box39aBlindSpouse').value){ count++; }
+    this.taxForm.get('box39aBoxesChecked').patchValue(count);
   }
 
   submitForm(fields: any):void { }
+
 
 }

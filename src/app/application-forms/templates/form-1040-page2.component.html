@@ -5,7 +5,158 @@
 
       <div class="row">
         <div class="col-12">
-          <div class="row">
+          <div class="row" style="border:1px solid #cccccc;">
+            <div class="col-sm-12"><br></div>
+            <div class="col-sm-6">
+              <span><b>38</b>&nbsp;&nbsp;</span>Amount from line 37 (adjusted gross income)
+            </div>
+            <n-input class="offset-sm-3 col-sm-3 border-left" name="box38" [mask]="numberMask" [fGroup]="taxForm"></n-input>
+
+            <div class="col-sm-1">
+              <span><b>39a</b>&nbsp;&nbsp;</span>
+            </div>
+            <div class="offset-sm-2 col-sm-1" style="text-align:center;">
+              <span><b>Taxpayer</b></span>
+            </div>
+            <div class="col-sm-1" style="text-align:center;">
+              <span><b>Spouse</b></span>
+            </div>
+            <div class="col-sm-4"><br></div>
+            <div class="col-sm-3 border-left"><br></div>
+
+
+            <div class="offset-sm-1 col-sm-2">65 or older</div>
+            <div class="col-sm-1" style="text-align:center;">
+              <n-checkbox nName="box39a65OrOlderTaxpayer" [fGroup]="taxForm" nValue="true" nLabel=" " nClass="checkbox-padding" (change)="boxChecked($event);"></n-checkbox>
+            </div>
+            <div class="col-sm-1" style="text-align:center;">
+              <n-checkbox nName="box39a65OrOlderSpouse" [fGroup]="taxForm" nValue="true" nLabel=" " nClass="checkbox-padding" (change)="boxChecked($event);"></n-checkbox>
+            </div>
+            <div class="col-sm-4"><br></div>
+            <div class="col-sm-3 border-left"><br></div>
+
+            <div class="offset-sm-1 col-sm-2">Blind</div>
+            <div class="col-sm-1" style="text-align:center;">
+              <n-checkbox nName="box39aBlindTaxpayer" [fGroup]="taxForm" nValue="true" nLabel=" " nClass="checkbox-padding" (change)="boxChecked($event);"></n-checkbox>
+            </div>
+            <div class="col-sm-1" style="text-align:center;">
+              <n-checkbox nName="box39aBlindSpouse" [fGroup]="taxForm" nValue="true" nLabel=" " nClass="checkbox-padding" (change)="boxChecked($event);"></n-checkbox>
+            </div>
+            <n-input class="offset-sm-3 col-sm-1" name="box39aBoxesChecked" [fGroup]="taxForm"></n-input>
+            <div class="col-sm-3 border-left"><br></div>
+
+            <div class="col-sm-6">
+              <span><b>39b</b>&nbsp;&nbsp;</span>If you are married filing separately and your spouse itemizes deductions, or you are a dual status alien, check here
+            </div>
+            <div class="offset-sm-2 col-sm-1" style="text-align:center;">
+              <n-checkbox nName="box39b1" [fGroup]="taxForm" nValue="true" nLabel=" " nClass="checkbox-padding"></n-checkbox>
+            </div>
+            <div class="col-sm-3 border-left"><br></div>
+
+            <div class="col-sm-6">
+              If you elect to itemize deductions even though the standard deduction is larger, check here
+            </div>
+            <div class="offset-sm-2 col-sm-1" style="text-align:center;">
+              <n-checkbox nName="box39b2" [fGroup]="taxForm" nValue="true" nLabel=" " nClass="checkbox-padding"></n-checkbox>
+            </div>
+            <div class="col-sm-3 border-left"><br></div>
+
+            <div class="col-sm-9"><br></div>
+            <div class="col-sm-3 border-left"><br></div>
+
+            <div class="col-sm-6">
+              <span><b>40</b>&nbsp;&nbsp;</span><b>Itemized deductions (from Schedule A) or standard deduction</b>
+            </div>
+            <n-input class="offset-sm-3 col-sm-3 border-left" name="box40" [mask]="numberMask" [fGroup]="taxForm"></n-input>
+
+            <div class="col-sm-6">
+              <span><b>41</b>&nbsp;&nbsp;</span>Subtract line 40 from line 38
+            </div>
+            <n-input class="offset-sm-3 col-sm-3 border-left" name="box41" [mask]="numberMask" [fGroup]="taxForm"></n-input>
+
+            <div class="col-sm-8">
+              <span><b>42</b>&nbsp;&nbsp;</span><b>Exemptions.</b> If line 38 is $155,650 or less, multiply $4,050 by the number on line 6d. Otherwise, see instructions
+            </div>
+            <n-input class="offset-sm-1 col-sm-3 border-left" name="box42" [mask]="numberMask" [fGroup]="taxForm"></n-input>
+
+            <div class="col-sm-8">
+              <span><b>43</b>&nbsp;&nbsp;</span><b>Taxable income.</b> Subtract line 42 from line 41. If line 42 is more than line 41, enter -0-
+            </div>
+            <n-input class="offset-sm-1 col-sm-3 border-left" name="box43" [mask]="numberMask" [fGroup]="taxForm"></n-input>
+
+            <div class="col-sm-6">
+              IRS Schedule Q
+            </div>
+            <div class="offset-sm-2 col-sm-1" style="text-align:center;">
+              <n-checkbox nName="irsScheduleQ" [fGroup]="taxForm" nValue="true" nLabel=" " nClass="checkbox-padding"></n-checkbox>
+            </div>
+            <div class="col-sm-3 border-left"><br></div>
+
+            <div class="col-sm-9"><br></div>
+            <div class="col-sm-3 border-left"><br></div>
+
+            <div class="col-sm-9">
+              <span><b>44</b>&nbsp;&nbsp;</span>Tax Form
+            </div>
+            <div class="col-sm-3 border-left"><br></div>
+
+            <div class="col-sm-8">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Tax Table or Qualified Div and Cap Gains Worksheet
+            </div>
+            <div class="col-sm-1" style="text-align:center;">
+              <n-checkbox nName="divCapGains" [fGroup]="taxForm" nValue="true" nLabel=" " nClass="checkbox-padding"></n-checkbox>
+            </div>
+            <n-input class="col-sm-3 border-left" name="divCapGainsAmount" [mask]="numberMask" [fGroup]="taxForm"></n-input>
+
+            <div class="col-sm-8">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Schedule D Tax Worksheet
+            </div>
+            <div class="col-sm-1" style="text-align:center;">
+              <n-checkbox nName="taxWorksheet" [fGroup]="taxForm" nValue="true" nLabel=" " nClass="checkbox-padding"></n-checkbox>
+            </div>
+            <n-input class="col-sm-3 border-left" name="taxWorksheetAmount" [mask]="numberMask" [fGroup]="taxForm"></n-input>
+
+            <div class="col-sm-8">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Form 8814
+            </div>
+            <div class="col-sm-1" style="text-align:center;">
+              <n-checkbox nName="form8814" [fGroup]="taxForm" nValue="true" nLabel=" " nClass="checkbox-padding"></n-checkbox>
+            </div>
+            <n-input class="col-sm-3 border-left" name="form8814Amount" [mask]="numberMask" [fGroup]="taxForm"></n-input>
+
+            <div class="col-sm-8">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Form 4972
+            </div>
+            <div class="col-sm-1" style="text-align:center;">
+              <n-checkbox nName="form4972" [fGroup]="taxForm" nValue="true" nLabel=" " nClass="checkbox-padding"></n-checkbox>
+            </div>
+            <n-input class="col-sm-3 border-left" name="form4972Amount" [mask]="numberMask" [fGroup]="taxForm"></n-input>
+
+            <div class="col-sm-6">
+              Education credit recapture amount
+            </div>
+            <n-input class="col-sm-3" name="educationRecaptureAmount" [mask]="numberMask" [fGroup]="taxForm"></n-input>
+            <div class="col-sm-3 border-left"><br></div>
+
+            <div class="col-sm-9">
+              Total Tax
+            </div>
+            <n-input class="col-sm-3 border-left" name="totalTax" [mask]="numberMask" [fGroup]="taxForm"></n-input>
+
+            <div class="col-sm-9">
+              <span><b>45</b>&nbsp;&nbsp;</span><i>Alternative minimum tax.</i> Attach Form 6251
+            </div>
+            <n-input class="col-sm-3 border-left" name="box45" [mask]="numberMask" [fGroup]="taxForm"></n-input>
+
+            <div class="col-sm-9">
+              <span><b>46</b>&nbsp;&nbsp;</span>Excess advance premium tax credit repayment. Attach Form 8962
+            </div>
+            <n-input class="col-sm-3 border-left" name="box46" [mask]="numberMask" [fGroup]="taxForm"></n-input>
+
+            <div class="col-sm-9">
+              <span><b>47</b>&nbsp;&nbsp;</span>Add line 44, 45 and 46
+            </div>
+            <n-input class="col-sm-3 border-left" name="box47" [mask]="numberMask" [fGroup]="taxForm"></n-input>
 
           </div>
         </div>
