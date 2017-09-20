@@ -1,10 +1,11 @@
-/*label {
-  margin-bottom: 2px!important;
-}*/
-/*
-.form-group {
-  margin-bottom: 5px;
-}*/
+.bold-number {
+  margin-right: 20px;
+}
+
+.box-text {
+  left: 55px;
+  position:absolute;
+}
 
 .font-13 {
   font-size: 13px;

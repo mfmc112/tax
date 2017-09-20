@@ -3,3 +3,4 @@ export * from './n-textarea.component';
 export * from './n-radio.component';
 export * from './n-radio-list.component';
 export * from './n-checkbox.component';
+export * from './n-form-bold-box.component';
