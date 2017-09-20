@@ -92,7 +92,30 @@ export class Form1040Page2Component implements OnInit {
       'form8959': new FormControl(false),
       'form8960': new FormControl(false),
       'otherForm': new FormControl(false),
-      'box63': new FormControl({value: "0", disabled: true })
+      'box63': new FormControl({value: "0", disabled: true }),
+      'box64': new FormControl({value: "0", disabled: true }),
+      'withholdingFrom1099': new FormControl(""),
+      'withholdingFrom1099Amount': new FormControl({value: "0", disabled: true }),
+      'box65': new FormControl({value: "0", disabled: true }),
+      'exSpouseSSN': new FormControl({value: "", disabled: false }),
+      'spouseSSNCheck': new FormControl(false),
+      'box66a': new FormControl({value: "0", disabled: true }),
+      'box66b': new FormControl({value: "0", disabled: true }),
+      'box67': new FormControl({value: "0", disabled: true }),
+      'box68': new FormControl({value: "0", disabled: true }),
+      'box69': new FormControl({value: "0", disabled: true }),
+      'box70': new FormControl({value: "0", disabled: false }),
+      'box71': new FormControl({value: "0", disabled: true }),
+      'box72': new FormControl({value: "0", disabled: true }),
+      'paymentsExtraFormNumber': new FormControl(""),
+      'form2439': new FormControl(false),
+      'reserved': new FormControl(false),
+      'form8885': new FormControl(false),
+      'paymentsExtraForm': new FormControl(false),
+      'irc': new FormControl({value: "0", disabled: true }),
+      'otherPaymentsTotal': new FormControl({value: "0", disabled: false }),
+      'paymentsTotal': new FormControl({value: "0", disabled: false }),
+
     });
   }
 

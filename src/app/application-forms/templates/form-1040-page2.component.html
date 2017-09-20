@@ -354,8 +354,153 @@
         </div>
       </div>
 
+      <form-sub-header nTitle="PAYMENTS"></form-sub-header>
+      <div class="row">
+        <div class="col-12">
+          <div class="row" style="border:1px solid #cccccc;">
+            <div class="col-sm-12"><br></div>
+            <div class="col-sm-6">
+              <n-form-bold-box section="64" text="Federal income tax withheld"></n-form-bold-box>
+            </div>
+            <n-input class="col-sm-3" name="box64" [mask]="numberMask" [fGroup]="taxForm"></n-input>
+            <div class="col-sm-3 border-left"><br></div>
+
+            <n-input class="col-sm-6" style="padding-left:53px;" name="withholdingFrom1099" placeHolder="Enter Federal withholding from 1099s (1099B, etc)" [fGroup]="taxForm"></n-input>
+            <n-input class="col-sm-2" name="withholdingFrom1099Amount" [mask]="numberMask" [fGroup]="taxForm"></n-input>
+            <div class="col-sm-1"><br></div>
+            <div class="col-sm-3 border-left"><br></div>
+
+            <div class="col-sm-6">
+              <n-form-bold-box section="65" text="2016 estimated tax payments and amounts applied from 2015 return"></n-form-bold-box>
+            </div>
+            <n-input class="col-sm-3" name="box65" [mask]="numberMask" [fGroup]="taxForm"></n-input>
+            <div class="col-sm-3 border-left"><br></div>
+
+            <div class="col-sm-9">
+              If estimated tax was paid in joint names and you are now divorced.
+            </div>
+            <div class="col-sm-3 border-left"><br></div>
+
+            <div class="col-sm-2">
+              enter ex-spouse's SSN
+            </div>
+            <n-input class="col-sm-3" name="exSpouseSSN" [mask]="ssnMask" [fGroup]="taxForm"></n-input>
+            <div class="col-sm-2">
+              and check here
+            </div>
+            <div class="col-sm-2" style="text-align:center;">
+              <n-checkbox nName="spouseSSNCheck" [fGroup]="taxForm" nValue="true" nLabel=" " nClass="checkbox-padding"></n-checkbox>
+            </div>
+            <div class="col-sm-3 border-left"><br></div>
+
+            <div class="col-sm-6">
+              <n-form-bold-box section="66a" text="Earned income credit"></n-form-bold-box>
+            </div>
+            <n-input class="col-sm-3" name="box66a" [mask]="numberMask" [fGroup]="taxForm"></n-input>
+            <div class="col-sm-3 border-left"><br></div>
+
+            <div class="col-sm-4">
+              <n-form-bold-box section="66b" text="Non taxable combat pay election"></n-form-bold-box>
+            </div>
+            <n-input class="col-sm-2" name="box66b" [mask]="numberMask" [fGroup]="taxForm"></n-input>
+            <div class="col-sm-3"><br></div>
+            <div class="col-sm-3 border-left"><br></div>
+
+            <div class="col-sm-6">
+              <n-form-bold-box section="67" text="Additional child tax credit. Form 8812"></n-form-bold-box>
+            </div>
+            <n-input class="col-sm-3" name="box67" [mask]="numberMask" [fGroup]="taxForm"></n-input>
+            <div class="col-sm-3 border-left"><br></div>
+
+            <div class="col-sm-6">
+              <n-form-bold-box section="68" text="American opportunity credit. Form 8863, line 8"></n-form-bold-box>
+            </div>
+            <n-input class="col-sm-3" name="box68" [mask]="numberMask" [fGroup]="taxForm"></n-input>
+            <div class="col-sm-3 border-left"><br></div>
+
+            <div class="col-sm-6">
+              <n-form-bold-box section="69" text="Net premium tax credit. Attach Form 8962"></n-form-bold-box>
+            </div>
+            <n-input class="col-sm-3" name="box69" [mask]="numberMask" [fGroup]="taxForm"></n-input>
+            <div class="col-sm-3 border-left"><br></div>
+
+            <div class="col-sm-6">
+              <n-form-bold-box section="70" text="Amount paid with request for extension to file"></n-form-bold-box>
+            </div>
+            <n-input class="col-sm-3" name="box70" [mask]="numberMask" [fGroup]="taxForm"></n-input>
+            <div class="col-sm-3 border-left"><br></div>
+
+            <div class="col-sm-6">
+              <n-form-bold-box section="71" text="Excess social security and tier 1 RRTA tax withheld"></n-form-bold-box>
+            </div>
+            <n-input class="col-sm-3" name="box71" [mask]="numberMask" [fGroup]="taxForm"></n-input>
+            <div class="col-sm-3 border-left"><br></div>
+
+            <div class="col-sm-6">
+              <n-form-bold-box section="72" text="Credit for federal tax on fuels. Form 4136"></n-form-bold-box>
+            </div>
+            <n-input class="col-sm-3" name="box72" [mask]="numberMask" [fGroup]="taxForm"></n-input>
+            <div class="col-sm-3 border-left"><br></div>
+
+            <div class="col-sm-3">
+              <n-form-bold-box section="73" text="Credits from Form"></n-form-bold-box>
+            </div>
+            <div class="col-sm-1" style="text-align:center;">
+              <span><b>2439</b></span>
+            </div>
+            <div class="col-sm-1" style="text-align:center;">
+              <span><b>Reserved</b></span>
+            </div>
+            <div class="col-sm-1" style="text-align:center;">
+              <span><b>8885</b></span>
+            </div>
+            <n-input class="col-sm-2" name="paymentsExtraFormNumber" placeHolder="Form #" [fGroup]="taxForm"></n-input>
+            <div class="col-sm-1"><br></div>
+            <div class="col-sm-3 border-left"><br></div>
+
+            <div class="offset-sm-3 col-sm-1" style="text-align:center;">
+              <n-checkbox nName="form2439" [fGroup]="taxForm" nValue="true" nLabel=" " nClass="checkbox-padding"></n-checkbox>
+            </div>
+            <div class="col-sm-1" style="text-align:center;">
+              <n-checkbox nName="reserved" [fGroup]="taxForm" nValue="true" nLabel=" " nClass="checkbox-padding"></n-checkbox>
+            </div>
+            <div class="col-sm-1" style="text-align:center;">
+              <n-checkbox nName="form8885" [fGroup]="taxForm" nValue="true" nLabel=" " nClass="checkbox-padding"></n-checkbox>
+            </div>
+            <div class="col-sm-2" style="text-align:center;">
+              <n-checkbox nName="paymentsExtraForm" [fGroup]="taxForm" nValue="true" nLabel=" " nClass="checkbox-padding"></n-checkbox>
+            </div>
+            <div class="col-sm-1"><br></div>
+            <div class="col-sm-3 border-left"><br></div>
+
+            <div class="col-sm-9"><br></div>
+            <div class="col-sm-3 border-left"><br></div>
+
+            <div class="col-sm-6">
+              I.R.C. Section 1341 credit
+            </div>
+            <n-input class="col-sm-3" name="irc" [mask]="numberMask" [fGroup]="taxForm"></n-input>
+            <div class="col-sm-3 border-left"><br></div>
+
+            <div class="col-sm-6">
+              Other payments total
+            </div>
+            <n-input class="col-sm-3" name="otherPaymentsTotal" [mask]="numberMask" [fGroup]="taxForm"></n-input>
+            <div class="col-sm-3 border-left"><br></div>
+
+            <div class="col-sm-6">
+              <n-form-bold-box section="" text="Total payments. Add lines 64 through 73"></n-form-bold-box>
+            </div>
+            <n-input class="col-sm-3" name="paymentsTotal" [mask]="numberMask" [fGroup]="taxForm"></n-input>
+            <div class="col-sm-3 border-left"><br></div>
+          </div>
+        </div>
+      </div>
+
+
 
       <div class="row">
+        <div class="col-md-12"><br></div>
         <div class="col-md-12">
           <!-- <button role="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo2" aria-expanded="true"> -->
           <button role="button" class="btn btn-primary float-right" [disabled]="!taxForm.valid">save</button>
