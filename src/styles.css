@@ -136,3 +136,8 @@ input.ng-invalid:not(form) {
   border:1px solid #E0E0E0;
   border-top-width:0px;
 }
+
+.box-text {
+  left: 55px;
+  position:absolute;
+}

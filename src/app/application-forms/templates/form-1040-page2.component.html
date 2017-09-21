@@ -57,13 +57,13 @@
             <div class="col-sm-9"><br></div>
             <div class="col-sm-3 border-left"><br></div>
 
-            <div class="col-sm-8">
+            <div class="col-sm-8" style="margin-top:15px;">
               If you elect to itemize deductions even though the standard deduction is larger, check here
             </div>
-            <div class="col-sm-1" style="text-align:center;">
+            <div class="col-sm-1" style="text-align:center;margin-top:15px;">
               <n-checkbox nName="box39b2" [fGroup]="taxForm" nValue="true" nLabel=" " nClass="checkbox-padding"></n-checkbox>
             </div>
-            <div class="col-sm-3 border-left"><br></div>
+            <div class="col-sm-3 border-left" style="margin-top:15px;"><br></div>
 
             <div class="col-sm-8">
               <n-form-bold-box section="40" boldText="Itemized deductions (from Schedule A) or standard deduction"></n-form-bold-box>
@@ -211,26 +211,26 @@
             <n-input class="col-sm-3" name="box54" [mask]="numberMask" [fGroup]="taxForm"></n-input>
             <div class="col-sm-3 border-left"><br></div>
 
-            <div class="offset-sm-1 col-sm-1" style="text-align:center;">
-              <span><b>3800</b></span>
+            <div class="col-sm-1" style="text-align:center;">
+              <span class="box-text"><b>3800</b></span>
             </div>
             <div class="col-sm-2" style="text-align:center;">
               <span><b>8801</b></span>
             </div>
             <n-input class="col-sm-2" name="extraFormNumber" placeHolder="Form #" [fGroup]="taxForm"></n-input>
-            <div class="col-sm-3"><br></div>
+            <div class="col-sm-4"><br></div>
             <div class="col-sm-3 border-left"><br></div>
 
-            <div class="offset-sm-1 col-sm-1" style="text-align:center;">
-              <n-checkbox nName="form3800" [fGroup]="taxForm" nValue="true" nLabel=" " nClass="checkbox-padding"></n-checkbox>
+            <div class="col-sm-1" style="text-align:center;">
+              <n-checkbox nName="form3800" [fGroup]="taxForm" nValue="true" nLabel=" " nClass="checkbox-padding box-text"></n-checkbox>
             </div>
             <div class="col-sm-2" style="text-align:center;">
               <n-checkbox nName="form8801" [fGroup]="taxForm" nValue="true" nLabel=" " nClass="checkbox-padding"></n-checkbox>
             </div>
-            <div class="col-sm-2" style="text-align:center;">
+            <div class="col-sm-2">
               <n-checkbox nName="extraForm" [fGroup]="taxForm" nValue="true" nLabel=" " nClass="checkbox-padding"></n-checkbox>
             </div>
-            <div class="col-sm-3"><br></div>
+            <div class="col-sm-4"><br></div>
             <div class="col-sm-3 border-left"><br></div>
 
             <div class="col-sm-9"><br></div>
@@ -309,10 +309,8 @@
             </div>
             <n-input class="col-sm-3 border-left" name="box60b" [mask]="numberMask" [fGroup]="taxForm"></n-input>
 
-            <div class="col-sm-6">
-              <span style="top:-20px;position: absolute;width: 102%;left: 0px;">
+            <div class="col-sm-6" style="min-height:75px;top:-10px">
                 <n-form-bold-box section="" text="If you purchased the home in 2008 and owned and used it as your main home for all of 2016, enter your 2016 repayment here without adding 5405"></n-form-bold-box>
-              </span>
             </div>
             <n-input class="col-sm-3" name="firstTimeBuyerRepayment" [mask]="numberMask" [fGroup]="taxForm"></n-input>
             <div class="col-sm-3 border-left"><br></div>
