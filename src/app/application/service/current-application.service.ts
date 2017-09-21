@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Application, Client, User, PersonalInformation } from '../../common/';
+import { Application, Client, User, PersonalInformation, FilingInformation } from '../../common/';
 import * as _ from 'lodash';
 
 @Injectable()
@@ -33,6 +33,24 @@ export class CurrentApplicationService {
 
   setPersonalInformation(pi: PersonalInformation): void {
     this.application.clientInformation.personalInformation = pi;
+  }
+
+  getPersonalInformation(): PersonalInformation {
+    if (this.application.clientInformation.personalInformation === undefined) {
+      this.application.clientInformation.personalInformation = new PersonalInformation(this.getClient());
+    }
+    return this.application.clientInformation.personalInformation;
+  }
+
+  setFilingInformation(fi: FilingInformation): void {
+    this.application.clientInformation.filingInformation = fi;
+  }
+
+  getFilingInformation(): FilingInformation {
+    if (this.application.clientInformation.filingInformation === undefined) {
+      this.application.clientInformation.filingInformation = new FilingInformation();
+    }
+    return this.application.clientInformation.filingInformation;
   }
 
   calculateBox2(amount: number): number {

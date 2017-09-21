@@ -41,20 +41,18 @@ export class PersonalInfoFormComponent implements OnInit {
     this.toastr.setRootViewContainerRef(vcr);
 
     this.application = this.currentApplicationService.getApplication();
-    this.pi = this.application.clientInformation.personalInformation;
+    this.pi = this.currentApplicationService.getPersonalInformation();
     this.payerPhoneGroup = this.createPhoneGroup(this.pi.taxPayer);
     this.spousePhoneGroup = this.createPhoneGroup(this.pi.spouse);
-
     this.taxPayerGroup = this.createBasicInfoTaxPayerGroup(this.pi.taxPayer, this.payerPhoneGroup);
     this.spouseGroup = this.createBasicInfoSpouseGroup(this.pi.spouse, this.spousePhoneGroup);
-
     this.mailingAddressGroup = this.createMailingAddressGroup(this.pi);
 
     this.taxForm = formBuilder.group({
       'taxPayer': this.taxPayerGroup,
       'spouse': this.spouseGroup,
       'mailingAddress': this.mailingAddressGroup,
-      'dependents': [false, Validators.required]
+      'dependents': [this.pi.dependents, Validators.required]
     });
   }
 

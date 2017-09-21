@@ -5,7 +5,7 @@ export class PersonalInformation {
   spouse: BasicInformation;
   mailingAddress: MailingAddress;
   dependents: boolean;
-  
+
   constructor(client: Client) {
     this.taxPayer = new BasicInformation();
     this.spouse = new BasicInformation();

@@ -6,7 +6,7 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./templates/n-components.css'],
   template: `
   <span class="bold-number"><b>{{section}}</b></span>
-  <span class="box-text"><b>{{boldText}}</b><i>{{italicText}}</i>{{text}}</span>
+  <span class="box-text"><b *ngIf="boldText">{{boldText}}</b><i *ngIf="italicText">{{italicText}}</i>{{text}}<b *ngIf="boldTextAfter">{{boldTextAfter}}</b></span>
   `
 })
 export class NFormBoldBoxComponent {
@@ -14,4 +14,5 @@ export class NFormBoldBoxComponent {
   @Input('text') text: string;
   @Input('boldText') boldText: string;
   @Input('italicText') italicText: string
+  @Input('boldTextAfter') boldTextAfter: string;
 }

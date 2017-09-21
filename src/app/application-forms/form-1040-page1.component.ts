@@ -35,10 +35,11 @@ export class Form1040Page1Component implements OnInit {
   ){
     this.toastr.setRootViewContainerRef(vcr);
     this.application = this.currentApplicationService.getApplication();
-    this.pi = this.application.clientInformation.personalInformation;
+    this.pi = this.currentApplicationService.getPersonalInformation();
+    this.fi = this.currentApplicationService.getFilingInformation();
+
     this.mailingAddressGroup = this.createMailingAddressGroup(this.pi);
 
-    this.fi = this.application.clientInformation.filingInformation;
     this.w2Forms = this.application.w2Forms;
     this.w2FormSummary = this.buildW2Summary();
     this.dependents = this.mockDependents();
@@ -56,7 +57,7 @@ export class Form1040Page1Component implements OnInit {
       'address': this.mailingAddressGroup,
       'payerDonate': false,
       'spouseDonate': false,
-      'status': [null, Validators.compose([Validators.required])],
+      'status': [{value: this.fi.status, disabled: true }],
       'w2Summary': this.w2FormSummary,
       'box6a': new FormControl(false),
       'box6b': new FormControl(false),

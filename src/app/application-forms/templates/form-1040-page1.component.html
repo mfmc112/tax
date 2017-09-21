@@ -125,21 +125,20 @@
           <div class="row" style="border:1px solid #cccccc">
             <div class="col-sm-12"><br></div>
 
-            <div class="col-sm-10 text-right">Children on 6c who live with you</div>
+            <div class="col-sm-10">Children on 6c who live with you</div>
             <n-input class="col-sm-2" name="box6cLiveWithYou" [fGroup]="taxForm"></n-input>
 
-            <div class="col-sm-10 text-right">Children on 6c who did not live with you due to divorce or separation</div>
+            <div class="col-sm-10">Children on 6c who did not live with you due to divorce or separation</div>
             <n-input class="col-sm-2" name="box6cNotLiveDueDivorce" [fGroup]="taxForm"></n-input>
 
-            <div class="col-sm-10 text-right">Dependents listed on 6c not listed above</div>
+            <div class="col-sm-10">Dependents listed on 6c not listed above</div>
             <n-input class="col-sm-2" name="box6cNotListedAbove" [fGroup]="taxForm"></n-input>
           </div>
           <div class="divider-20"></div>
           <div class="row">
-            <div class="col-1">
-              <span><b>6d</b></span>
+            <div class="col-10">
+              <n-form-bold-box section="6d" text="Total Number of Exeptions Claimed"></n-form-bold-box>
             </div>
-            <div class="col-sm-9 text-right">Total Number of Exeptions Claimed</div>
             <n-input class="col-sm-2" name="box6d" [fGroup]="taxForm"></n-input>
           </div>
 
@@ -153,28 +152,29 @@
             <div class="col-sm-12"><br></div>
 
             <div class="col-sm-6">
-              <span><b>7&nbsp;</b>&nbsp;&nbsp;</span>Wages, salaries, tips, etc.
+              <n-form-bold-box section="7" text="Wages, salaries, tips, etc."></n-form-bold-box>
             </div>
             <n-input class="offset-sm-3 col-sm-3 border-left" name="box7" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
 
             <div class="col-sm-6">
-              <span><b>8a</b>&nbsp;&nbsp;</span><b>Tax-exempt</b> interest. <b>Do not</b> included on line 8a
+              <n-form-bold-box section="8a"></n-form-bold-box>
+              <b>Tax-exempt</b> interest. <b>Do not</b> included on line 8a
             </div>
             <n-input class="offset-sm-3 col-sm-3 border-left" name="box8a" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
 
             <div class="col-sm-6">
-              <span><b>8b</b>&nbsp;&nbsp;</span>Ordinary dividends. Attach Schedule B if required
+              <n-form-bold-box section="8b" text="Ordinary dividends. Attach Schedule B if required"></n-form-bold-box>
             </div>
             <n-input class="col-sm-3" name="box8b" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
             <div class="col-sm-3 border-left"></div>
 
             <div class="col-sm-6">
-              <span><b>9a</b>&nbsp;&nbsp;</span><b>Taxable</b> interest. Attach Schedule B if required
+              <n-form-bold-box section="9a" boldText="Taxable " text="interest. Attach Schedule B if required"></n-form-bold-box>
             </div>
             <n-input class="offset-sm-3 col-sm-3 border-left" name="box9a" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
 
             <div class="col-sm-6">
-              <span><b>9b</b>&nbsp;&nbsp;</span>Qualifying dividends
+              <n-form-bold-box section="9b" text="Qualifying dividends"></n-form-bold-box>
             </div>
             <n-input class="col-sm-3" name="box9b" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
             <div class="col-sm-3 border-left"></div>
@@ -193,22 +193,22 @@
             </div>
 
             <div class="col-sm-9">
-              <span><b>10</b>&nbsp;&nbsp;</span>Taxable refunds, credits, or offset of state and local income taxes
+              <n-form-bold-box section="10" text="Taxable refunds, credits, or offset of state and local income taxes"></n-form-bold-box>
             </div>
             <n-input class="col-sm-3 border-left" name="box10" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
 
             <div class="col-sm-6">
-              <span><b>11</b>&nbsp;&nbsp;</span>Alimony received
+              <n-form-bold-box section="11" text="Alimony received"></n-form-bold-box>
             </div>
             <n-input class="offset-sm-3 col-sm-3 border-left" name="box11" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
 
             <div class="col-sm-9">
-              <span><b>12</b>&nbsp;&nbsp;</span>Businesss income or (loss). Attach Schedule C or C-EZ
+              <n-form-bold-box section="12" text="Businesss income or (loss). Attach Schedule C or C-EZ"></n-form-bold-box>
             </div>
             <n-input class="col-sm-3 border-left" name="box12" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
 
             <div class="col-sm-6">
-              <span><b>13</b>&nbsp;&nbsp;</span>Capital gain or (loss)
+              <n-form-bold-box section="13" text="Capital gain or (loss)"></n-form-bold-box>
             </div>
             <div class="col-sm-3" style="margin-top:10px;">
               <n-checkbox nName="dNotRequired" [fGroup]="w2FormSummary" nValue="true" nClass="font-13" nLabel="Schedule D not required"></n-checkbox>
@@ -216,12 +216,12 @@
             <n-input class="col-sm-3 border-left" name="box13" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
 
             <div class="col-sm-6">
-              <span><b>14</b>&nbsp;&nbsp;</span>Other gains or (losses). Attach from 4797
+              <n-form-bold-box section="14" text="Other gains or (losses). Attach from 4797"></n-form-bold-box>
             </div>
             <n-input class="offset-sm-3 col-sm-3 border-left" name="box14" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
 
             <div class="col-sm-4">
-              <span><b>15a</b>&nbsp;&nbsp;</span>IRA distributions Total.
+              <n-form-bold-box section="15a" text="IRA distributions Total."></n-form-bold-box>
             </div>
             <div class="col-sm-2">
               <span class="form-group" formGroupName="w2Summary">
@@ -236,36 +236,36 @@
             <div class="col-sm-3 border-left"></div>
 
             <div class="col-sm-6">
-              <span><b>15b</b>&nbsp;&nbsp;</span>Taxable amount
+              <n-form-bold-box section="15b" text="Taxable amount"></n-form-bold-box>
             </div>
             <n-input class="offset-sm-3 col-sm-3 border-left" name="box15b" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
 
             <div class="col-sm-6">
-              <span><b>16a</b>&nbsp;&nbsp;</span>Pention and annuities Total
+              <n-form-bold-box section="16a" text="Pention and annuities Total"></n-form-bold-box>
             </div>
             <n-input class="col-sm-3" name="box16a" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
             <div class="col-sm-3 border-left"></div>
 
             <div class="col-sm-6">
-              <span><b>16b</b>&nbsp;&nbsp;</span>Taxable amount
+              <n-form-bold-box section="16b" text="Taxable amount"></n-form-bold-box>
             </div>
-            <div class="col-sm-3" style="margin-top:10px;">
+            <div class="col-sm-3" style="margin-top:0px;">
                 <n-checkbox nName="box16arollover" [fGroup]="w2FormSummary" nValue="true" nClass="font-13" nLabel="Check if any amount rolled over"></n-checkbox>
             </div>
             <n-input class="col-sm-3 border-left" name="box16b" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
 
             <div class="col-sm-9">
-              <span><b>17</b>&nbsp;&nbsp;</span>Rental real state, royalties, partnerships, S corporations, trust, etc. Attach Schedule E
+              <n-form-bold-box section="17" text="Rental real state, royalties, partnerships, S corporations, trust, etc. Attach Schedule E"></n-form-bold-box>
             </div>
             <n-input class="col-sm-3 border-left" name="box17" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
 
             <div class="col-sm-6">
-              <span><b>18</b>&nbsp;&nbsp;</span>Farm income or (loss). Attach Schedule F
+              <n-form-bold-box section="18" text="Farm income or (loss). Attach Schedule F"></n-form-bold-box>
             </div>
             <n-input class="offset-sm-3 col-sm-3 border-left" name="box18" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
 
             <div class="col-sm-6">
-              <span><b>19</b>&nbsp;&nbsp;</span>Unemployment compensation
+              <n-form-bold-box section="19" text="Unemployment compensation"></n-form-bold-box>
             </div>
             <n-input class="col-sm-3" name="box19" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
             <div class="col-sm-3 border-left"></div>
@@ -277,24 +277,24 @@
             <n-input class="col-sm-3 border-left" name="repaymentPreviousYear2" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
 
             <div class="col-sm-6">
-              <span><b>20a</b>&nbsp;&nbsp;</span>Social security benefits
+              <n-form-bold-box section="20a" text="Social security benefits"></n-form-bold-box>
             </div>
             <n-input class="col-sm-3" name="box20a" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
             <div class="col-sm-3 border-left"></div>
 
             <div class="col-sm-6">
-              <span><b>20b</b>&nbsp;&nbsp;</span>Taxable amount
+              <n-form-bold-box section="20b" text="Taxable amount"></n-form-bold-box>
             </div>
             <n-input class="offset-sm-3 col-sm-3 border-left" name="box20b" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
 
             <div class="col-sm-5">
-              <span><b>21</b>&nbsp;&nbsp;</span>Other income. List type and amount
+              <n-form-bold-box section="21" text="Other income. List type and amount"></n-form-bold-box>
             </div>
             <n-input class="col-sm-4" name="box21Type" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
             <n-input class="col-sm-3 border-left" name="box21Amount" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
 
             <div class="col-sm-5">
-              <span><b>22</b>&nbsp;&nbsp;</span>Combine the amount in the far right column for lines 7 though 21. This is your <b>total income</b>
+              <n-form-bold-box section="22" text="Combine the amount in the far right column for lines 7 though 21. This is your " boldTextAfter="total income"></n-form-bold-box>
             </div>
             <n-input class="col-sm-4" name="box22_1" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
             <n-input class="col-sm-3 border-left" name="box22_2" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
@@ -310,85 +310,85 @@
             <div class="col-sm-12"><br></div>
 
             <div class="col-sm-6">
-              <span><b>23</b>&nbsp;&nbsp;</span>Educator expenses
+              <n-form-bold-box section="23" text="Educator expenses"></n-form-bold-box>
             </div>
             <n-input class="col-sm-3" name="box23" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
             <div class="col-sm-3 border-left"></div>
 
             <div class="col-sm-6">
-              <span><b>24</b>&nbsp;&nbsp;</span>Certain business expenses of reservists, performing artists, and fee-based government officials. Form 2106 or 2106-EZ
+              <n-form-bold-box section="24" text="Certain business expenses of reservists, performing artists, and fee-based government officials. Form 2106 or 2106-EZ"></n-form-bold-box>
             </div>
             <n-input class="col-sm-3" name="box24" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
             <div class="col-sm-3 border-left"></div>
 
             <div class="col-sm-6">
-              <span><b>25</b>&nbsp;&nbsp;</span>Health savings account deduction. Form 8889
+              <n-form-bold-box section="25" text="Health savings account deduction. Form 8889"></n-form-bold-box>
             </div>
             <n-input class="col-sm-3" name="box25" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
             <div class="col-sm-3 border-left"></div>
 
             <div class="col-sm-6">
-              <span><b>26</b>&nbsp;&nbsp;</span>Moving expenses. Form 3903
+              <n-form-bold-box section="26" text="Moving expenses. Form 3903"></n-form-bold-box>
             </div>
             <n-input class="col-sm-3" name="box26" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
             <div class="col-sm-3 border-left"></div>
 
             <div class="col-sm-6">
-              <span><b>27</b>&nbsp;&nbsp;</span>Deductible part of self-employment tax. Attach Schedule SE
+              <n-form-bold-box section="27" text="Deductible part of self-employment tax. Attach Schedule SE"></n-form-bold-box>
             </div>
             <n-input class="col-sm-3" name="box27" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
             <div class="col-sm-3 border-left"></div>
 
             <div class="col-sm-6">
-              <span><b>28</b>&nbsp;&nbsp;</span>Self employed SEP, SIMPLE, and qualified plans
+              <n-form-bold-box section="28" text="Self employed SEP, SIMPLE, and qualified plans"></n-form-bold-box>
             </div>
             <n-input class="col-sm-3" name="box28" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
             <div class="col-sm-3 border-left"></div>
 
             <div class="col-sm-6">
-              <span><b>29</b>&nbsp;&nbsp;</span>Self employed health insurance deduction
+              <n-form-bold-box section="29" text="Self employed health insurance deduction"></n-form-bold-box>
             </div>
             <n-input class="col-sm-3" name="box29" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
             <div class="col-sm-3 border-left"></div>
 
             <div class="col-sm-6">
-              <span><b>30</b>&nbsp;&nbsp;</span>Penalty on early withdrawal of savings
+              <n-form-bold-box section="30" text="Penalty on early withdrawal of savings"></n-form-bold-box>
             </div>
             <n-input class="col-sm-3" name="box30" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
             <div class="col-sm-3 border-left"></div>
 
             <div class="col-sm-6">
-              <span><b>31</b>&nbsp;&nbsp;</span>Alimony paid
+              <n-form-bold-box section="31" text="Alimony paid"></n-form-bold-box>
             </div>
             <n-input class="col-sm-3" name="box31" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
             <div class="col-sm-3 border-left"></div>
 
             <div class="col-sm-6">
-              <span><b>32</b>&nbsp;&nbsp;</span>IRA deduction
+              <n-form-bold-box section="32" text="IRA deduction"></n-form-bold-box>
             </div>
             <n-input class="col-sm-3" name="box32" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
             <div class="col-sm-3 border-left"></div>
 
             <div class="col-sm-6">
-              <span><b>33</b>&nbsp;&nbsp;</span>Student loan interest deduction
+              <n-form-bold-box section="33" text="Student loan interest deduction"></n-form-bold-box>
             </div>
             <n-input class="col-sm-3" name="box33" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
             <div class="col-sm-3 border-left"></div>
 
             <div class="col-sm-6">
-              <span><b>34</b>&nbsp;&nbsp;</span>Tuition and fees. Form 8917
+              <n-form-bold-box section="34" text="Tuition and fees. Form 8917"></n-form-bold-box>
             </div>
             <n-input class="col-sm-3" name="box34" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
             <div class="col-sm-3 border-left"></div>
 
             <div class="col-sm-6">
-              <span><b>35</b>&nbsp;&nbsp;</span>Domestic production activities deduction. Form 8903
+              <n-form-bold-box section="35" text="Domestic production activities deduction. Form 8903"></n-form-bold-box>
             </div>
             <n-input class="col-sm-3" name="box35" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
             <div class="col-sm-3 border-left"></div>
 
             <div class="col-sm-3">
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b>Other:</b>
+              <n-form-bold-box boldText="Other:"></n-form-bold-box>
             </div>
             <div class="col-sm-9"></div>
 
@@ -438,18 +438,12 @@
             <div class="col-sm-3 border-left"></div>
 
             <div class="col-sm-6">
-              <span><b>36</b>&nbsp;&nbsp;</span>Total adjustment. Add lines 23 through 35
-            </div>
-            <n-input class="offset-sm-3 col-sm-3 border-left" name="box36" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
-
-
-            <div class="col-sm-6">
-              <span><b>36</b>&nbsp;&nbsp;</span>Total adjustment. Add lines 23 through 35
+              <n-form-bold-box section="36" text="Total adjustment. Add lines 23 through 35"></n-form-bold-box>
             </div>
             <n-input class="offset-sm-3 col-sm-3 border-left" name="box36" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
 
             <div class="col-sm-6">
-              <span><b>37</b>&nbsp;&nbsp;</span>Subtract line 36 from line 22. this is your <b>adjusted gross income</b>
+              <n-form-bold-box section="37" text="Subtract line 36 from line 22. this is your " boldTextAfter="adjusted gross income"></n-form-bold-box>
             </div>
             <n-input class="offset-sm-3 col-sm-3 border-left" name="box37" [mask]="numberMask" [fGroup]="w2FormSummary"></n-input>
           </div>

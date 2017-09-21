@@ -1,5 +1,6 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit, ViewContainerRef } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { CurrentApplicationService } from '../application/service/current-application.service';
 import { validationRules } from '../validator/validator-rules.component';
 import { ApplicationComponent } from '../application/application.component';
@@ -29,25 +30,27 @@ export class FilingInfoFormComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
+    public toastr: ToastsManager, vcr: ViewContainerRef,
     private currentApplicationService: CurrentApplicationService ){
+      this.toastr.setRootViewContainerRef(vcr);
 
-    this.application = this.currentApplicationService.getApplication();
-    this.fi = this.application.clientInformation.filingInformation;
-    if (!this.fi) this.fi = new FilingInformation();
+      this.application = this.currentApplicationService.getApplication();
+      this.fi = this.application.clientInformation.filingInformation;
+      if (!this.fi) this.fi = new FilingInformation();
 
-    this.payerSpecialGroup = this.createSpecialProcessig(this.fi.payerSpecialProcessing);
-    this.spouseSpecialGroup = this.createSpecialProcessig(this.fi.spouseSpecialProcessing);
-    this.taxForm = formBuilder.group({
-      'status' : [null, Validators.compose([Validators.required])],
-      'claimAnother' : '',
-      'filingJointlyButSpouseInAnotherPersons' : '',
-      'headClaimNonResidentialAlienSpouse' : '',
-      'disasterDesignation': [null, Validators.required],
-      'payerSpecialProcessing': this.payerSpecialGroup,
-      'spouseSpecialProcessing': this.spouseSpecialGroup,
-      'payerDonate': false,
-      'spouseDonate': false
-    });
+      this.payerSpecialGroup = this.createSpecialProcessig(this.fi.payerSpecialProcessing);
+      this.spouseSpecialGroup = this.createSpecialProcessig(this.fi.spouseSpecialProcessing);
+      this.taxForm = formBuilder.group({
+        'status' : [this.fi.status, Validators.compose([Validators.required])],
+        'claimAnother' : this.fi.claimAnother,
+        'filingJointlyButSpouseInAnotherPersons' : this.fi.filingJointlyButSpouseInAnotherPersons,
+        'headClaimNonResidentialAlienSpouse' : this.fi.headClaimNonResidentialAlienSpouse,
+        'disasterDesignation': [this.fi.disasterDesignation],
+        'payerSpecialProcessing': this.payerSpecialGroup,
+        'spouseSpecialProcessing': this.spouseSpecialGroup,
+        'payerDonate': this.fi.payerDonate,
+        'spouseDonate': this.fi.spouseDonate
+      });
   }
 
   ngOnInit(): void {
@@ -95,7 +98,7 @@ export class FilingInfoFormComponent implements OnInit {
       'disabled': new FormControl(sp.disabled),
       'death': new FormControl(sp.death),
       'specialMilitary': new FormControl(sp.specialMilitary),
-      'deploymentDate': new FormControl(null)
+      'deploymentDate': new FormControl(sp.deploymentDate)
     });
   }
 
@@ -111,7 +114,9 @@ export class FilingInfoFormComponent implements OnInit {
   }
 
   submitForm(fields: any):void {
-
+    this.fi = this.taxForm.value;
+    this.currentApplicationService.setFilingInformation(this.fi);
+    this.toastr.success('Filing Information saved sucessfully', 'Success!');
   }
 
 }
