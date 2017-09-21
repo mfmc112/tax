@@ -35,6 +35,7 @@ require('./server/api/users.api')(server);
 require('./server/api/personal-info.api')(server);
 require('./server/api/application.api')(server);
 require('./server/api/business-code.api')(server);
+require('./server/api/zip-code.api')(server);
 
 //application
 server.get('*', function(req,res) {
