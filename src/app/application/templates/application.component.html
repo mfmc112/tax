@@ -1,3 +1,4 @@
+  <add-form-modal></add-form-modal>
   <ng-sidebar-container style="height: 100vh;background-color:#A9A9A9;border:1px solid #000000;" *ngIf="client">
         <ng-sidebar
           [(opened)]="_opened"
@@ -30,7 +31,7 @@
           <!-- <p><a closeSidebar>This will close the sidebar too</a></p> -->
           <!-- <hr> -->
           <div class="col-12"><h4>FEDERAL FORMS</h4></div>
-          <div class="col-12"><b><i class="fa fa-plus-circle fa-1x text-primary" aria-hidden="true"></i> Add Form</b></div>
+          <div class="col-12 hand" (click)="open()"><b><i class="fa fa-plus-circle fa-1x text-primary" aria-hidden="true"></i> Add Form</b></div>
           <div class="divider-5"></div>
           <div>
             <ul class="nav flex-column" style="background-color:#FFFFFF;margin-right:3px;margin-left:3px;border:1px solid #000000;">

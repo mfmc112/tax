@@ -1,9 +1,10 @@
-import { Component, OnInit, DoCheck } from '@angular/core';
+import { Component, ViewChild, OnInit, DoCheck } from '@angular/core';
 import { UIRouterModule, UIRouter } from '@uirouter/angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { validationRules } from '../validator/validator-rules.component';
 import { Client } from '../common/client';
 import { TaxReturn } from '../common/tax-return';
+import { AddFormComponent } from './add-form.component';
 import { CurrentApplicationService } from './service/current-application.service';
 import * as _ from 'lodash'
 
@@ -13,7 +14,7 @@ import * as _ from 'lodash'
   styleUrls: ['./templates/application.component.css']
 })
 export class ApplicationComponent {
-
+  @ViewChild(AddFormComponent) addFormComponent: AddFormComponent;
   taxForm: FormGroup;
   client: Client;
   year: number;
@@ -59,7 +60,15 @@ export class ApplicationComponent {
     }
   }
 
-  submitForm(fields: any):void {
+  close(): void {
+    this.addFormComponent.close();
+  }
+
+  open(): void {
+    this.addFormComponent.open();
+  }
+
+  submitForm(fields: any): void {
     //Save intfo here
   }
 

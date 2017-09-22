@@ -4,12 +4,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from "../shared.module";
 import { APPLICATION_STATES } from "./application.states";
 import { Ng2Bs3ModalModule } from 'ng2-bs3-modal/ng2-bs3-modal';
+import { Ng2DragDropModule } from 'ng2-drag-drop';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { SidebarModule } from 'ng-sidebar';
 import { ApplicationFormsModule } from '../application-forms/application-forms.module'
 import { ValidateCssDirective } from '../common/validate-css.directive';
 import { ApplicationComponent } from './application.component';
 import { ApplicationHeaderComponent } from './application-header.component';
+import { AddFormComponent } from './add-form.component';
 
 
 @NgModule({
@@ -19,6 +21,7 @@ import { ApplicationHeaderComponent } from './application-header.component';
     Ng2Bs3ModalModule,
     ToastModule.forRoot(),
     SidebarModule.forRoot(),
+    Ng2DragDropModule.forRoot(),
     SharedModule,
     UIRouterModule.forChild({ states: APPLICATION_STATES }),
     ApplicationFormsModule
@@ -26,7 +29,8 @@ import { ApplicationHeaderComponent } from './application-header.component';
   declarations: [
     ValidateCssDirective,
     ApplicationComponent,
-    ApplicationHeaderComponent
+    ApplicationHeaderComponent,
+    AddFormComponent
   ]
 })
 export class ApplicationModule { }

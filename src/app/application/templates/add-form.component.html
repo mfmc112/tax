@@ -1,0 +1,35 @@
+<modal #addFormModal [keyboard]="false" [backdrop]="'static'" size="lg">
+  <modal-header [show-close]="true">
+      <h4 class="modal-title">ADD FORM</h4>
+  </modal-header>
+  <modal-body style="min-height:200px">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-6">
+          <ul class="list-group">
+              <li draggable *ngFor="let form of forms" [dragData]="form" class="list-group-item">{{form.name}}</li>
+          </ul>
+        </div>
+        <div class="col-sm-6">
+          <div class="card card-inverse card-primary mb-3 text-center">
+              <div class="card-block" droppable (onDrop)="onFormDrop($event)">
+                  <blockquote class="card-blockquote">
+                      <h4 class="card-title"><i class="fa fa-plus" aria-hidden="true"></i> Drop to Add</h4>
+                  </blockquote>
+              </div>
+              <div class="panel panel-default" >
+                  <div class="panel-body">
+                      <li draggable *ngFor="let form of droppedForms" class="list-group-item dropped-form" [dragData]="form" [dragScope]="'delete'">{{form.name}}<i class="fa fa-trash delete-icon-right hand" (click)="deleteForm(form)" aria-hidden="true"></i></li>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </modal-body>
+  <modal-footer>
+    <button type="button" class="btn btn-primary" (click)="close()">Add Forms</button>
+    <button type="button" class="btn btn-default" (click)="close()">Cancel</button>
+  </modal-footer>
+</modal>

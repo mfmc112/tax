@@ -40,6 +40,7 @@
     "mydatepicker": "^2.0.27",
     "ng-sidebar": "^6.0.1",
     "ng2-bs3-modal": "^0.10.4",
+    "ng2-drag-drop": "^2.9.2",
     "ng2-toastr": "^4.1.2",
     "pluralize": "^6.0.0",
     "request": "^2.82.0",
