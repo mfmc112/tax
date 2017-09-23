@@ -1,6 +1,9 @@
 <modal #newClientModal [keyboard]="false" [backdrop]="'static'" (onClose)="closeCallBack(application)">
-  <modal-header [show-close]="true">
-      <h4 class="modal-title">NEW CLIENT</h4>
+  <modal-header>
+    <h4 class="modal-title"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;NEW CLIENT</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
   </modal-header>
   <modal-body>
     <form [formGroup]="clientForm" (submit)="submitForm(clientForm.value)" style="min-height:150px">

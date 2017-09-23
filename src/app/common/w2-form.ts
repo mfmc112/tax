@@ -1,6 +1,7 @@
 import { Client, MailingAddress } from './';
 
 export class W2Form {
+  _id: string;
   w2For: string = 'taxpayer';
   employeeName: string;
   ssn: string;

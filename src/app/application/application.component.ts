@@ -2,8 +2,7 @@ import { Component, ViewChild, OnInit, DoCheck } from '@angular/core';
 import { UIRouterModule, UIRouter } from '@uirouter/angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { validationRules } from '../validator/validator-rules.component';
-import { Client } from '../common/client';
-import { TaxReturn } from '../common/tax-return';
+import { TaxReturn, Client, Application } from '../common';
 import { AddFormComponent } from './add-form.component';
 import { CurrentApplicationService } from './service/current-application.service';
 import * as _ from 'lodash'
@@ -16,6 +15,7 @@ import * as _ from 'lodash'
 export class ApplicationComponent {
   @ViewChild(AddFormComponent) addFormComponent: AddFormComponent;
   taxForm: FormGroup;
+  application: Application;
   client: Client;
   year: number;
   estimate: number;
@@ -38,13 +38,15 @@ export class ApplicationComponent {
   }
 
   ngOnInit(): void {
-    if (!this.currentApplicationService.getApplication()) {
+    this.application = this.currentApplicationService.getApplication()
+
+    if (!this.application) {
       this._uiRouter.stateService.go('menu.landingPage');
     }else{
       this.client = this.currentApplicationService.getClient();
-      this.year = this.currentApplicationService.getApplication().year;
-      this.estimate = this.currentApplicationService.getApplication().estimate;
-      this.currentAgi = this.currentApplicationService.getApplication().currentAgi;
+      this.year = this.application.year;
+      this.estimate = this.application.estimate;
+      this.currentAgi = this.application.currentAgi;
       if (_.isEmpty(this.currentAgi)) this.currentAgi = 0;
     }
   }

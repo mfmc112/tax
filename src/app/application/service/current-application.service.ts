@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
-import { Application, Client, User, PersonalInformation, FilingInformation } from '../../common/';
+import { ApplicationApiService } from '../api/application-api.service';
+import { Application, Client, User, ClientInformation, PersonalInformation, FilingInformation, W2Form } from '../../common/';
 import * as _ from 'lodash';
 
 @Injectable()
 export class CurrentApplicationService {
 
   private application: Application;
+
+  constructor( private applicationApiService: ApplicationApiService ) {  }
 
   getApplication(): Application {
     return this.application;
@@ -31,12 +34,24 @@ export class CurrentApplicationService {
     return (this.application && this.application.currentAgi) ? Number(this.application.currentAgi) : 0;
   }
 
+  retrieveApplication(id: string): any {
+    return this.applicationApiService.findById(id);
+  }
+
+  updateApplication(): any {
+    return this.applicationApiService.update(this.application);
+  }
+
   setPersonalInformation(pi: PersonalInformation): void {
     this.application.clientInformation.personalInformation = pi;
   }
 
   getPersonalInformation(): PersonalInformation {
-    if (this.application.clientInformation.personalInformation === undefined) {
+    if (!this.application.clientInformation) {
+      this.application.clientInformation = new ClientInformation(this.getClient());
+    }
+
+    if (!this.application.clientInformation.personalInformation) {
       this.application.clientInformation.personalInformation = new PersonalInformation(this.getClient());
     }
     return this.application.clientInformation.personalInformation;
@@ -74,6 +89,10 @@ export class CurrentApplicationService {
   calculate(): void {
     this.application.estimate = 0;
     this.application.currentAgi = 0;
+    if (!this.application.w2Forms || this.application.w2Forms.length <= 0) {
+      this.addToEstimate(0, 0);
+      return;
+    }
     _.each(this.application.w2Forms, form => {
       if (!_.isEmpty(form.field1) || form.field1 >= 0) {
         this.application.currentAgi = this.getCurrentAGI() + Number(form.field1);
@@ -99,4 +118,24 @@ export class CurrentApplicationService {
     this.application.estimate += Math.round(paid-estimated);
   }
 
+  getW2Forms(): W2Form[] {
+    return this.application.w2Forms;
+  }
+
+  setW2Forms(w2Forms: W2Form[]): void {
+    this.application.w2Forms = w2Forms;
+  }
+
+  addW2Form(): void {
+    if (!this.application.w2Forms) this.application.w2Forms = [];
+    this.application.w2Forms.push( new W2Form(this.getClient()) );
+  }
+
+  getW2FromList(id: string): W2Form {
+    let w2 = _.find(this.application.w2Forms, function(o) {
+      return o._id === id;
+    });
+    console.log("found W2 " + w2);
+    return w2;
+  }
 }

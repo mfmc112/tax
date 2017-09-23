@@ -1,14 +1,24 @@
 <modal #addFormModal [keyboard]="false" [backdrop]="'static'" size="lg">
-  <modal-header [show-close]="true">
-      <h4 class="modal-title">ADD FORM</h4>
+  <modal-header>
+      <h4 class="modal-title"><i class="fa fa-wpforms" aria-hidden="true"></i>&nbsp;&nbsp;ADD FORM</h4>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
   </modal-header>
   <modal-body style="min-height:200px">
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-6">
-          <ul class="list-group">
-              <li draggable *ngFor="let form of forms" [dragData]="form" class="list-group-item">{{form.name}}</li>
-          </ul>
+
+          <div class="list-group">
+            <a href="#" draggable *ngFor="let form of forms" [dragData]="form" class="list-group-item list-group-item-action flex-column align-items-start">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">{{form.name}}</h5>
+              </div>
+              <p *ngIf="form.info" class="mb-1">{{form.info}}</p>
+            </a>
+          </div>
+
         </div>
         <div class="col-sm-6">
           <div class="card card-inverse card-primary mb-3 text-center">
@@ -29,7 +39,7 @@
 
   </modal-body>
   <modal-footer>
-    <button type="button" class="btn btn-primary" (click)="close()">Add Forms</button>
+    <button type="button" class="btn btn-primary" (click)="addForm()">Add Forms</button>
     <button type="button" class="btn btn-default" (click)="close()">Cancel</button>
   </modal-footer>
 </modal>

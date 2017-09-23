@@ -34,4 +34,8 @@ export class ApplicationApiService {
   insert(application: Application): any {
     return this.http.post(this.url, application);
   }
+
+  update(application: Application): any {
+    return this.http.put(this.url + "/" + application._id, application);
+  }
 }

@@ -48,6 +48,8 @@ var ApplicationApi = function(server) {
     Application.findById(req.params.id).
     populate('client').
     populate('preparer').
+    populate('clientInformation').
+    populate('w2Forms').
     exec(function(error, response) {
       if (!error) res.send(response);
       else res.status(500).json("Error executing search");
@@ -61,7 +63,7 @@ var ApplicationApi = function(server) {
     if (!req.body.client) res.status(500).send("invalida client");
     if (!req.body.preparer) res.status(500).send("invalida preparer");
 
-    console.log('executing POST for client' + req.body.client + ', year of : ' + req.body.year);
+    console.log('executing application POST for client' + req.body.client + ', year of : ' + req.body.year);
     Application.find({"client": BaseApi.objectID(req.body.client), "year": req.body.year}, function(error, response) {
       if (!error) {
         if (!response || response.length === 0) {
@@ -90,10 +92,10 @@ var ApplicationApi = function(server) {
    * Update an existing client
    */
   server.put(BaseApi.getEndPoint(config.endpoint, ':id'), function(req,res) {
-    if (!req.body.client) res.status(500).send("invalida client");
-    if (!req.body.preparer) res.status(500).send("invalida preparer");
+    if (!req.body.client) res.status(500).send("invalid client");
+    if (!req.body.preparer) res.status(500).send("invalid preparer");
 
-    console.log('executing PUT for client' + req.body.client + ', year of : ' + req.body.year);
+    console.log('executing application PUT for client' + req.body.client + ', year of : ' + req.body.year);
     Application.update({_id: BaseApi.objectID(req.params.id)}, req.body, function(error, response) {
       if (!error) res.send(new ResponseDecorator().enrichPut(response, req));
       else res.status(500).send(error);
@@ -104,7 +106,7 @@ var ApplicationApi = function(server) {
    * Update an existing client
    */
   server.delete(BaseApi.getEndPoint(config.endpoint, ':id'), function(req,res) {
-    console.log('executing DELETE ' + req.params.id);
+    console.log('executing application DELETE ' + req.params.id);
     Application.remove({_id: BaseApi.objectID(req.params.id)}, function(error, response) {
       if (!error) {
         var enriched = new ResponseDecorator().enrichDelete(response, req.params.id)

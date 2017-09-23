@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewChild, DoCheck } from  '@angular/core';
+import { Component, OnInit, Input, ViewChild, DoCheck } from  '@angular/core';
+import { Transition } from '@uirouter/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { ApplicationComponent } from '../application/application.component';
 import { CurrentApplicationService } from '../application/service/current-application.service';
@@ -20,7 +21,6 @@ export class W2FormComponent implements OnInit {
   @ViewChild('../common/n-components/n-checkbox.component') nCheckbox: NCheckboxComponent;
   @ViewChild('../common/n-components/n-textarea.component') nTextarea: NTextareaComponent;
   @ViewChild('../common/n-components/n-w2-field12.component') nW2Field12: NW2Field12Component;
-
   ssnMask: Array<string | RegExp> = MASKS.SSN;
   zipMask:  Array<string | RegExp> = MASKS.ZIP;
   stateMask:  Array<string | RegExp> = MASKS.STATE;
@@ -34,9 +34,10 @@ export class W2FormComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
+    private trans: Transition,
     private currentApplicationService: CurrentApplicationService ){
       this.application = this.currentApplicationService.getApplication();
-      this.w2Form = this.getW2(0, this.application.client);
+      this.w2Form = this.getW2(trans.params().id);
       // Add the address from personal information prepopulated into the employee fields
       this.address = this.createAddressGroup(this.w2Form.employeeAddress);
       this.employerAddress = this.createAddressGroup(this.w2Form.employerAddress);
@@ -180,14 +181,8 @@ export class W2FormComponent implements OnInit {
       });
     }
 
-    getW2(index: number, client: Client): W2Form {
-      if (!this.application.w2Forms || this.application.w2Forms.length === 0) {
-        this.application.w2Forms = [];
-        this.application.w2Forms.push(new W2Form(client));
-        return this.application.w2Forms[index];
-      }
-      if (!this.application.w2Forms[index]) return null;
-      return this.application.w2Forms[index];
+    getW2(id: string): W2Form {
+      return this.currentApplicationService.getW2FromList(id);
     }
 
     submitForm(fields: any):void {

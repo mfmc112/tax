@@ -19,7 +19,7 @@ export const filingInfoState = {
 
 export const w2FormState = {
   name: 'menu.application.w2Form',
-  url: '/w2',
+  url: '/w2/:id',
   component: W2FormComponent
 };
 

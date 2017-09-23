@@ -27,9 +27,6 @@
             FEDERAL<div class="divider-5"></div>
             Current AGI: {{currentAgi | currency:'USD':true}}
           </div>
-          <!-- <button class="application-control" (click)="_toggleOpened()">Close sidebar</button> -->
-          <!-- <p><a closeSidebar>This will close the sidebar too</a></p> -->
-          <!-- <hr> -->
           <div class="col-12"><h4>FEDERAL FORMS</h4></div>
           <div class="col-12 hand" (click)="open()"><b><i class="fa fa-plus-circle fa-1x text-primary" aria-hidden="true"></i> Add Form</b></div>
           <div class="divider-5"></div>
@@ -41,8 +38,8 @@
               <li class="nav-item">
                 <a uiSref="menu.application.filingInfo" uiSrefActive="active" class="dropdown-item" href="#">- Filing Information</a>
               </li>
-              <li class="nav-item">
-                <a uiSref="menu.application.w2Form" uiSrefActive="active" class="dropdown-item" href="#">- W2</a>
+              <li *ngFor="let form of this.application.w2Forms; let i = index"  class="nav-item">
+                <a uiSref="menu.application.w2Form" [uiParams]="{ id: form._id }" uiSrefActive="active" class="dropdown-item" href="#">- W2 <span *ngIf="!form.employerName" class="text-danger">not populated&nbsp;<i class="fa fa-times" aria-hidden="true"></i></span><span *ngIf="form.employerName">{{form.employerName}}</span></a>
               </li>
               <li class="nav-item">
                 <a uiSref="menu.application.form1040" uiSrefActive="active" class="dropdown-item" href="#">- Form 1040</a>
