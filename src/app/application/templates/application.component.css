@@ -100,46 +100,35 @@ application {
   }
 }
 
-
-.dropdown-item.active, .dropdown-item:active {
-  background-color: #BEBEBE!important;
+.header-fixed {
+    width: 100%
 }
 
-.dropped-form {
-  color: #000000;
-}
-.delete-icon-right {
-  position: absolute;
-  right: 10px;
-}
-
-.drag-border {
-    border: #ff525b dashed 2px;
+.header-fixed > thead,
+.header-fixed > tbody,
+.header-fixed > thead > tr,
+.header-fixed > tbody > tr,
+.header-fixed > thead > tr > th,
+.header-fixed > tbody > tr > td {
+    display: block;
 }
 
-.drag-handle {
-    cursor: move; /* fallback if grab cursor is unsupported */
-    cursor: grab;
-    cursor: -moz-grab;
-    cursor: -webkit-grab;
+.header-fixed > tbody > tr:after,
+.header-fixed > thead > tr:after {
+    content: ' ';
+    display: block;
+    visibility: hidden;
+    clear: both;
 }
 
-.drag-handle:active {
-    cursor: grabbing;
-    cursor: -moz-grabbing;
-    cursor: -webkit-grabbing;
+.header-fixed > tbody {
+    overflow-y: auto;
+    min-height: 400px;
+    height: 400px;
 }
 
-/* Droppable */
-
-.drag-hint-border {
-    border: #3c763d dashed 2px;
-}
-
-.drag-over-border {
-    border: #fbbc05 dashed 2px;
-}
-
-.drag-transit {
-    border: #3500FF dashed 2px;
+.header-fixed > tbody > tr > td,
+.header-fixed > thead > tr > th {
+    width: 20%;
+    float: left;
 }
