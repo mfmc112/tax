@@ -1,5 +1,6 @@
 export const MASKS = {
   INITIAL: [/[a-zA-Z\d]/],
+  NAME_SUFFIX: [/[a-zA-Z]/,/[a-zA-Z]/,/[a-zA-Z]/,/[a-zA-Z]/,/[a-zA-Z]/],
   DATE: [/\d/,/\d/,'/',/\d/,/\d/,'/',/\d/,/\d/,/\d/,/\d/,],
   PHONE: ['(', /\d/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/],
   SSN: [/\d/,/\d/,/\d/,'-',/\d/,/\d/,'-',/\d/,/\d/,/\d/,/\d/],

@@ -23,6 +23,7 @@ export class PersonalInfoFormComponent implements OnInit {
   initialMask: Array<string | RegExp> = MASKS.INITIAL;
   zipMask:  Array<string | RegExp> = MASKS.ZIP;
   stateMask:  Array<string | RegExp> = MASKS.STATE;
+  suffixMask: Array<string | RegExp> = MASKS.NAME_SUFFIX;
   taxForm: FormGroup;
   taxPayerGroup: FormGroup;
   payerPhoneGroup: FormGroup;
