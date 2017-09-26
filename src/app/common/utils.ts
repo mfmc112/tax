@@ -1,8 +1,12 @@
+import * as _ from 'lodash';
+
 export class Utils {
 
   public removeCurrencyFormat(value: string): number {
     if (value) {
-      return Number((value+"").replace(/[^0-9]*/g,""));
+      let obj = _.split(value,'.');
+
+      return Number((obj[0]+"").replace(/[^0-9]*/g,""));
     } else {
       return 0;
     }

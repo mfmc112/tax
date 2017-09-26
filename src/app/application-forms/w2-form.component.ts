@@ -6,6 +6,7 @@ import { CurrentApplicationService } from '../application/service/current-applic
 import { validationRules } from '../validator/validator-rules.component';
 import { MASKS } from '../enum/masks.enum';
 import createNumberMask from 'text-mask-addons/dist/createNumberMask';
+
 import { Application, PersonalInformation,  W2Form, MailingAddress, Client, Utils } from '../common/';
 import { NInputComponent, NTextareaComponent, NCheckboxComponent } from '../common/n-components/';
 import { NW2Field12Component } from '../common/n-components/n-w2-field12.component';
@@ -24,7 +25,7 @@ export class W2FormComponent implements OnInit {
   ssnMask: Array<string | RegExp> = MASKS.SSN;
   zipMask:  Array<string | RegExp> = MASKS.ZIP;
   stateMask:  Array<string | RegExp> = MASKS.STATE;
-  numberMask = createNumberMask({ prefix: '$', suffix: '' });
+  numberMask = createNumberMask({ prefix: '$', suffix: '.00' });
   utils: Utils = new Utils();
   taxForm: FormGroup;
   application: Application;
@@ -139,11 +140,11 @@ export class W2FormComponent implements OnInit {
 
     autoCalculate(event: object): void {
       if (this.populateCalculation()) {
+        this.calculate(event);
         this.taxForm.get('field3').disable();
         this.taxForm.get('field4').disable();
         this.taxForm.get('field5').disable();
         this.taxForm.get('field6').disable();
-        this.calculate(event);
       } else {
         this.taxForm.get('field3').reset();
         this.taxForm.get('field4').reset();
@@ -162,9 +163,10 @@ export class W2FormComponent implements OnInit {
 
     populateCalculation(): boolean {
       if (this.taxForm.get('autoCalculate3and6').value) {
-        this.taxForm.get('field3').setValue(this.w2Form.field1);
+
+        this.taxForm.get('field3').setValue(this.taxForm.get('field1').value);
         this.taxForm.get('field4').setValue(this.currentApplicationService.calculateBox4(this.w2Form.field1));
-        this.taxForm.get('field5').setValue(this.w2Form.field1);
+        this.taxForm.get('field5').setValue(this.taxForm.get('field1').value);
         this.taxForm.get('field6').setValue(this.currentApplicationService.calculateBox6(this.w2Form.field1));
       }
       return (this.taxForm.get('autoCalculate3and6').value);

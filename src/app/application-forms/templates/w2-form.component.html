@@ -73,20 +73,20 @@
             <n-checkbox nName="autoCalculate3and6" [fGroup]="taxForm" nValue="true" nLabel="Check here to automatically calculate fields 3 through 6" (change)="autoCalculate($event)"></n-checkbox>
           </div>
           <div class="row">
-            <n-input class="col-sm-5" name="field1" label="1-Wages,tips, other compensation" [mask]="numberMask" [fGroup]="taxForm" (keyup)="calculate($event)"></n-input>
-            <n-input class="col-sm-5" name="field2" label="2-Federal income tax withheld" [mask]="numberMask" [fGroup]="taxForm" (keyup)="calculate($event)"></n-input>
+            <n-input class="col-sm-5" name="field1" label="1-Wages,tips, other compensation" [mask]="numberMask" nRight [fGroup]="taxForm" (keyup)="calculate($event)"></n-input>
+            <n-input class="col-sm-5" name="field2" label="2-Federal income tax withheld" [mask]="numberMask" nRight [fGroup]="taxForm" (keyup)="calculate($event)"></n-input>
 
-            <n-input class="col-sm-5" name="field3" label="3-Social security wages" [mask]="numberMask" [fGroup]="taxForm" (keyup)="calculate($event)"></n-input>
-            <n-input class="col-sm-5" name="field4" label="4-Social security tax withheld" [mask]="numberMask" [fGroup]="taxForm" (keyup)="calculate($event)"></n-input>
+            <n-input class="col-sm-5" name="field3" label="3-Social security wages" [mask]="numberMask" nRight [fGroup]="taxForm" (keyup)="calculate($event)"></n-input>
+            <n-input class="col-sm-5" name="field4" label="4-Social security tax withheld" [mask]="numberMask" nRight [fGroup]="taxForm" (keyup)="calculate($event)"></n-input>
 
-            <n-input class="col-sm-5" name="field5" label="5-Medicare wages and tips" [mask]="numberMask" [fGroup]="taxForm" (keyup)="calculate($event)"></n-input>
-            <n-input class="col-sm-5" name="field6" label="6-Medicaretax withheld" [mask]="numberMask" [fGroup]="taxForm" (keyup)="calculate($event)"></n-input>
+            <n-input class="col-sm-5" name="field5" label="5-Medicare wages and tips" [mask]="numberMask" nRight [fGroup]="taxForm" (keyup)="calculate($event)"></n-input>
+            <n-input class="col-sm-5" name="field6" label="6-Medicaretax withheld" [mask]="numberMask" nRight [fGroup]="taxForm" (keyup)="calculate($event)"></n-input>
 
-            <n-input class="col-sm-5" name="field7" label="7-Social security tips" [mask]="numberMask" [fGroup]="taxForm"></n-input>
-            <n-input class="col-sm-5" name="field8" label="8-Allocated tips" [mask]="numberMask" [fGroup]="taxForm"></n-input>
+            <n-input class="col-sm-5" name="field7" label="7-Social security tips" [mask]="numberMask" nRight [fGroup]="taxForm"></n-input>
+            <n-input class="col-sm-5" name="field8" label="8-Allocated tips" [mask]="numberMask" nRight [fGroup]="taxForm"></n-input>
 
-            <n-input class="col-sm-5" name="field9" label="9-Reserved" [mask]="numberMask" [fGroup]="taxForm"></n-input>
-            <n-input class="col-sm-5" name="field10" label="10-Dependent care benefits" [mask]="numberMask" [fGroup]="taxForm"></n-input>
+            <n-input class="col-sm-5" name="field9" label="9-Reserved" [mask]="numberMask" nRight [fGroup]="taxForm"></n-input>
+            <n-input class="col-sm-5" name="field10" label="10-Dependent care benefits" [mask]="numberMask" nRight [fGroup]="taxForm"></n-input>
           </div>
 
           <div class="row">
@@ -151,14 +151,14 @@
           <div class="row">
             <n-input class="col-sm-2" name="state" label="State" [fGroup]="taxForm" [mask]="stateMask"></n-input>
             <n-input class="col-sm-4" name="esin" label="Employer's state ID no." [fGroup]="taxForm"></n-input>
-            <n-input class="col-sm-4" name="field16" label="16-State wages, tips, etc." [mask]="numberMask" [fGroup]="taxForm"></n-input>
+            <n-input class="col-sm-4 text-right" name="field16" label="16-State wages, tips, etc." [mask]="numberMask" nRight [fGroup]="taxForm"></n-input>
           </div>
           <div class="row">
-            <n-input class="col-sm-5" name="field17" label="17-State Income Tax" [mask]="numberMask" [fGroup]="taxForm"></n-input>
-            <n-input class="offset-sm-1 col-sm-4" name="field18" label="8-Local wages, tips, etc." [mask]="numberMask" [fGroup]="taxForm"></n-input>
+            <n-input class="col-sm-5 text-right" name="field17" label="17-State Income Tax" [mask]="numberMask" nRight [fGroup]="taxForm"></n-input>
+            <n-input class="offset-sm-1 col-sm-4 text-right" name="field18" label="8-Local wages, tips, etc." [mask]="numberMask" nRight [fGroup]="taxForm"></n-input>
           </div>
           <div class="row">
-            <n-input class="col-sm-5" name="field19" label="19-Local Income Tax" [mask]="numberMask" [fGroup]="taxForm"></n-input>
+            <n-input class="col-sm-5 text-right" name="field19" label="19-Local Income Tax" [mask]="numberMask" nRight [fGroup]="taxForm"></n-input>
             <n-input class="offset-sm-1 col-sm-4" name="field20" label="20-Locality name" [fGroup]="taxForm"></n-input>
           </div>
         </div>
