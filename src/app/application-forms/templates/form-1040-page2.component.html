@@ -12,30 +12,33 @@
             </div>
             <n-input class="offset-sm-3 col-sm-3 border-left" name="box38" [mask]="numberMask" nRight [fGroup]="taxForm"></n-input>
 
-            <div class="col-sm-1">
+            <div class="col-sm-2">
               <n-form-bold-box section="39a"></n-form-bold-box>
             </div>
-            <div class="offset-sm-2 col-sm-1" style="text-align:center;">
+            <div class="col-sm-1" style="text-align:center;">
               <span><b>Taxpayer</b></span>
             </div>
             <div class="col-sm-1" style="text-align:center;">
               <span><b>Spouse</b></span>
             </div>
-            <div class="col-sm-4"><br></div>
+            <div class="col-sm-5"><br></div>
             <div class="col-sm-3 border-left"><br></div>
 
-
-            <div class="offset-sm-1 col-sm-2">65 or older</div>
+            <div class="col-sm-2">
+              <n-form-bold-box section="" text="65 or older"></n-form-bold-box>
+            </div>
             <div class="col-sm-1" style="text-align:center;">
               <n-checkbox nName="box39a65OrOlderTaxpayer" [fGroup]="taxForm" nValue="true" nLabel=" " nClass="checkbox-padding" (change)="boxChecked($event);"></n-checkbox>
             </div>
             <div class="col-sm-1" style="text-align:center;">
               <n-checkbox nName="box39a65OrOlderSpouse" [fGroup]="taxForm" nValue="true" nLabel=" " nClass="checkbox-padding" (change)="boxChecked($event);"></n-checkbox>
             </div>
-            <div class="col-sm-4"><br></div>
+            <div class="col-sm-5"><br></div>
             <div class="col-sm-3 border-left"><br></div>
 
-            <div class="offset-sm-1 col-sm-2">Blind</div>
+            <div class="col-sm-2">
+              <n-form-bold-box section="" text="Blind"></n-form-bold-box>
+            </div>
             <div class="col-sm-1" style="text-align:center;">
               <n-checkbox nName="box39aBlindTaxpayer" [fGroup]="taxForm" nValue="true" nLabel=" " nClass="checkbox-padding" (change)="boxChecked($event);"></n-checkbox>
             </div>
@@ -44,26 +47,28 @@
             </div>
             <div class="col-sm-3 text-right" style="margin-top:8px;">Total boxes checked</div>
             <n-input class="col-sm-1" name="box39aBoxesChecked" [fGroup]="taxForm"></n-input>
+            <div class="col-sm-1"><br></div>
             <div class="col-sm-3 border-left"><br></div>
 
             <div class="col-sm-8">
               <n-form-bold-box section="39b" text="If you are married filing separately and your spouse itemizes deductions, or you are a dual status alien, check here"></n-form-bold-box>
+              <br><br>
             </div>
             <div class="col-sm-1" style="text-align:center;">
               <n-checkbox nName="box39b1" [fGroup]="taxForm" nValue="true" nLabel=" " nClass="checkbox-padding"></n-checkbox>
             </div>
-            <div class="col-sm-3 border-left"><br></div>
+            <div class="col-sm-3 border-left"></div>
 
-            <div class="col-sm-9"><br></div>
-            <div class="col-sm-3 border-left"><br></div>
+            <div class="col-sm-9"></div>
+            <div class="col-sm-3 border-left"></div>
 
             <div class="col-sm-8" style="margin-top:15px;">
-              If you elect to itemize deductions even though the standard deduction is larger, check here
+              If you elect to itemize deductions even though the standard deduction is larger, check here<br><br>
             </div>
             <div class="col-sm-1" style="text-align:center;margin-top:15px;">
               <n-checkbox nName="box39b2" [fGroup]="taxForm" nValue="true" nLabel=" " nClass="checkbox-padding"></n-checkbox>
             </div>
-            <div class="col-sm-3 border-left" style="margin-top:15px;"><br></div>
+            <div class="col-sm-3 border-left"></div>
 
             <div class="col-sm-8">
               <n-form-bold-box section="40" boldText="Itemized deductions (from Schedule A) or standard deduction"></n-form-bold-box>
