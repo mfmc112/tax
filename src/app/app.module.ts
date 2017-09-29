@@ -24,10 +24,12 @@ import { WorkingClientService } from './working-client.service';
 import { WorkingTaxReturnService } from './working-tax-return.service';
 
 //Services
+import { HttpClientService } from './common/http-client.service';
+import { ZipCodeApiService } from './common/api/zip-code-api.service';
 import { ClientApiService } from './client/client-api.service';
 import { UserApiService } from './user/api/user-api.service';
 import { ApplicationApiService } from './application/api/application-api.service';
-import { HttpClientService } from './common/http-client.service';
+
 
 import { APP_STATES } from './app.states';
 import { routerConfigFn } from './router.config';
@@ -65,6 +67,7 @@ import { routerConfigFn } from './router.config';
     WorkingTaxReturnService,
     HttpClientModule,
     HttpClientService,
+    ZipCodeApiService,
     ClientApiService,
     UserApiService,
     ApplicationApiService

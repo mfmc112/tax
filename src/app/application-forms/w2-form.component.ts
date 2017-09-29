@@ -3,6 +3,7 @@ import { Transition } from '@uirouter/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { ApplicationComponent } from '../application/application.component';
 import { CurrentApplicationService } from '../application/service/current-application.service';
+import { ZipCodeApiService } from '../common/api/zip-code-api.service';
 import { validationRules } from '../validator/validator-rules.component';
 import { MASKS } from '../enum/masks.enum';
 import createNumberMask from 'text-mask-addons/dist/createNumberMask';
@@ -36,10 +37,10 @@ export class W2FormComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private trans: Transition,
+    private zipCodeApiService: ZipCodeApiService,
     private currentApplicationService: CurrentApplicationService ){
       this.application = this.currentApplicationService.getApplication();
       this.w2Form = this.getW2(trans.params().id);
-      // Add the address from personal information prepopulated into the employee fields
       this.address = this.createAddressGroup(this.w2Form.employeeAddress);
       this.employerAddress = this.createAddressGroup(this.w2Form.employerAddress);
       this.taxForm = formBuilder.group({
@@ -185,6 +186,18 @@ export class W2FormComponent implements OnInit {
 
     getW2(id: string): W2Form {
       return this.currentApplicationService.getW2FromList(id);
+    }
+
+    findZip($event): void {
+      let zipcode = this.taxForm.get('employeeAddress').get('zip').value;
+      this.findZipCode(zipcode);
+    }
+
+    findZipCode(zipcode: number) : any {
+      this.zipCodeApiService.findByZipCode(zipcode).subscribe(obj => {
+        this.taxForm.get('employeeAddress').get('city').setValue(obj.city);
+        this.taxForm.get('employeeAddress').get('state').setValue(obj.state);
+      });
     }
 
     submitForm(fields: any):void {

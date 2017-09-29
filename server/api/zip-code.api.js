@@ -8,7 +8,7 @@ var ZipCodeApi = function(server) {
 
   var config = {
     endpoint: '/v1/zipcode',
-    doc: 'applications'
+    doc: 'zipcode'
   };
 
   server.get(BaseApi.getEndPoint(config.endpoint, ':zipcode'), function(req, res) {
