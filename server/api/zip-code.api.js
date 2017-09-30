@@ -1,8 +1,9 @@
 // var http = require('http');
 var request = require('request');
 var BaseApi = require('../core/base-api');
+var libxmljs = require("libxmljs");
 var ResponseDecorator = require('../core/response-decorator');
-
+var _ = require("lodash");
 
 var ZipCodeApi = function(server) {
 
@@ -11,21 +12,34 @@ var ZipCodeApi = function(server) {
     doc: 'zipcode'
   };
 
-  server.get(BaseApi.getEndPoint(config.endpoint, ':zipcode'), function(req, res) {
+  server.put(BaseApi.getEndPoint(config.endpoint), function(req,res) {
+    res.status(500).json("This is an illegal request. It requires an :zicode");
+  });
 
-    request('http://maps.googleapis.com/maps/api/geocode/json?address=' + req.params.zipcode, function(error, resp, body){
-      if (body.substring(0,1) === "<") res.status(500).json("Error looking up zipcode");
-      else {
-        if (!error && resp.statusCode == 200 && body && JSON.parse(body).results[0] && JSON.parse(body).results[0].address_components[1] && JSON.parse(body).results[0].address_components[3] ) {
-          var response = {
-            "city": JSON.parse(body).results[0].address_components[1].long_name,
-            "state": JSON.parse(body).results[0].address_components[3].short_name
-          }
-          res.send(response);
-        } else {
-          res.status(500).json("Error looking up zipcode");
-        }
+  server.get(BaseApi.getEndPoint(config.endpoint, ':zipcode'), function(req, res) {
+    if (req.params.zipcode.length > 5) {
+      res.status(500).json("Invalid zipcode");
+      return;
+    }
+    var url = 'http://production.shippingapis.com/ShippingAPI.dll?API=CityStateLookup&XML=<CityStateLookupRequest%20USERID="715KJMVI4726"><ZipCode ID= "0"><Zip5>' + req.params.zipcode + '</Zip5></ZipCode></CityStateLookupRequest>';
+
+    request(url, function(error, respXml, body){
+      if (!body || body.indexOf("Error") >= 0) {
+        res.status(500).json("Error looking up zipcode");
+        return;
       }
+      var xmlDoc = libxmljs.parseXml(body);
+      var city = xmlDoc.get('//City')
+      var state = xmlDoc.get('//State')
+      if (!city || !state){
+        res.status(500).json("Error looking up zipcode");
+        return;
+      }
+      var response = {
+        "city": city.text(),
+        "state": state.text()
+      }
+      res.send(response);
     });
   });
 

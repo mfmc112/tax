@@ -35,7 +35,7 @@
           <div class="row">
             <n-input class="col-sm-12" name="home1" label="f-Employee's Address 1" [fGroup]="address"></n-input>
             <n-input class="col-sm-12" name="home2" label="Employee's Address 1" [fGroup]="address"></n-input>
-            <n-input class="col-sm-3" name="zip"    label="Zip Code" [fGroup]="address" [mask]="zipMask" (keyup)="findZip($event)"></n-input>
+            <n-input class="col-sm-3" name="zip"    label="Zip Code" [fGroup]="address" [mask]="zipMask" (keyup)="findZip($event, 'employeeAddress')"></n-input>
             <n-input class="col-sm-5" name="city"   label="City"     [fGroup]="address"></n-input>
             <n-input class="col-sm-2" name="state"  label="State"    [fGroup]="address" [mask]="stateMask"></n-input>
           </div>
@@ -65,7 +65,7 @@
 
             <n-input class="col-sm-12" name="home1" label="Street Address 1" [fGroup]="employerAddress"></n-input>
             <n-input class="col-sm-12" name="home2" label="Street Address 1" [fGroup]="employerAddress"></n-input>
-            <n-input class="col-sm-3" name="zip"    label="Zip Code" [fGroup]="employerAddress" [mask]="zipMask"></n-input>
+            <n-input class="col-sm-3" name="zip"    label="Zip Code" [fGroup]="employerAddress" [mask]="zipMask" (keyup)="findZip($event, 'employerAddress')"></n-input>
             <n-input class="col-sm-5" name="city"   label="City"     [fGroup]="employerAddress"></n-input>
             <n-input class="col-sm-2" name="state"  label="State"    [fGroup]="employerAddress" [mask]="stateMask"></n-input>
           </div>

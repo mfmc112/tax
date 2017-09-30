@@ -34,6 +34,7 @@
     "express": "~4.7.2",
     "font-awesome": "^4.7.0",
     "jquery": "^3.2.1",
+    "libxmljs": "^0.18.7",
     "lodash": "^4.17.4",
     "mongodb": "^2.2.31",
     "mongoose": "^4.11.7",

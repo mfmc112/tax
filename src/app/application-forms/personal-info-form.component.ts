@@ -6,6 +6,7 @@ import { MASKS } from '../enum/masks.enum';
 import { validationRules } from '../validator/validator-rules.component';
 import { ApplicationComponent } from '../application/application.component';
 import { ClientApiService } from '../client/client-api.service';
+import { ZipCodeApiService } from '../common/api/zip-code-api.service';
 import { Application, Client, Phone, PersonalInformation, BasicInformation, MailingAddress } from '../common';
 import { CurrentApplicationService } from '../application/service/current-application.service';
 import { MyDatePickerModule, IMyDefaultMonth, IMyDpOptions, IMyDateModel } from 'mydatepicker';
@@ -37,6 +38,7 @@ export class PersonalInfoFormComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     public toastr: ToastsManager, vcr: ViewContainerRef,
+    private zipCodeApiService: ZipCodeApiService,
     private currentApplicationService: CurrentApplicationService
   ){
     this.toastr.setRootViewContainerRef(vcr);
@@ -167,6 +169,18 @@ export class PersonalInfoFormComponent implements OnInit {
      var ageDifMs = Date.now() - birthday.getTime();
      var ageDate = new Date(ageDifMs);
      return Math.abs(ageDate.getUTCFullYear() - 1970);
+  }
+
+  findZip($event, owner: string): void {
+    let zipcode = this.taxForm.get(owner).get('zip').value;
+    this.findZipCode(zipcode, owner);
+  }
+
+  findZipCode(zipcode: number, owner: string) : any {
+    this.zipCodeApiService.findByZipCode(zipcode).subscribe(obj => {
+      this.taxForm.get(owner).get('city').setValue(obj.city);
+      this.taxForm.get(owner).get('state').setValue(obj.state);
+    });
   }
 
   submitForm(fields: any):void {

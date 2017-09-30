@@ -188,15 +188,15 @@ export class W2FormComponent implements OnInit {
       return this.currentApplicationService.getW2FromList(id);
     }
 
-    findZip($event): void {
-      let zipcode = this.taxForm.get('employeeAddress').get('zip').value;
-      this.findZipCode(zipcode);
+    findZip($event, owner: string): void {
+      let zipcode = this.taxForm.get(owner).get('zip').value;
+      if (zipcode.length >= 5) this.findZipCode(zipcode, owner);
     }
 
-    findZipCode(zipcode: number) : any {
+    findZipCode(zipcode: number, owner: string) : any {
       this.zipCodeApiService.findByZipCode(zipcode).subscribe(obj => {
-        this.taxForm.get('employeeAddress').get('city').setValue(obj.city);
-        this.taxForm.get('employeeAddress').get('state').setValue(obj.state);
+        this.taxForm.get(owner).get('city').setValue(obj.city);
+        this.taxForm.get(owner).get('state').setValue(obj.state);
       });
     }
 
