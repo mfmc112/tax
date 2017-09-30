@@ -30,7 +30,7 @@
 
             <n-input class="col-sm-3" name="mobile"  [mask]="phoneMask" label="Phone Numbers" placeHolder="Mobile" [fGroup]="payerPhoneGroup"></n-input>
             <n-input class="col-sm-3" name="evening" [mask]="phoneMask" label=" " placeHolder="Evening" [fGroup]="payerPhoneGroup" [addMargin]="true"></n-input>
-            <n-input class="col-sm-3" name="other"   [mask]="phoneMask" label=" " placeHolder="Other" [fGroup]="payerPhoneGroup" [addMargin]="true" (keyup)="enableType('phone')"></n-input>
+            <n-input class="col-sm-3" name="other"   [mask]="phoneMask" label=" " placeHolder="Other" [fGroup]="payerPhoneGroup" [addMargin]="true" (keyup)="enableType('taxPayer')"></n-input>
             <div class="col-sm-3" formGroupName="taxPayer">
               <div class="form-group"  formGroupName="phone">
                 <label class="add-margin"></label>
@@ -75,7 +75,7 @@
 
             <n-input class="col-sm-3" name="mobile"  [mask]="phoneMask" label="Phone Numbers" placeHolder="Mobile" [fGroup]="spousePhoneGroup"></n-input>
             <n-input class="col-sm-3" name="evening" [mask]="phoneMask" label=" " placeHolder="Evening" [addMargin]="true" [fGroup]="spousePhoneGroup"></n-input>
-            <n-input class="col-sm-3" name="other"   [mask]="phoneMask" label=" " placeHolder="Other" [addMargin]="true" [fGroup]="spousePhoneGroup" (keyup)="enableType('sPhone')"></n-input>
+            <n-input class="col-sm-3" name="other"   [mask]="phoneMask" label=" " placeHolder="Other" [addMargin]="true" [fGroup]="spousePhoneGroup" (keyup)="enableType('spouse')"></n-input>
             <div class="col-sm-3" formGroupName="spouse">
               <div class="form-group"  formGroupName="phone">
                 <label class="add-margin"></label>

@@ -62,8 +62,8 @@ export class PersonalInfoFormComponent implements OnInit {
   ngOnInit(): void {
     this.setDateOfBirth(this.taxForm.get('taxPayer'));
     this.setDateOfBirth(this.taxForm.get('taxPayer'));
-    this.enableType(this.taxForm.get('taxPayer'));
-    this.enableType(this.taxForm.get('spouse'));
+    this.enableType('taxPayer');
+    this.enableType('spouse');
   }
 
   setDateOfBirth(group: any) {
@@ -78,9 +78,13 @@ export class PersonalInfoFormComponent implements OnInit {
     }
   }
 
-  enableType(group: any): void {
-    if (group.get('phone').get('other').value && group.get('phone').get('other').value != "") group.get('phone').get('type').enable();
-    else group.get('phone').get('type').disable();
+  enableType(owner: any): void {
+    if (this.taxForm.get(owner).get('phone').get('other').value && this.taxForm.get(owner).get('phone').get('other').value != "") {
+      this.taxForm.get(owner).get('phone').get('type').enable();
+    } else {
+      this.taxForm.get(owner).get('phone').get('type').reset();
+      this.taxForm.get(owner).get('phone').get('type').disable();
+    }
     this.taxForm.markAsDirty();
   }
 
