@@ -31,8 +31,6 @@ var ApplicationApi = function(server) {
     Application.find(condition).
     populate('client').
     populate('preparer').
-    populate('clientInformation').
-    // populate('clientInformation.personalInformation').
     populate('w2Forms').
     exec(function(error, response) {
       if (!error) res.send(new ResponseDecorator().enrich(response, config.doc));
@@ -48,7 +46,6 @@ var ApplicationApi = function(server) {
     Application.findById(req.params.id).
     populate('client').
     populate('preparer').
-    populate('clientInformation').
     populate('w2Forms').
     exec(function(error, response) {
       if (!error) res.send(response);
@@ -96,7 +93,10 @@ var ApplicationApi = function(server) {
     if (!req.body.preparer) res.status(500).send("invalid preparer");
 
     console.log('executing application PUT for client' + req.body.client + ', year of : ' + req.body.year);
-    Application.update({_id: BaseApi.objectID(req.params.id)}, req.body, function(error, response) {
+    var application = new Application(req.body);
+    // application.clientInformation.save(application.clientInformation);
+    // application.clientInformation.personalInformation.save(application.clientInformation.personalInformation);
+    Application.update({_id: BaseApi.objectID(req.params.id)}, application, function(error, response) {
       if (!error) res.send(new ResponseDecorator().enrichPut(response, req));
       else res.status(500).send(error);
     });

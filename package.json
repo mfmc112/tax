@@ -37,7 +37,7 @@
     "libxmljs": "^0.18.7",
     "lodash": "^4.17.4",
     "mongodb": "^2.2.31",
-    "mongoose": "^4.11.7",
+    "mongoose": "^4.11.13",
     "mydatepicker": "^2.0.27",
     "ng-sidebar": "^6.0.1",
     "ng2-bs3-modal": "^0.10.4",

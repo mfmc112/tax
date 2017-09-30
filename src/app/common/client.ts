@@ -1,9 +1,9 @@
 export class Client {
-  firstName:string;
-  lastName:string;
-  middleName:string;
-  ssn:string;
-  itin:string;
+  firstName: string;
+  lastName: string;
+  middleName: string;
+  ssn: string;
+  itin: string;
 
   constructor(private data: any) {
     this.firstName = data.firstName;

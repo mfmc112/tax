@@ -1,6 +1,6 @@
 export class Phone {
-  mobile: number;
-  evening: number;
-  other: number;
+  mobile: string;
+  evening: string;
+  other: string;
   type: string;
 }

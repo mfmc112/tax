@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit, ViewContainerRef } from '@angular/core';
+import { Component, ViewChild, OnInit, OnDestroy, ViewContainerRef } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { NInputComponent } from '../common/n-components/';
@@ -15,7 +15,7 @@ import { MyDatePickerModule, IMyDefaultMonth, IMyDpOptions, IMyDateModel } from 
   selector: 'personal-info-form',
   templateUrl: './templates/personal-info-form.component.html'
 })
-export class PersonalInfoFormComponent implements OnInit {
+export class PersonalInfoFormComponent implements OnInit, OnDestroy {
   @ViewChild('../application/application.component') applicationComponent: ApplicationComponent;
   @ViewChild('../common/n-components/n-input.component') nInput: NInputComponent;
   phoneMask: Array<string | RegExp> = MASKS.PHONE;
@@ -60,21 +60,30 @@ export class PersonalInfoFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.setDateOfBirth(this.taxForm.get('taxPayer'));
-    this.setDateOfBirth(this.taxForm.get('taxPayer'));
+    this.setDateOfBirth('taxPayer');
+    this.setDateOfBirth('spouse');
     this.enableType('taxPayer');
     this.enableType('spouse');
   }
 
-  setDateOfBirth(group: any) {
-    if (group.get('dateOfBirth').value && group.get('dateOfBirth').value.date) {
+  ngOnDestroy() : void {
+    // save inpout data
+    this.submitForm('');
+  }
+
+  setDateOfBirth(owner: any) {
+    if (this.taxForm.get(owner).get('dateOfBirth').value && this.taxForm.get(owner).get('dateOfBirth').value.date) {
       let date = new Date(
-        group.get('dateOfBirth').value.date.year,
-        group.get('dateOfBirth').value.date.month,
-        group.get('dateOfBirth').value.date.day
+        this.taxForm.get(owner).get('dateOfBirth').value.date.year,
+        this.taxForm.get(owner).get('dateOfBirth').value.date.month,
+        this.taxForm.get(owner).get('dateOfBirth').value.date.day
       );
-      this.setDate(date);
-      this.calculateAge(date);
+      this.setDate(date, owner);
+      this.taxForm.get(owner).get('age').setValue(this.calculateAge(date));
+    } else if (this.taxForm.get(owner).get('dateOfBirth').value) {
+      let date = new Date(this.taxForm.get(owner).get('dateOfBirth').value);
+      this.setDate(date, owner);
+      this.taxForm.get(owner).get('age').setValue(this.calculateAge(date));
     }
   }
 
@@ -89,15 +98,16 @@ export class PersonalInfoFormComponent implements OnInit {
   }
 
   createBasicInfoTaxPayerGroup(basic: BasicInformation, phoneGroup: FormGroup): FormGroup {
+    if (!basic.ssn) basic.ssn = this.application.client.ssn;
     return new FormGroup({
       'firstName': new FormControl(basic.firstName, Validators.compose([Validators.required, Validators.maxLength(45), Validators.pattern(validationRules.STRING)])),
-      'middleName': new FormControl(basic.initial, Validators.compose([Validators.maxLength(1), Validators.pattern(validationRules.STRING)])),
+      'initial': new FormControl(basic.initial, Validators.compose([Validators.maxLength(1), Validators.pattern(validationRules.STRING)])),
       'lastName': new FormControl(basic.lastName, Validators.compose([Validators.required, Validators.maxLength(45), Validators.pattern(validationRules.STRING)])),
-      'suffixName': new FormControl(basic.suffix),
+      'suffix': new FormControl(basic.suffix),
       'ssn': new FormControl({value: basic.ssn, disabled: true }, Validators.compose([Validators.required, Validators.pattern(validationRules.SSN_REGEXP)])),
       'dateOfBirth': new FormControl(basic.dateOfBirth, Validators.required),
       'age': new FormControl({value: '0', disabled: true }),
-      'occuppation': new FormControl(basic.occupation),
+      'occupation': new FormControl(basic.occupation),
       'phone': phoneGroup
     });
   }
@@ -105,13 +115,13 @@ export class PersonalInfoFormComponent implements OnInit {
   createBasicInfoSpouseGroup(basic: BasicInformation, phoneGroup: FormGroup): FormGroup {
     return new FormGroup({
       'firstName': new FormControl(basic.firstName, Validators.compose([Validators.maxLength(45), Validators.pattern(validationRules.STRING)])),
-      'middleName': new FormControl(basic.initial, Validators.compose([Validators.maxLength(1), Validators.pattern(validationRules.STRING)])),
+      'initial': new FormControl(basic.initial, Validators.compose([Validators.maxLength(1), Validators.pattern(validationRules.STRING)])),
       'lastName': new FormControl(basic.lastName, Validators.compose([Validators.maxLength(45), Validators.pattern(validationRules.STRING)])),
-      'suffixName': new FormControl(basic.suffix),
-      'ssn': new FormControl({value: basic.ssn, disabled: true }, Validators.compose([Validators.pattern(validationRules.SSN_REGEXP)])),
+      'suffix': new FormControl(basic.suffix),
+      'ssn': new FormControl({value: basic.ssn, disabled: false }, Validators.compose([Validators.pattern(validationRules.SSN_REGEXP)])),
       'dateOfBirth': new FormControl(basic.dateOfBirth),
       'age': new FormControl({value: '0', disabled: true }),
-      'occuppation': new FormControl(basic.occupation),
+      'occupation': new FormControl(basic.occupation),
       'phone': phoneGroup
     });
   }
@@ -151,13 +161,13 @@ export class PersonalInfoFormComponent implements OnInit {
       defMonth: '01/'+ (new Date().getFullYear()-15)
   }
 
-  setDate(date: Date): void {
-      this.taxForm.patchValue({'dateOfBirth': {
+  setDate(date: Date, owner: string): void {
+    this.taxForm.get(owner).get('dateOfBirth').setValue({
       date: {
           year: date.getFullYear(),
           month: date.getMonth() + 1,
           day: date.getDate()}
-      }});
+    });
   }
 
   clearDate(): void {
@@ -187,10 +197,39 @@ export class PersonalInfoFormComponent implements OnInit {
     });
   }
 
+  retrieveDate(complexDate: any): Date {
+    if (complexDate) {
+      if (complexDate.formatted) {
+        return new Date(complexDate.formatted);
+      } else if (complexDate.date.year) {
+        return new Date(complexDate.date.year, complexDate.date.month-1, complexDate.date.day);
+      }
+    }
+    return;
+  }
+
+  cleanUpPhone(phone: Phone): Phone {
+    if (phone.mobile && isNaN(Number(phone.mobile))) phone.mobile = phone.mobile.replace("(","").replace(")","").replace(" ","").replace("-","");
+    if (phone.evening && isNaN(Number(phone.evening))) phone.evening = phone.evening.replace("(","").replace(")","").replace(" ","").replace("-","");
+    if (phone.other && isNaN(Number(phone.other))) phone.other = phone.other.replace("(","").replace(")","").replace(" ","").replace("-","");
+    return phone;
+  }
+
   submitForm(fields: any):void {
     this.pi = this.taxForm.value;
+    // clean up date of birth to save
+    this.pi.taxPayer.dateOfBirth = this.retrieveDate(this.pi.taxPayer.dateOfBirth);
+    this.pi.taxPayer.phone = this.cleanUpPhone(this.pi.taxPayer.phone);
+    this.pi.spouse.dateOfBirth = this.retrieveDate(this.pi.spouse.dateOfBirth);
+    this.pi.spouse.phone = this.cleanUpPhone(this.pi.spouse.phone);
+
     this.currentApplicationService.setPersonalInformation(this.pi);
-    this.toastr.success('Personal Information saved sucessfully', 'Success!');
+    this.currentApplicationService.updateApplication().subscribe(data => {
+      this.toastr.success('Personal Information saved sucessfully', 'Success!');
+    });
+
   }
+
+
 
 }

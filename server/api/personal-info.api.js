@@ -1,6 +1,8 @@
 var BaseApi = require('../core/base-api');
 var ResponseDecorator = require('../core/response-decorator');
 var PersonalInfo = require('../core/schemas/personal-info-schema');
+var Application = require('../core/schemas/application-schema');
+var ClientInformation = require('../core/schemas/client-information-schema');
 
 var PersonalInfoApi = function(server) {
   var config = {
@@ -81,9 +83,32 @@ var PersonalInfoApi = function(server) {
    */
   server.put(BaseApi.getEndPoint(config.endpoint, ':id'), function(req,res) {
     console.log('executing PUT ' + req.body.firstName);
-    PersonalInfo.update({_id: BaseApi.objectID(req.params.id)}, req.body, function(error, response) {
-      if (!error) res.send(new ResponseDecorator().enrichPut(response, req));
-      else res.status(500).send(error);
+    var personalInfo = new PersonalInfo(req.body);
+    Application.findById(req.params.id).
+    populate('clientInformation').
+    exec(function(error, response) {
+      if (!error) {
+        if (!response.clientInformation) response.clientInformation = new ClientInformation();
+        response.clientInformation.save(function(error) {
+          if (error) {
+            console.log("Error saving clientInformation" + error);
+            res.status(500).send("Error saving clientInformation" + error);
+          }
+
+          personalInfo.dependents = false;
+          response.clientInformation.personalInformation = personalInfo;
+          console.log(response.clientInformation);
+
+          response.clientInformation.personalInformation.save(function(error) {
+            if (error) {
+              console.log("Error saving personalInformation" + error);
+              res.status(500).send("Error saving personalInformation" + error);
+            }
+            res.send(new ResponseDecorator().enrichPut(response, req));
+          });
+        })
+      }
+      else res.status(500).json("Error executing search");
     });
   });
 
