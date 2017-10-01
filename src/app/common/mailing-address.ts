@@ -3,7 +3,7 @@ export class MailingAddress {
   careLastName: string;
   home1: string;
   home2: string;
-  zip: number;
+  zip: string;
   city: string;
   state: string;
   email: string;

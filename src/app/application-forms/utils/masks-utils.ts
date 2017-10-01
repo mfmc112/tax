@@ -19,4 +19,10 @@ export class MaskUtils {
     if (typeof complexDate === "string") return new Date(complexDate);
   }
 
+  public cleanAmount(amount: any): number {
+    if (!amount) return 0;
+    if (!isNaN(amount)) return amount;
+    return Number(amount.replace("$","").replace(",","").replace(".00",""));
+  }
+
 }

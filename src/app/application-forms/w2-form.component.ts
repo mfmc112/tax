@@ -1,11 +1,14 @@
-import { Component, OnInit, Input, ViewChild, DoCheck } from  '@angular/core';
+import { Component, OnInit, Input, ViewChild, DoCheck, OnDestroy, ViewContainerRef } from  '@angular/core';
 import { Transition } from '@uirouter/core';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { ApplicationComponent } from '../application/application.component';
 import { CurrentApplicationService } from '../application/service/current-application.service';
-import { ZipCodeApiService } from '../common/api/zip-code-api.service';
 import { validationRules } from '../validator/validator-rules.component';
 import { MASKS } from '../enum/masks.enum';
+import { MaskUtils } from './utils/masks-utils';
+import { ZipCodeApiService } from '../common/api/zip-code-api.service';
+import { ZipCodeUtils } from './utils/zip-code-utils';
 import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 
 import { Application, PersonalInformation,  W2Form, MailingAddress, Client, Utils } from '../common/';
@@ -18,27 +21,34 @@ import * as _ from 'lodash';
   templateUrl: './templates/w2-form.component.html'
 })
 export class W2FormComponent implements OnInit {
-  @ViewChild('../application/application.component') applicationComponent: ApplicationComponent;
-  @ViewChild('../common/n-components/n-input.component') nInput: NInputComponent;
-  @ViewChild('../common/n-components/n-checkbox.component') nCheckbox: NCheckboxComponent;
-  @ViewChild('../common/n-components/n-textarea.component') nTextarea: NTextareaComponent;
-  @ViewChild('../common/n-components/n-w2-field12.component') nW2Field12: NW2Field12Component;
+  // @ViewChild('../application/application.component') applicationComponent: ApplicationComponent;
+  // @ViewChild('../common/n-components/n-input.component') nInput: NInputComponent;
+  // @ViewChild('../common/n-components/n-checkbox.component') nCheckbox: NCheckboxComponent;
+  // @ViewChild('../common/n-components/n-textarea.component') nTextarea: NTextareaComponent;
+  // @ViewChild('../common/n-components/n-w2-field12.component') nW2Field12: NW2Field12Component;
   ssnMask: Array<string | RegExp> = MASKS.SSN;
   zipMask:  Array<string | RegExp> = MASKS.ZIP;
   stateMask:  Array<string | RegExp> = MASKS.STATE;
   numberMask = createNumberMask({ prefix: '$', suffix: '.00' });
+  zipCodeUtils: ZipCodeUtils;
+  maskUtils: MaskUtils = new MaskUtils();
   utils: Utils = new Utils();
   taxForm: FormGroup;
   application: Application;
   w2Form: W2Form;
   address: FormGroup;
   employerAddress: FormGroup;
+  w2Id: string;
 
   constructor(
     private formBuilder: FormBuilder,
     private trans: Transition,
+    public toastr: ToastsManager, vcr: ViewContainerRef,
     private zipCodeApiService: ZipCodeApiService,
     private currentApplicationService: CurrentApplicationService ){
+      this.zipCodeUtils = new ZipCodeUtils(zipCodeApiService);
+      this.toastr.setRootViewContainerRef(vcr);
+
       this.application = this.currentApplicationService.getApplication();
       this.w2Form = this.getW2(trans.params().id);
       this.address = this.createAddressGroup(this.w2Form.employeeAddress);
@@ -93,9 +103,17 @@ export class W2FormComponent implements OnInit {
     }
 
     ngOnInit():void {
+      if (this.taxForm.get('sameAddressAsHome').value === undefined || this.taxForm.get('sameAddressAsHome').value === null) {
+        this.taxForm.get('sameAddressAsHome').setValue(true);
+      }
       this.sameAddress(null);
       this.autoCalculate(null);
       this.populateENC(null);
+    }
+
+    ngOnDestroy() : void {
+      // save inpout data
+      this.submitForm('');
     }
 
     populateENC($event): void {
@@ -185,23 +203,39 @@ export class W2FormComponent implements OnInit {
     }
 
     getW2(id: string): W2Form {
+      this.w2Id = id;
       return this.currentApplicationService.getW2FromList(id);
     }
 
     findZip($event, owner: string): void {
-      let zipcode = this.taxForm.get(owner).get('zip').value;
-      if (zipcode.length >= 5) this.findZipCode(zipcode, owner);
+      let obj = this.zipCodeUtils.findZipCode(
+        this.taxForm.get(owner).get('zip').value,
+        this.taxForm.get(owner).get('city'),
+        this.taxForm.get(owner).get('state'));
     }
 
-    findZipCode(zipcode: number, owner: string) : any {
-      this.zipCodeApiService.findByZipCode(zipcode).subscribe(obj => {
-        this.taxForm.get(owner).get('city').setValue(obj.city);
-        this.taxForm.get(owner).get('state').setValue(obj.state);
-      });
+    cleanAmount(w2: any): any {
+      w2.field1 = this.maskUtils.cleanAmount(w2.field1);
+      w2.field2 = this.maskUtils.cleanAmount(w2.field2);
+      w2.field3 = this.maskUtils.cleanAmount(w2.field3);
+      w2.field4 = this.maskUtils.cleanAmount(w2.field4);
+      w2.field5 = this.maskUtils.cleanAmount(w2.field5);
+      w2.field6 = this.maskUtils.cleanAmount(w2.field6);
+      w2.field7 = this.maskUtils.cleanAmount(w2.field7);
+      w2.field8 = this.maskUtils.cleanAmount(w2.field8);
+      w2.field9 = this.maskUtils.cleanAmount(w2.field9);
+      w2.field10 = this.maskUtils.cleanAmount(w2.field10);
+      return w2;
     }
 
     submitForm(fields: any):void {
-
+      let w2 = this.taxForm.value;
+      w2 = this.cleanAmount(w2);
+      this.currentApplicationService.saveW2(this.w2Id, w2);
+      this.currentApplicationService.updateApplication().subscribe(data => {
+        let employerName = (this.taxForm.get('employerName').value)? "(" + this.taxForm.get('employerName').value + ")": "";
+        this.toastr.success('W2 ' + employerName + 'saved sucessfully', 'Success!');
+      });
     }
 
 }

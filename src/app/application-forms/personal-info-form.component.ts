@@ -4,10 +4,11 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { NInputComponent } from '../common/n-components/';
 import { MASKS } from '../enum/masks.enum';
 import { MaskUtils } from './utils/masks-utils';
+import { ZipCodeApiService } from '../common/api/zip-code-api.service';
+import { ZipCodeUtils } from './utils/zip-code-utils';
 import { validationRules } from '../validator/validator-rules.component';
 import { ApplicationComponent } from '../application/application.component';
 import { ClientApiService } from '../client/client-api.service';
-import { ZipCodeApiService } from '../common/api/zip-code-api.service';
 import { Application, Client, Phone, PersonalInformation, BasicInformation, MailingAddress } from '../common';
 import { CurrentApplicationService } from '../application/service/current-application.service';
 import { MyDatePickerModule, IMyDefaultMonth, IMyDpOptions, IMyDateModel } from 'mydatepicker';
@@ -17,8 +18,8 @@ import { MyDatePickerModule, IMyDefaultMonth, IMyDpOptions, IMyDateModel } from 
   templateUrl: './templates/personal-info-form.component.html'
 })
 export class PersonalInfoFormComponent implements OnInit, OnDestroy {
-  @ViewChild('../application/application.component') applicationComponent: ApplicationComponent;
-  @ViewChild('../common/n-components/n-input.component') nInput: NInputComponent;
+  // @ViewChild('../application/application.component') applicationComponent: ApplicationComponent;
+  // @ViewChild('../common/n-components/n-input.component') nInput: NInputComponent;
   phoneMask: Array<string | RegExp> = MASKS.PHONE;
   ssnMask: Array<string | RegExp> = MASKS.SSN;
   dateMask: Array<string | RegExp> = MASKS.DATE;
@@ -27,6 +28,7 @@ export class PersonalInfoFormComponent implements OnInit, OnDestroy {
   stateMask:  Array<string | RegExp> = MASKS.STATE;
   suffixMask: Array<string | RegExp> = MASKS.NAME_SUFFIX;
   maskUtils: MaskUtils = new MaskUtils();
+  zipCodeUtils: ZipCodeUtils;
   taxForm: FormGroup;
   taxPayerGroup: FormGroup;
   payerPhoneGroup: FormGroup;
@@ -43,6 +45,7 @@ export class PersonalInfoFormComponent implements OnInit, OnDestroy {
     private zipCodeApiService: ZipCodeApiService,
     private currentApplicationService: CurrentApplicationService
   ){
+    this.zipCodeUtils = new ZipCodeUtils(zipCodeApiService);
     this.toastr.setRootViewContainerRef(vcr);
 
     this.application = this.currentApplicationService.getApplication();
@@ -188,15 +191,10 @@ export class PersonalInfoFormComponent implements OnInit, OnDestroy {
   }
 
   findZip($event, owner: string): void {
-    let zipcode = this.taxForm.get(owner).get('zip').value;
-    this.findZipCode(zipcode, owner);
-  }
-
-  findZipCode(zipcode: number, owner: string) : any {
-    this.zipCodeApiService.findByZipCode(zipcode).subscribe(obj => {
-      this.taxForm.get(owner).get('city').setValue(obj.city);
-      this.taxForm.get(owner).get('state').setValue(obj.state);
-    });
+    let obj = this.zipCodeUtils.findZipCode(
+      this.taxForm.get(owner).get('zip').value,
+      this.taxForm.get(owner).get('city'),
+      this.taxForm.get(owner).get('state'));
   }
 
   cleanUpPhone(phone: Phone): Phone {
@@ -220,9 +218,6 @@ export class PersonalInfoFormComponent implements OnInit, OnDestroy {
     this.currentApplicationService.updateApplication().subscribe(data => {
       this.toastr.success('Personal Information saved sucessfully', 'Success!');
     });
-
   }
-
-
 
 }

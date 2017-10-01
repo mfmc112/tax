@@ -10,14 +10,14 @@ export class ZipCodeApiService {
 
   constructor ( private http: HttpClientService ) {  }
 
-  findByZipCode(zipcode: number): any {
-    if (!zipcode || zipcode <1000 || zipcode >99999) {
+  findByZipCode(zipCode: string): any {
+    if (!zipCode || zipCode.length < 5 || zipCode.length >5) {
       return Observable.create(observer => {
         observer.next("zipcode must be valid");
         observer.complete();
       });
     }
-    return this.http.getById(this.url + "/" + zipcode);
+    return this.http.getById(this.url + "/" + zipCode);
   }
 
 }

@@ -102,7 +102,8 @@ export class CurrentApplicationService {
   calculate(): void {
     this.application.estimate = 0;
     this.application.currentAgi = 0;
-    if (!this.application.w2Forms || this.application.w2Forms.length <= 0) {
+    if (!this.application.w2Forms || this.application.w2Forms.length <= 0 || !this.application.w2Forms[0]) {
+      this.application.w2Forms = undefined;
       this.addToEstimate(0, 0);
       return;
     }
@@ -148,7 +149,13 @@ export class CurrentApplicationService {
     let w2 = _.find(this.application.w2Forms, function(o) {
       return o._id === id;
     });
-    console.log("found W2 " + w2);
     return w2;
+  }
+
+  saveW2(id: string, w2: W2Form): void {
+    let w2Index = _.findIndex(this.application.w2Forms, function(o) {
+      return o._id === id;
+    });
+    this.application.w2Forms[w2Index] = w2;
   }
 }
