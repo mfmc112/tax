@@ -3,6 +3,7 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { NInputComponent } from '../common/n-components/';
 import { MASKS } from '../enum/masks.enum';
+import { MaskUtils } from './utils/masks-utils';
 import { validationRules } from '../validator/validator-rules.component';
 import { ApplicationComponent } from '../application/application.component';
 import { ClientApiService } from '../client/client-api.service';
@@ -25,6 +26,7 @@ export class PersonalInfoFormComponent implements OnInit, OnDestroy {
   zipMask:  Array<string | RegExp> = MASKS.ZIP;
   stateMask:  Array<string | RegExp> = MASKS.STATE;
   suffixMask: Array<string | RegExp> = MASKS.NAME_SUFFIX;
+  maskUtils: MaskUtils = new MaskUtils();
   taxForm: FormGroup;
   taxPayerGroup: FormGroup;
   payerPhoneGroup: FormGroup;
@@ -197,32 +199,23 @@ export class PersonalInfoFormComponent implements OnInit, OnDestroy {
     });
   }
 
-  retrieveDate(complexDate: any): Date {
-    if (complexDate) {
-      if (complexDate.formatted) {
-        return new Date(complexDate.formatted);
-      } else if (complexDate.date.year) {
-        return new Date(complexDate.date.year, complexDate.date.month-1, complexDate.date.day);
-      }
-    }
-    return;
-  }
-
   cleanUpPhone(phone: Phone): Phone {
-    if (phone.mobile && isNaN(Number(phone.mobile))) phone.mobile = phone.mobile.replace("(","").replace(")","").replace(" ","").replace("-","");
-    if (phone.evening && isNaN(Number(phone.evening))) phone.evening = phone.evening.replace("(","").replace(")","").replace(" ","").replace("-","");
-    if (phone.other && isNaN(Number(phone.other))) phone.other = phone.other.replace("(","").replace(")","").replace(" ","").replace("-","");
+    phone.mobile = this.maskUtils.removePhoneMask(phone.mobile);
+    phone.evening = this.maskUtils.removePhoneMask(phone.evening);
+    phone.other = this.maskUtils.removePhoneMask(phone.other);
     return phone;
   }
 
-  submitForm(fields: any):void {
-    this.pi = this.taxForm.value;
-    // clean up date of birth to save
-    this.pi.taxPayer.dateOfBirth = this.retrieveDate(this.pi.taxPayer.dateOfBirth);
-    this.pi.taxPayer.phone = this.cleanUpPhone(this.pi.taxPayer.phone);
-    this.pi.spouse.dateOfBirth = this.retrieveDate(this.pi.spouse.dateOfBirth);
-    this.pi.spouse.phone = this.cleanUpPhone(this.pi.spouse.phone);
+  removeMask(pi: PersonalInformation): PersonalInformation {
+    pi.taxPayer.dateOfBirth = this.maskUtils.retrieveDate(this.pi.taxPayer.dateOfBirth);
+    pi.taxPayer.phone = this.cleanUpPhone(this.pi.taxPayer.phone);
+    pi.spouse.dateOfBirth = this.maskUtils.retrieveDate(this.pi.spouse.dateOfBirth);
+    pi.spouse.phone = this.cleanUpPhone(this.pi.spouse.phone);
+    return pi;
+  }
 
+  submitForm(fields: any):void {
+    this.pi = this.removeMask(this.taxForm.value);
     this.currentApplicationService.setPersonalInformation(this.pi);
     this.currentApplicationService.updateApplication().subscribe(data => {
       this.toastr.success('Personal Information saved sucessfully', 'Success!');

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ApplicationApiService } from '../api/application-api.service';
-import { Application, Client, User, ClientInformation, PersonalInformation, FilingInformation, W2Form } from '../../common/';
+import { Application, Client, User, ClientInformation, PersonalInformation, FilingInformation, BasicInformation, W2Form } from '../../common/';
 import * as _ from 'lodash';
 
 @Injectable()
@@ -54,6 +54,19 @@ export class CurrentApplicationService {
     if (!this.application.clientInformation.personalInformation) {
       this.application.clientInformation.personalInformation = new PersonalInformation(this.getClient());
     }
+
+    if (!this.application.clientInformation.personalInformation.taxPayer) {
+      this.application.clientInformation.personalInformation.taxPayer = new BasicInformation();
+      this.application.clientInformation.personalInformation.taxPayer.firstName = this.getClient().firstName;
+      this.application.clientInformation.personalInformation.taxPayer.initial = this.getClient().middleName;
+      this.application.clientInformation.personalInformation.taxPayer.lastName = this.getClient().lastName;
+      this.application.clientInformation.personalInformation.taxPayer.ssn = this.getClient().ssn;
+    }
+
+    if (!this.application.clientInformation.personalInformation.spouse) {
+      this.application.clientInformation.personalInformation.spouse = new BasicInformation();
+    }
+
     return this.application.clientInformation.personalInformation;
   }
 
