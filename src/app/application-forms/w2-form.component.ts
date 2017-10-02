@@ -231,6 +231,7 @@ export class W2FormComponent implements OnInit {
     submitForm(fields: any):void {
       let w2 = this.taxForm.value;
       w2 = this.cleanAmount(w2);
+      w2._id = this.w2Id;
       this.currentApplicationService.saveW2(this.w2Id, w2);
       this.currentApplicationService.updateApplication().subscribe(data => {
         let employerName = (this.taxForm.get('employerName').value)? "(" + this.taxForm.get('employerName').value + ")": "";
