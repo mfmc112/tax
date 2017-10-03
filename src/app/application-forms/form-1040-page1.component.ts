@@ -8,13 +8,14 @@ import { MASKS } from '../enum/masks.enum';
 import { PersonalInfoFormComponent } from './personal-info-form.component';
 import { Application, PersonalInformation, FilingInformation, Dependent, W2Form, MailingAddress, Client, Utils } from '../common/';
 import createNumberMask from 'text-mask-addons/dist/createNumberMask';
+import * as _ from "lodash";
 
 @Component({
   selector:'form-1040-page1',
   templateUrl: './templates/form-1040-page1.component.html'
 })
 export class Form1040Page1Component implements OnInit {
-  @ViewChild('../application/application.component') applicationComponent: ApplicationComponent;
+  // @ViewChild('../application/application.component') applicationComponent: ApplicationComponent;
   ssnMask: Array<string | RegExp> = MASKS.SSN;
   zipMask:  Array<string | RegExp> = MASKS.ZIP;
   numberMask = createNumberMask({ prefix: '$', suffix: '.00' });
@@ -91,10 +92,15 @@ export class Form1040Page1Component implements OnInit {
   }
 
   buildW2Summary(): FormGroup {
-    let w2 = this.w2Forms[0];
-    if (!w2) w2 = new W2Form(this.application.client);
+    let w2Field1 = 0;
+    if (this.w2Forms && this.w2Forms[0]) {
+      _.each(this.w2Forms, function(w2: W2Form) {
+        w2Field1 = w2Field1 + w2.field1;
+      });
+    }
+
     return new FormGroup({
-      'box7': new FormControl({value: w2.field1, disabled: true }),
+      'box7': new FormControl({value: w2Field1, disabled: true }),
       'box8a': new FormControl({value: "0", disabled: true }),
       'box8b': new FormControl({value: "0", disabled: true }),
       'box9a': new FormControl({value: "0", disabled: true }),
@@ -121,8 +127,8 @@ export class Form1040Page1Component implements OnInit {
       'box20b': new FormControl({value: "0", disabled: true }),
       'box21Type': new FormControl({value: "", disabled: true }),
       'box21Amount': new FormControl({value: "0", disabled: true }),
-      'box22_1': new FormControl({value: w2.field1, disabled: true }),
-      'box22_2': new FormControl({value: w2.field1, disabled: true }),
+      'box22_1': new FormControl({value: w2Field1, disabled: true }),
+      'box22_2': new FormControl({value: w2Field1, disabled: true }),
       'box23': new FormControl({value: "0", disabled: true }),
       'box24': new FormControl({value: "0", disabled: true }),
       'box25': new FormControl({value: "0", disabled: true }),
@@ -147,7 +153,7 @@ export class Form1040Page1Component implements OnInit {
       'box35Other': new FormControl({value: null, disabled: true }),
       'box35OtherAmount': new FormControl({value: "0", disabled: true }),
       'box36': new FormControl({value: "0", disabled: true }),
-      'box37': new FormControl({value: w2.field1, disabled: true })
+      'box37': new FormControl({value: w2Field1, disabled: true })
     });
   }
 

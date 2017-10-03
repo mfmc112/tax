@@ -9,7 +9,7 @@ var basicInfoSchema = new Schema({
   lastName: String,
   suffix: String,
   ssn: String,
-  dateOfBirth: Date,
+  dateOfBirth: String,
   age: Number,
   occupation: String,
   phone: { type: Phone.schema }

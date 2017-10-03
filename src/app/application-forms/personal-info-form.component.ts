@@ -4,6 +4,7 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { NInputComponent } from '../common/n-components/';
 import { MASKS } from '../enum/masks.enum';
 import { MaskUtils } from './utils/masks-utils';
+import { DatePickerUtils } from './utils/date-picker-utils';
 import { ZipCodeApiService } from '../common/api/zip-code-api.service';
 import { ZipCodeUtils } from './utils/zip-code-utils';
 import { validationRules } from '../validator/validator-rules.component';
@@ -28,6 +29,7 @@ export class PersonalInfoFormComponent implements OnInit, OnDestroy {
   stateMask:  Array<string | RegExp> = MASKS.STATE;
   suffixMask: Array<string | RegExp> = MASKS.NAME_SUFFIX;
   maskUtils: MaskUtils = new MaskUtils();
+  datePickerUtils: DatePickerUtils = new DatePickerUtils();
   zipCodeUtils: ZipCodeUtils;
   taxForm: FormGroup;
   taxPayerGroup: FormGroup;
@@ -38,6 +40,8 @@ export class PersonalInfoFormComponent implements OnInit, OnDestroy {
   client: Client;
   application: Application;
   pi: PersonalInformation;
+  myDatePickerOptions: IMyDpOptions = this.datePickerUtils.myDatePickerOptions;
+  defaultMonth: IMyDefaultMonth = this.datePickerUtils.defaultMonth;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -65,31 +69,23 @@ export class PersonalInfoFormComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.setDateOfBirth('taxPayer');
-    this.setDateOfBirth('spouse');
+    this.datePickerUtils.setDateFromField(
+      this.taxForm.get('taxPayer').get('dateOfBirth'),
+      this.taxForm.get('taxPayer').get('age'),
+      this.calculateAge
+    );
+    this.datePickerUtils.setDateFromField(
+      this.taxForm.get('spouse').get('dateOfBirth'),
+      this.taxForm.get('spouse').get('age'),
+      this.calculateAge
+    );
     this.enableType('taxPayer');
     this.enableType('spouse');
   }
 
   ngOnDestroy() : void {
-    // save inpout data
+    // save input data
     this.submitForm('');
-  }
-
-  setDateOfBirth(owner: any) {
-    if (this.taxForm.get(owner).get('dateOfBirth').value && this.taxForm.get(owner).get('dateOfBirth').value.date) {
-      let date = new Date(
-        this.taxForm.get(owner).get('dateOfBirth').value.date.year,
-        this.taxForm.get(owner).get('dateOfBirth').value.date.month,
-        this.taxForm.get(owner).get('dateOfBirth').value.date.day
-      );
-      this.setDate(date, owner);
-      this.taxForm.get(owner).get('age').setValue(this.calculateAge(date));
-    } else if (this.taxForm.get(owner).get('dateOfBirth').value) {
-      let date = new Date(this.taxForm.get(owner).get('dateOfBirth').value);
-      this.setDate(date, owner);
-      this.taxForm.get(owner).get('age').setValue(this.calculateAge(date));
-    }
   }
 
   enableType(owner: any): void {
@@ -155,26 +151,6 @@ export class PersonalInfoFormComponent implements OnInit, OnDestroy {
     });
   }
 
-  myDatePickerOptions: IMyDpOptions = {
-      // maxYear: 2015,
-      showTodayBtn: false,
-      dateFormat: 'mm/dd/yyyy'
-      // disableSince: {year: 2016, month: 1, day: 1}
-  };
-
-  defaultMonth: IMyDefaultMonth = {
-      defMonth: '01/'+ (new Date().getFullYear()-15)
-  }
-
-  setDate(date: Date, owner: string): void {
-    this.taxForm.get(owner).get('dateOfBirth').setValue({
-      date: {
-          year: date.getFullYear(),
-          month: date.getMonth() + 1,
-          day: date.getDate()}
-    });
-  }
-
   clearDate(): void {
       this.taxForm.patchValue({dateOfBirth: null});
   }
@@ -205,10 +181,10 @@ export class PersonalInfoFormComponent implements OnInit, OnDestroy {
   }
 
   removeMask(pi: PersonalInformation): PersonalInformation {
-    pi.taxPayer.dateOfBirth = this.maskUtils.retrieveDate(this.pi.taxPayer.dateOfBirth);
-    pi.taxPayer.phone = this.cleanUpPhone(this.pi.taxPayer.phone);
-    pi.spouse.dateOfBirth = this.maskUtils.retrieveDate(this.pi.spouse.dateOfBirth);
-    pi.spouse.phone = this.cleanUpPhone(this.pi.spouse.phone);
+    pi.taxPayer.dateOfBirth = this.maskUtils.retrieveDate(pi.taxPayer.dateOfBirth);
+    pi.taxPayer.phone = this.cleanUpPhone(pi.taxPayer.phone);
+    pi.spouse.dateOfBirth = this.maskUtils.retrieveDate(pi.spouse.dateOfBirth);
+    pi.spouse.phone = this.cleanUpPhone(pi.spouse.phone);
     return pi;
   }
 

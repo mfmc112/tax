@@ -1,5 +1,7 @@
-import { Component, ViewChild, OnInit, ViewContainerRef } from '@angular/core';
+import { Component, ViewChild, OnInit, OnDestroy, ViewContainerRef } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { MaskUtils } from './utils/masks-utils';
+import { DatePickerUtils } from './utils/date-picker-utils';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { CurrentApplicationService } from '../application/service/current-application.service';
 import { validationRules } from '../validator/validator-rules.component';
@@ -13,10 +15,12 @@ import { MyDatePickerModule, IMyDefaultMonth, IMyDpOptions, IMyDateModel } from 
   selector: 'filing-info-form',
   templateUrl: './templates/filing-info-form.component.html'
 })
-export class FilingInfoFormComponent implements OnInit {
-  @ViewChild('../application/application.component') applicationComponent: ApplicationComponent;
-  @ViewChild('../common/n-components/n-input.component') nInput: NInputComponent;
-  @ViewChild('../common/n-components/n-radio-list.component') nRadio: NRadioListComponent;
+export class FilingInfoFormComponent implements OnInit, OnDestroy {
+  // @ViewChild('../application/application.component') applicationComponent: ApplicationComponent;
+  // @ViewChild('../common/n-components/n-input.component') nInput: NInputComponent;
+  // @ViewChild('../common/n-components/n-radio-list.component') nRadio: NRadioListComponent;
+  maskUtils: MaskUtils = new MaskUtils();
+  datePickerUtils: DatePickerUtils = new DatePickerUtils();
   taxForm: FormGroup;
   payerSpecialGroup: FormGroup;
   spouseSpecialGroup: FormGroup;
@@ -27,6 +31,8 @@ export class FilingInfoFormComponent implements OnInit {
   studentTypeList: any;
   statusRadio: any;
   specialMilitaryList: any;
+  myDatePickerOptions: IMyDpOptions = this.datePickerUtils.myDatePickerOptions;
+  defaultMonth: IMyDefaultMonth = this.datePickerUtils.defaultMonth;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -54,13 +60,43 @@ export class FilingInfoFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.initializeDates();
+    this.initializeDropDownOptions();
+  }
+
+  ngOnDestroy() : void {
+    // save input data
+    this.submitForm('');
+  }
+
+  createSpecialProcessig(sp: SpecialProcessing): FormGroup {
+    if (!sp) sp = new SpecialProcessing();
+    return new FormGroup({
+      'student': new FormControl(sp.student),
+      'armedForces': new FormControl(sp.armedForces),
+      'blind': new FormControl(sp.blind),
+      'disabled': new FormControl(sp.disabled),
+      'death': new FormControl(sp.death),
+      'specialMilitary': new FormControl(sp.specialMilitary),
+      'deploymentDate': new FormControl(sp.deploymentDate)
+    });
+  }
+
+  initializeDates() {
+    this.datePickerUtils.setDateFromField(this.taxForm.get('payerSpecialProcessing').get('death'), undefined, undefined);
+    this.datePickerUtils.setDateFromField(this.taxForm.get('payerSpecialProcessing').get('deploymentDate'), undefined, undefined);
+    this.datePickerUtils.setDateFromField(this.taxForm.get('spouseSpecialProcessing').get('death'), undefined, undefined);
+    this.datePickerUtils.setDateFromField(this.taxForm.get('spouseSpecialProcessing').get('deploymentDate'), undefined, undefined);
+  }
+
+  initializeDropDownOptions() {
     this.yesNoList = [
-      {value: "yes", name:"Yes"},
-      {value: "no", name:"No"},
+      {value: "Y", name:"Yes"},
+      {value: "N", name:"No"},
     ];
 
     this.studentTypeList = [
-      {name:"No", value:"no"},
+      {name:"N", value:"no"},
       {name:"Full-Time", value:"full-time"},
       {name:"Part-Time", value:"part-time"},
     ];
@@ -86,37 +122,23 @@ export class FilingInfoFormComponent implements OnInit {
         {name:"Northern Watch", value:"Northern Watch"},
         {name:"Operation Allied Force", value:"Operation Allied Force"},
         {name:"UN Operation", value:"UN Operation"}
-    ]
+    ];
   }
 
-  createSpecialProcessig(sp: SpecialProcessing): FormGroup {
-    if (!sp) sp = new SpecialProcessing();
-    return new FormGroup({
-      'student': new FormControl(sp.student),
-      'armedForces': new FormControl(sp.armedForces),
-      'blind': new FormControl(sp.blind),
-      'disabled': new FormControl(sp.disabled),
-      'death': new FormControl(sp.death),
-      'specialMilitary': new FormControl(sp.specialMilitary),
-      'deploymentDate': new FormControl(sp.deploymentDate)
-    });
-  }
-
-  myDatePickerOptions: IMyDpOptions = {
-      // maxYear: 2015,
-      showTodayBtn: false,
-      dateFormat: 'mm/dd/yyyy'
-      // disableSince: {year: 2016, month: 1, day: 1}
-  };
-
-  defaultMonth: IMyDefaultMonth = {
-      defMonth: '01/2015'
+  removeMask(fi: FilingInformation): FilingInformation {
+    fi.payerSpecialProcessing.death = this.maskUtils.retrieveDate(fi.payerSpecialProcessing.death);
+    fi.payerSpecialProcessing.deploymentDate = this.maskUtils.retrieveDate(fi.payerSpecialProcessing.deploymentDate);
+    fi.spouseSpecialProcessing.death = this.maskUtils.retrieveDate(fi.spouseSpecialProcessing.death);
+    fi.spouseSpecialProcessing.deploymentDate = this.maskUtils.retrieveDate(fi.spouseSpecialProcessing.deploymentDate);
+    return fi;
   }
 
   submitForm(fields: any):void {
-    this.fi = this.taxForm.value;
+    this.fi = this.removeMask(this.taxForm.value);
     this.currentApplicationService.setFilingInformation(this.fi);
-    this.toastr.success('Filing Information saved sucessfully', 'Success!');
+    this.currentApplicationService.updateApplication().subscribe(data => {
+      this.toastr.success('Filing Information saved sucessfully', 'Success!');
+    });
   }
 
 }
