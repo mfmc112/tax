@@ -94,8 +94,6 @@ var ApplicationApi = function(server) {
 
     console.log('executing application PUT for client' + req.body.client + ', year of : ' + req.body.year);
     var application = new Application(req.body);
-    // application.clientInformation.save(application.clientInformation);
-    // application.clientInformation.personalInformation.save(application.clientInformation.personalInformation);
     Application.update({_id: BaseApi.objectID(req.params.id)}, application, function(error, response) {
       if (!error) res.send(new ResponseDecorator().enrichPut(response, req));
       else res.status(500).send(error);

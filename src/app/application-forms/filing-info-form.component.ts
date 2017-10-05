@@ -133,9 +133,13 @@ export class FilingInfoFormComponent implements OnInit, OnDestroy {
   submitForm(fields: any):void {
     this.fi = this.removeMask(this.taxForm.value);
     this.currentApplicationService.setFilingInformation(this.fi);
-    this.currentApplicationService.updateApplication().subscribe(data => {
-      this.toastr.success('Filing Information saved sucessfully', 'Success!');
-    });
+    this.currentApplicationService.updateApplication().subscribe(
+      data => {
+        this.toastr.success('Filing Information saved sucessfully', 'Success!');
+      },err => {
+        this.toastr.error('Please go back to Filing Information and try again.', 'Error saving Filing Information!');
+      }
+    );
   }
 
 }

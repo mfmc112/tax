@@ -25,19 +25,27 @@ var ZipCodeApi = function(server) {
 
     request(url, function(error, respXml, body){
       if (!body || body.indexOf("Error") >= 0) {
-        res.status(500).json("Error looking up zipcode");
+        var response = {
+          "city": undefined,
+          "state": undefined
+        }
+        res.send(response);
         return;
       }
+      
       var xmlDoc = libxmljs.parseXml(body);
       var city = xmlDoc.get('//City')
       var state = xmlDoc.get('//State')
       if (!city || !state){
-        res.status(500).json("Error looking up zipcode");
-        return;
-      }
-      var response = {
-        "city": city.text(),
-        "state": state.text()
+        var response = {
+          "city": undefined,
+          "state": undefined
+        }
+      } else {
+        var response = {
+          "city": city.text(),
+          "state": state.text()
+        }
       }
       res.send(response);
     });

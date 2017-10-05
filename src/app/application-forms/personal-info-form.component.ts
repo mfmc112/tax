@@ -189,9 +189,14 @@ export class PersonalInfoFormComponent implements OnInit, OnDestroy {
   submitForm(fields: any):void {
     this.pi = this.removeMask(this.taxForm.value);
     this.currentApplicationService.setPersonalInformation(this.pi);
-    this.currentApplicationService.updateApplication().subscribe(data => {
-      this.toastr.success('Personal Information saved sucessfully', 'Success!');
-    });
+    this.currentApplicationService.updateApplication().subscribe(
+      data => {
+        this.toastr.success('Personal Information saved sucessfully', 'Success!');
+      },err => {
+        let config = {timeOut: 0};
+        this.toastr.error('Please go back to Personal Information and try again.', 'Error saving Personal Information!');
+      }
+    );
   }
 
 }

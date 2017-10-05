@@ -31,12 +31,20 @@ export class AddFormComponent implements OnInit {
       this.currentApplicationService.addW2Form();
     }
 
-    this.currentApplicationService.updateApplication().subscribe(result => {
-      this.currentApplicationService.retrieveApplication(result._id).subscribe(application => {
-        this.currentApplicationService.setW2Forms(application.w2Forms);
-        this.close();
-      });
-    });
+    this.currentApplicationService.updateApplication().subscribe(
+      result => {
+        this.currentApplicationService.retrieveApplication(result._id).subscribe(
+          application => {
+            this.currentApplicationService.setW2Forms(application.w2Forms);
+            this.close();
+          },err => {
+            console.log('Error retrieving application after adding a new form');
+          }
+        );
+      },err => {
+        console.log('Error updating application while adding a new form');
+      }
+    );
   }
 
   // removeItem(item: any, list: Array<any>) {

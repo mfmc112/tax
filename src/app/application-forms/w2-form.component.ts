@@ -236,10 +236,14 @@ export class W2FormComponent implements OnInit {
       w2 = this.cleanAmount(w2);
       w2._id = this.w2Id;
       this.currentApplicationService.saveW2(this.w2Id, w2);
-      this.currentApplicationService.updateApplication().subscribe(data => {
-        let employerName = (this.taxForm.get('employerName').value)? "(" + this.taxForm.get('employerName').value + ")": "";
-        this.toastr.success('W2 ' + employerName + 'saved sucessfully', 'Success!');
-      });
+      let employerName = (this.taxForm.get('employerName').value)? "(" + this.taxForm.get('employerName').value + ")": "";
+      this.currentApplicationService.updateApplication().subscribe(
+        data => {
+          this.toastr.success('W2 ' + employerName + 'saved sucessfully', 'Success!');
+        },err => {
+          this.toastr.error('Please go back to W2 ' + employerName + ' and try again.', 'Error saving W2 ' + employerName + '!');
+        }
+      );
     }
 
 }
