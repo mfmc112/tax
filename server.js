@@ -1,13 +1,17 @@
+var port = process.env.PORT || 5000;
+var ACCESS_CONTROL_ORIGIN = process.env.ACCESS_CTR_ORIGIN;
+if (!ACCESS_CONTROL_ORIGIN) {
+  console.log('Error code 7109 -> Cannot start the server');
+  return;
+}
+
 var express = require('express');
 var server = express();
 var bodyParser = require('body-parser');
 
 var db = require('./server/core/mgsDB');
-var User = require('./server/core/schemas/user-schema.js');
-var Client = require('./server/core/schemas/client-schema.js');
 var ResponseDecorator = require('./server/core/response-decorator');
 
-var port = process.env.PORT || 5000
 server.use(express.static(__dirname + '/dist'));
 server.use(bodyParser.json());
 server.use(bodyParser.json({type: 'application/vdn.api+json'}));
@@ -17,7 +21,7 @@ console.log("Tax Smart is up and running");
 // Add headers
 server.use(function (req, res, next) {
     // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
+    res.setHeader('Access-Control-Allow-Origin', ACCESS_CONTROL_ORIGIN);
     // Request methods you wish to allow
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     // Request headers you wish to allow
@@ -25,6 +29,19 @@ server.use(function (req, res, next) {
     // Set to true if you need the website to include cookies in the requests sent
     // to the API (e.g. in case you use sessions)
     res.setHeader('Access-Control-Allow-Credentials', true);
+
+    res.setHeader('X-Content-Type-Options', 'nosniff');
+
+    // Block some of the cross site script. If identified it will block the page to load
+    res.setHeader('X-XSS-Protection','1; mode=block');
+
+    // Prevent clickjacking when hacker add a frame into the app
+    res.setHeader('X-Frame-Options', 'deny')
+    res.setHeader('Content-Security-Policy', 'frame-ancestors \'none\'');
+
+    // Remove the X-Powered-By header.
+    res.removeHeader("X-Powered-By");
+
     // Pass to next layer of middleware
     next();
 });
