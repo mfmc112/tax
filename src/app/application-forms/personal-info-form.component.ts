@@ -1,8 +1,7 @@
-import { Component, ViewChild, OnInit, OnDestroy, ViewContainerRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewContainerRef } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { NInputComponent } from '../common/n-components/';
-import { MASKS } from '../enum/masks.enum';
 import { MaskUtils } from './utils/masks-utils';
 import { DatePickerUtils } from './utils/date-picker-utils';
 import { ZipCodeApiService } from '../common/api/zip-code-api.service';
@@ -19,18 +18,17 @@ import { MyDatePickerModule, IMyDefaultMonth, IMyDpOptions, IMyDateModel } from 
   templateUrl: './templates/personal-info-form.component.html'
 })
 export class PersonalInfoFormComponent implements OnInit, OnDestroy {
-  // @ViewChild('../application/application.component') applicationComponent: ApplicationComponent;
-  // @ViewChild('../common/n-components/n-input.component') nInput: NInputComponent;
-  phoneMask: Array<string | RegExp> = MASKS.PHONE;
-  ssnMask: Array<string | RegExp> = MASKS.SSN;
-  dateMask: Array<string | RegExp> = MASKS.DATE;
-  initialMask: Array<string | RegExp> = MASKS.INITIAL;
-  zipMask:  Array<string | RegExp> = MASKS.ZIP;
-  stateMask:  Array<string | RegExp> = MASKS.STATE;
-  suffixMask: Array<string | RegExp> = MASKS.NAME_SUFFIX;
   maskUtils: MaskUtils = new MaskUtils();
   datePickerUtils: DatePickerUtils = new DatePickerUtils();
   zipCodeUtils: ZipCodeUtils;
+
+  phoneMask: Array<string | RegExp> = this.maskUtils.MASKS.PHONE;
+  ssnMask: Array<string | RegExp> = this.maskUtils.MASKS.SSN;
+  dateMask: Array<string | RegExp> = this.maskUtils.MASKS.DATE;
+  initialMask: Array<string | RegExp> = this.maskUtils.MASKS.INITIAL;
+  zipMask:  Array<string | RegExp> = this.maskUtils.MASKS.ZIP;
+  stateMask:  Array<string | RegExp> = this.maskUtils.MASKS.STATE;
+  suffixMask: Array<string | RegExp> = this.maskUtils.MASKS.NAME_SUFFIX;
   taxForm: FormGroup;
   taxPayerGroup: FormGroup;
   payerPhoneGroup: FormGroup;
@@ -147,7 +145,7 @@ export class PersonalInfoFormComponent implements OnInit, OnDestroy {
       'zip': new FormControl(pi.mailingAddress.zip, Validators.compose([Validators.required])),
       'city': new FormControl(pi.mailingAddress.city, Validators.compose([Validators.required])),
       'state': new FormControl(pi.mailingAddress.state, Validators.compose([Validators.required])),
-      'email': new FormControl(pi.mailingAddress.email, Validators.compose([Validators.required, Validators.email]))
+      'email': new FormControl(pi.mailingAddress.email, Validators.compose([Validators.required, Validators.pattern(validationRules.EMAIL)]))
     });
   }
 

@@ -1,5 +1,8 @@
+import { MASKS } from '../../enum/masks.enum';
+
 export class MaskUtils {
 
+  MASKS: any = MASKS;
   /*
    * Remove the mask from the phone. Transforms from (123) 234-2344 to 1231231223
    */

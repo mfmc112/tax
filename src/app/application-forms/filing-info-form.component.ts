@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit, OnDestroy, ViewContainerRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewContainerRef } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { MaskUtils } from './utils/masks-utils';
 import { DatePickerUtils } from './utils/date-picker-utils';
@@ -16,9 +16,6 @@ import { MyDatePickerModule, IMyDefaultMonth, IMyDpOptions, IMyDateModel } from 
   templateUrl: './templates/filing-info-form.component.html'
 })
 export class FilingInfoFormComponent implements OnInit, OnDestroy {
-  // @ViewChild('../application/application.component') applicationComponent: ApplicationComponent;
-  // @ViewChild('../common/n-components/n-input.component') nInput: NInputComponent;
-  // @ViewChild('../common/n-components/n-radio-list.component') nRadio: NRadioListComponent;
   maskUtils: MaskUtils = new MaskUtils();
   datePickerUtils: DatePickerUtils = new DatePickerUtils();
   taxForm: FormGroup;

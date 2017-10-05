@@ -5,7 +5,6 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 import { ApplicationComponent } from '../application/application.component';
 import { CurrentApplicationService } from '../application/service/current-application.service';
 import { validationRules } from '../validator/validator-rules.component';
-import { MASKS } from '../enum/masks.enum';
 import { MaskUtils } from './utils/masks-utils';
 import { ZipCodeApiService } from '../common/api/zip-code-api.service';
 import { ZipCodeUtils } from './utils/zip-code-utils';
@@ -21,18 +20,14 @@ import * as _ from 'lodash';
   templateUrl: './templates/w2-form.component.html'
 })
 export class W2FormComponent implements OnInit {
-  // @ViewChild('../application/application.component') applicationComponent: ApplicationComponent;
-  // @ViewChild('../common/n-components/n-input.component') nInput: NInputComponent;
-  // @ViewChild('../common/n-components/n-checkbox.component') nCheckbox: NCheckboxComponent;
-  // @ViewChild('../common/n-components/n-textarea.component') nTextarea: NTextareaComponent;
-  // @ViewChild('../common/n-components/n-w2-field12.component') nW2Field12: NW2Field12Component;
-  ssnMask: Array<string | RegExp> = MASKS.SSN;
-  zipMask:  Array<string | RegExp> = MASKS.ZIP;
-  stateMask:  Array<string | RegExp> = MASKS.STATE;
-  numberMask = createNumberMask({ prefix: '$', suffix: '.00' });
-  zipCodeUtils: ZipCodeUtils;
   maskUtils: MaskUtils = new MaskUtils();
+  zipCodeUtils: ZipCodeUtils;
   utils: Utils = new Utils();
+
+  ssnMask: Array<string | RegExp> = this.maskUtils.MASKS.SSN;
+  zipMask:  Array<string | RegExp> = this.maskUtils.MASKS.ZIP;
+  stateMask:  Array<string | RegExp> = this.maskUtils.MASKS.STATE;
+  numberMask = createNumberMask({ prefix: '$', suffix: '.00' });
   taxForm: FormGroup;
   application: Application;
   w2Form: W2Form;
@@ -53,7 +48,25 @@ export class W2FormComponent implements OnInit {
       this.w2Form = this.getW2(trans.params().id);
       this.address = this.createAddressGroup(this.w2Form.employeeAddress);
       this.employerAddress = this.createAddressGroup(this.w2Form.employerAddress);
-      this.taxForm = formBuilder.group({
+      this.taxForm = this.createTaxForm(formBuilder);
+    }
+
+    ngOnInit():void {
+      if (this.taxForm.get('sameAddressAsHome').value === undefined || this.taxForm.get('sameAddressAsHome').value === null) {
+        this.taxForm.get('sameAddressAsHome').setValue(true);
+      }
+      this.sameAddress(null);
+      this.autoCalculate(null);
+      this.populateENC(null);
+    }
+
+    ngOnDestroy() : void {
+      // save inpout data
+      this.submitForm('');
+    }
+
+    createTaxForm(formBuilder: FormBuilder): FormGroup {
+      return formBuilder.group({
         'w2For' : [this.w2Form.w2For, Validators.compose([Validators.required])],
         'employeeName' : [{value: this.w2Form.employeeName, disabled:true}, Validators.compose([Validators.required, Validators.pattern(validationRules.STRING)])],
         'ssn' : [{value: this.w2Form.ssn, disabled:true}, Validators.compose([Validators.required, Validators.pattern(validationRules.SSN_REGEXP)])],
@@ -100,20 +113,6 @@ export class W2FormComponent implements OnInit {
         'state': this.w2Form.state,
         'esin': this.w2Form.esin
       });
-    }
-
-    ngOnInit():void {
-      if (this.taxForm.get('sameAddressAsHome').value === undefined || this.taxForm.get('sameAddressAsHome').value === null) {
-        this.taxForm.get('sameAddressAsHome').setValue(true);
-      }
-      this.sameAddress(null);
-      this.autoCalculate(null);
-      this.populateENC(null);
-    }
-
-    ngOnDestroy() : void {
-      // save inpout data
-      this.submitForm('');
     }
 
     populateENC($event): void {
@@ -225,6 +224,10 @@ export class W2FormComponent implements OnInit {
       w2.field8 = this.maskUtils.cleanAmount(w2.field8);
       w2.field9 = this.maskUtils.cleanAmount(w2.field9);
       w2.field10 = this.maskUtils.cleanAmount(w2.field10);
+      w2.field12a2 = this.maskUtils.cleanAmount(w2.field12a2);
+      w2.field12b2 = this.maskUtils.cleanAmount(w2.field12b2);
+      w2.field12c2 = this.maskUtils.cleanAmount(w2.field12c2);
+      w2.field12d2 = this.maskUtils.cleanAmount(w2.field12d2);
       return w2;
     }
 
