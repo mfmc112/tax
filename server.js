@@ -15,8 +15,11 @@ var ResponseDecorator = require('./server/core/response-decorator');
 server.use(express.static(__dirname + '/dist'));
 server.use(bodyParser.json());
 server.use(bodyParser.json({type: 'application/vdn.api+json'}));
-server.listen(port);
-console.log("Tax Smart is up and running");
+server.listen(port, function () {
+  console.log("Tax Smart is up and running");
+});
+
+
 
 // Add headers
 server.use(function (req, res, next) {

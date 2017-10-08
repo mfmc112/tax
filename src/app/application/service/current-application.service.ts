@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ApplicationApiService } from '../api/application-api.service';
+import { AbstractControl } from '@angular/forms';
 import { Application, Client, User, ClientInformation, PersonalInformation, FilingInformation, BasicInformation, W2Form } from '../../common/';
 import * as _ from 'lodash';
 
@@ -7,6 +8,17 @@ import * as _ from 'lodash';
 export class CurrentApplicationService {
 
   private application: Application;
+  private calcHelper = {
+    "2017": {
+      "threshold": {
+        "box3": 127200
+      },
+      "percent": {
+        "box4": 6.2,
+        "box6": 1.45
+      }
+    }
+  }
 
   constructor( private applicationApiService: ApplicationApiService ) {  }
 
@@ -87,15 +99,39 @@ export class CurrentApplicationService {
     return box2;
   }
 
-  calculateBox4(amount: number): number {
+  /*
+   * Calculate box 3 and box 4
+   */
+  calculateBox3(box1: number, form: AbstractControl): number {
+    if (!box1 || box1 == 0) return 0;
+    let box3Ts = this.calcHelper[this.application.year]["threshold"]["box3"];
+    let box3 = box3Ts;
+    if (box1 < box3Ts) box3 = box1;
+    form.setValue(this.calculateBox4(box3));
+    return box3;
+  }
+
+  private calculateBox4(amount: number): number {
     let box4 = 0;
-    if (amount) box4 = Math.round(amount * 0.062);
+    if (amount) {
+      let percent = this.calcHelper[this.application.year]["percent"]["box4"];
+      box4 = Math.round(amount * (percent/100));
+    }
     return box4;
   }
 
-  calculateBox6(amount: number): number {
+  calculateBox5(box1: number, form: AbstractControl): number {
+    if (!box1 || box1 == 0) return 0;
+    form.setValue(this.calculateBox6(box1));
+    return box1;
+  }
+
+  private calculateBox6(amount: number): number {
     let box6 = 0;
-    if (amount) box6 = Math.round(amount * 0.0145);
+    if (amount) {
+      let percent = this.calcHelper[this.application.year]["percent"]["box6"];
+      box6 = Math.round(amount * (percent/100));
+    }
     return box6;
   }
 

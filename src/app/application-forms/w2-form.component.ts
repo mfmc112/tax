@@ -182,10 +182,9 @@ export class W2FormComponent implements OnInit {
     populateCalculation(): boolean {
       if (this.taxForm.get('autoCalculate3and6').value) {
 
-        this.taxForm.get('field3').setValue(this.taxForm.get('field1').value);
-        this.taxForm.get('field4').setValue(this.currentApplicationService.calculateBox4(this.w2Form.field1));
-        this.taxForm.get('field5').setValue(this.taxForm.get('field1').value);
-        this.taxForm.get('field6').setValue(this.currentApplicationService.calculateBox6(this.w2Form.field1));
+        this.taxForm.get('field3').setValue(this.currentApplicationService.calculateBox3(this.w2Form.field1, this.taxForm.get('field4')));
+        this.taxForm.get('field5').setValue(this.currentApplicationService.calculateBox5(this.w2Form.field1, this.taxForm.get('field6')));
+        // this.taxForm.get('field6').setValue(this.currentApplicationService.calculateBox6(this.w2Form.field1));
       }
       return (this.taxForm.get('autoCalculate3and6').value);
     }
