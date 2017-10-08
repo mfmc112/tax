@@ -11,11 +11,21 @@ export class CurrentApplicationService {
   private calcHelper = {
     "2017": {
       "threshold": {
-        "box3": 127200
+        "box3": 127200,
+        "box6": {
+          "single": 200000,
+          "jointly": 250000,
+          "separate": 125000,
+          "head": 200000,
+          "widow": 200000
+        }
       },
       "percent": {
         "box4": 6.2,
-        "box6": 1.45
+        "box6": {
+          "default": 1.45,
+          "over": 0.9
+        }
       }
     }
   }
@@ -120,17 +130,23 @@ export class CurrentApplicationService {
     return box4;
   }
 
-  calculateBox5(box1: number, form: AbstractControl): number {
+  calculateBox5(box1: number): number {
     if (!box1 || box1 == 0) return 0;
-    form.setValue(this.calculateBox6(box1));
     return box1;
   }
 
-  private calculateBox6(amount: number): number {
+  calculateBox6(box1: number): number {
     let box6 = 0;
-    if (amount) {
-      let percent = this.calcHelper[this.application.year]["percent"]["box6"];
-      box6 = Math.round(amount * (percent/100));
+    if (box1) {
+      let status = this.application.clientInformation.filingInformation.status;
+      if (!status) status = "single"; // set single if empty
+      let box6Ts = this.calcHelper[this.application.year]["threshold"]["box6"][status];
+      let percent = this.calcHelper[this.application.year]["percent"]["box6"]["default"];
+      box6 = Math.round(box1 * (percent/100));
+      if (box1 > box6Ts) {
+        let over = this.calcHelper[this.application.year]["percent"]["box6"]["over"];
+        box6 = box6 + ((box1 - box6Ts) * (over/100));
+      }
     }
     return box6;
   }
