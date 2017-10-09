@@ -5,7 +5,7 @@ import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 
 @Component({
   selector: 'n-w2-field12',
-  inputs:['fGroup', 'nField'],
+  inputs:['fGroup', 'nField', 'nOptions'],
   styleUrls: ['./templates/n-components.css'],
   template: `
     <div class="row" style="margin-bottom:10px;">
@@ -13,17 +13,11 @@ import createNumberMask from 'text-mask-addons/dist/createNumberMask';
       <div class="col-sm-4" [formGroup]="fGroup">
         <select formControlName='{{"field"+nField+"1"}}' id="field{{nField}}1" class="form-control">
           <option value=""></option>
-          <option value="A">A</option>
-          <option value="B">B</option>
-          <option value="C">C</option>
-          <option value="D">D</option>
-          <option value="E">E</option>
-          <option value="DD">DD</option>
-          <option value="EE">EE</option>
+          <option *ngFor="let o of nOptions" [value]="o.value">{{o.name}}</option>
         </select>
       </div>
       <div class="col-sm-7" [formGroup]="fGroup">
-          <input formControlName='{{"field"+nField+"2"}}' type="text" id="field{{nField}}2" class="form-control"
+          <input formControlName='{{"field"+nField+"2"}}' type="text" id="field{{nField}}2" class="form-control text-right"
           [textMask]="{mask: numberMask, guide:false}">
       </div>
     </div>
@@ -32,10 +26,11 @@ import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 export class NW2Field12Component {
   @Input('nField') nField: string;
   @Input('fGroup') fGroup: any;
+  @Input('nOptions') nOptions: any;
 
   numberMask = createNumberMask({
     prefix: '$',
-    suffix: ''
+    suffix: '.00'
   })
 
 }

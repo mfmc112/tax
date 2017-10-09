@@ -35,18 +35,18 @@
           <div>
             <ul class="nav flex-column" style="background-color:#FFFFFF;margin-right:3px;margin-left:3px;border:1px solid #000000;">
               <li class="nav-item">
-                <a uiSref="menu.application.personalInfo" uiSrefActive="active" class="dropdown-item" href="#">- Personal Information</a>
+                <a uiSref="menu.application.personalInfo" uiSrefActive="active" class="dropdown-item" href="#">Personal Information</a>
               </li>
               <li class="nav-item">
-                <a uiSref="menu.application.filingInfo" uiSrefActive="active" class="dropdown-item" href="#">- Filing Information</a>
+                <a uiSref="menu.application.filingInfo" uiSrefActive="active" class="dropdown-item" href="#">Filing Information</a>
               </li>
               <li *ngFor="let form of this.application.w2Forms; let i = index"  class="nav-item">
                 <a uiSref="menu.application.w2Form" [uiParams]="{ id: form._id }" uiSrefActive="active" class="dropdown-item" href="#">
-                  -
-                  W2 <span *ngIf="!form.employerName" class="text-danger">not populated&nbsp;<i class="fa fa-times" aria-hidden="true"></i></span><span *ngIf="form.employerName">{{form.employerName.length>15?form.employerName.substring(0,15):form.employerName}}</span></a>
+                  W2 <span *ngIf="form.employerName">{{form.employerName.length>15?form.employerName.substring(0,15):form.employerName}}</span>
+                </a>
               </li>
               <li class="nav-item">
-                <a uiSref="menu.application.form1040" uiSrefActive="active" class="dropdown-item" href="#">- Form 1040</a>
+                <a uiSref="menu.application.form1040" uiSrefActive="active" class="dropdown-item" href="#">Form 1040</a>
               </li>
             </ul>
           </div>

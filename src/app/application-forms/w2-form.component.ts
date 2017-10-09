@@ -34,6 +34,7 @@ export class W2FormComponent implements OnInit {
   address: FormGroup;
   employerAddress: FormGroup;
   w2Id: string;
+  f12Options: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -58,6 +59,7 @@ export class W2FormComponent implements OnInit {
       this.sameAddress(null);
       this.autoCalculate(null);
       this.populateENC(null);
+      this.initializeDropdownOptions();
     }
 
     ngOnDestroy() : void {
@@ -139,6 +141,33 @@ export class W2FormComponent implements OnInit {
       }
     }
 
+    initializeDropdownOptions(): void {
+      this.f12Options = [
+          {"value":"A", "name": "A - Uncollected social security or RRTA tax on tips"},
+          {"value":"B", "name": "B - Uncollected Medicare tax on tips"},
+          {"value":"C", "name": "C - Taxable cost of group-term life insurance over $50,000"},
+          {"value":"D", "name": "D - Elective deferrals under a section 401(k) cash or deferred arrangement plan"},
+          {"value":"E", "name": "E - Elective deferrals under a section 403(b) salary reduction agreement"},
+          {"value":"F", "name": "F - Elective deferrals under a section 408(k)(6) salary reduction SEP"},
+          {"value":"G", "name": "G - Elective deferrals and employer contributions to a specific 457(b) deferred compensation plan"},
+          {"value":"H", "name": "H - Elective deferrals to a section 501(c)(18)(D) tax-exempt organization plan"},
+          {"value":"J", "name": "J - Nontaxable sick pay"},
+          {"value":"K", "name": "K - 20% excise tax on excess golden parachute payments"},
+          {"value":"L", "name": "L - Substantiated employee business expense reimbursements"},
+          {"value":"M", "name": "M - Uncollected social security or RRTA tax on taxable cost of group-term life insurance over $50,000"},
+          {"value":"N", "name": "N - Uncollected Medicare tax on taxable cost of group-term life insurance over $50,000"},
+          {"value":"P", "name": "P - Excludable moving expense reimbursements paid directly to employee"},
+          {"value":"Q", "name": "Q - Nontaxable combat pay"},
+          {"value":"S", "name": "S - Employee salary reduction contributions under a section 408(p) SIMPLE plan"},
+          {"value":"W", "name": "W - Employer contributions to a health savings account (HSA)"},
+          {"value":"Y", "name": "Y - Deferrals under a section 409A non qualified deferred compensation plan"},
+          {"value":"AA", "name": "AA - Designated Roth contributions under a section 401(k) plan"},
+          {"value":"BB", "name": "BB - Designated Roth contributions under a section 403(b) plan"},
+          {"value":"DD", "name": "DD - Cost of employer-sponsored health coverage"},
+          {"value":"EE", "name": "EE - Designated Roth contributions under a governmental section 457(b) plan"}
+        ];
+    }
+    
     calculate(event): void {
       if(this.currentApplicationService.getApplication()) {
         this.removeCurrencyMask();
@@ -148,10 +177,10 @@ export class W2FormComponent implements OnInit {
     }
 
     /**
-     * remove the currency from box1 through 10 and add to the w2Form obj
+     * remove the currency from box1 through 11 and add to the w2Form obj
      */
     removeCurrencyMask(): void {
-      for (let i=1; i<=10; i++) {
+      for (let i=1; i<=11; i++) {
         this.w2Form['field'+i] = this.utils.removeCurrencyFormat(this.taxForm.get('field'+i).value);
       }
     }
@@ -223,6 +252,7 @@ export class W2FormComponent implements OnInit {
       w2.field8 = this.maskUtils.cleanAmount(w2.field8);
       w2.field9 = this.maskUtils.cleanAmount(w2.field9);
       w2.field10 = this.maskUtils.cleanAmount(w2.field10);
+      w2.field11 = this.maskUtils.cleanAmount(w2.field11);
       w2.field12a2 = this.maskUtils.cleanAmount(w2.field12a2);
       w2.field12b2 = this.maskUtils.cleanAmount(w2.field12b2);
       w2.field12c2 = this.maskUtils.cleanAmount(w2.field12c2);

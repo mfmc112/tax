@@ -97,7 +97,7 @@
                 </div>
               </div>
               <div class="row">
-                <n-input class="col-sm-12" name="field11" [fGroup]="taxForm"></n-input>
+                <n-input class="col-sm-12" name="field11" [mask]="numberMask" nRight [fGroup]="taxForm"></n-input>
                 <n-textarea class="col-sm-12" name="field14" label="14-Other" nRows="4" [fGroup]="taxForm"></n-textarea>
               </div>
             </div>
@@ -108,10 +108,10 @@
                 </div>
               </div>
               <div class="row">
-                <n-w2-field12 class="col-sm-12" nField="12a" [fGroup]="taxForm"></n-w2-field12>
-                <n-w2-field12 class="col-sm-12" nField="12b" [fGroup]="taxForm"></n-w2-field12>
-                <n-w2-field12 class="col-sm-12" nField="12c" [fGroup]="taxForm"></n-w2-field12>
-                <n-w2-field12 class="col-sm-12" nField="12d" [fGroup]="taxForm"></n-w2-field12>
+                <n-w2-field12 class="col-sm-12" nField="12a" [fGroup]="taxForm" [nOptions]="f12Options"></n-w2-field12>
+                <n-w2-field12 class="col-sm-12" nField="12b" [fGroup]="taxForm" [nOptions]="f12Options"></n-w2-field12>
+                <n-w2-field12 class="col-sm-12" nField="12c" [fGroup]="taxForm" [nOptions]="f12Options"></n-w2-field12>
+                <n-w2-field12 class="col-sm-12" nField="12d" [fGroup]="taxForm" [nOptions]="f12Options"></n-w2-field12>
               </div>
             </div>
           </div>
