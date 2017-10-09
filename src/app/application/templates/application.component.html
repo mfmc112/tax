@@ -22,9 +22,11 @@
           (onCloseStart)="_onCloseStart()"
           (onClosed)="_onClosed()">
           <div class="col-12 ammount-box alert" [class.alert-success]="estimate > 0" [class.alert-grey]="estimate === 0" [class.alert-danger]="estimate < 0">
-            CLIENT// {{client.firstName}} {{client.middleName}}{{(client.middleName)?'.':''}} {{client.lastName}}<BR>
+            {{client.firstName}} {{client.middleName}}{{(client.middleName)?'.':''}} {{client.lastName}}<BR>
+            <div class="divider-5"></div>
             <span class="big-value">{{estimate | currency:'USD':true}}</span><br>
-            FEDERAL<div class="divider-5"></div>
+            FEDERAL
+            <div class="divider-5"></div>
             Current AGI: {{currentAgi | currency:'USD':true}}
           </div>
           <div class="col-12"><h4>FEDERAL FORMS</h4></div>
