@@ -167,7 +167,12 @@ export class W2FormComponent implements OnInit {
           {"value":"EE", "name": "EE - Designated Roth contributions under a governmental section 457(b) plan"}
         ];
     }
-    
+
+    selectBox12(field, value) {
+      console.log('field' + field + '1');
+      this.taxForm.get('field12a1').setValue(value);
+    }
+
     calculate(event): void {
       if(this.currentApplicationService.getApplication()) {
         this.removeCurrencyMask();
