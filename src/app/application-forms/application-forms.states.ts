@@ -4,6 +4,8 @@ import { W2FormComponent } from './w2-form.component';
 import { Form1040Page1Component } from './form-1040-page1.component';
 import { Form1040Page2Component } from './form-1040-page2.component';
 import { Form1040Component } from './form-1040.component';
+import { DependentsFormComponent } from './dependents-form.component';
+import { DependentComponent } from './dependent.component';
 
 export const personalInfoState = {
   name: 'menu.application.personalInfo',
@@ -41,11 +43,25 @@ export const form1040Page2State = {
   component: Form1040Page2Component
 };
 
+export const dependentsFormState = {
+  name: 'menu.application.dependentsForm',
+  url: '/dependents-form',
+  component: DependentsFormComponent
+};
+
+export const dependentState = {
+  name: 'menu.application.dependentsForm.dependent',
+  url: '/dependent/:id',
+  component: DependentComponent
+};
+
 export const APPLICATION_FORMS_STATES = [
   personalInfoState,
   filingInfoState,
   w2FormState,
   form1040State,
   form1040Page1State,
-  form1040Page2State
+  form1040Page2State,
+  dependentsFormState,
+  dependentState
 ];

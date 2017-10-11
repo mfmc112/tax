@@ -168,11 +168,6 @@ export class W2FormComponent implements OnInit {
         ];
     }
 
-    selectBox12(field, value) {
-      console.log('field' + field + '1');
-      this.taxForm.get('field12a1').setValue(value);
-    }
-
     calculate(event): void {
       if(this.currentApplicationService.getApplication()) {
         this.removeCurrencyMask();

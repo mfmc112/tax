@@ -20,6 +20,7 @@ export class ApplicationComponent {
   year: number;
   estimate: number;
   currentAgi: number;
+  hasDependents: boolean = false;
 
   constructor(
     private _uiRouter: UIRouter,
@@ -56,6 +57,10 @@ export class ApplicationComponent {
       this.currentApplicationService.calculate();
       this.estimate = this.currentApplicationService.getEstimate();
       this.currentAgi = this.currentApplicationService.getCurrentAGI();
+      
+      let pi = this.currentApplicationService.getPersonalInformation()
+      if (!pi) this.hasDependents = false;
+      this.hasDependents = pi.dependents;
     } else {
       this.estimate = 0;
       this.currentAgi = 0;

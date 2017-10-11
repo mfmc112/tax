@@ -1,15 +1,11 @@
-import { TaxCreditEIC } from './tax-credit-eic';
+import { TaxCreditEIC, BasicInformation } from './';
 
 export class Dependent {
-  firstName: string;
-  middleName: string;
-  lastName: string;
-  dob: Date;
-  age: number;
-  ssn: string;
-  identityProtectionPin: string;
+  _id: string;
+  basicInfo: BasicInformation;
   relationship: string;
   monthsInHome: number;
+  identityProtectionPin: string;
   ctc: boolean;
   code: number;
   eicCode: number;

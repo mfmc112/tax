@@ -1,4 +1,4 @@
-import { User, Client, ClientInformation, W2Form } from './';
+import { User, Client, ClientInformation, W2Form, Dependent } from './';
 
 export class Application {
     _id: any;
@@ -10,5 +10,6 @@ export class Application {
     client: Client;
     clientInformation: ClientInformation;
     w2Forms: W2Form[];
+    dependents: Dependent[];
     lastUpdated: Date;
 }

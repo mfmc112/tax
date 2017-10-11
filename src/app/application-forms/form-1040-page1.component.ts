@@ -6,7 +6,7 @@ import { CurrentApplicationService } from '../application/service/current-applic
 import { validationRules } from '../validator/validator-rules.component';
 import { MASKS } from '../enum/masks.enum';
 import { PersonalInfoFormComponent } from './personal-info-form.component';
-import { Application, PersonalInformation, FilingInformation, Dependent, W2Form, MailingAddress, Client, Utils } from '../common/';
+import { Application, PersonalInformation, FilingInformation, Dependent, BasicInformation, W2Form, MailingAddress, Client, Utils } from '../common/';
 import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 import * as _ from "lodash";
 
@@ -74,17 +74,19 @@ export class Form1040Page1Component implements OnInit {
     let dependents: Array<Dependent> = new Array<Dependent>();
 
     let dp1 = new Dependent();
-    dp1.firstName ="Cloe";
-    dp1.lastName = "Campbell";
-    dp1.ssn ='111-22-1122';
+    dp1.basicInfo = new BasicInformation();
+    dp1.basicInfo.firstName ="Cloe";
+    dp1.basicInfo.lastName = "Campbell";
+    dp1.basicInfo.ssn ='111-22-1122';
     dp1.relationship = 'Daughter';
     dp1.ctc = true;
     dependents.push(dp1);
 
     let dp2 = new Dependent();
-    dp2.firstName ="Mixirica";
-    dp2.lastName = "Costa";
-    dp2.ssn ='321-22-5665';
+    dp2.basicInfo = new BasicInformation();
+    dp2.basicInfo.firstName ="Mixirica";
+    dp2.basicInfo.lastName = "Costa";
+    dp2.basicInfo.ssn ='321-22-5665';
     dp2.relationship = 'Daughter';
     dp2.ctc = true;
     dependents.push(dp2);

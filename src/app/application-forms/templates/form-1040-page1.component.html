@@ -111,9 +111,9 @@
             </thead>
             <tbody>
               <tr *ngFor="let d of dependents; let i = index">
-                <td>{{d.firstName}}</td>
-                <td>{{d.lastName}}</td>
-                <td>{{d.ssn}}</td>
+                <td>{{d.basicInfo.firstName}}</td>
+                <td>{{d.basicInfo.lastName}}</td>
+                <td>{{d.basicInfo.ssn}}</td>
                 <td>{{d.relationship}}</td>
                 <td style="width:50px;">
                   <i class="fa fa-check-square-o" style="color:#cccccc" aria-hidden="true"></i>

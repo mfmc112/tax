@@ -40,6 +40,9 @@
               <li class="nav-item">
                 <a uiSref="menu.application.filingInfo" uiSrefActive="active" class="dropdown-item" href="#">Filing Information</a>
               </li>
+              <li class="nav-item" *ngIf="hasDependents">
+                <a uiSref="menu.application.dependentsForm" uiSrefActive="active" class="dropdown-item" href="#">Dependents</a>
+              </li>
               <li *ngFor="let form of this.application.w2Forms; let i = index"  class="nav-item">
                 <a uiSref="menu.application.w2Form" [uiParams]="{ id: form._id }" uiSrefActive="active" class="dropdown-item" href="#">
                   W2 <span *ngIf="form.employerName">{{form.employerName.length>15?form.employerName.substring(0,15):form.employerName}}</span>

@@ -1,0 +1,47 @@
+<div class="form-body-tabs">
+  <div class="col-12">
+    <form [formGroup]="taxForm" (submit)="submitForm(taxForm.value)" class="form" novalidate >
+      <form-sub-header nTitle="DEPENDENT DETAIL"></form-sub-header>
+      <div class="row">
+        <div class="col-12">
+          <div class="row">
+            <n-input class="col-sm-3" name="firstName" label="First Name" [fGroup]="basicInfoGroup"></n-input>
+            <n-input class="col-sm-1" name="initial" label="Initial" [mask]="initialMask" [fGroup]="basicInfoGroup"></n-input>
+            <n-input class="col-sm-4" name="lastName" label="Last Name" [fGroup]="basicInfoGroup"></n-input>
+            <n-input class="col-sm-1" name="suffix" label="Suffix" [mask]="suffixMask" [fGroup]="basicInfoGroup"></n-input>
+            <n-input class="col-sm-3" name="ssn" label="SSN" [mask]="ssnMask" [fGroup]="basicInfoGroup"></n-input>
+
+            <div class="col-sm-3">
+              <label for="relationship">Relationship</label>
+              <select formControlName="relationship" id="relationship" class="form-control">
+                <option value=""></option>
+                <option *ngFor="let o of relationshipList" value="{{o.value}}">{{o.name}}</option>
+              </select>
+            </div>
+            <div class="col-sm-2">
+              <div class="form-group" formGroupName="basicInfo">
+                <label for="dateOfBirth" class="no-margin">Date of Birth</label>
+                <my-date-picker name="dateOfBirth"
+                        id="dateOfBirth"
+                        formControlName="dateOfBirth"
+                        [options]="myDatePickerOptions"
+                        [defaultMonth]="defaultMonth"
+                        (dateChanged)="onDateChanged($event, 'basicInfo')">
+                </my-date-picker>
+              </div>
+            </div>
+            <n-input class="col-sm-2" name="age" label="Age" [fGroup]="basicInfoGroup"></n-input>
+            <div class="col-sm-2">
+              <label for="monthsInHome">Months in Home</label>
+              <select formControlName="monthsInHome" id="monthsInHome" class="form-control">
+                <option value=""></option>
+                <option *ngFor="let o of monthsInHomeList" value="{{o.value}}">{{o.name}}</option>
+              </select>
+            </div>
+            <n-input class="col-sm-3" name="identityProtectionPin" label="Identity Protection PIN" [mask]="ipinMask" [fGroup]="taxForm"></n-input>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

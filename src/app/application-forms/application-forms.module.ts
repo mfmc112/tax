@@ -12,6 +12,8 @@ import { W2FormComponent } from './w2-form.component';
 import { Form1040Component } from './form-1040.component';
 import { Form1040Page1Component } from './form-1040-page1.component';
 import { Form1040Page2Component } from './form-1040-page2.component';
+import { DependentsFormComponent } from './dependents-form.component';
+import { DependentComponent } from './dependent.component';
 import { FormHeaderComponent } from './utils/form-header.component';
 import { FormSubHeaderComponent } from './utils/form-sub-header.component';
 import { MyDatePickerModule } from 'mydatepicker';
@@ -46,7 +48,9 @@ import { NW2Field12Component } from '../common/n-components/n-w2-field12.compone
     NW2Field12Component,
     NFormBoldBoxComponent,
     FormHeaderComponent,
-    FormSubHeaderComponent
+    FormSubHeaderComponent,
+    DependentsFormComponent,
+    DependentComponent
   ]
 })
 export class ApplicationFormsModule { }

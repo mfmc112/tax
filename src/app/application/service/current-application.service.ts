@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApplicationApiService } from '../api/application-api.service';
 import { AbstractControl } from '@angular/forms';
-import { Application, Client, User, ClientInformation, PersonalInformation, FilingInformation, BasicInformation, W2Form } from '../../common/';
+import { Application, Client, User, ClientInformation, PersonalInformation, FilingInformation, Dependent, BasicInformation, W2Form } from '../../common/';
 import * as _ from 'lodash';
 
 @Injectable()
@@ -101,6 +101,37 @@ export class CurrentApplicationService {
       this.application.clientInformation.filingInformation = new FilingInformation();
     }
     return this.application.clientInformation.filingInformation;
+  }
+
+  setDependents(dependents: Dependent[]): void {
+    this.application.dependents = dependents;
+  }
+
+  getDependents(): Dependent[] {
+    if (this.application.dependents === undefined) {
+      this.application.dependents = [];
+    }
+    return this.application.dependents;
+  }
+
+  addDependent(): void {
+    if (!this.application.dependents) this.application.dependents = [];
+    this.application.dependents.push( new Dependent() );
+  }
+
+  getDependentFromList(id: string): Dependent {
+    if (!this.application.dependents) this.application.dependents = [];
+    let dependent = _.find(this.application.dependents, function(o) {
+      return o._id === id;
+    });
+    return dependent;
+  }
+
+  saveDependent(id: string, dependent: Dependent): void {
+    let dependentIndex = _.findIndex(this.application.dependents, function(o) {
+      return o._id === id;
+    });
+    this.application.dependents[dependentIndex] = dependent;
   }
 
   calculateBox2(amount: number): number {

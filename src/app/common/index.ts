@@ -11,5 +11,6 @@ export * from './special-processing';
 export * from './phone';
 export * from './user';
 export * from './tax-return';
+export * from './tax-credit-eic';
 
 export * from './utils';
