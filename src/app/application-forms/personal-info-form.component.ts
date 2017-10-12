@@ -187,6 +187,8 @@ export class PersonalInfoFormComponent implements OnInit, OnDestroy {
   }
 
   submitForm(fields: any):void {
+    if (!this.taxForm.touched) return;
+
     this.pi = this.removeMask(this.taxForm.value);
     this.currentApplicationService.setPersonalInformation(this.pi);
     this.currentApplicationService.updateApplication().subscribe(

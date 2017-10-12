@@ -12,7 +12,7 @@ import * as _ from 'lodash'
   templateUrl: './templates/application.component.html',
   styleUrls: ['./templates/application.component.css']
 })
-export class ApplicationComponent {
+export class ApplicationComponent implements OnInit, DoCheck {
   @ViewChild(AddFormComponent) addFormComponent: AddFormComponent;
   taxForm: FormGroup;
   application: Application;
@@ -57,7 +57,7 @@ export class ApplicationComponent {
       this.currentApplicationService.calculate();
       this.estimate = this.currentApplicationService.getEstimate();
       this.currentAgi = this.currentApplicationService.getCurrentAGI();
-      
+
       let pi = this.currentApplicationService.getPersonalInformation()
       if (!pi) this.hasDependents = false;
       this.hasDependents = pi.dependents;

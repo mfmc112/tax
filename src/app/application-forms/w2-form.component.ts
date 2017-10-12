@@ -261,6 +261,8 @@ export class W2FormComponent implements OnInit {
     }
 
     submitForm(fields: any):void {
+      if (!this.taxForm.touched) return;
+
       let w2 = this.taxForm.value;
       w2 = this.cleanAmount(w2);
       w2._id = this.w2Id;

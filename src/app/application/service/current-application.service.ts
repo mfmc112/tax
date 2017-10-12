@@ -21,6 +21,7 @@ export class CurrentApplicationService {
         }
       },
       "percent": {
+        "box2": 10,
         "box4": 6.2,
         "box6": {
           "default": 1.45,
@@ -103,41 +104,15 @@ export class CurrentApplicationService {
     return this.application.clientInformation.filingInformation;
   }
 
-  setDependents(dependents: Dependent[]): void {
-    this.application.dependents = dependents;
-  }
-
-  getDependents(): Dependent[] {
-    if (this.application.dependents === undefined) {
-      this.application.dependents = [];
-    }
-    return this.application.dependents;
-  }
-
-  addDependent(): void {
-    if (!this.application.dependents) this.application.dependents = [];
-    this.application.dependents.push( new Dependent() );
-  }
-
-  getDependentFromList(id: string): Dependent {
-    if (!this.application.dependents) this.application.dependents = [];
-    let dependent = _.find(this.application.dependents, function(o) {
-      return o._id === id;
-    });
-    return dependent;
-  }
-
-  saveDependent(id: string, dependent: Dependent): void {
-    let dependentIndex = _.findIndex(this.application.dependents, function(o) {
-      return o._id === id;
-    });
-    this.application.dependents[dependentIndex] = dependent;
-  }
-
   calculateBox2(amount: number): number {
     let box2 = 0;
-    if (amount) box2 = Math.round(amount * 0.10);
+    let percent = this.calcHelper[this.application.year]["percent"]["box2"];
+    if (amount) box2 = Math.round(amount * (percent/100));
     return box2;
+  }
+
+  calculateBox8(amount: number): number {
+    return this.calculateBox2(amount);
   }
 
   /*
@@ -207,6 +182,12 @@ export class CurrentApplicationService {
         let paid = Number(form.field6);
         this.addToEstimate(estimated, paid);
       }
+      if (!_.isEmpty(form.field8) || form.field8 >= 0) {
+        this.application.currentAgi = this.getCurrentAGI() + Number(form.field8);
+        let estimated = this.calculateBox8(form.field8);
+        this.addToEstimate(estimated, 0);
+      }
+
     });
   }
 
@@ -240,5 +221,40 @@ export class CurrentApplicationService {
       return o._id === id;
     });
     this.application.w2Forms[w2Index] = w2;
+  }
+
+  setDependents(dependents: Dependent[]): void {
+    this.application.dependents = dependents;
+  }
+
+  getDependents(): Dependent[] {
+    if (this.application.dependents === undefined) {
+      this.application.dependents = [];
+    }
+    return this.application.dependents;
+  }
+
+  addDependent(): void {
+    if (!this.application.dependents) this.application.dependents = [];
+    this.application.dependents.push( new Dependent() );
+  }
+
+  getDependentFromList(id: string): Dependent {
+    if (!this.application.dependents) this.application.dependents = [];
+    let dependent = _.find(this.application.dependents, function(o) {
+      return o._id === id;
+    });
+    return dependent;
+  }
+
+  saveDependent(dependent: Dependent): void {
+    let dependentIndex = _.findIndex(this.application.dependents, function(o) {
+      return o._id === dependent._id;
+    });
+    if (dependentIndex === -1) {
+      if (this.application.dependents.length <=0) dependentIndex = 0;
+      else dependentIndex = this.application.dependents.length;
+    }
+    this.application.dependents[dependentIndex] = dependent;
   }
 }

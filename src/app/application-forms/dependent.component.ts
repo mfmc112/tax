@@ -20,7 +20,7 @@ import * as _ from 'lodash';
   selector:'dependent',
   templateUrl: './templates/dependent.component.html'
 })
-export class DependentComponent implements OnInit {
+export class DependentComponent implements OnInit, OnDestroy {
   maskUtils: MaskUtils = new MaskUtils();
   datePickerUtils: DatePickerUtils = new DatePickerUtils();
   ssnMask: Array<string | RegExp> = this.maskUtils.MASKS.SSN;
@@ -58,6 +58,11 @@ export class DependentComponent implements OnInit {
     }
 
     ngOnInit():void {
+      this.datePickerUtils.setDateFromField(
+        this.taxForm.get('basicInfo').get('dateOfBirth'),
+        this.taxForm.get('basicInfo').get('age'),
+        this.calculateAge
+      );
       this.initializeDropDownOptions();
     }
 
@@ -128,15 +133,35 @@ export class DependentComponent implements OnInit {
     getDependent(id: string): Dependent {
       let dependent: Dependent = this.currentApplicationService.getDependentFromList(id);
       if (!dependent) dependent = new Dependent();
+      this.dependentId = dependent._id;
       return dependent;
     }
 
+    removeMask(dp: Dependent): Dependent {
+      dp.basicInfo.dateOfBirth = this.maskUtils.retrieveDate(dp.basicInfo.dateOfBirth);
+      return dp;
+    }
+
     submitForm(fields: any):void {
+      if (!this.taxForm.touched) return;
+
+      let self = this;
+      let dependent = this.taxForm.value;
+      dependent._id = this.dependentId;
+      dependent = this.removeMask(dependent);
+
+      this.currentApplicationService.saveDependent(dependent);
+      let name = (this.taxForm.get('basicInfo').get('firstName').value)? "(" + this.taxForm.get('basicInfo').get('firstName').value + ")": "";
       this.currentApplicationService.updateApplication().subscribe(
         data => {
-          this.toastr.success('Dependent saved sucessfully', 'Success!');
+          self.currentApplicationService.retrieveApplication(this.currentApplicationService.getApplication()._id).subscribe(
+            data => {
+              self.currentApplicationService.setDependents(data.dependents);
+              self.toastr.success('Dependent ' + name + ' saved sucessfully', 'Success!');
+            }
+          );
         },err => {
-          this.toastr.error('Please go back to Dependent  and try again.', 'Error saving Dependent!');
+          self.toastr.error('Please go back to Dependent ' + name + ' and try again.', 'Error saving Dependent ' + name + '!');
         }
       );
     }

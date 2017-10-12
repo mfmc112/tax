@@ -3,6 +3,7 @@ var Client = require('./client-schema');
 var User = require('./user-schema');
 var W2Form = require('./w2-form-schema');
 var ClientInformation = require('./client-information-schema');
+var Dependent = require('./dependent-schema');
 var Schema = mongoose.Schema;
 
 var applicationSchema = new Schema({
@@ -13,6 +14,7 @@ var applicationSchema = new Schema({
   preparer: { type: Schema.Types.ObjectId, ref: 'User' },
   client: { type: Schema.Types.ObjectId, ref: 'Client' },
   clientInformation: { type: ClientInformation.schema },
+  dependents: [{ type: Dependent.schema}],
   w2Forms: [{ type: W2Form.schema}],
   lastUpdated: Date
 });

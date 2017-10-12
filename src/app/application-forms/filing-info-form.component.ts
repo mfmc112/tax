@@ -131,6 +131,8 @@ export class FilingInfoFormComponent implements OnInit, OnDestroy {
   }
 
   submitForm(fields: any):void {
+    if (!this.taxForm.touched) return;
+    
     this.fi = this.removeMask(this.taxForm.value);
     this.currentApplicationService.setFilingInformation(this.fi);
     this.currentApplicationService.updateApplication().subscribe(
