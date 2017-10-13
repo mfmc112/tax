@@ -10,4 +10,6 @@ export class Dependent {
   code: number;
   eicCode: number;
   taxCreditEIC: TaxCreditEIC;
+  relationshipOtherPerson: string;
+
 }
