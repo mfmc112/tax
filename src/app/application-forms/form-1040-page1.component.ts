@@ -43,7 +43,7 @@ export class Form1040Page1Component implements OnInit {
 
     this.w2Forms = this.application.w2Forms;
     this.w2FormSummary = this.buildW2Summary();
-    this.dependents = this.mockDependents();
+    this.dependents = this.currentApplicationService.getDependents();
     this.taxForm = formBuilder.group({
       'firstName': [{value: this.pi.taxPayer.firstName, disabled: true}],
       'middleName': [{value: this.pi.taxPayer.initial, disabled: true}],
@@ -68,29 +68,6 @@ export class Form1040Page1Component implements OnInit {
       'box6cNotListedAbove': new FormControl(null),
       'box6d': new FormControl(null)
     });
-  }
-
-  mockDependents(): Array<Dependent> {
-    let dependents: Array<Dependent> = new Array<Dependent>();
-
-    let dp1 = new Dependent();
-    dp1.basicInfo = new BasicInformation();
-    dp1.basicInfo.firstName ="Cloe";
-    dp1.basicInfo.lastName = "Campbell";
-    dp1.basicInfo.ssn ='111-22-1122';
-    dp1.relationship = 'Daughter';
-    dp1.ctc = true;
-    dependents.push(dp1);
-
-    let dp2 = new Dependent();
-    dp2.basicInfo = new BasicInformation();
-    dp2.basicInfo.firstName ="Mixirica";
-    dp2.basicInfo.lastName = "Costa";
-    dp2.basicInfo.ssn ='321-22-5665';
-    dp2.relationship = 'Daughter';
-    dp2.ctc = true;
-    dependents.push(dp2);
-    return dependents;
   }
 
   buildW2Summary(): FormGroup {

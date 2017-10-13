@@ -31,7 +31,7 @@ export class DependentComponent implements OnInit, OnDestroy {
   taxForm: FormGroup;
   basicInfoGroup: FormGroup;
   taxCreditEICGroup: FormGroup;
-  dependent:Dependent;
+  dependent: Dependent;
   dependentId: string;
   relationshipList: any;
   monthsInHomeList: any;
