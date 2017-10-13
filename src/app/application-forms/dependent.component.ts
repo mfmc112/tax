@@ -128,6 +128,9 @@ export class DependentComponent implements OnInit, OnDestroy {
 
     showRelationshipOtherPerson($event) {
       this.hasRelationshipOtherPerson = (this.taxForm.get('taxCreditEIC').get('question4Yes').value === true);
+      if (this.hasRelationshipOtherPerson) {
+        this.taxForm.get('relationshipOtherPerson').reset();
+      }
     }
 
     createBasicInfoGroup(basicInfo: BasicInformation): FormGroup {
