@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ViewChild, DoCheck, OnDestroy, ViewContainerRef } from  '@angular/core';
 import { Transition } from '@uirouter/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { AbstractControl, FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { ApplicationComponent } from '../application/application.component';
 import { CurrentApplicationService } from '../application/service/current-application.service';
 import { validationRules } from '../validator/validator-rules.component';
@@ -11,7 +11,7 @@ import { ZipCodeApiService } from '../common/api/zip-code-api.service';
 import { ZipCodeUtils } from './utils/zip-code-utils';
 import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 
-import { Dependent, BasicInformation, TaxCreditEIC } from '../common/';
+import { Dependent, BasicInformation, TaxCreditEIC, SpecialCondition } from '../common/';
 import { NInputComponent, NTextareaComponent, NCheckboxComponent } from '../common/n-components/';
 import { MyDatePickerModule, IMyDefaultMonth, IMyDpOptions, IMyDateModel } from 'mydatepicker';
 import * as _ from 'lodash';
@@ -28,9 +28,11 @@ export class DependentComponent implements OnInit, OnDestroy {
   initialMask: Array<string | RegExp> = this.maskUtils.MASKS.INITIAL;
   suffixMask: Array<string | RegExp> = this.maskUtils.MASKS.NAME_SUFFIX;
   ipinMask: Array<string | RegExp> = this.maskUtils.MASKS.IPIN;
+  year: number;
   taxForm: FormGroup;
   basicInfoGroup: FormGroup;
   taxCreditEICGroup: FormGroup;
+  specialConditionGroup: FormGroup;
   dependent: Dependent;
   dependentId: string;
   relationshipList: any;
@@ -38,6 +40,7 @@ export class DependentComponent implements OnInit, OnDestroy {
   codeList: any;
   eicCodeList: any;
   hasRelationshipOtherPerson: boolean = false;
+  displaySpecialCondition: boolean = false;
   myDatePickerOptions: IMyDpOptions = this.datePickerUtils.myDatePickerOptions;
   defaultMonth: IMyDefaultMonth = this.datePickerUtils.defaultMonth;
 
@@ -47,10 +50,13 @@ export class DependentComponent implements OnInit, OnDestroy {
     public toastr: ToastsManager, vcr: ViewContainerRef,
     private currentApplicationService: CurrentApplicationService ){
       this.toastr.setRootViewContainerRef(vcr);
+      this.year = this.currentApplicationService.getApplication().year;
       this.dependent = this.getDependent(trans.params().id);
 
       this.basicInfoGroup = this.createBasicInfoGroup(this.dependent.basicInfo);
       this.taxCreditEICGroup = this.createTaxCreditEICGroup(this.dependent.taxCreditEIC);
+      this.specialConditionGroup = this.createSpecialConditionGroup(this.dependent.specialCondition);
+
       this.taxForm = formBuilder.group({
         'basicInfo': this.basicInfoGroup,
         'relationship': this.dependent.relationship,
@@ -60,7 +66,8 @@ export class DependentComponent implements OnInit, OnDestroy {
         'code': this.dependent.code,
         'eicCode': [{value: this.dependent.eicCode, disabled: true}],
         'taxCreditEIC': this.taxCreditEICGroup,
-        'relationshipOtherPerson': this.dependent.relationshipOtherPerson
+        'relationshipOtherPerson': this.dependent.relationshipOtherPerson,
+        'specialCondition': this.specialConditionGroup
       });
     }
 
@@ -70,6 +77,9 @@ export class DependentComponent implements OnInit, OnDestroy {
         this.taxForm.get('basicInfo').get('age')
       );
       this.initializeDropDownOptions();
+      this.showRelationshipOtherPerson(undefined);
+      this.enableSpecialCondition(this.taxForm.get('basicInfo').get('age').value);
+      this.enableEicCode(this.taxForm.get('basicInfo').get('age').value);
     }
 
     ngOnDestroy() : void {
@@ -168,6 +178,20 @@ export class DependentComponent implements OnInit, OnDestroy {
       });
     }
 
+    createSpecialConditionGroup(specialCondition: SpecialCondition): FormGroup {
+      if (!specialCondition) specialCondition = new SpecialCondition();
+      return new FormGroup({
+        'under24Yes': new FormControl(specialCondition.under24Yes),
+        'under24No': new FormControl(specialCondition.under24No),
+        'disabledYes': new FormControl(specialCondition.disabledYes),
+        'disabledNo': new FormControl(specialCondition.disabledNo),
+        'kidnappedYes': new FormControl(specialCondition.kidnappedYes),
+        'kidnappedNo': new FormControl(specialCondition.kidnappedNo),
+        'didntLiveYes': new FormControl(specialCondition.didntLiveYes),
+        'didntLiveNo': new FormControl(specialCondition.didntLiveNo)
+      });
+    }
+
     onDateChanged(event: IMyDateModel, type: string) {
       if (!event.jsdate) return;
       this.taxForm.get(type).patchValue({'age': this.calculateAge(event.jsdate)});
@@ -209,15 +233,23 @@ export class DependentComponent implements OnInit, OnDestroy {
       }
     }
 
-    boxChecked($event) {
-      this.switchYesNo($event.target.id);
+    enableSpecialCondition(age: number): void {
+      this.displaySpecialCondition = (age >= 19);
     }
 
-    switchYesNo(fieldName: string) {
-      if (_.endsWith(fieldName, 'Yes') && this.taxForm.get('taxCreditEIC').get(fieldName).value === true) {
-        this.taxForm.get('taxCreditEIC').get(fieldName.replace('Yes','No')).setValue(null);
+    boxCheckedEIC($event) {
+      this.switchYesNo(this.taxForm.get('taxCreditEIC'), $event.target.id);
+    }
+
+    boxCheckedSpecial($event) {
+      this.switchYesNo(this.taxForm.get('specialCondition'), $event.target.id);
+    }
+
+    switchYesNo(field: AbstractControl, fieldName: string) {
+      if (_.endsWith(fieldName, 'Yes') && field.get(fieldName).value === true) {
+        field.get(fieldName.replace('Yes','No')).setValue(null);
       } else {
-        this.taxForm.get('taxCreditEIC').get(fieldName.replace('No','Yes')).setValue(null);
+        field.get(fieldName.replace('No','Yes')).setValue(null);
       }
     }
 
@@ -225,7 +257,7 @@ export class DependentComponent implements OnInit, OnDestroy {
       let monthsInHome = this.taxForm.get('monthsInHome').value;
       if (monthsInHome >= 7 && monthsInHome <= 12) {
         this.taxForm.get('taxCreditEIC').get('question3Yes').setValue(true);
-        this.switchYesNo('question3Yes');
+        this.switchYesNo(this.taxForm.get('taxCreditEIC'), 'question3Yes');
       }
     }
 

@@ -1,15 +1,15 @@
-import { TaxCreditEIC, BasicInformation } from './';
+import { TaxCreditEIC, BasicInformation, SpecialCondition } from './';
 
 export class Dependent {
   _id: string;
   basicInfo: BasicInformation;
   relationship: string;
   monthsInHome: number;
-  identityProtectionPin: string;
+  identityProtectionPin: number;
   ctc: boolean;
   code: number;
-  eicCode: number;
+  eicCode: string;
   taxCreditEIC: TaxCreditEIC;
   relationshipOtherPerson: string;
-
+  specialCondition: SpecialCondition;
 }

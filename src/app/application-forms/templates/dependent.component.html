@@ -62,54 +62,54 @@
       <div class="row">
         <div class="col-12">
           <div class="row">
-            <div class="col-sm-8"></div>
-            <div class="col-sm-2" style="text-align:center;">
+            <div class="col-sm-10"></div>
+            <div class="col-sm-1" style="text-align:center;">
               Yes
             </div>
-            <div class="col-sm-2" style="text-align:center">
+            <div class="col-sm-1" style="text-align:center">
               No
             </div>
           </div>
 
           <div class="row" style="border:1px solid #cccccc;">
-            <div class="col-sm-8" style="border-bottom:1px solid #cccccc;">
+            <div class="col-sm-10" style="border-bottom:1px solid #cccccc;">
               <span>The dependent is unmarried or the dependent is married and can be claimed as the taxpayer's dependent and is not filing a 2016 joint return (or is filing it only as a claim for refund)</span>
             </div>
-            <div class="col-sm-2" style="text-align:center;border-left:1px solid #cccccc;border-bottom:1px solid #cccccc;">
-              <n-checkbox nName="question1Yes" [fGroup]="taxCreditEICGroup" nValue="true" nLabel=" " nClass="checkbox-padding" (change)="boxChecked($event);"></n-checkbox>
+            <div class="col-sm-1" style="text-align:center;border-left:1px solid #cccccc;border-bottom:1px solid #cccccc;">
+              <n-checkbox nName="question1Yes" [fGroup]="taxCreditEICGroup" nValue="true" nLabel=" " nClass="checkbox-padding" (change)="boxCheckedEIC($event);"></n-checkbox>
             </div>
-            <div class="col-sm-2" style="text-align:center;border-left:1px solid #cccccc;border-bottom:1px solid #cccccc;">
-              <n-checkbox nName="question1No" [fGroup]="taxCreditEICGroup" nValue="true" nLabel=" " nClass="checkbox-padding" (change)="boxChecked($event);"></n-checkbox>
+            <div class="col-sm-1" style="text-align:center;border-left:1px solid #cccccc;border-bottom:1px solid #cccccc;">
+              <n-checkbox nName="question1No" [fGroup]="taxCreditEICGroup" nValue="true" nLabel=" " nClass="checkbox-padding" (change)="boxCheckedEIC($event);"></n-checkbox>
             </div>
 
-            <div class="col-sm-8" style="border-bottom:1px solid #cccccc;padding-bottom: 20px;">
+            <div class="col-sm-10" style="border-bottom:1px solid #cccccc;padding-bottom: 20px;">
               <span>Did this person provide more than half of their own support?</span>
             </div>
-            <div class="col-sm-2" style="text-align:center;border-left:1px solid #cccccc;border-bottom:1px solid #cccccc;">
-              <n-checkbox nName="question2Yes" [fGroup]="taxCreditEICGroup" nValue="true" nLabel=" " nClass="checkbox-padding" (change)="boxChecked($event);"></n-checkbox>
+            <div class="col-sm-1" style="text-align:center;border-left:1px solid #cccccc;border-bottom:1px solid #cccccc;">
+              <n-checkbox nName="question2Yes" [fGroup]="taxCreditEICGroup" nValue="true" nLabel=" " nClass="checkbox-padding" (change)="boxCheckedEIC($event);"></n-checkbox>
             </div>
-            <div class="col-sm-2" style="text-align:center;border-left:1px solid #cccccc;border-bottom:1px solid #cccccc;">
-              <n-checkbox nName="question2No" [fGroup]="taxCreditEICGroup" nValue="true" nLabel=" " nClass="checkbox-padding" (change)="boxChecked($event);"></n-checkbox>
+            <div class="col-sm-1" style="text-align:center;border-left:1px solid #cccccc;border-bottom:1px solid #cccccc;">
+              <n-checkbox nName="question2No" [fGroup]="taxCreditEICGroup" nValue="true" nLabel=" " nClass="checkbox-padding" (change)="boxCheckedEIC($event);"></n-checkbox>
             </div>
 
-            <div class="col-sm-8" style="border-bottom:1px solid #cccccc;padding-bottom: 20px;">
+            <div class="col-sm-10" style="border-bottom:1px solid #cccccc;padding-bottom: 20px;">
               <span>Did the dependent live with the taxpayer in the United States for over half of the year?</span>
             </div>
-            <div class="col-sm-2" style="text-align:center;border-left:1px solid #cccccc;border-bottom:1px solid #cccccc;">
-              <n-checkbox nName="question3Yes" [fGroup]="taxCreditEICGroup" nValue="true" nLabel=" " nClass="checkbox-padding" (change)="boxChecked($event);"></n-checkbox>
+            <div class="col-sm-1" style="text-align:center;border-left:1px solid #cccccc;border-bottom:1px solid #cccccc;">
+              <n-checkbox nName="question3Yes" [fGroup]="taxCreditEICGroup" nValue="true" nLabel=" " nClass="checkbox-padding" (change)="boxCheckedEIC($event);"></n-checkbox>
             </div>
-            <div class="col-sm-2" style="text-align:center;border-left:1px solid #cccccc;border-bottom:1px solid #cccccc;">
-              <n-checkbox nName="question3No" [fGroup]="taxCreditEICGroup" nValue="true" nLabel=" " nClass="checkbox-padding" (change)="boxChecked($event);"></n-checkbox>
+            <div class="col-sm-1" style="text-align:center;border-left:1px solid #cccccc;border-bottom:1px solid #cccccc;">
+              <n-checkbox nName="question3No" [fGroup]="taxCreditEICGroup" nValue="true" nLabel=" " nClass="checkbox-padding" (change)="boxCheckedEIC($event);"></n-checkbox>
             </div>
 
-            <div class="col-sm-8" style="border-bottom:1px solid #cccccc;padding-bottom: 20px;">
+            <div class="col-sm-10" style="border-bottom:1px solid #cccccc;padding-bottom: 20px;">
               <span>Could any other person claim this child for EIC?</span>
             </div>
-            <div class="col-sm-2" style="text-align:center;border-left:1px solid #cccccc;border-bottom:1px solid #cccccc;">
-              <n-checkbox nName="question4Yes" [fGroup]="taxCreditEICGroup" nValue="true" nLabel=" " nClass="checkbox-padding" (change)="boxChecked($event);showRelationshipOtherPerson($event);"></n-checkbox>
+            <div class="col-sm-1" style="text-align:center;border-left:1px solid #cccccc;border-bottom:1px solid #cccccc;">
+              <n-checkbox nName="question4Yes" [fGroup]="taxCreditEICGroup" nValue="true" nLabel=" " nClass="checkbox-padding" (change)="boxCheckedEIC($event);showRelationshipOtherPerson($event);"></n-checkbox>
             </div>
-            <div class="col-sm-2" style="text-align:center;border-left:1px solid #cccccc;border-bottom:1px solid #cccccc;">
-              <n-checkbox nName="question4No" [fGroup]="taxCreditEICGroup" nValue="true" nLabel=" " nClass="checkbox-padding" (change)="boxChecked($event);showRelationshipOtherPerson($event);"></n-checkbox>
+            <div class="col-sm-1" style="text-align:center;border-left:1px solid #cccccc;border-bottom:1px solid #cccccc;">
+              <n-checkbox nName="question4No" [fGroup]="taxCreditEICGroup" nValue="true" nLabel=" " nClass="checkbox-padding" (change)="boxCheckedEIC($event);showRelationshipOtherPerson($event);"></n-checkbox>
             </div>
 
             <div class="col-sm-12" *ngIf="hasRelationshipOtherPerson"><br></div>
@@ -126,54 +126,110 @@
 
             <div class="col-sm-12" *ngIf="hasRelationshipOtherPerson"><br></div>
 
-            <div class="col-sm-8" *ngIf="hasRelationshipOtherPerson" style="border-bottom:1px solid #cccccc;"></div>
-            <div class="col-sm-2" *ngIf="hasRelationshipOtherPerson" style="text-align:center;border-bottom:1px solid #cccccc;">
+            <div class="col-sm-10" *ngIf="hasRelationshipOtherPerson" style="border-bottom:1px solid #cccccc;"></div>
+            <div class="col-sm-1" *ngIf="hasRelationshipOtherPerson" style="text-align:center;border-bottom:1px solid #cccccc;">
               Yes
             </div>
-            <div class="col-sm-2" *ngIf="hasRelationshipOtherPerson" style="text-align:center;border-bottom:1px solid #cccccc;">
+            <div class="col-sm-1" *ngIf="hasRelationshipOtherPerson" style="text-align:center;border-bottom:1px solid #cccccc;">
               No
             </div>
 
-            <div class="col-sm-8" style="border-bottom:1px solid #cccccc;padding-bottom: 20px;">
+            <div class="col-sm-10" style="border-bottom:1px solid #cccccc;padding-bottom: 20px;">
               <span>If the tie-breaker rules apply, would the dependent be treated as the taxpayer's qualifying child</span>
             </div>
-            <div class="col-sm-2" style="text-align:center;border-left:1px solid #cccccc;border-bottom:1px solid #cccccc;">
-              <n-checkbox nName="question5Yes" [fGroup]="taxCreditEICGroup" nValue="true" nLabel=" " nClass="checkbox-padding" (change)="boxChecked($event);"></n-checkbox>
+            <div class="col-sm-1" style="text-align:center;border-left:1px solid #cccccc;border-bottom:1px solid #cccccc;">
+              <n-checkbox nName="question5Yes" [fGroup]="taxCreditEICGroup" nValue="true" nLabel=" " nClass="checkbox-padding" (change)="boxCheckedEIC($event);"></n-checkbox>
             </div>
-            <div class="col-sm-2" style="text-align:center;border-left:1px solid #cccccc;border-bottom:1px solid #cccccc;">
-              <n-checkbox nName="question5No" [fGroup]="taxCreditEICGroup" nValue="true" nLabel=" " nClass="checkbox-padding" (change)="boxChecked($event);"></n-checkbox>
+            <div class="col-sm-1" style="text-align:center;border-left:1px solid #cccccc;border-bottom:1px solid #cccccc;">
+              <n-checkbox nName="question5No" [fGroup]="taxCreditEICGroup" nValue="true" nLabel=" " nClass="checkbox-padding" (change)="boxCheckedEIC($event);"></n-checkbox>
             </div>
 
-            <div class="col-sm-8" style="border-bottom:1px solid #cccccc;padding-bottom: 20px;">
+            <div class="col-sm-10" style="border-bottom:1px solid #cccccc;padding-bottom: 20px;">
               <span>Was this person cared for as a child of the taxpayer?</span>
             </div>
-            <div class="col-sm-2" style="text-align:center;border-left:1px solid #cccccc;border-bottom:1px solid #cccccc;">
-              <n-checkbox nName="question6Yes" [fGroup]="taxCreditEICGroup" nValue="true" nLabel=" " nClass="checkbox-padding" (change)="boxChecked($event);"></n-checkbox>
+            <div class="col-sm-1" style="text-align:center;border-left:1px solid #cccccc;border-bottom:1px solid #cccccc;">
+              <n-checkbox nName="question6Yes" [fGroup]="taxCreditEICGroup" nValue="true" nLabel=" " nClass="checkbox-padding" (change)="boxCheckedEIC($event);"></n-checkbox>
             </div>
-            <div class="col-sm-2" style="text-align:center;border-left:1px solid #cccccc;border-bottom:1px solid #cccccc;">
-              <n-checkbox nName="question6No" [fGroup]="taxCreditEICGroup" nValue="true" nLabel=" " nClass="checkbox-padding" (change)="boxChecked($event);"></n-checkbox>
+            <div class="col-sm-1" style="text-align:center;border-left:1px solid #cccccc;border-bottom:1px solid #cccccc;">
+              <n-checkbox nName="question6No" [fGroup]="taxCreditEICGroup" nValue="true" nLabel=" " nClass="checkbox-padding" (change)="boxCheckedEIC($event);"></n-checkbox>
             </div>
 
-            <div class="col-sm-8" style="border-bottom:1px solid #cccccc;padding-bottom: 20px;">
+            <div class="col-sm-10" style="border-bottom:1px solid #cccccc;padding-bottom: 20px;">
               <span>Does the qualifying dependent have a SSN that allows him or her to work or is valid for EIC purposes?</span>
             </div>
-            <div class="col-sm-2" style="text-align:center;border-left:1px solid #cccccc;border-bottom:1px solid #cccccc;">
-              <n-checkbox nName="question7Yes" [fGroup]="taxCreditEICGroup" nValue="true" nLabel=" " nClass="checkbox-padding" (change)="boxChecked($event);"></n-checkbox>
+            <div class="col-sm-1" style="text-align:center;border-left:1px solid #cccccc;border-bottom:1px solid #cccccc;">
+              <n-checkbox nName="question7Yes" [fGroup]="taxCreditEICGroup" nValue="true" nLabel=" " nClass="checkbox-padding" (change)="boxCheckedEIC($event);"></n-checkbox>
             </div>
-            <div class="col-sm-2" style="text-align:center;border-left:1px solid #cccccc;border-bottom:1px solid #cccccc;">
-              <n-checkbox nName="question7No" [fGroup]="taxCreditEICGroup" nValue="true" nLabel=" " nClass="checkbox-padding" (change)="boxChecked($event);"></n-checkbox>
+            <div class="col-sm-1" style="text-align:center;border-left:1px solid #cccccc;border-bottom:1px solid #cccccc;">
+              <n-checkbox nName="question7No" [fGroup]="taxCreditEICGroup" nValue="true" nLabel=" " nClass="checkbox-padding" (change)="boxCheckedEIC($event);"></n-checkbox>
             </div>
 
-            <div class="col-sm-8" style="padding-bottom: 20px;">
+            <div class="col-sm-10" style="padding-bottom: 20px;">
               <span>If the dependent has an ITIN instead of a SSN, does the dependent meet the presence test?</span>
             </div>
-            <div class="col-sm-2" style="text-align:center;border-left:1px solid #cccccc;">
-              <n-checkbox nName="question8Yes" [fGroup]="taxCreditEICGroup" nValue="true" nLabel=" " nClass="checkbox-padding" (change)="boxChecked($event);"></n-checkbox>
+            <div class="col-sm-1" style="text-align:center;border-left:1px solid #cccccc;">
+              <n-checkbox nName="question8Yes" [fGroup]="taxCreditEICGroup" nValue="true" nLabel=" " nClass="checkbox-padding" (change)="boxCheckedEIC($event);"></n-checkbox>
             </div>
-            <div class="col-sm-2" style="text-align:center;border-left:1px solid #cccccc;">
-              <n-checkbox nName="question8No" [fGroup]="taxCreditEICGroup" nValue="true" nLabel=" " nClass="checkbox-padding" (change)="boxChecked($event);"></n-checkbox>
+            <div class="col-sm-1" style="text-align:center;border-left:1px solid #cccccc;">
+              <n-checkbox nName="question8No" [fGroup]="taxCreditEICGroup" nValue="true" nLabel=" " nClass="checkbox-padding" (change)="boxCheckedEIC($event);"></n-checkbox>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <form-sub-header nTitle="SPECIAL CONDITIONS"></form-sub-header>
+      <div class="row">
+        <div class="col-12">
+          <div class="row">
+            <div class="col-sm-10"></div>
+            <div class="col-sm-1" style="text-align:center;">
+              Yes
+            </div>
+            <div class="col-sm-1" style="text-align:center">
+              No
+            </div>
+          </div>
+
+          <div class="row" style="border:1px solid #cccccc;">
+            <div class="col-sm-10" style="border-bottom:1px solid #cccccc;padding-bottom: 20px;">
+              <span>Was this dependent under the age of 24 at the end of {{year}}, a student, and younger than you or your spouse (if filing jointly)?</span>
+            </div>
+            <div class="col-sm-1" style="text-align:center;border-left:1px solid #cccccc;border-bottom:1px solid #cccccc;">
+              <n-checkbox nName="under24Yes" [fGroup]="specialConditionGroup" nValue="true" nLabel=" " nClass="checkbox-padding" (change)="boxCheckedSpecial($event);"></n-checkbox>
+            </div>
+            <div class="col-sm-1" style="text-align:center;border-left:1px solid #cccccc;border-bottom:1px solid #cccccc;">
+              <n-checkbox nName="under24No" [fGroup]="specialConditionGroup" nValue="true" nLabel=" " nClass="checkbox-padding" (change)="boxCheckedSpecial($event);"></n-checkbox>
             </div>
 
+            <div class="col-sm-10" style="border-bottom:1px solid #cccccc;padding-bottom: 20px;">
+              <span>Was the dependent permanently and totally disabled during any part of {{year}}?</span>
+            </div>
+            <div class="col-sm-1" style="text-align:center;border-left:1px solid #cccccc;border-bottom:1px solid #cccccc;">
+              <n-checkbox nName="disabledYes" [fGroup]="specialConditionGroup" nValue="true" nLabel=" " nClass="checkbox-padding" (change)="boxCheckedSpecial($event);"></n-checkbox>
+            </div>
+            <div class="col-sm-1" style="text-align:center;border-left:1px solid #cccccc;border-bottom:1px solid #cccccc;">
+              <n-checkbox nName="disabledNo" [fGroup]="specialConditionGroup" nValue="true" nLabel=" " nClass="checkbox-padding" (change)="boxCheckedSpecial($event);"></n-checkbox>
+            </div>
+
+            <div class="col-sm-10" style="border-bottom:1px solid #cccccc;padding-bottom: 20px;">
+              <span>Is this person presumed to be kidnapped?</span>
+            </div>
+            <div class="col-sm-1" style="text-align:center;border-left:1px solid #cccccc;border-bottom:1px solid #cccccc;">
+              <n-checkbox nName="kidnappedYes" [fGroup]="specialConditionGroup" nValue="true" nLabel=" " nClass="checkbox-padding" (change)="boxCheckedSpecial($event);"></n-checkbox>
+            </div>
+            <div class="col-sm-1" style="text-align:center;border-left:1px solid #cccccc;border-bottom:1px solid #cccccc;">
+              <n-checkbox nName="kidnappedNo" [fGroup]="specialConditionGroup" nValue="true" nLabel=" " nClass="checkbox-padding" (change)="boxCheckedSpecial($event);"></n-checkbox>
+            </div>
+
+            <div class="col-sm-10" style="border-bottom:1px solid #cccccc;padding-bottom: 20px;">
+              <span>Is this a child who did not live with taxpayer due to divorce or separation?</span>
+            </div>
+            <div class="col-sm-1" style="text-align:center;border-left:1px solid #cccccc;border-bottom:1px solid #cccccc;">
+              <n-checkbox nName="didntLiveYes" [fGroup]="specialConditionGroup" nValue="true" nLabel=" " nClass="checkbox-padding" (change)="boxCheckedSpecial($event);"></n-checkbox>
+            </div>
+            <div class="col-sm-1" style="text-align:center;border-left:1px solid #cccccc;border-bottom:1px solid #cccccc;">
+              <n-checkbox nName="didntLiveNo" [fGroup]="specialConditionGroup" nValue="true" nLabel=" " nClass="checkbox-padding" (change)="boxCheckedSpecial($event);"></n-checkbox>
+            </div>
           </div>
         </div>
       </div>

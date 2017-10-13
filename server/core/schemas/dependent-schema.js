@@ -2,16 +2,19 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var BasicInformation = require('./basic-info-schema');
 var TaxCreditEIC = require('./tax-credit-eic-schema');
+var SpecialCondition = require('./special-condition-schema');
 
 var dependentSchema = new Schema({
   basicInfo: { type: BasicInformation.schema},
   relationship: String,
   monthsInHome: Number,
-  identityProtectionPin: String,
+  identityProtectionPin: Number,
   ctc: Boolean,
   code: Number,
-  eicCode: Number,
-  taxCreditEIC: { type: TaxCreditEIC.schema}
+  eicCode: String,
+  taxCreditEIC: { type: TaxCreditEIC.schema},
+  relationshipOtherPerson: String,
+  specialCondition: { type: SpecialCondition.schema}
 });
 
 var Dependent = mongoose.model('Dependent', dependentSchema);
