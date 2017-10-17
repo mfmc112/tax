@@ -59,7 +59,7 @@ export class DependentComponent implements OnInit, OnDestroy {
 
       this.taxForm = formBuilder.group({
         'basicInfo': this.basicInfoGroup,
-        'relationship': this.dependent.relationship,
+        'relationship': [this.dependent.relationship, Validators.compose([Validators.required, Validators.minLength(1), Validators.pattern(validationRules.STRING)])],
         'monthsInHome': this.dependent.monthsInHome,
         'identityProtectionPin' : [this.dependent.identityProtectionPin, Validators.compose([Validators.pattern(validationRules.IPIN)])],
         'ctc': this.dependent.ctc,
@@ -112,10 +112,10 @@ export class DependentComponent implements OnInit, OnDestroy {
       ];
 
       this.codeList = [
-        {'name':'Dependent child who lived with client', 'value':'1'},
-        {'name':'Dependent child who did not live with client due to divorce or separation', 'value':'2'},
-        {'name':'Other dependent', 'value':'3'},
-        {'name':'Not a dependent (but is a qualifying person for the earned income credit and/or the child tax)', 'value':'0'}
+        {'name':'1 - Dependent child who lived with client', 'value':'1'},
+        {'name':'2 - Dependent child who did not live with client due to divorce or separation', 'value':'2'},
+        {'name':'3 - Other dependent', 'value':'3'},
+        {'name':'0 - Not a dependent (but is a qualifying person for the earned income credit and/or the child tax)', 'value':'0'}
       ];
 
       this.eicCodeList = [
