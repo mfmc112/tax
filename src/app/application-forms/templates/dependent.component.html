@@ -49,7 +49,7 @@
             </div>
             <div class="col-sm-3">
               <label for="code">EIC Code</label>
-              <select formControlName="eicCode" id="eicCode" class="form-control">
+              <select formControlName="eicCode" id="eicCode" class="form-control" (change)="selectEIC($event)">
                 <option value=""></option>
                 <option *ngFor="let o of eicCodeList" value="{{o.value}}">{{o.name}}</option>
               </select>
@@ -73,7 +73,7 @@
 
           <div class="row" style="border:1px solid #cccccc;">
             <div class="col-sm-10" style="border-bottom:1px solid #cccccc;">
-              <span>The dependent is unmarried or the dependent is married and can be claimed as the taxpayer's dependent and is not filing a 2016 joint return (or is filing it only as a claim for refund)</span>
+              <span>The dependent is unmarried or the dependent is married and can be claimed as the taxpayer's dependent and is not filing a {{year}} joint return (or is filing it only as a claim for refund)</span>
             </div>
             <div class="col-sm-1" style="text-align:center;border-left:1px solid #cccccc;border-bottom:1px solid #cccccc;">
               <n-checkbox nName="question1Yes" [fGroup]="taxCreditEICGroup" nValue="true" nLabel=" " nClass="checkbox-padding" (change)="boxCheckedEIC($event);"></n-checkbox>

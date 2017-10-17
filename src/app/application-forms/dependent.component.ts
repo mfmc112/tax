@@ -261,6 +261,33 @@ export class DependentComponent implements OnInit, OnDestroy {
       }
     }
 
+    setAllEicToNo() {
+      this.taxForm.get('specialCondition').get("disabledNo").setValue(true);
+      this.taxForm.get('specialCondition').get("kidnappedNo").setValue(true);
+      this.taxForm.get('specialCondition').get("under24No").setValue(true);
+      this.switchYesNo(this.taxForm.get('specialCondition'), "disabledNo");
+      this.switchYesNo(this.taxForm.get('specialCondition'), "kidnappedNo");
+      this.switchYesNo(this.taxForm.get('specialCondition'), "under24No");
+    }
+
+    selectEIC($event) {
+      let eicCode = this.taxForm.get("eicCode").value;
+      if (!eicCode || eicCode === '' ) return;
+      this.setAllEicToNo();
+      if (eicCode === 'disabled') {
+        this.taxForm.get('specialCondition').get("disabledYes").setValue(true);
+        this.switchYesNo(this.taxForm.get('specialCondition'), "disabledYes");
+      } else if (eicCode === 'kidnapped') {
+        this.taxForm.get('specialCondition').get("kidnappedYes").setValue(true);
+        this.switchYesNo(this.taxForm.get('specialCondition'), "kidnappedYes");
+      } else if (eicCode === 'student') {
+        this.taxForm.get('specialCondition').get("under24Yes").setValue(true);
+        this.switchYesNo(this.taxForm.get('specialCondition'), "under24Yes");
+      } else if (eicCode === 'not_qualified') {
+        // all set to no already
+      }
+    }
+
     getDependent(id: string): Dependent {
       let dependent: Dependent = this.currentApplicationService.getDependentFromList(id);
       if (!dependent) dependent = new Dependent();
