@@ -14,7 +14,7 @@ import createNumberMask from 'text-mask-addons/dist/createNumberMask';
         <input formControlName='{{"field"+nField+"1"}}' type="text" id="field{{nField}}1" class="form-control d-inline-block" style="width: 90%;position: absolute;">
         <div class="d-inline-block" style="position:absolute;right:0px;">
           <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
-          <div class="dropdown-menu dropdown-menu-right" >
+          <div class="dropdown-menu dropdown-menu-right" style="z-index:99999999">
             <a class="dropdown-item" *ngFor="let o of nOptions" (click)="selectField12(nField, o.value)">{{o.name}}</a>
           </div>
         </div>
