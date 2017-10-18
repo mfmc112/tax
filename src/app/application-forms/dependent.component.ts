@@ -40,9 +40,12 @@ export class DependentComponent implements OnInit, OnDestroy {
   codeList: any;
   eicCodeList: any;
   hasRelationshipOtherPerson: boolean = false;
+  hasDeathDate: boolean = false;
   displaySpecialCondition: boolean = false;
   myDatePickerOptions: IMyDpOptions = this.datePickerUtils.myDatePickerOptions;
   defaultMonth: IMyDefaultMonth = this.datePickerUtils.defaultMonth;
+  deathDateOptions: IMyDpOptions;
+  deathDefault:IMyDefaultMonth;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -67,7 +70,8 @@ export class DependentComponent implements OnInit, OnDestroy {
         'eicCode': [{value: this.dependent.eicCode, disabled: true}, Validators.compose([Validators.required, Validators.minLength(1)])],
         'taxCreditEIC': this.taxCreditEICGroup,
         'relationshipOtherPerson': this.dependent.relationshipOtherPerson,
-        'specialCondition': this.specialConditionGroup
+        'specialCondition': this.specialConditionGroup,
+        'dateOfDeath': this.dependent.dateOfDeath
       });
 
       this.taxForm.get('relationship').valueChanges.subscribe((relationship: string) => {
@@ -90,6 +94,14 @@ export class DependentComponent implements OnInit, OnDestroy {
       this.showRelationshipOtherPerson(undefined);
       this.enableSpecialCondition(this.taxForm.get('basicInfo').get('age').value);
       this.enableEicCode(this.taxForm.get('basicInfo').get('age').value);
+
+      this.deathDateOptions = {
+          showTodayBtn: true,
+          dateFormat: 'mm/dd/yyyy',
+          disableSince: {year: (this.year+1), month: 1, day: 1}
+      };
+
+      this.deathDefault = {defMonth: '01/'+ this.year};
     }
 
     ngOnDestroy() : void {
@@ -146,7 +158,7 @@ export class DependentComponent implements OnInit, OnDestroy {
       return monthsInHomeList;
     }
 
-    showRelationshipOtherPerson($event) {
+    showRelationshipOtherPerson($event): void {
       this.hasRelationshipOtherPerson = (this.taxForm.get('taxCreditEIC').get('question4Yes').value === true);
       if (this.hasRelationshipOtherPerson) {
         this.taxForm.get('relationshipOtherPerson').reset();
@@ -299,6 +311,19 @@ export class DependentComponent implements OnInit, OnDestroy {
       } else if (eicCode === 'not_qualified') {
         // all set to no already
       }
+    }
+
+    selectDependentCode($event): void {
+      this.taxForm.get('specialCondition').get("didntLiveNo").setValue(true);
+      this.switchYesNo(this.taxForm.get('specialCondition'), "didntLiveNo");
+      if (this.taxForm.get("code").value === '2') {
+        this.taxForm.get('specialCondition').get("didntLiveYes").setValue(true);
+        this.switchYesNo(this.taxForm.get('specialCondition'), "didntLiveYes");
+      }
+    }
+
+    selectDeathDate($event): void {
+      this.hasDeathDate = ($event.epoc > 0);
     }
 
     getDependent(id: string): Dependent {

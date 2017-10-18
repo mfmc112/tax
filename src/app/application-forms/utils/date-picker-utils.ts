@@ -2,6 +2,9 @@ import { AbstractControl } from '@angular/forms';
 import { IMyDefaultMonth, IMyDpOptions } from 'mydatepicker';
 
 export class DatePickerUtils {
+
+  currentYear = new Date().getFullYear();
+
   myDatePickerOptions: IMyDpOptions = {
       // maxYear: 2015,
       showTodayBtn: false,
@@ -10,7 +13,7 @@ export class DatePickerUtils {
   };
 
   defaultMonth: IMyDefaultMonth = {
-      defMonth: '01/'+ (new Date().getFullYear()-15)
+      defMonth: '01/'+ (this.currentYear-15)
   }
 
   setDate(date: Date, formField: AbstractControl): void {

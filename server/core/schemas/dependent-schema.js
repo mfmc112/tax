@@ -14,7 +14,8 @@ var dependentSchema = new Schema({
   eicCode: String,
   taxCreditEIC: { type: TaxCreditEIC.schema},
   relationshipOtherPerson: String,
-  specialCondition: { type: SpecialCondition.schema}
+  specialCondition: { type: SpecialCondition.schema},
+  dateOfDeath: Date
 });
 
 var Dependent = mongoose.model('Dependent', dependentSchema);

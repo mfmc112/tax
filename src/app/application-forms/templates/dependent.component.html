@@ -43,7 +43,7 @@
 
             <div class="col-sm-9">
               <label for="code">Dependent Code</label>
-              <select formControlName="code" id="code" class="form-control">
+              <select formControlName="code" id="code" class="form-control" (change)="selectDependentCode($event)">
                 <option value=""></option>
                 <option *ngFor="let o of codeList" value="{{o.value}}">{{o.name}}</option>
               </select>
@@ -234,6 +234,37 @@
           </div>
         </div>
       </div>
+
+
+      <form-sub-header nTitle="SPECIAL CIRCUNSTANCES"></form-sub-header>
+      <div class="row">
+        <div class="col-12">
+          <div class="row">
+            <div class="col-sm-2">
+              <div class="form-group">
+                <label for="dateOfDeath" class="no-margin">Date of Death</label>
+                <my-date-picker name="dateOfDeath"
+                        id="dateOfDeath"
+                        formControlName="dateOfDeath"
+                        [options]="deathDateOptions"
+                        [defaultMonth]="deathDefault"
+                        (dateChanged)="selectDeathDate($event)">
+                </my-date-picker>
+              </div>
+            </div>
+          </div>
+          <div class="row" *ngIf="hasDeathDate">
+            <div class="col-sm-12">
+              <div class="card card-inverse" style="background-color: #CCCCCC; border-color: #333333;">
+                <div class="card-block">
+                  <p class="card-text" style="color: #000000;">Upload a PDF copy of the Death Certificate in Document Uploads. Make sure the file is named DeathCertificate prior to uploading. Select Yes to e-file when prompted to e-file the PDF with the return.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </form>
   </div>
 </div>
