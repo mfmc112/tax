@@ -26,7 +26,8 @@
                         formControlName="dateOfBirth"
                         [options]="myDatePickerOptions"
                         [defaultMonth]="defaultMonth"
-                        (dateChanged)="onDateChanged($event, 'basicInfo')">
+                        (dateChanged)="onDateChanged($event, 'basicInfo')"
+                        required>
                 </my-date-picker>
               </div>
             </div>

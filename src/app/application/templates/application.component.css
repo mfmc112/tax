@@ -53,29 +53,29 @@ application {
   background: #E8E8E8;
 }
 
-  .application-header__toggle {
-    background: transparent;
-    border: 0.15rem solid #ffffff;
-    border-left: 0;
-    border-right: 0;
-    cursor: pointer;
-    font-size: 0;
-    height: 1.5rem;
-    margin-right: 1rem;
-    position: relative;
-    width: 2rem;
+.application-header__toggle {
+  background: transparent;
+  border: 0.15rem solid #ffffff;
+  border-left: 0;
+  border-right: 0;
+  cursor: pointer;
+  font-size: 0;
+  height: 1.5rem;
+  margin-right: 1rem;
+  position: relative;
+  width: 2rem;
 
-    &::after {
-      background: #ffffff;
-      content: '';
-      height: 0.15rem;
-      left: 0;
-      margin-top: -0.075rem;
-      position: absolute;
-      top: 50%;
-      width: 100%;
-    }
+  &::after {
+    background: #ffffff;
+    content: '';
+    height: 0.15rem;
+    left: 0;
+    margin-top: -0.075rem;
+    position: absolute;
+    top: 50%;
+    width: 100%;
   }
+}
 
 .application-sidebar {
   background-color: #fff;
