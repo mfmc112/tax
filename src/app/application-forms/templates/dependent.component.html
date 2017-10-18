@@ -265,6 +265,43 @@
         </div>
       </div>
 
+      <form-sub-header nTitle="OTHER CREDITS"></form-sub-header>
+      <div class="row">
+        <div class="col-12">
+          <div class="row">
+            <div class="col-sm-10"></div>
+            <div class="col-sm-1" style="text-align:center;">
+              Yes
+            </div>
+            <div class="col-sm-1" style="text-align:center">
+              No
+            </div>
+          </div>
+
+          <div class="row" style="border:1px solid #cccccc;">
+            <div class="col-sm-10" style="border-bottom:1px solid #cccccc;padding-bottom: 20px;">
+              <span>Will you be claiming Dependent Care Expenses for this Dependent?</span>
+            </div>
+            <div class="col-sm-1" style="text-align:center;border-left:1px solid #cccccc;border-bottom:1px solid #cccccc;">
+              <n-checkbox nName="claimDependentYes" [fGroup]="taxForm" nValue="true" nLabel=" " nClass="checkbox-padding" (change)="boxChecked($event);"></n-checkbox>
+            </div>
+            <div class="col-sm-1" style="text-align:center;border-left:1px solid #cccccc;border-bottom:1px solid #cccccc;">
+              <n-checkbox nName="claimDependentNo" [fGroup]="taxForm" nValue="true" nLabel=" " nClass="checkbox-padding" (change)="boxChecked($event);"></n-checkbox>
+            </div>
+
+            <div class="col-sm-10" style="border-bottom:1px solid #cccccc;padding-bottom: 20px;">
+              <span>Will you be claiming Education Expenses for this Dependent?</span>
+            </div>
+            <div class="col-sm-1" style="text-align:center;border-left:1px solid #cccccc;border-bottom:1px solid #cccccc;">
+              <n-checkbox nName="claimEducationYes" [fGroup]="taxForm" nValue="true" nLabel=" " nClass="checkbox-padding" (change)="boxChecked($event);"></n-checkbox>
+            </div>
+            <div class="col-sm-1" style="text-align:center;border-left:1px solid #cccccc;border-bottom:1px solid #cccccc;">
+              <n-checkbox nName="claimEducationNo" [fGroup]="taxForm" nValue="true" nLabel=" " nClass="checkbox-padding" (change)="boxChecked($event);"></n-checkbox>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </form>
   </div>
 </div>

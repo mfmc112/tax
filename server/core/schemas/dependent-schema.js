@@ -15,6 +15,10 @@ var dependentSchema = new Schema({
   taxCreditEIC: { type: TaxCreditEIC.schema},
   relationshipOtherPerson: String,
   specialCondition: { type: SpecialCondition.schema},
+  claimDependentYes: Boolean,
+  claimDependentNo: Boolean,
+  claimEducationYes: Boolean,
+  claimEducationNo: Boolean,
   dateOfDeath: Date
 });
 

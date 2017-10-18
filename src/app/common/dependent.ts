@@ -12,5 +12,9 @@ export class Dependent {
   taxCreditEIC: TaxCreditEIC;
   relationshipOtherPerson: string;
   specialCondition: SpecialCondition;
+  claimDependentYes: boolean;
+  claimDependentNo: boolean;
+  claimEducationYes: boolean;
+  claimEducationNo: boolean;
   dateOfDeath: Date;
 }

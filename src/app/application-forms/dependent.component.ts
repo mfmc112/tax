@@ -71,7 +71,11 @@ export class DependentComponent implements OnInit, OnDestroy {
         'taxCreditEIC': this.taxCreditEICGroup,
         'relationshipOtherPerson': this.dependent.relationshipOtherPerson,
         'specialCondition': this.specialConditionGroup,
-        'dateOfDeath': this.dependent.dateOfDeath
+        'dateOfDeath': this.dependent.dateOfDeath,
+        'claimDependentYes': this.dependent.claimDependentYes,
+        'claimDependentNo': this.dependent.claimDependentNo,
+        'claimEducationYes': this.dependent.claimEducationYes,
+        'claimEducationNo': this.dependent.claimEducationNo
       });
 
       this.taxForm.get('relationship').valueChanges.subscribe((relationship: string) => {
@@ -257,6 +261,10 @@ export class DependentComponent implements OnInit, OnDestroy {
 
     enableSpecialCondition(age: number): void {
       this.displaySpecialCondition = (age >= 19);
+    }
+
+    boxChecked($event) {
+      this.switchYesNo(this.taxForm, $event.target.id);
     }
 
     boxCheckedEIC($event) {
