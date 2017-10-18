@@ -19,7 +19,6 @@ import { TextMaskModule } from 'angular2-text-mask';
         [attr.placeholder]="placeHolder ? placeHolder : null"
         [textMask]="{mask: mask, guide:false}"
         >
-
     </div>
   `
 })

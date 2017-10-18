@@ -104,6 +104,26 @@ export class CurrentApplicationService {
     return this.application.clientInformation.filingInformation;
   }
 
+  calculateW2Field1(): number {
+    let field1 = 0;
+    if (this.application.w2Forms && this.application.w2Forms[0]) {
+      _.each(this.application.w2Forms, form => {
+        field1 = field1 + form.field1;
+      });
+    }
+    return field1;
+  }
+
+  calculate1040Box7(): number {
+    let box7 = 0;
+    if (this.application.w2Forms && this.application.w2Forms[0]) {
+      _.each(this.application.w2Forms, form => {
+        box7 = box7 + (form.field1 + form.field8);
+      });
+    }
+    return box7;
+  }
+
   calculateBox2(amount: number): number {
     let box2 = 0;
     let percent = this.calcHelper[this.application.year]["percent"]["box2"];

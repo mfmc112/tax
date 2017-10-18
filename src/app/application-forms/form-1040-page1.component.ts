@@ -71,15 +71,11 @@ export class Form1040Page1Component implements OnInit {
   }
 
   buildW2Summary(): FormGroup {
-    let w2Field1 = 0;
-    if (this.w2Forms && this.w2Forms[0]) {
-      _.each(this.w2Forms, function(w2: W2Form) {
-        w2Field1 = w2Field1 + w2.field1;
-      });
-    }
+    let box7 = this.currentApplicationService.calculate1040Box7();
+    let w2Field1 = this.currentApplicationService.calculateW2Field1();
 
     return new FormGroup({
-      'box7': new FormControl({value: w2Field1, disabled: true }),
+      'box7': new FormControl({value: box7, disabled: true }),
       'box8a': new FormControl({value: "0", disabled: true }),
       'box8b': new FormControl({value: "0", disabled: true }),
       'box9a': new FormControl({value: "0", disabled: true }),

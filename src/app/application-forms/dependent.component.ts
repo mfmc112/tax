@@ -59,15 +59,25 @@ export class DependentComponent implements OnInit, OnDestroy {
 
       this.taxForm = formBuilder.group({
         'basicInfo': this.basicInfoGroup,
-        'relationship': [this.dependent.relationship, Validators.compose([Validators.required, Validators.minLength(1), Validators.pattern(validationRules.STRING)])],
+        'relationship': [this.dependent.relationship, Validators.compose([Validators.required, Validators.minLength(1)])],
         'monthsInHome': this.dependent.monthsInHome,
         'identityProtectionPin' : [this.dependent.identityProtectionPin, Validators.compose([Validators.pattern(validationRules.IPIN)])],
         'ctc': this.dependent.ctc,
         'code': this.dependent.code,
-        'eicCode': [{value: this.dependent.eicCode, disabled: true}],
+        'eicCode': [{value: this.dependent.eicCode, disabled: true}, Validators.compose([Validators.required, Validators.minLength(1)])],
         'taxCreditEIC': this.taxCreditEICGroup,
         'relationshipOtherPerson': this.dependent.relationshipOtherPerson,
         'specialCondition': this.specialConditionGroup
+      });
+
+      this.taxForm.get('relationship').valueChanges.subscribe((relationship: string) => {
+        // console.log("relationship: " + relationship);
+        if (relationship === '') {
+            this.taxForm.get('relationship').setValidators([Validators.required, Validators.pattern('^[0-9]{5}(?:-[0-9]{4})?$')]);
+            this.taxForm.get('relationship').setValue(null);
+        }
+
+        this.taxForm.get('relationship').updateValueAndValidity();
       });
     }
 
@@ -258,6 +268,9 @@ export class DependentComponent implements OnInit, OnDestroy {
       if (monthsInHome >= 7 && monthsInHome <= 12) {
         this.taxForm.get('taxCreditEIC').get('question3Yes').setValue(true);
         this.switchYesNo(this.taxForm.get('taxCreditEIC'), 'question3Yes');
+      } else {
+        this.taxForm.get('taxCreditEIC').get('question3No').setValue(true);
+        this.switchYesNo(this.taxForm.get('taxCreditEIC'), 'question3No');
       }
     }
 

@@ -13,7 +13,7 @@
 
             <div class="col-sm-3">
               <label for="relationship">Relationship</label>
-              <select formControlName="relationship" id="relationship" class="form-control">
+              <select formControlName="relationship" id="relationship" class="form-control ng-invalid">
                 <option value=""></option>
                 <option *ngFor="let o of relationshipList" value="{{o.value}}">{{o.name}}</option>
               </select>

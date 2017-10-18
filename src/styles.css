@@ -36,6 +36,14 @@ input.ng-invalid:not(form) {
   border: 1px solid #a94442;
 }
 
+select.ng-valid[required], select.ng-valid.required {
+  border: 1px solid #42A948;
+}
+
+select.ng-invalid:not(form) {
+  border: 1px solid #a94442;
+}
+
 .lower-border {
   background-color: #232323;
   min-height: 60px;
