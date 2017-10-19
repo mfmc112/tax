@@ -77,13 +77,13 @@
               <span><b>6a</b></span>
             </div>
             <div class="col-sm-1" style="text-align:center;">
-              <n-checkbox nName="box6a" [fGroup]="taxForm" nValue="true" nLabel=" " nClass="checkbox-padding"></n-checkbox>
+              <n-checkbox nName="box6a" [fGroup]="taxForm" nValue="true" nLabel=" " nClass="checkbox-padding" (change)="calculateBox6ab($event)"></n-checkbox>
             </div>
             <div class="col-sm-1" style="text-align:right;">
               <span><b>6b</b></span>
             </div>
             <div class="col-sm-1" style="text-align:center;">
-              <n-checkbox nName="box6b" [fGroup]="taxForm" nValue="true" nLabel=" " nClass="checkbox-padding"></n-checkbox>
+              <n-checkbox nName="box6b" [fGroup]="taxForm" nValue="true" nLabel=" " nClass="checkbox-padding" (change)="calculateBox6ab($event)"></n-checkbox>
             </div>
             <div class="col-sm-7" style="text-align:right;">
               <label style="margin-top:6px;">Boxes checked on 6a and 6b</label>
@@ -126,20 +126,20 @@
             <div class="col-sm-12"><br></div>
 
             <div class="col-sm-10">Children on 6c who live with you</div>
-            <n-input class="col-sm-2" name="box6cLiveWithYou" [fGroup]="taxForm"></n-input>
+            <n-input class="col-sm-2" name="box6cLiveWithYou" nRight [fGroup]="taxForm"></n-input>
 
             <div class="col-sm-10">Children on 6c who did not live with you due to divorce or separation</div>
-            <n-input class="col-sm-2" name="box6cNotLiveDueDivorce" [fGroup]="taxForm"></n-input>
+            <n-input class="col-sm-2" name="box6cNotLiveDueDivorce" nRight [fGroup]="taxForm"></n-input>
 
             <div class="col-sm-10">Dependents listed on 6c not listed above</div>
-            <n-input class="col-sm-2" name="box6cNotListedAbove" [fGroup]="taxForm"></n-input>
+            <n-input class="col-sm-2" name="box6cNotListedAbove" nRight [fGroup]="taxForm"></n-input>
           </div>
           <div class="divider-20"></div>
           <div class="row">
             <div class="col-10">
               <n-form-bold-box section="6d" text="Total Number of Exeptions Claimed"></n-form-bold-box>
             </div>
-            <n-input class="col-sm-2" name="box6d" [fGroup]="taxForm"></n-input>
+            <n-input class="col-sm-2" name="box6d" nRight [fGroup]="taxForm"></n-input>
           </div>
 
         </div>

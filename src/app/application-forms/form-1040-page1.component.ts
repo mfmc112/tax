@@ -44,6 +44,15 @@ export class Form1040Page1Component implements OnInit {
     this.w2Forms = this.application.w2Forms;
     this.w2FormSummary = this.buildW2Summary();
     this.dependents = this.currentApplicationService.getDependents();
+    let box6cLiveWithYou = 0;
+    let box6cNotLiveDueDivorce = 0;
+    let box6cNotListedAbove = 0;
+    _.each(this.dependents, function(o) {
+      if (o.code === 1) box6cLiveWithYou++;
+      else if (o.code === 2) box6cNotLiveDueDivorce++;
+      else if (o.code === 3) box6cNotListedAbove++;
+    });
+
     this.taxForm = formBuilder.group({
       'firstName': [{value: this.pi.taxPayer.firstName, disabled: true}],
       'middleName': [{value: this.pi.taxPayer.initial, disabled: true}],
@@ -63,11 +72,13 @@ export class Form1040Page1Component implements OnInit {
       'box6a': new FormControl(false),
       'box6b': new FormControl(false),
       'box6ab': new FormControl(null),
-      'box6cLiveWithYou': new FormControl(null),
-      'box6cNotLiveDueDivorce': new FormControl(null),
-      'box6cNotListedAbove': new FormControl(null),
-      'box6d': new FormControl(null)
+      'box6cLiveWithYou': new FormControl(box6cLiveWithYou),
+      'box6cNotLiveDueDivorce': new FormControl(box6cNotLiveDueDivorce),
+      'box6cNotListedAbove': new FormControl(box6cNotListedAbove),
+      'box6d': new FormControl(0)
     });
+
+    this.calculateBox6ab(null);
   }
 
   buildW2Summary(): FormGroup {
@@ -140,9 +151,31 @@ export class Form1040Page1Component implements OnInit {
       {value: "head", label:"Head of Household (with qualifying person)", box:"4"},
       {value: "widow", label:"Qualified Widow(er) with dependent child. Year spouse died (2016 or 2017 only)", box:"5"}
     ];
+
+    this.calculateBox6ab(null);
   }
 
-  submitForm(fields: any):void { }
+  calculateBox6ab($event) {
+    let box6ab = 0;
+    if (this.taxForm.get('box6a').value === true) box6ab++;
+    if (this.taxForm.get('box6b').value === true) box6ab++;
+    this.taxForm.get('box6ab').setValue(box6ab);
+    this.calculateBoxD();
+  }
+
+  calculateBoxD() {
+    let box6d = 0;
+    box6d = (
+      this.taxForm.get('box6cLiveWithYou').value +
+      this.taxForm.get('box6cNotLiveDueDivorce').value +
+      this.taxForm.get('box6cNotListedAbove').value
+    );
+
+    if (this.taxForm.get('box6a').value === true) box6d++;
+    if (this.taxForm.get('box6b').value === true) box6d++;
+
+    this.taxForm.get('box6d').setValue(box6d);
+  }
 
   createMailingAddressGroup(pi: PersonalInformation): FormGroup {
     if (!pi.mailingAddress) pi.mailingAddress = new MailingAddress();
@@ -154,5 +187,7 @@ export class Form1040Page1Component implements OnInit {
       'state': new FormControl({value: pi.mailingAddress.state, disabled: true })
     });
   }
+
+  submitForm(fields: any):void { }
 
 }

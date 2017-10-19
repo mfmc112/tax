@@ -42,6 +42,7 @@ export class DependentComponent implements OnInit, OnDestroy {
   hasRelationshipOtherPerson: boolean = false;
   hasDeathDate: boolean = false;
   displaySpecialCondition: boolean = false;
+  displayDisabledQ: boolean = false;
   myDatePickerOptions: IMyDpOptions = this.datePickerUtils.myDatePickerOptions;
   defaultMonth: IMyDefaultMonth = this.datePickerUtils.defaultMonth;
   deathDateOptions: IMyDpOptions;
@@ -62,12 +63,12 @@ export class DependentComponent implements OnInit, OnDestroy {
 
       this.taxForm = formBuilder.group({
         'basicInfo': this.basicInfoGroup,
-        'relationship': [this.dependent.relationship, Validators.compose([Validators.required, Validators.minLength(1)])],
+        'relationship': [this.dependent.relationship, Validators.compose([Validators.required])],
         'monthsInHome': this.dependent.monthsInHome,
         'identityProtectionPin' : [this.dependent.identityProtectionPin, Validators.compose([Validators.pattern(validationRules.IPIN)])],
         'ctc': this.dependent.ctc,
         'code': this.dependent.code,
-        'eicCode': [{value: this.dependent.eicCode, disabled: true}, Validators.compose([Validators.required, Validators.minLength(1)])],
+        'eicCode': [{value: this.dependent.eicCode, disabled: true}, Validators.compose([Validators.required])],
         'taxCreditEIC': this.taxCreditEICGroup,
         'relationshipOtherPerson': this.dependent.relationshipOtherPerson,
         'specialCondition': this.specialConditionGroup,
@@ -78,15 +79,13 @@ export class DependentComponent implements OnInit, OnDestroy {
         'claimEducationNo': this.dependent.claimEducationNo
       });
 
-      this.taxForm.get('relationship').valueChanges.subscribe((relationship: string) => {
-        // console.log("relationship: " + relationship);
-        if (relationship === '') {
-            this.taxForm.get('relationship').setValidators([Validators.required, Validators.pattern('^[0-9]{5}(?:-[0-9]{4})?$')]);
-            this.taxForm.get('relationship').setValue(null);
-        }
-
-        this.taxForm.get('relationship').updateValueAndValidity();
-      });
+      // this.taxForm.get('relationship').valueChanges.subscribe((relationship: string) => {
+      //   if (relationship === '') {
+      //       this.taxForm.get('relationship').setValidators([Validators.required]);
+      //       this.taxForm.get('relationship').setValue(null);
+      //   }
+      //   this.taxForm.get('relationship').updateValueAndValidity();
+      // });
     }
 
     ngOnInit():void {
@@ -104,8 +103,9 @@ export class DependentComponent implements OnInit, OnDestroy {
           dateFormat: 'mm/dd/yyyy',
           disableSince: {year: (this.year+1), month: 1, day: 1}
       };
-
       this.deathDefault = {defMonth: '01/'+ this.year};
+
+      this.displayDisabled();
     }
 
     ngOnDestroy() : void {
@@ -273,6 +273,11 @@ export class DependentComponent implements OnInit, OnDestroy {
 
     boxCheckedSpecial($event) {
       this.switchYesNo(this.taxForm.get('specialCondition'), $event.target.id);
+      this.displayDisabled();
+    }
+
+    displayDisabled(): void {
+      this.displayDisabledQ =  (this.taxForm.get('specialCondition').get("under24No").value === true);
     }
 
     switchYesNo(field: AbstractControl, fieldName: string) {
@@ -319,6 +324,7 @@ export class DependentComponent implements OnInit, OnDestroy {
       } else if (eicCode === 'not_qualified') {
         // all set to no already
       }
+      this.displayDisabled();
     }
 
     selectDependentCode($event): void {
@@ -353,6 +359,11 @@ export class DependentComponent implements OnInit, OnDestroy {
       let dependent = this.taxForm.value;
       dependent._id = this.dependentId;
       dependent = this.removeMask(dependent);
+
+      if (!this.displayDisabledQ) {
+        dependent.specialCondition.disabledYes = undefined;
+        dependent.specialCondition.disabledNo = undefined;
+      }
 
       this.currentApplicationService.saveDependent(dependent);
       let name = (this.taxForm.get('basicInfo').get('firstName').value)? "(" + this.taxForm.get('basicInfo').get('firstName').value + ")": "";

@@ -21,7 +21,6 @@ import { TextMaskModule } from 'angular2-text-mask';
 import { NInputComponent, NTextareaComponent, NRadioComponent, NRadioListComponent, NCheckboxComponent, NFormBoldBoxComponent } from '../common/n-components';
 import { NW2Field12Component } from '../common/n-components/n-w2-field12.component';
 
-
 @NgModule({
   imports: [
     FormsModule,
