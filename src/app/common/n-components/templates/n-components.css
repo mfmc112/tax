@@ -1,3 +1,27 @@
+.numbers {
+  border-right-width: 0px;
+  padding: 0rem 0rem 0rem 0rem;
+}
+
+.numbers:focus + .decimal {
+  border-color: #66afe9;
+}
+
+.decimal {
+  font: 17px Arial;
+  padding: .5rem 0.5rem .5rem 0rem;
+}
+
+.decimal-disabled {
+  background-color: #eceeef;
+  color: #808080;
+}
+
+.decimal-enabled {
+  background-color: #FFFFFF;
+  color: #464a4c;
+}
+
 .bold-number {
   margin-right: 20px;
 }

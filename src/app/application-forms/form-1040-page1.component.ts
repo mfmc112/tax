@@ -7,7 +7,6 @@ import { validationRules } from '../validator/validator-rules.component';
 import { MASKS } from '../enum/masks.enum';
 import { PersonalInfoFormComponent } from './personal-info-form.component';
 import { Application, PersonalInformation, FilingInformation, Dependent, BasicInformation, W2Form, MailingAddress, Client, Utils } from '../common/';
-import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 import * as _ from "lodash";
 
 @Component({
@@ -18,7 +17,6 @@ export class Form1040Page1Component implements OnInit {
   // @ViewChild('../application/application.component') applicationComponent: ApplicationComponent;
   ssnMask: Array<string | RegExp> = MASKS.SSN;
   zipMask:  Array<string | RegExp> = MASKS.ZIP;
-  numberMask = createNumberMask({ prefix: '$', suffix: '.00' });
   statusRadio: any;
   application: Application;
   pi: PersonalInformation;

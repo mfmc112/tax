@@ -8,10 +8,9 @@ import { validationRules } from '../validator/validator-rules.component';
 import { MaskUtils } from './utils/masks-utils';
 import { ZipCodeApiService } from '../common/api/zip-code-api.service';
 import { ZipCodeUtils } from './utils/zip-code-utils';
-import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 
 import { Application, PersonalInformation,  W2Form, MailingAddress, Client, Utils } from '../common/';
-import { NInputComponent, NTextareaComponent, NCheckboxComponent } from '../common/n-components/';
+import { NInputComponent, NMoneyComponent, NTextareaComponent, NCheckboxComponent } from '../common/n-components/';
 import { NW2Field12Component } from '../common/n-components/n-w2-field12.component';
 import * as _ from 'lodash';
 
@@ -27,7 +26,6 @@ export class W2FormComponent implements OnInit {
   ssnMask: Array<string | RegExp> = this.maskUtils.MASKS.SSN;
   zipMask:  Array<string | RegExp> = this.maskUtils.MASKS.ZIP;
   stateMask:  Array<string | RegExp> = this.maskUtils.MASKS.STATE;
-  numberMask = createNumberMask({ prefix: '$', suffix: '.00' });
   taxForm: FormGroup;
   application: Application;
   w2Form: W2Form;
@@ -107,10 +105,10 @@ export class W2FormComponent implements OnInit {
         'field13Retirement': this.w2Form.field13Retirement,
         'field13SickPay': this.w2Form.field13SickPay,
         'field14': this.w2Form.field14,
-        'field16': this.w2Form.field16,
-        'field17': this.w2Form.field17,
-        'field18': this.w2Form.field18,
-        'field19': this.w2Form.field19,
+        'field16': this.w2Form.field16?this.w2Form.field16:0,
+        'field17': this.w2Form.field17?this.w2Form.field17:0,
+        'field18': this.w2Form.field18?this.w2Form.field18:0,
+        'field19': this.w2Form.field19?this.w2Form.field19:0,
         'field20': this.w2Form.field20,
         'state': this.w2Form.state,
         'esin': this.w2Form.esin

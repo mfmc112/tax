@@ -18,7 +18,7 @@ import { FormHeaderComponent } from './utils/form-header.component';
 import { FormSubHeaderComponent } from './utils/form-sub-header.component';
 import { MyDatePickerModule } from 'mydatepicker';
 import { TextMaskModule } from 'angular2-text-mask';
-import { NInputComponent, NTextareaComponent, NRadioComponent, NRadioListComponent, NCheckboxComponent, NFormBoldBoxComponent } from '../common/n-components';
+import { NInputComponent, NMoneyComponent, NTextareaComponent, NRadioComponent, NRadioListComponent, NCheckboxComponent, NFormBoldBoxComponent } from '../common/n-components';
 import { NW2Field12Component } from '../common/n-components/n-w2-field12.component';
 
 @NgModule({
@@ -40,6 +40,7 @@ import { NW2Field12Component } from '../common/n-components/n-w2-field12.compone
     Form1040Page1Component,
     Form1040Page2Component,
     NInputComponent,
+    NMoneyComponent,
     NTextareaComponent,
     NRadioComponent,
     NRadioListComponent,

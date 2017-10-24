@@ -17,7 +17,7 @@ export class Form1040Page2Component implements OnInit {
   @ViewChild('../application/application.component') applicationComponent: ApplicationComponent;
   ssnMask: Array<string | RegExp> = MASKS.SSN;
   zipMask:  Array<string | RegExp> = MASKS.ZIP;
-  numberMask = createNumberMask({ prefix: '$', suffix: '.00' });
+  numberMask = createNumberMask({ prefix: '$' });
   statusRadio: any;
   application: Application;
   pi: PersonalInformation;

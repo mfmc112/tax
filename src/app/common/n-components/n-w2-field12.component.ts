@@ -1,7 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { TextMaskModule } from 'angular2-text-mask';
-import createNumberMask from 'text-mask-addons/dist/createNumberMask';
+import { NMoneyComponent } from './';
 
 @Component({
   selector: 'n-w2-field12',
@@ -19,23 +19,16 @@ import createNumberMask from 'text-mask-addons/dist/createNumberMask';
           </div>
         </div>
       </div>
-      <div class="col-sm-7" [formGroup]="fGroup">
-          <input formControlName='{{"field"+nField+"2"}}' type="text" id="field{{nField}}2" class="form-control text-right"
-          [textMask]="{mask: numberMask, guide:false}">
-      </div>
+      <n-money class="col-sm-7" name="field{{nField}}2" nRight [fGroup]="fGroup"></n-money>
     </div>
   `
 })
 export class NW2Field12Component {
+  @ViewChild(NMoneyComponent) money: NMoneyComponent;
   @Input('nField') nField: string;
   @Input('fGroup') fGroup: any;
   @Input('nOptions') nOptions: any;
   @Input('nTargetForm') nTargetForm: any;
-
-  numberMask = createNumberMask({
-    prefix: '$',
-    suffix: '.00'
-  });
 
   selectField12(nField, value) {
     this.nTargetForm.get('field' + nField + '1').setValue(value)
