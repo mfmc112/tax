@@ -92,7 +92,7 @@ var ApplicationApi = function(server) {
     if (!req.body.client) res.status(500).send("invalid client");
     if (!req.body.preparer) res.status(500).send("invalid preparer");
 
-    console.log('executing application PUT for client' + req.body.client + ', year of : ' + req.body.year);
+    console.log('executing application PUT for client ' + req.body.client.firstName + ', year of : ' + req.body.year);
     var application = new Application(req.body);
     Application.update({_id: BaseApi.objectID(req.params.id)}, application, function(error, response) {
       if (!error) res.send(new ResponseDecorator().enrichPut(response, req));

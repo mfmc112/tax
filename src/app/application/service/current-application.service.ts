@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApplicationApiService } from '../api/application-api.service';
 import { AbstractControl } from '@angular/forms';
-import { Application, Client, User, ClientInformation, PersonalInformation, FilingInformation, Dependent, BasicInformation, W2Form } from '../../common/';
+import { Application, Client, User, ClientInformation, PersonalInformation, FilingInformation, Dependent, BasicInformation, W2Form, Form1040 } from '../../common/';
 import * as _ from 'lodash';
 
 @Injectable()
@@ -276,5 +276,14 @@ export class CurrentApplicationService {
       else dependentIndex = this.application.dependents.length;
     }
     this.application.dependents[dependentIndex] = dependent;
+  }
+
+  getForm1040() : Form1040 {
+    if (!this.application.form1040) return new Form1040();
+    return this.application.form1040;
+  }
+
+  setForm1040(form1040: Form1040): void {
+    this.application.form1040 = form1040;
   }
 }

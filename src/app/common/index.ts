@@ -13,5 +13,6 @@ export * from './tax-return';
 export * from './tax-credit-eic';
 export * from './user';
 export * from './w2-form';
+export * from './form-1040';
 
 export * from './utils';

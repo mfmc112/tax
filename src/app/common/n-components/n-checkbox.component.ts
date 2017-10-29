@@ -8,7 +8,7 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
   template: `
       <label *ngIf="nLabelUp" [attr.for]="nName">{{nLabel}}</label>
       <div class="checkbox checkbox-primary {{nClass}}" [formGroup]="fGroup">
-        <input type="checkbox" [attr.name]="nName" formControlName={{controlForm}} [attr.id]="nName">
+        <input type="checkbox" [attr.name]="nName" formControlName={{controlForm}} [attr.id]="nName" value=true>
         <label [attr.for]="nName" [attr.class]="nLabel===' '?'top': 'normal'">{{!nLabelUp ? nLabel : ' '}}</label>
       </div>
   `

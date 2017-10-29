@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ViewContainerRef } from  '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ViewContainerRef } from  '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { ApplicationComponent } from '../application/application.component';
@@ -6,25 +6,28 @@ import { CurrentApplicationService } from '../application/service/current-applic
 import { validationRules } from '../validator/validator-rules.component';
 import { MASKS } from '../enum/masks.enum';
 import { PersonalInfoFormComponent } from './personal-info-form.component';
-import { Application, PersonalInformation, FilingInformation, Dependent, BasicInformation, W2Form, MailingAddress, Client, Utils } from '../common/';
+import { Application, Form1040, PersonalInformation, FilingInformation, Dependent, BasicInformation, W2Form, MailingAddress, Client, Utils } from '../common/';
+import { StringUtils } from '../common/utils/';
 import * as _ from "lodash";
 
 @Component({
   selector:'form-1040-page1',
   templateUrl: './templates/form-1040-page1.component.html'
 })
-export class Form1040Page1Component implements OnInit {
-  // @ViewChild('../application/application.component') applicationComponent: ApplicationComponent;
+export class Form1040Page1Component implements OnInit, OnDestroy {
+  stringUtils: StringUtils = new StringUtils();
   ssnMask: Array<string | RegExp> = MASKS.SSN;
   zipMask:  Array<string | RegExp> = MASKS.ZIP;
   statusRadio: any;
   application: Application;
+  form1040: Form1040;
   pi: PersonalInformation;
   fi: FilingInformation;
   dependents: Array<Dependent>;
   w2Forms: W2Form[];
   taxForm: FormGroup;
   mailingAddressGroup: FormGroup;
+  form1040Group: FormGroup;
   w2FormSummary: FormGroup;
 
   constructor(
@@ -34,10 +37,11 @@ export class Form1040Page1Component implements OnInit {
   ){
     this.toastr.setRootViewContainerRef(vcr);
     this.application = this.currentApplicationService.getApplication();
+    this.form1040 = this.currentApplicationService.getForm1040();
     this.pi = this.currentApplicationService.getPersonalInformation();
     this.fi = this.currentApplicationService.getFilingInformation();
-
     this.mailingAddressGroup = this.createMailingAddressGroup(this.pi);
+    this.form1040Group = this.createForm1040Group();
 
     this.w2Forms = this.application.w2Forms;
     this.w2FormSummary = this.buildW2Summary();
@@ -67,9 +71,7 @@ export class Form1040Page1Component implements OnInit {
       'spouseDonate': false,
       'status': [{value: this.fi.status, disabled: true }],
       'w2Summary': this.w2FormSummary,
-      'box6a': new FormControl(false),
-      'box6b': new FormControl(false),
-      'box6ab': new FormControl(null),
+      'form1040': this.form1040Group,
       'box6cLiveWithYou': new FormControl(box6cLiveWithYou),
       'box6cNotLiveDueDivorce': new FormControl(box6cNotLiveDueDivorce),
       'box6cNotListedAbove': new FormControl(box6cNotListedAbove),
@@ -153,11 +155,30 @@ export class Form1040Page1Component implements OnInit {
     this.calculateBox6ab(null);
   }
 
+  ngOnDestroy() : void {
+    // save inpout data
+    this.submitForm('');
+  }
+
+  setDefaultsBox6ab() {
+    console.log(this.form1040Group.get('box6a').value);
+    if (this.stringUtils.isEmpty(this.form1040Group.get('box6a').value)) {
+      this.form1040Group.get('box6a').setValue(true);
+      this.taxForm.markAsTouched();
+    }
+    if (this.stringUtils.isEmpty(this.form1040Group.get('box6b').value) && this.fi.status === 'jointly') {
+      this.form1040Group.get('box6b').patchValue(true);
+      this.taxForm.markAsTouched();
+    }
+  }
+
   calculateBox6ab($event) {
     let box6ab = 0;
-    if (this.taxForm.get('box6a').value === true) box6ab++;
-    if (this.taxForm.get('box6b').value === true) box6ab++;
-    this.taxForm.get('box6ab').setValue(box6ab);
+    this.setDefaultsBox6ab();
+
+    if (this.form1040Group.get('box6a').value === true) box6ab++;
+    if (this.form1040Group.get('box6b').value === true) box6ab++;
+    this.form1040Group.get('box6ab').setValue(box6ab);
     this.calculateBoxD();
   }
 
@@ -169,8 +190,8 @@ export class Form1040Page1Component implements OnInit {
       this.taxForm.get('box6cNotListedAbove').value
     );
 
-    if (this.taxForm.get('box6a').value === true) box6d++;
-    if (this.taxForm.get('box6b').value === true) box6d++;
+    if (this.form1040Group.get('box6a').value === true) box6d++;
+    if (this.form1040Group.get('box6b').value === true) box6d++;
 
     this.taxForm.get('box6d').setValue(box6d);
   }
@@ -186,6 +207,25 @@ export class Form1040Page1Component implements OnInit {
     });
   }
 
-  submitForm(fields: any):void { }
+  createForm1040Group(): FormGroup {
+    if (!this.form1040) this.form1040 = new Form1040();
+    return new FormGroup({
+      'box6a': new FormControl(this.form1040.box6a),
+      'box6b': new FormControl(this.form1040.box6b),
+      'box6ab': new FormControl({value: this.form1040.box6ab, disabled: true })
+    });
+  }
+
+  submitForm(fields: any):void {
+    if (!this.taxForm.touched) return;
+    this.currentApplicationService.setForm1040( this.form1040Group.getRawValue() );
+    this.currentApplicationService.updateApplication().subscribe(
+      data => {
+        this.toastr.success('Form 1040 Page 1 saved sucessfully', 'Success!');
+      },err => {
+        this.toastr.error('Please go back to Form 1040 Page 1 and try again.', 'Error saving Form1040!');
+      }
+    );
+  }
 
 }
