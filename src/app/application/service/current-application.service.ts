@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApplicationApiService } from '../api/application-api.service';
 import { AbstractControl } from '@angular/forms';
-import { Application, Client, User, ClientInformation, PersonalInformation, FilingInformation, Dependent, BasicInformation, W2Form, Form1040 } from '../../common/';
+import { Application, Client, User, ClientInformation, PersonalInformation, FilingInformation, Dependent, BasicInformation, W2Form, W2GForm, Form1040 } from '../../common/';
 import * as _ from 'lodash';
 
 @Injectable()
@@ -285,5 +285,10 @@ export class CurrentApplicationService {
 
   setForm1040(form1040: Form1040): void {
     this.application.form1040 = form1040;
+  }
+
+  addW2GForm(): void {
+    if (!this.application.w2GForms) this.application.w2GForms = [];
+    this.application.w2GForms.push( new W2GForm(this.getClient()) );
   }
 }

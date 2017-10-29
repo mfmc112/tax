@@ -22,6 +22,7 @@ export class AddFormComponent implements OnInit {
       {name: "Dependents", value: "Dependents"},
       {name: "Form 8879", value: "8879", info: "IRS e-file signature authorization"},
       {name: "W2 Form", value: "W2"},
+      {name: "W-2G", value:"W2G", info: "Certain Gamblings and Winnings"},
       {name: "Worksheet 8", value: "wkt8"}
     ];
   }
@@ -29,6 +30,8 @@ export class AddFormComponent implements OnInit {
   addForm(form) {
     if (form.value === "W2") {
       this.currentApplicationService.addW2Form();
+    } else if(form.value === 'W2G') {
+      this.currentApplicationService.addW2GForm();
     }
 
     this.currentApplicationService.updateApplication().subscribe(

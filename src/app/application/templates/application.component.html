@@ -48,6 +48,11 @@
                   W2 <span *ngIf="form.employerName">{{form.employerName.length>15?form.employerName.substring(0,15):form.employerName}}</span>
                 </a>
               </li>
+              <li *ngFor="let form of this.application.w2GForms; let i = index"  class="nav-item">
+                <a uiSref="menu.application.w2GForm" [uiParams]="{ id: form._id }" uiSrefActive="active" class="dropdown-item" href="#">
+                  W2G <span *ngIf="form.payerName">{{form.payerName.length>15?form.payerName.substring(0,15):form.payerName}}</span>
+                </a>
+              </li>
               <li class="nav-item">
                 <a uiSref="menu.application.form1040" uiSrefActive="active" class="dropdown-item" href="#">Form 1040</a>
               </li>
