@@ -161,7 +161,6 @@ export class Form1040Page1Component implements OnInit, OnDestroy {
   }
 
   setDefaultsBox6ab() {
-    console.log(this.form1040Group.get('box6a').value);
     if (this.stringUtils.isEmpty(this.form1040Group.get('box6a').value)) {
       this.form1040Group.get('box6a').setValue(true);
       this.taxForm.markAsTouched();

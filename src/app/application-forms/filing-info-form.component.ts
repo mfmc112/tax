@@ -18,6 +18,7 @@ import { MyDatePickerModule, IMyDefaultMonth, IMyDpOptions, IMyDateModel } from 
 export class FilingInfoFormComponent implements OnInit, OnDestroy {
   maskUtils: MaskUtils = new MaskUtils();
   datePickerUtils: DatePickerUtils = new DatePickerUtils();
+  year: number;
   taxForm: FormGroup;
   payerSpecialGroup: FormGroup;
   spouseSpecialGroup: FormGroup;
@@ -38,6 +39,8 @@ export class FilingInfoFormComponent implements OnInit, OnDestroy {
       this.toastr.setRootViewContainerRef(vcr);
 
       this.application = this.currentApplicationService.getApplication();
+      this.year = this.application.year;
+      
       this.fi = this.application.clientInformation.filingInformation;
       if (!this.fi) this.fi = new FilingInformation();
 
@@ -80,10 +83,10 @@ export class FilingInfoFormComponent implements OnInit, OnDestroy {
   }
 
   initializeDates() {
-    this.datePickerUtils.setDateFromField(this.taxForm.get('payerSpecialProcessing').get('death'), undefined, undefined);
-    this.datePickerUtils.setDateFromField(this.taxForm.get('payerSpecialProcessing').get('deploymentDate'), undefined, undefined);
-    this.datePickerUtils.setDateFromField(this.taxForm.get('spouseSpecialProcessing').get('death'), undefined, undefined);
-    this.datePickerUtils.setDateFromField(this.taxForm.get('spouseSpecialProcessing').get('deploymentDate'), undefined, undefined);
+    this.datePickerUtils.setDateFromField(this.taxForm.get('payerSpecialProcessing').get('death'), undefined, this.year, undefined);
+    this.datePickerUtils.setDateFromField(this.taxForm.get('payerSpecialProcessing').get('deploymentDate'), undefined, this.year, undefined);
+    this.datePickerUtils.setDateFromField(this.taxForm.get('spouseSpecialProcessing').get('death'), undefined, this.year, undefined);
+    this.datePickerUtils.setDateFromField(this.taxForm.get('spouseSpecialProcessing').get('deploymentDate'), undefined, this.year, undefined);
   }
 
   initializeDropDownOptions() {
@@ -132,7 +135,7 @@ export class FilingInfoFormComponent implements OnInit, OnDestroy {
 
   submitForm(fields: any):void {
     if (!this.taxForm.touched) return;
-    
+
     this.fi = this.removeMask(this.taxForm.value);
     this.currentApplicationService.setFilingInformation(this.fi);
     this.currentApplicationService.updateApplication().subscribe(

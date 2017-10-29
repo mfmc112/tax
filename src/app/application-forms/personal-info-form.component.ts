@@ -29,6 +29,7 @@ export class PersonalInfoFormComponent implements OnInit, OnDestroy {
   zipMask:  Array<string | RegExp> = this.maskUtils.MASKS.ZIP;
   stateMask:  Array<string | RegExp> = this.maskUtils.MASKS.STATE;
   suffixMask: Array<string | RegExp> = this.maskUtils.MASKS.NAME_SUFFIX;
+  year: number;
   taxForm: FormGroup;
   taxPayerGroup: FormGroup;
   payerPhoneGroup: FormGroup;
@@ -51,6 +52,8 @@ export class PersonalInfoFormComponent implements OnInit, OnDestroy {
     this.toastr.setRootViewContainerRef(vcr);
 
     this.application = this.currentApplicationService.getApplication();
+    this.year = this.currentApplicationService.getApplication().year;
+
     this.pi = this.currentApplicationService.getPersonalInformation();
     this.payerPhoneGroup = this.createPhoneGroup(this.pi.taxPayer);
     this.spousePhoneGroup = this.createPhoneGroup(this.pi.spouse);
@@ -70,11 +73,13 @@ export class PersonalInfoFormComponent implements OnInit, OnDestroy {
     this.datePickerUtils.setDateFromField(
       this.taxForm.get('taxPayer').get('dateOfBirth'),
       this.taxForm.get('taxPayer').get('age'),
+      this.year,
       this.calculateAge
     );
     this.datePickerUtils.setDateFromField(
       this.taxForm.get('spouse').get('dateOfBirth'),
       this.taxForm.get('spouse').get('age'),
+      this.year,
       this.calculateAge
     );
     this.enableType('taxPayer');
@@ -155,13 +160,14 @@ export class PersonalInfoFormComponent implements OnInit, OnDestroy {
 
   onDateChanged(event: IMyDateModel, type: string) {
     if (!event.jsdate) return;
-    this.taxForm.get(type).patchValue({'age': this.calculateAge(event.jsdate)});
+    this.taxForm.get(type).patchValue({'age': this.calculateAge(event.jsdate, this.year)});
   }
 
-  calculateAge(birthday:Date) {
-     var ageDifMs = Date.now() - birthday.getTime();
-     var ageDate = new Date(ageDifMs);
-     return Math.abs(ageDate.getUTCFullYear() - 1970);
+  calculateAge(birthday: Date, year: number) {
+    let date = new Date(year + "-12-31");
+    let ageDifMs = date.getTime() - birthday.getTime();
+    let ageDate = new Date(ageDifMs);
+    return Math.abs(ageDate.getUTCFullYear() - 1970);
   }
 
   findZip($event, owner: string): void {

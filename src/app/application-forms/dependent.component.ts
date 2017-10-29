@@ -79,19 +79,13 @@ export class DependentComponent implements OnInit, OnDestroy {
         'claimEducationNo': this.dependent.claimEducationNo
       });
 
-      // this.taxForm.get('relationship').valueChanges.subscribe((relationship: string) => {
-      //   if (relationship === '') {
-      //       this.taxForm.get('relationship').setValidators([Validators.required]);
-      //       this.taxForm.get('relationship').setValue(null);
-      //   }
-      //   this.taxForm.get('relationship').updateValueAndValidity();
-      // });
     }
 
     ngOnInit():void {
       this.setDateFromField(
         this.taxForm.get('basicInfo').get('dateOfBirth'),
-        this.taxForm.get('basicInfo').get('age')
+        this.taxForm.get('basicInfo').get('age'),
+        this.year
       );
       this.initializeDropDownOptions();
       this.showRelationshipOtherPerson(undefined);
@@ -220,22 +214,23 @@ export class DependentComponent implements OnInit, OnDestroy {
 
     onDateChanged(event: IMyDateModel, type: string) {
       if (!event.jsdate) return;
-      this.taxForm.get(type).patchValue({'age': this.calculateAge(event.jsdate)});
+      this.taxForm.get(type).patchValue({'age': this.calculateAge(event.jsdate, this.year)});
     }
 
-    calculateAge(birthday:Date) {
-       let ageDifMs = Date.now() - birthday.getTime();
-       let ageDate = new Date(ageDifMs);
-       let age = Math.abs(ageDate.getUTCFullYear() - 1970);
-       if (age >= 19) {
-         this.taxForm.get('eicCode').enable();
-       } else {
-         this.taxForm.get('eicCode').disable();
-       }
-       return age
+    calculateAge(birthday:Date, year: number): number {
+      let date = new Date(year + "-12-31");
+      let ageDifMs = date.getTime() - birthday.getTime();
+      let ageDate = new Date(ageDifMs);
+      let age = Math.abs(ageDate.getUTCFullYear() - 1970);
+      if (age >= 19) {
+        this.taxForm.get('eicCode').enable();
+      } else {
+        this.taxForm.get('eicCode').disable();
+      }
+      return age
     }
 
-    setDateFromField(dateField: any, ageField: any) {
+    setDateFromField(dateField: any, ageField: any, year: number) {
       if (dateField.value && dateField.value.date) {
         let date = new Date(
           dateField.value.date.year,
@@ -243,11 +238,11 @@ export class DependentComponent implements OnInit, OnDestroy {
           dateField.value.date.day
         );
         this.datePickerUtils.setDate(date, dateField);
-        ageField.setValue(this.calculateAge(date));
+        ageField.setValue(this.calculateAge(date, year));
       } else if (dateField.value) {
         let date = new Date(dateField.value);
         this.datePickerUtils.setDate(date, dateField);
-        ageField.setValue(this.calculateAge(date));
+        ageField.setValue(this.calculateAge(date, year));
       }
     }
 
@@ -352,6 +347,13 @@ export class DependentComponent implements OnInit, OnDestroy {
       return dp;
     }
 
+    calculateCtc(dependent: Dependent): boolean {
+      if (this.taxForm.get('basicInfo').get("age").value >17) return false;
+      if (!dependent.taxCreditEIC.question1Yes) return false;
+      if (!dependent.taxCreditEIC.question7Yes) return false;
+      return true;
+    }
+
     submitForm(fields: any):void {
       if (!this.taxForm.touched) return;
 
@@ -365,6 +367,7 @@ export class DependentComponent implements OnInit, OnDestroy {
         dependent.specialCondition.disabledNo = undefined;
       }
 
+      dependent.ctc = this.calculateCtc(dependent);
       this.currentApplicationService.saveDependent(dependent);
       let name = (this.taxForm.get('basicInfo').get('firstName').value)? "(" + this.taxForm.get('basicInfo').get('firstName').value + ")": "";
       this.currentApplicationService.updateApplication().subscribe(

@@ -116,7 +116,7 @@
                 <td>{{d.basicInfo.ssn}}</td>
                 <td>{{d.relationship}}</td>
                 <td style="width:50px;">
-                  <i class="fa fa-check-square-o" style="color:#cccccc" aria-hidden="true"></i>
+                  <i *ngIf="d.ctc" class="fa fa-check-square-o" style="color:#000000" aria-hidden="true"></i>
                 </td>
               </tr>
             </tbody>

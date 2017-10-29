@@ -25,7 +25,7 @@ export class DatePickerUtils {
     });
   }
 
-  setDateFromField(formField: any, triggerField: AbstractControl, triggerCallback: any) {
+  setDateFromField(formField: any, triggerField: AbstractControl, year: number, triggerCallback: any) {
     if (formField.value && formField.value.date) {
       let date = new Date(
         formField.value.date.year,
@@ -33,11 +33,11 @@ export class DatePickerUtils {
         formField.value.date.day
       );
       this.setDate(date, formField);
-      if (triggerField && triggerCallback) triggerField.setValue(triggerCallback(date));
+      if (triggerField && triggerCallback) triggerField.setValue(triggerCallback(date, year));
     } else if (formField.value) {
       let date = new Date(formField.value);
       this.setDate(date, formField);
-      if (triggerField && triggerCallback) triggerField.setValue(triggerCallback(date));
+      if (triggerField && triggerCallback) triggerField.setValue(triggerCallback(date, year));
     }
   }
 }
