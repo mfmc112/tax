@@ -15,13 +15,14 @@ import { NW2Field12Component } from '../common/n-components/n-w2-field12.compone
 import * as _ from 'lodash';
 
 @Component({
-  selector:'w2-form',
-  templateUrl: './templates/w2-form.component.html'
+  selector:'w2',
+  templateUrl: './templates/w2.component.html'
 })
-export class W2FormComponent implements OnInit {
+export class W2Component implements OnInit {
   maskUtils: MaskUtils = new MaskUtils();
   zipCodeUtils: ZipCodeUtils;
   utils: Utils = new Utils();
+  year: number;
 
   ssnMask: Array<string | RegExp> = this.maskUtils.MASKS.SSN;
   zipMask:  Array<string | RegExp> = this.maskUtils.MASKS.ZIP;
@@ -44,6 +45,7 @@ export class W2FormComponent implements OnInit {
       this.toastr.setRootViewContainerRef(vcr);
 
       this.application = this.currentApplicationService.getApplication();
+      this.year = this.application.year;
       this.w2Form = this.getW2(trans.params().id);
       this.address = this.createAddressGroup(this.w2Form.employeeAddress);
       this.employerAddress = this.createAddressGroup(this.w2Form.employerAddress);
@@ -170,6 +172,7 @@ export class W2FormComponent implements OnInit {
       if(this.currentApplicationService.getApplication()) {
         this.removeCurrencyMask();
         this.populateCalculation();
+        this.saveW2(this.w2Id);
         this.currentApplicationService.calculate();
       }
     }
@@ -228,8 +231,18 @@ export class W2FormComponent implements OnInit {
     }
 
     getW2(id: string): W2Form {
-      this.w2Id = id;
-      return this.currentApplicationService.getW2FromList(id);
+      let w2: W2Form = this.currentApplicationService.getW2FromList(id);
+      if (!w2) w2 = new W2Form(this.currentApplicationService.getClient());
+      this.w2Id = w2._id;
+      return w2;
+    }
+
+    saveW2(id: string): W2Form {
+      let w2 = this.taxForm.value;
+      w2._id = this.w2Id;
+      w2 = this.cleanAmount(w2);
+      this.currentApplicationService.saveW2(this.w2Id, w2);
+      return w2;
     }
 
     findZip($event, owner: string): void {
@@ -260,19 +273,21 @@ export class W2FormComponent implements OnInit {
 
     submitForm(fields: any):void {
       if (!this.taxForm.touched) return;
+      let self = this;
+      let w2 = this.saveW2(this.w2Id)
 
-      let w2 = this.taxForm.value;
-      w2 = this.cleanAmount(w2);
-      w2._id = this.w2Id;
-      this.currentApplicationService.saveW2(this.w2Id, w2);
       let employerName = (this.taxForm.get('employerName').value)? "(" + this.taxForm.get('employerName').value + ")": "";
       this.currentApplicationService.updateApplication().subscribe(
         data => {
-          this.toastr.success('W2 ' + employerName + 'saved sucessfully', 'Success!');
+          self.currentApplicationService.retrieveApplication(this.currentApplicationService.getApplication()._id).subscribe(
+            data => {
+              self.currentApplicationService.setW2Forms(data.w2Forms);
+              self.toastr.success('W2 ' + employerName + 'saved sucessfully', 'Success!');
+            }
+          );
         },err => {
           this.toastr.error('Please go back to W2 ' + employerName + ' and try again.', 'Error saving W2 ' + employerName + '!');
         }
       );
     }
-
 }

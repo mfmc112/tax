@@ -41,14 +41,17 @@
                 <a uiSref="menu.application.filingInfo" uiSrefActive="active" class="dropdown-item" href="#">Filing Information</a>
               </li>
               <li class="nav-item" *ngIf="hasDependents">
-                <a uiSref="menu.application.dependentsForm" uiSrefActive="active" class="dropdown-item" href="#">Dependents</a>
+                <a uiSref="menu.application.dependentsForm" uiSrefActive="active" class="dropdown-item" href="#">Dependents ({{application.dependents.length}})</a>
               </li>
-              <li *ngFor="let form of this.application.w2Forms; let i = index"  class="nav-item">
+              <li class="nav-item" *ngIf="hasW2">
+                <a uiSref="menu.application.w2Forms" uiSrefActive="active" class="dropdown-item" href="#">W-2 ({{application.w2Forms.length}})</a>
+              </li>
+              <!-- <li *ngFor="let form of application.w2Forms; let i = index"  class="nav-item">
                 <a uiSref="menu.application.w2Form" [uiParams]="{ id: form._id }" uiSrefActive="active" class="dropdown-item" href="#">
                   W2 <span *ngIf="form.employerName">{{form.employerName.length>15?form.employerName.substring(0,15):form.employerName}}</span>
                 </a>
-              </li>
-              <li *ngFor="let form of this.application.w2GForms; let i = index"  class="nav-item">
+              </li> -->
+              <li *ngFor="let form of application.w2GForms; let i = index"  class="nav-item">
                 <a uiSref="menu.application.w2GForm" [uiParams]="{ id: form._id }" uiSrefActive="active" class="dropdown-item" href="#">
                   W2G <span *ngIf="form.payerName">{{form.payerName.length>15?form.payerName.substring(0,15):form.payerName}}</span>
                 </a>

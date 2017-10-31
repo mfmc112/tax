@@ -240,6 +240,10 @@ export class CurrentApplicationService {
     let w2Index = _.findIndex(this.application.w2Forms, function(o) {
       return o._id === id;
     });
+    if (w2Index === -1) {
+      if (this.application.w2Forms.length <=0) w2Index = 0;
+      else w2Index = this.application.w2Forms.length;
+    }
     this.application.w2Forms[w2Index] = w2;
   }
 

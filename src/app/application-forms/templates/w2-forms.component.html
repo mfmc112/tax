@@ -1,0 +1,21 @@
+<div style="min-height:800px;">
+  <form-header nTitle="W-2" nSubTitle="Wage and Tax Statement" [nYear]="year"></form-header>
+
+  <ul class="nav nav-tabs">
+    <li class="nav-item active" *ngFor="let w2 of w2Forms; let i = index">
+      <a uiSref="menu.application.w2Forms.w2" [uiParams]="{ id: w2._id }" class="nav-link"
+        [ngClass]="{'active': tab === i }" href="#"
+        (click)="selectTab(i)">
+        <span *ngIf="!w2.employerName">W-2</span>
+        <span *ngIf="w2.employerName">{{w2.employerName.length>15?w2.employerName.substring(0,15):w2.employerName}}</span>
+      </a>
+    </li>
+    <li class="nav-item active">
+      <a uiSref="menu.application.w2Forms.w2" [uiParams]="{ id: '' }" class="nav-link"
+        [ngClass]="{'active': tab === (w2Forms.length + 1) }" href="#"
+        (click)="selectTab((w2Forms.length + 1))">[Add W-2]
+      </a>
+    </li>
+  </ul>
+  <ui-view></ui-view>
+</div>

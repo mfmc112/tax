@@ -8,7 +8,8 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
 
 import { PersonalInfoFormComponent } from './personal-info-form.component';
 import { FilingInfoFormComponent } from './filing-info-form.component';
-import { W2FormComponent } from './w2-form.component';
+import { W2Component } from './w2.component';
+import { W2FormsComponent } from './w2-forms.component';
 import { Form1040Component } from './form-1040.component';
 import { Form1040Page1Component } from './form-1040-page1.component';
 import { Form1040Page2Component } from './form-1040-page2.component';
@@ -35,7 +36,8 @@ import { NW2Field12Component } from '../common/n-components/n-w2-field12.compone
   declarations: [
     PersonalInfoFormComponent,
     FilingInfoFormComponent,
-    W2FormComponent,
+    W2Component,
+    W2FormsComponent,
     Form1040Component,
     Form1040Page1Component,
     Form1040Page2Component,

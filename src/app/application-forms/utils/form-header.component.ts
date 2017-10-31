@@ -20,7 +20,7 @@ import { Component, Input } from '@angular/core';
 export class FormHeaderComponent {
   @Input('nTitle') nTitle: string;
   @Input('nSubTitle') nSubTitle: string;
-  @Input('nYear') nYear: number;
+  @Input('nYear') nYear: any;
 
   constructor(){
     if (!this.nYear) this.nYear = new Date().getFullYear();
