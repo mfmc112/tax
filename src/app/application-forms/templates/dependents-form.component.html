@@ -6,7 +6,7 @@
       <a uiSref="menu.application.dependentsForm.dependent" [uiParams]="{ id: dependent._id }" class="nav-link" [ngClass]="{'active': tab === i }" href="#" (click)="selectTab(i)">{{dependent.basicInfo.firstName}} {{dependent.basicInfo.initial}}</a>
     </li>
     <li class="nav-item active">
-      <a uiSref="menu.application.dependentsForm.dependent" [uiParams]="{ id: '' }" class="nav-link" [ngClass]="{'active': tab === (dependents.length + 1) }" href="#" (click)="selectTab((dependents.length + 1))">Add Dependent</a>
+      <a uiSref="menu.application.dependentsForm.dependent" [uiParams]="{ id: '' }" class="nav-link" [ngClass]="{'active': tab === (dependents.length + 1) }" href="#" (click)="selectTab((dependents.length + 1))">[Add Dependent]</a>
     </li>
   </ul>
   <ui-view></ui-view>
