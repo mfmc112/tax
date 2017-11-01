@@ -295,4 +295,8 @@ export class CurrentApplicationService {
     if (!this.application.w2GForms) this.application.w2GForms = [];
     this.application.w2GForms.push( new W2GForm(this.getClient()) );
   }
+
+  hasW2(): boolean { return (this.application.w2Forms && this.application.w2Forms.length > 0); }
+  hasDependent(): boolean { return (this.application.dependents && this.application.dependents.length > 0); }
+  hasW2G(): boolean { return (this.application.w2GForms && this.application.w2GForms.length > 0); }
 }

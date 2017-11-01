@@ -17,21 +17,31 @@ export class AddFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.forms = [
+    let forms = [
       {name: "Consent of Disclose", value: "Consent of disclose"},
       {name: "Dependents", value: "Dependents"},
       {name: "Form 8879", value: "8879", info: "IRS e-file signature authorization"},
-      {name: "W2 Form", value: "W2"},
-      {name: "W-2G", value:"W2G", info: "Certain Gamblings and Winnings"},
+      {name: "W2 Form", value: "W2", hide: this.currentApplicationService.hasW2()},
+      {name: "W-2G", value:"W2G", info: "Certain Gamblings and Winnings", hide: this.currentApplicationService.hasW2G()},
       {name: "Worksheet 8", value: "wkt8"}
     ];
+    this.forms = this.getForms(forms);
+
+  }
+
+  getForms(forms: Array<any>): Array<any> {
+    let load:  Array<any> = [];
+    _.each(forms, function(form) {
+      if (!form.hide) load.push(form);
+    });
+    return load;
   }
 
   addForm(form) {
     if (form.value === "W2") {
-      this.currentApplicationService.addW2Form();
+      if (this.currentApplicationService.hasW2) this.currentApplicationService.addW2Form();
     } else if(form.value === 'W2G') {
-      this.currentApplicationService.addW2GForm();
+      if (this.currentApplicationService.hasW2G) this.currentApplicationService.addW2GForm();
     }
 
     this.currentApplicationService.updateApplication().subscribe(
