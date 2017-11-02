@@ -220,8 +220,16 @@ export class CurrentApplicationService {
     return this.application.w2Forms;
   }
 
+  getW2GForms(): W2GForm[] {
+    return this.application.w2GForms;
+  }
+
   setW2Forms(w2Forms: W2Form[]): void {
     this.application.w2Forms = w2Forms;
+  }
+
+  setW2GForms(w2GForms: W2GForm[]): void {
+    this.application.w2GForms = w2GForms;
   }
 
   addW2Form(): void {
@@ -229,11 +237,23 @@ export class CurrentApplicationService {
     this.application.w2Forms.push( new W2Form(this.getClient()) );
   }
 
+  addW2GForm(): void {
+    if (!this.application.w2GForms) this.application.w2GForms = [];
+    this.application.w2GForms.push( new W2GForm(this.getClient()) );
+  }
+
   getW2FromList(id: string): W2Form {
     let w2 = _.find(this.application.w2Forms, function(o) {
       return o._id === id;
     });
     return w2;
+  }
+
+  getW2GFromList(id: string): W2GForm {
+    let w2g = _.find(this.application.w2GForms, function(o) {
+      return o._id === id;
+    });
+    return w2g;
   }
 
   saveW2(id: string, w2: W2Form): void {
@@ -245,6 +265,17 @@ export class CurrentApplicationService {
       else w2Index = this.application.w2Forms.length;
     }
     this.application.w2Forms[w2Index] = w2;
+  }
+
+  saveW2G(id: string, w2g: W2GForm): void {
+    let w2GIndex = _.findIndex(this.application.w2GForms, function(o) {
+      return o._id === id;
+    });
+    if (w2GIndex === -1) {
+      if (this.application.w2GForms.length <=0) w2GIndex = 0;
+      else w2GIndex = this.application.w2GForms.length;
+    }
+    this.application.w2GForms[w2GIndex] = w2g;
   }
 
   setDependents(dependents: Dependent[]): void {
@@ -291,12 +322,7 @@ export class CurrentApplicationService {
     this.application.form1040 = form1040;
   }
 
-  addW2GForm(): void {
-    if (!this.application.w2GForms) this.application.w2GForms = [];
-    this.application.w2GForms.push( new W2GForm(this.getClient()) );
-  }
-
-  hasW2(): boolean { return (this.application.w2Forms && this.application.w2Forms.length > 0); }
-  hasDependent(): boolean { return (this.application.dependents && this.application.dependents.length > 0); }
-  hasW2G(): boolean { return (this.application.w2GForms && this.application.w2GForms.length > 0); }
+  hasW2(): boolean { return (this.application && this.application.w2Forms && this.application.w2Forms.length > 0); }
+  hasDependent(): boolean { return (this.application && this.application.dependents && this.application.dependents.length > 0); }
+  hasW2G(): boolean { return (this.application && this.application.w2GForms && this.application.w2GForms.length > 0); }
 }

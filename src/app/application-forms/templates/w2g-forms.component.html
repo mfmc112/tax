@@ -1,0 +1,21 @@
+<div style="min-height:800px;">
+  <form-header nTitle="W-2G" nSubTitle="Certain Gamblings and Winnings" [nYear]="year"></form-header>
+
+  <ul class="nav nav-tabs">
+    <li class="nav-item active" *ngFor="let w2g of w2GForms; let i = index">
+      <a uiSref="menu.application.w2gForms.w2g" [uiParams]="{ id: w2g._id }" class="nav-link"
+        [ngClass]="{'active': tab === i }" href="#"
+        (click)="selectTab(i)">
+        <span *ngIf="!w2g.payersName">W-2G</span>
+        <span *ngIf="w2g.payersName">{{w2g.payersName.length>15?w2g.payersName.substring(0,15):w2g.payersName}}</span>
+      </a>
+    </li>
+    <li class="nav-item active">
+      <a uiSref="menu.application.w2gForms.w2g" [uiParams]="{ id: '' }" class="nav-link"
+        [ngClass]="{'active': tab === (w2GForms.length + 1) }" href="#"
+        (click)="selectTab((w2GForms.length + 1))">[Add W-2]
+      </a>
+    </li>
+  </ul>
+  <ui-view></ui-view>
+</div>

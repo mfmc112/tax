@@ -22,6 +22,7 @@ export class ApplicationComponent implements OnInit, DoCheck {
   currentAgi: number;
   hasDependents: boolean = false;
   hasW2: boolean = false;
+  hasW2G: boolean = false;
 
   constructor(
     private _uiRouter: UIRouter,
@@ -59,7 +60,8 @@ export class ApplicationComponent implements OnInit, DoCheck {
       this.estimate = this.currentApplicationService.getEstimate();
       this.currentAgi = this.currentApplicationService.getCurrentAGI();
 
-      this.hasW2 = (this.application.w2Forms !== undefined && this.application.w2Forms !== null && this.application.w2Forms.length > 0);
+      this.hasW2 = this.currentApplicationService.hasW2();
+      this.hasW2G = this.currentApplicationService.hasW2G();
       let pi = this.currentApplicationService.getPersonalInformation()
       if (!pi) this.hasDependents = false;
       this.hasDependents = pi.dependents;

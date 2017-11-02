@@ -282,11 +282,11 @@ export class W2Component implements OnInit {
           self.currentApplicationService.retrieveApplication(this.currentApplicationService.getApplication()._id).subscribe(
             data => {
               self.currentApplicationService.setW2Forms(data.w2Forms);
-              self.toastr.success('W2 ' + employerName + 'saved sucessfully', 'Success!');
+              self.toastr.success('W-2 ' + employerName + 'saved sucessfully', 'Success!');
             }
           );
         },err => {
-          this.toastr.error('Please go back to W2 ' + employerName + ' and try again.', 'Error saving W2 ' + employerName + '!');
+          this.toastr.error('Please go back to W-2 ' + employerName + ' and try again.', 'Error saving W-2 ' + employerName + '!');
         }
       );
     }

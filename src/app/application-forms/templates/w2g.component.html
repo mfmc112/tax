@@ -1,0 +1,56 @@
+<div class="form-body">
+  <div class="col-12">
+    <form [formGroup]="taxForm" (submit)="submitForm(taxForm.value)" class="form" novalidate >
+      <form-sub-header nTitle="MAIN INFORMATION"></form-sub-header>
+
+      <div class="row">
+        <div class="col-12">
+
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="w2gFor">This W-2G is for:</label>
+                <select formControlName="w2gFor" id="w2gFor" class="form-control">
+                  <option value="taxpayer">Taxpayer</option>
+                  <option value="spouse">Spouse</option>
+                </select>
+              </div>
+            </div>
+            <n-input class="col-sm-5" name="name" label="Winner's Name" [fGroup]="taxForm"></n-input>
+            <n-input class="col-sm-4" name="ssn" label="Winner's-SSN" [mask]="ssnMask" [fGroup]="taxForm"></n-input>
+            <div class="offset-sm-8 col-sm-4" style="margin-top: -10px;">
+              <n-checkbox nName="isIdEin" [fGroup]="taxForm" nValue="true" nClass="font-13" nLabel="Check here if the ID on the W2-G is an EIN"></n-checkbox>
+            </div>
+          </div>
+
+          <div class="row">
+            <n-checkbox nName="sameAddressAsHome" [fGroup]="taxForm" nValue="true" nLabel="Check here if the recipient's address is the same as the present home address" (change)="sameAddress($event)"></n-checkbox>
+          </div>
+
+
+          <div class="row">
+            <n-input class="col-sm-12" name="home1" label="Address" [fGroup]="addressGroup"></n-input>
+            <n-input class="col-sm-12" name="home2" label="Address Line 2" [fGroup]="addressGroup"></n-input>
+            <n-input class="col-sm-3" name="zip"    label="Zip Code" [fGroup]="addressGroup" [mask]="zipMask" (keyup)="findZip($event, 'employeeAddress')"></n-input>
+            <n-input class="col-sm-5" name="city"   label="City"     [fGroup]="addressGroup"></n-input>
+            <n-input class="col-sm-2" name="state"  label="State"    [fGroup]="addressGroup" [mask]="stateMask"></n-input>
+          </div>
+
+
+          <div class="row">
+            <div class="col-sm-8">
+              <n-checkbox nName="corrected" [fGroup]="taxForm" nValue="true" nClass="checkbox-padding" nLabel="Check here if this is a corrected W-2"></n-checkbox>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <button role="button" class="btn btn-primary float-right">save</button>
+        </div>
+      </div>
+      <div class="divider-30"></div>
+    </form>
+  </div>
+</div>
