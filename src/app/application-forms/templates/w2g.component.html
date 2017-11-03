@@ -10,7 +10,7 @@
             <div class="col-sm-3">
               <div class="form-group">
                 <label for="w2gFor">This W-2G is for:</label>
-                <select formControlName="w2gFor" id="w2gFor" class="form-control">
+                <select formControlName="w2gFor" id="w2gFor" class="form-control" (change)="setWinnersName()">
                   <option value="taxpayer">Taxpayer</option>
                   <option value="spouse">Spouse</option>
                 </select>
@@ -31,7 +31,7 @@
           <div class="row">
             <n-input class="col-sm-12" name="home1" label="Address" [fGroup]="addressGroup"></n-input>
             <n-input class="col-sm-12" name="home2" label="Address Line 2" [fGroup]="addressGroup"></n-input>
-            <n-input class="col-sm-3" name="zip"    label="Zip Code" [fGroup]="addressGroup" [mask]="zipMask" (keyup)="findZip($event, 'employeeAddress')"></n-input>
+            <n-input class="col-sm-3" name="zip"    label="Zip Code" [fGroup]="addressGroup" [mask]="zipMask" (keyup)="findZip($event, 'address')"></n-input>
             <n-input class="col-sm-5" name="city"   label="City"     [fGroup]="addressGroup"></n-input>
             <n-input class="col-sm-2" name="state"  label="State"    [fGroup]="addressGroup" [mask]="stateMask"></n-input>
           </div>

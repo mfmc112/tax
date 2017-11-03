@@ -9,7 +9,7 @@ import { MaskUtils } from './utils/masks-utils';
 import { ZipCodeApiService } from '../common/api/zip-code-api.service';
 import { ZipCodeUtils } from './utils/zip-code-utils';
 
-import { Application, PersonalInformation,  W2GForm, MailingAddress, Client, Utils } from '../common/';
+import { Application, PersonalInformation, BasicInformation,  W2GForm, MailingAddress, Client, Utils } from '../common/';
 import { NInputComponent, NMoneyComponent, NTextareaComponent, NCheckboxComponent } from '../common/n-components/';
 import { NW2Field12Component } from '../common/n-components/n-w2-field12.component';
 import * as _ from 'lodash';
@@ -54,6 +54,12 @@ export class W2GComponent implements OnInit {
         this.taxForm.get('sameAddressAsHome').setValue(true);
       }
       this.sameAddress(null);
+      if (!this.hasSpouse()){
+
+        this.taxForm.get('w2gFor').setValue("taxpayer");
+        this.taxForm.get('w2gFor').disable();
+      }
+      this.setWinnersName();
       this.initializeDropdownOptions();
     }
 
@@ -117,6 +123,18 @@ export class W2GComponent implements OnInit {
       }
     }
 
+
+    setWinnersName(): void {
+        let w2gFor = this.taxForm.get('w2gFor').value;
+        let basicInfo: BasicInformation = this.application.clientInformation.personalInformation.taxPayer;
+        if (w2gFor && w2gFor === 'spouse' && basicInfo) {
+          basicInfo = this.application.clientInformation.personalInformation.spouse;
+        }
+        let middleName = ((basicInfo.initial) ? basicInfo.initial : "");
+        this.taxForm.get('name').setValue(basicInfo.firstName + " " + middleName + " " + basicInfo.lastName);
+        this.taxForm.get('ssn').setValue(basicInfo.ssn);
+    }
+
     initializeDropdownOptions(): void {
 
     }
@@ -140,10 +158,6 @@ export class W2GComponent implements OnInit {
       this.w2GForm['field15'] = this.utils.removeCurrencyFormat(this.taxForm.get('field15').value);
       this.w2GForm['field16'] = this.utils.removeCurrencyFormat(this.taxForm.get('field16').value);
       this.w2GForm['field17'] = this.utils.removeCurrencyFormat(this.taxForm.get('field17').value);
-
-      for (let i=1; i<=11; i++) {
-        this.w2GForm['field'+i] = this.utils.removeCurrencyFormat(this.taxForm.get('field'+i).value);
-      }
     }
 
     createAddressGroup(address: MailingAddress): FormGroup {
@@ -165,7 +179,7 @@ export class W2GComponent implements OnInit {
     }
 
     saveW2G(id: string): W2GForm {
-      let w2g = this.taxForm.value;
+      let w2g = this.taxForm.getRawValue();
       w2g._id = this.w2gId;
       w2g = this.cleanAmount(w2g);
       this.currentApplicationService.saveW2G(this.w2gId, w2g);
@@ -181,21 +195,20 @@ export class W2GComponent implements OnInit {
 
     cleanAmount(w2: any): any {
       w2.field1 = this.maskUtils.cleanAmount(w2.field1);
-      w2.field2 = this.maskUtils.cleanAmount(w2.field2);
-      w2.field3 = this.maskUtils.cleanAmount(w2.field3);
       w2.field4 = this.maskUtils.cleanAmount(w2.field4);
-      w2.field5 = this.maskUtils.cleanAmount(w2.field5);
-      w2.field6 = this.maskUtils.cleanAmount(w2.field6);
       w2.field7 = this.maskUtils.cleanAmount(w2.field7);
-      w2.field8 = this.maskUtils.cleanAmount(w2.field8);
-      w2.field9 = this.maskUtils.cleanAmount(w2.field9);
-      w2.field10 = this.maskUtils.cleanAmount(w2.field10);
-      w2.field11 = this.maskUtils.cleanAmount(w2.field11);
-      w2.field12a2 = this.maskUtils.cleanAmount(w2.field12a2);
-      w2.field12b2 = this.maskUtils.cleanAmount(w2.field12b2);
-      w2.field12c2 = this.maskUtils.cleanAmount(w2.field12c2);
-      w2.field12d2 = this.maskUtils.cleanAmount(w2.field12d2);
+      w2.field14 = this.maskUtils.cleanAmount(w2.field14);
+      w2.field15 = this.maskUtils.cleanAmount(w2.field15);
+      w2.field16 = this.maskUtils.cleanAmount(w2.field16);
+      w2.field17 = this.maskUtils.cleanAmount(w2.field17);
       return w2;
+    }
+
+    hasSpouse(): boolean {
+      if (!this.application.clientInformation.personalInformation.spouse) return false;
+      if (!this.application.clientInformation.personalInformation.spouse.firstName) return false;
+      if (!this.application.clientInformation.personalInformation.spouse.lastName) return false;
+      return true;
     }
 
     submitForm(fields: any):void {

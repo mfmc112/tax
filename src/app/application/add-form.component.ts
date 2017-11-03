@@ -49,6 +49,7 @@ export class AddFormComponent implements OnInit {
         this.currentApplicationService.retrieveApplication(result._id).subscribe(
           application => {
             this.currentApplicationService.setW2Forms(application.w2Forms);
+            this.currentApplicationService.setW2GForms(application.w2GForms);
             this.close();
           },err => {
             console.log('Error retrieving application after adding a new form');
