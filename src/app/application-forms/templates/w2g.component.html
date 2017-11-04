@@ -27,7 +27,6 @@
             <n-checkbox nName="sameAddressAsHome" [fGroup]="taxForm" nValue="true" nLabel="Check here if the recipient's address is the same as the present home address" (change)="sameAddress($event)"></n-checkbox>
           </div>
 
-
           <div class="row">
             <n-input class="col-sm-12" name="home1" label="Address" [fGroup]="addressGroup"></n-input>
             <n-input class="col-sm-12" name="home2" label="Address Line 2" [fGroup]="addressGroup"></n-input>
@@ -36,13 +35,75 @@
             <n-input class="col-sm-2" name="state"  label="State"    [fGroup]="addressGroup" [mask]="stateMask"></n-input>
           </div>
 
-
           <div class="row">
             <div class="col-sm-8">
-              <n-checkbox nName="corrected" [fGroup]="taxForm" nValue="true" nClass="checkbox-padding" nLabel="Check here if this is a corrected W-2"></n-checkbox>
+              <n-checkbox nName="alteredOrHandwritten" [fGroup]="taxForm" nValue="true" nClass="checkbox-padding" nLabel="Check here if this W-2G is altered or handwritten"></n-checkbox>
             </div>
           </div>
         </div>
+      </div>
+
+      <form-sub-header nTitle="GAMBLING WINNINGS"></form-sub-header>
+
+      <div class="row">
+        <div class="col-12">
+          <div class="row">
+            <n-input class="col-sm-5" name="payerEin" label="a-Payer's Federal EIN Number" [fGroup]="taxForm"></n-input>
+          </div>
+          <div class="row">
+            <n-input class="col-sm-8" name="payerName" label="b-Payer's Name" [fGroup]="taxForm"></n-input>
+            <n-input class="col-sm-4" name="payerCareOf" label="c-Payer's Care of Name" [fGroup]="taxForm"></n-input>
+            <n-input class="col-sm-12" name="home1" label="Address" [fGroup]="payerAddressGroup"></n-input>
+            <n-input class="col-sm-3" name="zip"    label="Zip Code" [fGroup]="payerAddressGroup" [mask]="zipMask" (keyup)="findZip($event, 'payerAddress')"></n-input>
+            <n-input class="col-sm-4" name="city"   label="City"     [fGroup]="payerAddressGroup"></n-input>
+            <n-input class="col-sm-2" name="state"  label="State"    [fGroup]="payerAddressGroup" [mask]="stateMask"></n-input>
+            <n-input class="col-sm-3" name="payerPhone"  [mask]="phoneMask" label="Phone Number" [fGroup]="taxForm"></n-input>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <n-checkbox nName="corrected" [fGroup]="taxForm" nValue="true" nClass="checkbox-padding" nLabel="Check here if this is a corrected form"></n-checkbox>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <n-money class="col-sm-5" name="field1" label="1-Gross Winnings" nRight [fGroup]="taxForm"></n-money>
+        <div class="col-sm-5">
+          <label for="taxpayerDeath">2-Date Won</label>
+          <my-date-picker name="field2"
+                  id="field2"
+                  formControlName="field2"
+                  [options]="myDatePickerOptions"
+                  [defaultMonth]="defaultMonth">
+          </my-date-picker>
+        </div>
+
+        <n-input class="col-sm-5" name="field3" label="3-Type of Wager" [fGroup]="taxForm"></n-input>
+        <n-money class="col-sm-5" name="field4" label="4-Federal Tax Withheld" nRight [fGroup]="taxForm"></n-money>
+
+        <n-input class="col-sm-5" name="field5" label="5-Transaction" [fGroup]="taxForm"></n-input>
+        <n-input class="col-sm-5" name="field6" label="6-Race" [fGroup]="taxForm"></n-input>
+
+        <n-money class="col-sm-5" name="field7" label="7-Winning from Identical Wages" nRight [fGroup]="taxForm"></n-money>
+        <n-input class="col-sm-5" name="field8" label="8-Cashier" [fGroup]="taxForm"></n-input>
+
+        <n-input class="col-sm-5" name="field9" label="9-Winner's Taxpayer ID No." [fGroup]="taxForm"></n-input>
+        <n-input class="col-sm-5" name="field10" label="10-Window" [fGroup]="taxForm"></n-input>
+
+        <n-input class="col-sm-5" name="field11" label="11-First ID" [fGroup]="taxForm"></n-input>
+        <n-input class="col-sm-5" name="field12" label="12-Second ID" [fGroup]="taxForm"></n-input>
+        <div class="col-sm-2"></div>
+
+        <n-input class="col-sm-2" name="field13State" label="13-State" [fGroup]="taxForm"></n-input>
+        <n-input class="col-sm-3" name="field13Number" label="13-Payer's State ID No." [fGroup]="taxForm"></n-input>
+        <n-money class="col-sm-5" name="field14" label="14-State Winnings" nRight [fGroup]="taxForm"></n-money>
+
+        <n-money class="col-sm-5" name="field15" label="15-State Income Tax Withheld" nRight [fGroup]="taxForm"></n-money>
+        <n-money class="col-sm-5" name="field16" label="16-Local Winnings" nRight [fGroup]="taxForm"></n-money>
+
+        <n-money class="col-sm-5" name="field15" label="17-Local Income Tax Withheld" nRight [fGroup]="taxForm"></n-money>
+        <n-input class="col-sm-5" name="field16" label="18-Locality Name" [fGroup]="taxForm"></n-input>
       </div>
 
       <div class="row">

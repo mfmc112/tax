@@ -5,6 +5,8 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 import { ApplicationComponent } from '../application/application.component';
 import { CurrentApplicationService } from '../application/service/current-application.service';
 import { validationRules } from '../validator/validator-rules.component';
+
+import { DatePickerUtils } from './utils/date-picker-utils';
 import { MaskUtils } from './utils/masks-utils';
 import { ZipCodeApiService } from '../common/api/zip-code-api.service';
 import { ZipCodeUtils } from './utils/zip-code-utils';
@@ -12,6 +14,8 @@ import { ZipCodeUtils } from './utils/zip-code-utils';
 import { Application, PersonalInformation, BasicInformation,  W2GForm, MailingAddress, Client, Utils } from '../common/';
 import { NInputComponent, NMoneyComponent, NTextareaComponent, NCheckboxComponent } from '../common/n-components/';
 import { NW2Field12Component } from '../common/n-components/n-w2-field12.component';
+import { MyDatePickerModule, IMyDefaultMonth, IMyDpOptions, IMyDateModel } from 'mydatepicker';
+
 import * as _ from 'lodash';
 
 @Component({
@@ -20,13 +24,17 @@ import * as _ from 'lodash';
 })
 export class W2GComponent implements OnInit {
   maskUtils: MaskUtils = new MaskUtils();
+  datePickerUtils: DatePickerUtils = new DatePickerUtils();
   zipCodeUtils: ZipCodeUtils;
   utils: Utils = new Utils();
   year: number;
 
+  phoneMask: Array<string | RegExp> = this.maskUtils.MASKS.PHONE;
   ssnMask: Array<string | RegExp> = this.maskUtils.MASKS.SSN;
   zipMask:  Array<string | RegExp> = this.maskUtils.MASKS.ZIP;
   stateMask:  Array<string | RegExp> = this.maskUtils.MASKS.STATE;
+  myDatePickerOptions: IMyDpOptions = this.datePickerUtils.myDatePickerOptions;
+  defaultMonth: IMyDefaultMonth = this.datePickerUtils.defaultMonth;
   taxForm: FormGroup;
   application: Application;
   w2GForm: W2GForm;
@@ -80,11 +88,12 @@ export class W2GComponent implements OnInit {
         'address': this.addressGroup,
         'sameAddressAsHome': this.w2GForm.sameAddressAsHome,
         'alteredOrHandwritten': this.w2GForm.alteredOrHandwritten,
-        'corrected': this.w2GForm.corrected,
-        'payerEIN': this.w2GForm.payerEin,
+        'payerEin': this.w2GForm.payerEin,
         'payerName': this.w2GForm.payerName,
-        'payerCareOf': this.w2GForm.payerCareOfName,
+        'payerCareOf': this.w2GForm.payerCareOf,
         'payerAddress': this.payerAddressGroup,
+        'payerPhone': this.w2GForm.payerPhone,
+        'corrected': this.w2GForm.corrected,
         'field1': this.w2GForm.field1?this.w2GForm.field1:0,
         'field2': this.w2GForm.field2,
         'field3': this.w2GForm.field3,
@@ -97,7 +106,8 @@ export class W2GComponent implements OnInit {
         'field10': this.w2GForm.field10,
         'field11': this.w2GForm.field11,
         'field12': this.w2GForm.field12,
-        'field13': this.w2GForm.field13,
+        'field13State': this.w2GForm.field13State,
+        'field13Number': this.w2GForm.field13Number,
         'field14': this.w2GForm.field14?this.w2GForm.field14:0,
         'field15': this.w2GForm.field15?this.w2GForm.field15:0,
         'field16': this.w2GForm.field16?this.w2GForm.field16:0,
@@ -133,6 +143,7 @@ export class W2GComponent implements OnInit {
         let middleName = ((basicInfo.initial) ? basicInfo.initial : "");
         this.taxForm.get('name').setValue(basicInfo.firstName + " " + middleName + " " + basicInfo.lastName);
         this.taxForm.get('ssn').setValue(basicInfo.ssn);
+        this.taxForm.get('field9').setValue(basicInfo.ssn);
     }
 
     initializeDropdownOptions(): void {
@@ -163,11 +174,11 @@ export class W2GComponent implements OnInit {
     createAddressGroup(address: MailingAddress): FormGroup {
       if (!address) address = new MailingAddress();
       return new FormGroup({
-        'home1': new FormControl(address.home1, Validators.compose([Validators.required])),
+        'home1': new FormControl(address.home1),
         'home2': new FormControl(address.home2),
-        'zip': new FormControl(address.zip, Validators.compose([Validators.required])),
-        'city': new FormControl(address.city, Validators.compose([Validators.required])),
-        'state': new FormControl(address.state, Validators.compose([Validators.required]))
+        'zip': new FormControl(address.zip),
+        'city': new FormControl(address.city),
+        'state': new FormControl(address.state)
       });
     }
 

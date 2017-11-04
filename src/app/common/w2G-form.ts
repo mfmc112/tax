@@ -7,12 +7,13 @@ export class W2GForm {
   name: string;
   isIdEin: boolean;
   sameAddressAsHome: boolean = true;
+  alteredOrHandwritten: boolean = false;
   address: MailingAddress;
-  alteredOrHandwritten: boolean;
   payerEin: string;
   payerName: string;
-  payerCareOfName: string;
+  payerCareOf: string;
   payerAddress: MailingAddress;
+  payerPhone: string;
   corrected: boolean;
   field1: number;
   field2: string;
@@ -26,7 +27,8 @@ export class W2GForm {
   field10: string;
   field11: string;
   field12: string;
-  field13: string;
+  field13State: string;
+  field13Number: string;
   field14: number;
   field15: number;
   field16: number;
