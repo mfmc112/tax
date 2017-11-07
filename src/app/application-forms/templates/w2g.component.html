@@ -48,7 +48,7 @@
       <div class="row">
         <div class="col-12">
           <div class="row">
-            <n-input class="col-sm-5" name="payerEin" label="a-Payer's Federal EIN Number" [fGroup]="taxForm"></n-input>
+            <n-input class="col-sm-5" name="payerEin" label="a-Payer's Federal EIN Number" [mask]="einMask" [fGroup]="taxForm"></n-input>
           </div>
           <div class="row">
             <n-input class="col-sm-8" name="payerName" label="b-Payer's Name" [fGroup]="taxForm"></n-input>

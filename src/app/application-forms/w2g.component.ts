@@ -31,6 +31,7 @@ export class W2GComponent implements OnInit {
 
   phoneMask: Array<string | RegExp> = this.maskUtils.MASKS.PHONE;
   ssnMask: Array<string | RegExp> = this.maskUtils.MASKS.SSN;
+  einMask: Array<string | RegExp> = this.maskUtils.MASKS.EIN;
   zipMask:  Array<string | RegExp> = this.maskUtils.MASKS.ZIP;
   stateMask:  Array<string | RegExp> = this.maskUtils.MASKS.STATE;
   myDatePickerOptions: IMyDpOptions = this.datePickerUtils.myDatePickerOptions;
@@ -88,7 +89,7 @@ export class W2GComponent implements OnInit {
         'address': this.addressGroup,
         'sameAddressAsHome': this.w2GForm.sameAddressAsHome,
         'alteredOrHandwritten': this.w2GForm.alteredOrHandwritten,
-        'payerEin': this.w2GForm.payerEin,
+        'payerEin': [this.w2GForm.payerEin,Validators.compose([Validators.pattern(validationRules.EIN_REGEXP)])],
         'payerName': this.w2GForm.payerName,
         'payerCareOf': this.w2GForm.payerCareOf,
         'payerAddress': this.payerAddressGroup,

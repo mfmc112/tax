@@ -56,7 +56,7 @@
         <div class="col-12">
 
           <div class="row">
-            <n-input class="col-sm-5" name="ein" label="b-Employer Identification Number (EIN)" [fGroup]="taxForm"></n-input>
+            <n-input class="col-sm-5" name="ein" label="b-Employer Identification Number (EIN)" [mask]="einMask" [fGroup]="taxForm"></n-input>
           </div>
           <div class="row">
             <n-input class="col-sm-8" name="employerName" label="c-Employer's Name" [fGroup]="taxForm" (keyup)="populateENC($event)"></n-input>

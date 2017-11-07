@@ -25,6 +25,7 @@ export class W2Component implements OnInit {
   year: number;
 
   ssnMask: Array<string | RegExp> = this.maskUtils.MASKS.SSN;
+  einMask: Array<string | RegExp> = this.maskUtils.MASKS.EIN;
   zipMask:  Array<string | RegExp> = this.maskUtils.MASKS.ZIP;
   stateMask:  Array<string | RegExp> = this.maskUtils.MASKS.STATE;
   taxForm: FormGroup;
@@ -79,7 +80,7 @@ export class W2Component implements OnInit {
         'alteredOrHandwritten': this.w2Form.alteredOrHandwritten,
         'corrected': this.w2Form.corrected,
         'securityInfo': this.w2Form.securityInfo,
-        'ein': this.w2Form.ein,
+        'ein': [this.w2Form.ein, Validators.compose([Validators.pattern(validationRules.EIN_REGEXP)])],
         'employerName': this.w2Form.employerName,
         'employerNameControl': [{value:this.w2Form.employerNameControl, disabled:true}],
         'employerAddress': this.employerAddress,

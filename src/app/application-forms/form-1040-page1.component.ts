@@ -113,8 +113,8 @@ export class Form1040Page1Component implements OnInit, OnDestroy {
       'box20b': new FormControl({value: "0", disabled: true }),
       'box21Type': new FormControl({value: "", disabled: true }),
       'box21Amount': new FormControl({value: "0", disabled: true }),
-      'box22_1': new FormControl({value: w2Field1, disabled: true }),
-      'box22_2': new FormControl({value: w2Field1, disabled: true }),
+      'box22_1': new FormControl({value: box7, disabled: true }),
+      'box22_2': new FormControl({value: "0", disabled: true }),
       'box23': new FormControl({value: "0", disabled: true }),
       'box24': new FormControl({value: "0", disabled: true }),
       'box25': new FormControl({value: "0", disabled: true }),
@@ -153,11 +153,35 @@ export class Form1040Page1Component implements OnInit, OnDestroy {
     ];
 
     this.calculateBox6ab(null);
+    this.calculateBox21();
+    this.calculateBox22()
   }
 
   ngOnDestroy() : void {
     // save inpout data
     this.submitForm('');
+  }
+
+  calculateBox21(): void {
+    if (this.application.w2GForms && this.application.w2GForms.length > 0) {
+      let sumField1 = 0;
+      _.each(this.application.w2GForms, function(o) {
+        if (o.field1 && o.field1) sumField1+= o.field1;
+      });
+      if (sumField1 > 0) this.w2FormSummary.get("box21Type").setValue("GAMBLING WINNINGS");
+      this.w2FormSummary.get("box21Amount").setValue(sumField1);
+    }
+  }
+
+  calculateBox22(): void {
+    let box7 = this.w2FormSummary.get("box7").value;
+    let box22_2 = box7 + this.w2FormSummary.get("box21Amount").value;
+    this.w2FormSummary.get("box22_1").setValue(box7);
+    this.w2FormSummary.get("box22_2").setValue(box22_2);
+  }
+
+  calculateBox22_2(): void {
+
   }
 
   setDefaultsBox6ab() {
