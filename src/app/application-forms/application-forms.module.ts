@@ -12,6 +12,8 @@ import { W2Component } from './w2.component';
 import { W2FormsComponent } from './w2-forms.component';
 import { W2GComponent } from './w2g.component';
 import { W2GFormsComponent } from './w2g-forms.component';
+import { Form1099GComponent } from './form-1099g.component';
+import { Forms1099GComponent } from './forms-1099g.component';
 import { Form1040Component } from './form-1040.component';
 import { Form1040Page1Component } from './form-1040-page1.component';
 import { Form1040Page2Component } from './form-1040-page2.component';
@@ -42,6 +44,8 @@ import { NW2Field12Component } from '../common/n-components/n-w2-field12.compone
     W2FormsComponent,
     W2GComponent,
     W2GFormsComponent,
+    Form1099GComponent,
+    Forms1099GComponent,
     Form1040Component,
     Form1040Page1Component,
     Form1040Page2Component,

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApplicationApiService } from '../api/application-api.service';
 import { AbstractControl } from '@angular/forms';
-import { Application, Client, User, ClientInformation, PersonalInformation, FilingInformation, Dependent, BasicInformation, W2Form, W2GForm, Form1040 } from '../../common/';
+import { Application, Client, User, ClientInformation, PersonalInformation, FilingInformation, Dependent, BasicInformation, W2Form, W2GForm, Form1040, Form1099G } from '../../common/';
 import * as _ from 'lodash';
 
 @Injectable()
@@ -207,8 +207,9 @@ export class CurrentApplicationService {
         let estimated = this.calculateBox8(form.field8);
         this.addToEstimate(estimated, 0);
       }
-
     });
+
+
   }
 
   addToEstimate(estimated: number, paid: number): void {
@@ -216,20 +217,29 @@ export class CurrentApplicationService {
     this.application.estimate += Math.round(paid-estimated);
   }
 
-  getW2Forms(): W2Form[] {
-    return this.application.w2Forms;
+  getDependents(): Dependent[] {
+    if (this.application.dependents === undefined) {
+      this.application.dependents = [];
+    }
+    return this.application.dependents;
+  }
+  getW2Forms(): W2Form[] { return this.application.w2Forms; }
+  getW2GForms(): W2GForm[] { return this.application.w2GForms; }
+  getForms1099G(): Form1099G[] { return this.application.forms1099G; }
+  getForm1040() : Form1040 {
+    if (!this.application.form1040) return new Form1040();
+    return this.application.form1040;
   }
 
-  getW2GForms(): W2GForm[] {
-    return this.application.w2GForms;
-  }
+  setDependents(dependents: Dependent[]): void { this.application.dependents = dependents; }
+  setW2Forms(w2Forms: W2Form[]): void { this.application.w2Forms = w2Forms; }
+  setW2GForms(w2GForms: W2GForm[]): void { this.application.w2GForms = w2GForms; }
+  setForms1099G(forms1099G: Form1099G[]): void { this.application.forms1099G = forms1099G; }
+  setForm1040(form1040: Form1040): void { this.application.form1040 = form1040; }
 
-  setW2Forms(w2Forms: W2Form[]): void {
-    this.application.w2Forms = w2Forms;
-  }
-
-  setW2GForms(w2GForms: W2GForm[]): void {
-    this.application.w2GForms = w2GForms;
+  addDependent(): void {
+    if (!this.application.dependents) this.application.dependents = [];
+    this.application.dependents.push( new Dependent() );
   }
 
   addW2Form(): void {
@@ -240,6 +250,19 @@ export class CurrentApplicationService {
   addW2GForm(): void {
     if (!this.application.w2GForms) this.application.w2GForms = [];
     this.application.w2GForms.push( new W2GForm(this.getClient()) );
+  }
+
+  addForm1099G(): void {
+    if (!this.application.forms1099G) this.application.forms1099G = [];
+    this.application.forms1099G.push( new Form1099G(this.getClient()) );
+  }
+
+  getDependentFromList(id: string): Dependent {
+    if (!this.application.dependents) this.application.dependents = [];
+    let dependent = _.find(this.application.dependents, function(o) {
+      return o._id === id;
+    });
+    return dependent;
   }
 
   getW2FromList(id: string): W2Form {
@@ -254,6 +277,24 @@ export class CurrentApplicationService {
       return o._id === id;
     });
     return w2g;
+  }
+
+  getForm1099GFromList(id: string): Form1099G {
+    let form1099g = _.find(this.application.forms1099G, function(o) {
+      return o._id === id;
+    });
+    return form1099g;
+  }
+
+  saveDependent(dependent: Dependent): void {
+    let dependentIndex = _.findIndex(this.application.dependents, function(o) {
+      return o._id === dependent._id;
+    });
+    if (dependentIndex === -1) {
+      if (this.application.dependents.length <=0) dependentIndex = 0;
+      else dependentIndex = this.application.dependents.length;
+    }
+    this.application.dependents[dependentIndex] = dependent;
   }
 
   saveW2(id: string, w2: W2Form): void {
@@ -278,51 +319,19 @@ export class CurrentApplicationService {
     this.application.w2GForms[w2GIndex] = w2g;
   }
 
-  setDependents(dependents: Dependent[]): void {
-    this.application.dependents = dependents;
-  }
-
-  getDependents(): Dependent[] {
-    if (this.application.dependents === undefined) {
-      this.application.dependents = [];
-    }
-    return this.application.dependents;
-  }
-
-  addDependent(): void {
-    if (!this.application.dependents) this.application.dependents = [];
-    this.application.dependents.push( new Dependent() );
-  }
-
-  getDependentFromList(id: string): Dependent {
-    if (!this.application.dependents) this.application.dependents = [];
-    let dependent = _.find(this.application.dependents, function(o) {
+  saveForm1099G(id: string, form1099g: Form1099G): void {
+    let form1099GIndex = _.findIndex(this.application.forms1099G, function(o) {
       return o._id === id;
     });
-    return dependent;
-  }
-
-  saveDependent(dependent: Dependent): void {
-    let dependentIndex = _.findIndex(this.application.dependents, function(o) {
-      return o._id === dependent._id;
-    });
-    if (dependentIndex === -1) {
-      if (this.application.dependents.length <=0) dependentIndex = 0;
-      else dependentIndex = this.application.dependents.length;
+    if (form1099GIndex === -1) {
+      if (this.application.forms1099G.length <=0) form1099GIndex = 0;
+      else form1099GIndex = this.application.forms1099G.length;
     }
-    this.application.dependents[dependentIndex] = dependent;
-  }
-
-  getForm1040() : Form1040 {
-    if (!this.application.form1040) return new Form1040();
-    return this.application.form1040;
-  }
-
-  setForm1040(form1040: Form1040): void {
-    this.application.form1040 = form1040;
+    this.application.forms1099G[form1099GIndex] = form1099g;
   }
 
   hasW2(): boolean { return (this.application && this.application.w2Forms && this.application.w2Forms.length > 0); }
   hasDependent(): boolean { return (this.application && this.application.dependents && this.application.dependents.length > 0); }
   hasW2G(): boolean { return (this.application && this.application.w2GForms && this.application.w2GForms.length > 0); }
+  has1099G(): boolean { return (this.application && this.application.forms1099G && this.application.forms1099G.length > 0); }
 }

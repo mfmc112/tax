@@ -1,0 +1,91 @@
+<div class="form-body">
+  <div class="col-12">
+    <form [formGroup]="taxForm" (submit)="submitForm(taxForm.value)" class="form" novalidate >
+      <form-sub-header nTitle="RECIPIENT INFORMATION"></form-sub-header>
+
+      <div class="row">
+        <div class="col-12">
+
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="w2gFor">This 1099-G is for:</label>
+                <select formControlName="form1099gFor" id="form1099gFor" class="form-control" (change)="setRecipientsName()">
+                  <option value="taxpayer">Taxpayer</option>
+                  <option value="spouse">Spouse</option>
+                </select>
+              </div>
+            </div>
+            <n-input class="col-sm-5" name="name" label="Recipient's Name" [fGroup]="taxForm"></n-input>
+            <n-input class="col-sm-4" name="ssn" label="Recipient's-SSN" [mask]="ssnMask" [fGroup]="taxForm"></n-input>
+          </div>
+
+          <div class="row">
+            <n-checkbox nName="sameAddressAsHome" [fGroup]="taxForm" nValue="true" nLabel="Check here if the recipient's address is the same as the present home address" (change)="sameAddress($event)"></n-checkbox>
+          </div>
+
+          <div class="row">
+            <n-input class="col-sm-12" name="home1" label="Recipient's Address" [fGroup]="addressGroup"></n-input>
+            <n-input class="col-sm-12" name="home2" label="Recipient's Address Line 2" [fGroup]="addressGroup"></n-input>
+            <n-input class="col-sm-3" name="zip"    label="Zip Code" [fGroup]="addressGroup" [mask]="zipMask" (keyup)="findZip($event, 'address')"></n-input>
+            <n-input class="col-sm-5" name="city"   label="City"     [fGroup]="addressGroup"></n-input>
+            <n-input class="col-sm-2" name="state"  label="State"    [fGroup]="addressGroup" [mask]="stateMask"></n-input>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-8">
+              <n-checkbox nName="alteredOrHandwritten" [fGroup]="taxForm" nValue="true" nClass="checkbox-padding" nLabel="Check here if this 1099-G is altered or handwritten"></n-checkbox>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <form-sub-header nTitle="PAYER INFORMATION"></form-sub-header>
+
+      <div class="row">
+        <div class="col-12">
+          <div class="row">
+            <n-input class="col-sm-5" name="payerEin" label="Payer's Federal EIN Number" [mask]="einMask" [fGroup]="taxForm"></n-input>
+          </div>
+          <div class="row">
+            <n-input class="col-sm-8" name="payerName" label="Payer's Name" [fGroup]="taxForm"></n-input>
+            <n-input class="col-sm-4" name="payerCareOf" label="Payer's Care of Name" [fGroup]="taxForm"></n-input>
+            <n-input class="col-sm-12" name="home1" label="Street Address" [fGroup]="payerAddressGroup"></n-input>
+            <n-input class="col-sm-12" name="home2" label="Street Address line 2" [fGroup]="payerAddressGroup"></n-input>
+            <n-input class="col-sm-3" name="zip"    label="Zip Code" [fGroup]="payerAddressGroup" [mask]="zipMask" (keyup)="findZip($event, 'payerAddress')"></n-input>
+            <n-input class="col-sm-4" name="city"   label="City"     [fGroup]="payerAddressGroup"></n-input>
+            <n-input class="col-sm-2" name="state"  label="State"    [fGroup]="payerAddressGroup" [mask]="stateMask"></n-input>
+            <n-input class="col-sm-3" name="payerPhone"  [mask]="phoneMask" label="Phone Number" [fGroup]="taxForm"></n-input>
+          </div>
+        </div>
+      </div>
+
+      <form-sub-header nTitle="INCOME AND PAYMENTS"></form-sub-header>
+
+      <div class="row">
+        <n-money class="col-sm-5" name="field1" label="1-Unemployment Compensation" nRight [fGroup]="taxForm"></n-money>
+        <n-input class="col-sm-5" name="field2" label="2-State or Local Income Tax Refunds " [fGroup]="taxForm"></n-input>
+        <n-input class="col-sm-2" name="field2State"  label=" " [fGroup]="taxForm" [mask]="stateMask"></n-input>
+
+        <n-input class="col-sm-5" name="field3" label="3-Box 2 Amount is for Tax Year" [fGroup]="taxForm"></n-input>
+        <n-money class="col-sm-5" name="field4" label="4-Federal Income Tax Withheld" nRight [fGroup]="taxForm"></n-money>
+
+      </div>
+
+      <form-sub-header nTitle="STATE WITHHOLDING INFORMATION"></form-sub-header>
+
+      <div class="row">
+        <n-input class="col-sm-2" name="field10a"  label="10a-State" [fGroup]="taxForm" [mask]="stateMask"></n-input>
+        <n-input class="col-sm-5" name="field10b"  label="10b-State ID No." [fGroup]="taxForm"></n-input>
+        <n-money class="col-sm-5" name="field11" label="11-State Income Tax Withheld" nRight [fGroup]="taxForm"></n-money>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <button role="button" class="btn btn-primary float-right">save</button>
+        </div>
+      </div>
+      <div class="divider-30"></div>
+    </form>
+  </div>
+</div>

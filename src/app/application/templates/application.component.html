@@ -49,6 +49,9 @@
               <li class="nav-item" *ngIf="hasW2G">
                 <a uiSref="menu.application.w2gForms" uiSrefActive="active" class="dropdown-item" href="#">W-2G ({{application.w2GForms.length}})</a>
               </li>
+              <li class="nav-item" *ngIf="has1099G">
+                <a uiSref="menu.application.forms1099g" uiSrefActive="active" class="dropdown-item" href="#">1099-G ({{application.forms1099G.length}})</a>
+              </li>
               <li class="nav-item">
                 <a uiSref="menu.application.form1040" uiSrefActive="active" class="dropdown-item" href="#">Form 1040</a>
               </li>

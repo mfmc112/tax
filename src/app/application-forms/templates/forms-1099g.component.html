@@ -1,0 +1,21 @@
+<div style="min-height:800px;">
+  <form-header nTitle="1099-G" nSubTitle="Certain Government Payments" [nYear]="year"></form-header>
+
+  <ul class="nav nav-tabs">
+    <li class="nav-item active" *ngFor="let form1099g of forms1099G; let i = index">
+      <a uiSref="menu.application.forms1099g.form1099g" [uiParams]="{ id: form1099g._id }" class="nav-link"
+        [ngClass]="{'active': tab === i }" href="#"
+        (click)="selectTab(i)">
+        <span *ngIf="!form1099g.payersName">1099-G</span>
+        <span *ngIf="form1099g.payersName">{{form1099g.payersName.length>15?form1099g.payersName.substring(0,15):form1099g.payersName}}</span>
+      </a>
+    </li>
+    <li class="nav-item active">
+      <a uiSref="menu.application.forms1099g.form1099g" [uiParams]="{ id: '' }" class="nav-link"
+        [ngClass]="{'active': tab === (forms1099G.length + 1) }" href="#"
+        (click)="selectTab((forms1099G.length + 1))">[Add 1099-G]
+      </a>
+    </li>
+  </ul>
+  <ui-view></ui-view>
+</div>

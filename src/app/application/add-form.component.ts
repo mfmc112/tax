@@ -23,7 +23,7 @@ export class AddFormComponent implements OnInit {
       {name: "Form 8879", value: "8879", info: "IRS e-file signature authorization"},
       {name: "W2 Form", value: "W2", hide: this.currentApplicationService.hasW2()},
       {name: "W-2G", value:"W2G", info: "Certain Gamblings and Winnings", hide: this.currentApplicationService.hasW2G()},
-      {name: "Worksheet 8", value: "wkt8"}
+      {name: "1099-G", value: "1099G", info:"Certain Government Payments", hide: this.currentApplicationService.has1099G()}
     ];
     this.forms = this.getForms(forms);
 
@@ -42,6 +42,8 @@ export class AddFormComponent implements OnInit {
       if (this.currentApplicationService.hasW2) this.currentApplicationService.addW2Form();
     } else if(form.value === 'W2G') {
       if (this.currentApplicationService.hasW2G) this.currentApplicationService.addW2GForm();
+    } else if(form.value === '1099G') {
+      if (this.currentApplicationService.has1099G) this.currentApplicationService.addForm1099G();
     }
 
     this.currentApplicationService.updateApplication().subscribe(
@@ -50,6 +52,7 @@ export class AddFormComponent implements OnInit {
           application => {
             this.currentApplicationService.setW2Forms(application.w2Forms);
             this.currentApplicationService.setW2GForms(application.w2GForms);
+            this.currentApplicationService.setForms1099G(application.forms1099G);
             this.close();
           },err => {
             console.log('Error retrieving application after adding a new form');

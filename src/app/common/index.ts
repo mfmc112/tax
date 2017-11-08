@@ -15,5 +15,5 @@ export * from './user';
 export * from './w2-form';
 export * from './w2G-form';
 export * from './form-1040';
-
+export * from './form-1099G';
 export * from './utils';

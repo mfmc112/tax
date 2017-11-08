@@ -23,6 +23,7 @@ export class ApplicationComponent implements OnInit, DoCheck {
   hasDependents: boolean = false;
   hasW2: boolean = false;
   hasW2G: boolean = false;
+  has1099G: boolean = false;
 
   constructor(
     private _uiRouter: UIRouter,
@@ -62,6 +63,7 @@ export class ApplicationComponent implements OnInit, DoCheck {
 
       this.hasW2 = this.currentApplicationService.hasW2();
       this.hasW2G = this.currentApplicationService.hasW2G();
+      this.has1099G = this.currentApplicationService.has1099G();
       let pi = this.currentApplicationService.getPersonalInformation()
       if (!pi) this.hasDependents = false;
       this.hasDependents = pi.dependents;
