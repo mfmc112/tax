@@ -6,8 +6,8 @@
       <a uiSref="menu.application.forms1099g.form1099g" [uiParams]="{ id: form1099g._id }" class="nav-link"
         [ngClass]="{'active': tab === i }" href="#"
         (click)="selectTab(i)">
-        <span *ngIf="!form1099g.payersName">1099-G</span>
-        <span *ngIf="form1099g.payersName">{{form1099g.payersName.length>15?form1099g.payersName.substring(0,15):form1099g.payersName}}</span>
+        <span *ngIf="!form1099g.payerName">1099-G {{form1099g._id}}</span>
+        <span *ngIf="form1099g.payerName">{{form1099g.payerName.length>15?form1099g.payerName.substring(0,15):form1099g.payerName}}</span>
       </a>
     </li>
     <li class="nav-item active">

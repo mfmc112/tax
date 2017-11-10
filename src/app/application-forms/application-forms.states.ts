@@ -42,16 +42,16 @@ export const w2GFormsState = {
   component: W2GFormsComponent
 };
 
+export const form1099GState = {
+  name: 'menu.application.forms1099g.form1099g',
+  url: '/forms-1099g/:id',
+  component: Form1099GComponent
+};
+
 export const forms1099GState = {
   name: 'menu.application.forms1099g',
   url: '/forms-1099g',
   component: Forms1099GComponent
-};
-
-export const form1099GState = {
-  name: 'menu.application.forms1099g.form1099g',
-  url: '/forms-1099g',
-  component: Form1099GComponent
 };
 
 export const w2GState = {

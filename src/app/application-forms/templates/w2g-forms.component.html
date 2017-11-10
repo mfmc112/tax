@@ -6,8 +6,8 @@
       <a uiSref="menu.application.w2gForms.w2g" [uiParams]="{ id: w2g._id }" class="nav-link"
         [ngClass]="{'active': tab === i }" href="#"
         (click)="selectTab(i)">
-        <span *ngIf="!w2g.payersName">W-2G</span>
-        <span *ngIf="w2g.payersName">{{w2g.payersName.length>15?w2g.payersName.substring(0,15):w2g.payersName}}</span>
+        <span *ngIf="!w2g.payerName">W-2G</span>
+        <span *ngIf="w2g.payerName">{{w2g.payerName.length>15?w2g.payerName.substring(0,15):w2g.payerName}}</span>
       </a>
     </li>
     <li class="nav-item active">

@@ -20,7 +20,7 @@ export class Forms1099GComponent implements OnInit, DoCheck {
   ngOnInit() {
     this.year = this.currentApplicationService.getApplication().year;
     this.forms1099G = this.currentApplicationService.getForms1099G();
-    let id = this.get1099gId();
+    let id = this.get1099GId();
     this._uiRouter.stateService.go('menu.application.forms1099g.form1099g', {id: id});
     if (!id || id === '0') this.selectTab(1);
     else this.selectTab(0);
@@ -30,7 +30,7 @@ export class Forms1099GComponent implements OnInit, DoCheck {
     this.forms1099G = this.currentApplicationService.getForms1099G();
   }
 
-  get1099gId(): string {
+  get1099GId(): string {
     let id = '0';
     if (this.forms1099G && this.forms1099G.length > 0) id = this.forms1099G[0]._id;
     return id;
