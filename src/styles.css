@@ -190,3 +190,9 @@ my-date-picker.ng-invalid .mydp {
 .mydp .btnpicker {
     border-radius: 0 4px 4px 0;
 }
+
+.alert-default {
+    background-color: #E0E0E0 ;
+    border-color: #787878!important;
+    color: 000000;
+}
