@@ -16,12 +16,17 @@
                 </select>
               </div>
             </div>
-            <n-input class="col-sm-5" name="name" label="Recipient's Name" [fGroup]="taxForm"></n-input>
-            <n-input class="col-sm-4" name="ssn" label="Recipient's-SSN" [mask]="ssnMask" [fGroup]="taxForm"></n-input>
+            <div class="col-sm-9"></div>
+
+            <n-input class="col-sm-3" name="ssn" label="Recipient's-SSN" [mask]="ssnMask" [fGroup]="taxForm"></n-input>
+            <n-input class="col-sm-4" name="name" label="Recipient's Name" [fGroup]="taxForm"></n-input>
+            <n-input class="col-sm-5" name="accountNumber" label="Account Number (Oprional)" [fGroup]="taxForm"></n-input>
+
+
           </div>
 
           <div class="row">
-            <n-checkbox nName="sameAddressAsHome" [fGroup]="taxForm" nValue="true" nLabel="Check here if the recipient's address is the same as the present home address" (change)="sameAddress($event)"></n-checkbox>
+            <n-checkbox nName="sameAddressAsHome" [fGroup]="taxForm" nValue="true" nLabel="Check here if the recipient's address is the same as the present home address." (change)="sameAddress($event)"></n-checkbox>
           </div>
 
           <div class="row">

@@ -84,6 +84,7 @@ export class Form1099GComponent implements OnInit {
         'form1099gFor': [this.form1099G.form1099gFor, Validators.compose([Validators.required])],
         'name': [{value: this.form1099G.name, disabled:true}, Validators.compose([Validators.required, Validators.pattern(validationRules.STRING)])],
         'ssn': [{value: this.form1099G.ssn, disabled:true}, Validators.compose([Validators.required, Validators.pattern(validationRules.SSN_REGEXP)])],
+        'accountNumber': this.form1099G.accountNumber,
         'address': this.addressGroup,
         'sameAddressAsHome': this.form1099G.sameAddressAsHome,
         'alteredOrHandwritten': this.form1099G.alteredOrHandwritten,
@@ -146,11 +147,11 @@ export class Form1099GComponent implements OnInit {
     createAddressGroup(address: MailingAddress): FormGroup {
       if (!address) address = new MailingAddress();
       return new FormGroup({
-        'home1': new FormControl(address.home1),
+        'home1': new FormControl(address.home1, Validators.compose([Validators.required])),
         'home2': new FormControl(address.home2),
-        'zip': new FormControl(address.zip),
-        'city': new FormControl(address.city),
-        'state': new FormControl(address.state)
+        'zip': new FormControl(address.zip, Validators.compose([Validators.required])),
+        'city': new FormControl(address.city, Validators.compose([Validators.required])),
+        'state': new FormControl(address.state, Validators.compose([Validators.required]))
       });
     }
 
