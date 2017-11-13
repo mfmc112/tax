@@ -24,7 +24,7 @@ var form1099GSchema = new Schema({
   field4: Number,
   field10a: String,
   field10b: String,
-  field11: Number
+  field11: String
 });
 
 var Form1099G = mongoose.model('Form1099G', form1099GSchema);

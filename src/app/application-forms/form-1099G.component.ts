@@ -10,6 +10,7 @@ import { DatePickerUtils } from './utils/date-picker-utils';
 import { MaskUtils } from './utils/masks-utils';
 import { ZipCodeApiService } from '../common/api/zip-code-api.service';
 import { ZipCodeUtils } from './utils/zip-code-utils';
+import { StringUtils } from '../common/utils/';
 
 import { Application, PersonalInformation, BasicInformation,  Form1099G, MailingAddress, Client, Utils } from '../common/';
 import { NInputComponent, NMoneyComponent, NTextareaComponent, NCheckboxComponent } from '../common/n-components/';
@@ -23,6 +24,7 @@ import * as _ from 'lodash';
   templateUrl: './templates/form-1099g.component.html'
 })
 export class Form1099GComponent implements OnInit {
+  stringUtils: StringUtils = new StringUtils();
   maskUtils: MaskUtils = new MaskUtils();
   datePickerUtils: DatePickerUtils = new DatePickerUtils();
   zipCodeUtils: ZipCodeUtils;
@@ -69,6 +71,10 @@ export class Form1099GComponent implements OnInit {
         this.taxForm.get('form1099gFor').disable();
       }
       this.setRecipientsName();
+      this.requireField3(null);
+      this.changeField10a();
+      this.changeField10b();
+      this.changeField11();
       this.initializeDropdownOptions();
     }
 
@@ -89,7 +95,7 @@ export class Form1099GComponent implements OnInit {
         'sameAddressAsHome': this.form1099G.sameAddressAsHome,
         'alteredOrHandwritten': this.form1099G.alteredOrHandwritten,
         'payerEin': [this.form1099G.payerEin,Validators.compose([Validators.pattern(validationRules.EIN_REGEXP)])],
-        'payerName': this.form1099G.payerName,
+        'payerName': [this.form1099G.payerName, Validators.compose([Validators.required])],
         'payerCareOf': this.form1099G.payerCareOf,
         'payerAddress': this.payerAddressGroup,
         'payerPhone': this.form1099G.payerPhone,
@@ -101,7 +107,7 @@ export class Form1099GComponent implements OnInit {
         'field4': this.form1099G.field4?this.form1099G.field4:0,
         'field10a': this.form1099G.field10a,
         'field10b': this.form1099G.field10b,
-        'field11': this.form1099G.field11?this.form1099G.field11:0
+        'field11': this.form1099G.field11
       });
     }
 
@@ -141,7 +147,6 @@ export class Form1099GComponent implements OnInit {
     removeCurrencyMask(): void {
       this.form1099G['field1'] = this.utils.removeCurrencyFormat(this.taxForm.get('field1').value);
       this.form1099G['field4'] = this.utils.removeCurrencyFormat(this.taxForm.get('field4').value);
-      this.form1099G['field11'] = this.utils.removeCurrencyFormat(this.taxForm.get('field11').value);
     }
 
     createAddressGroup(address: MailingAddress): FormGroup {
@@ -177,10 +182,57 @@ export class Form1099GComponent implements OnInit {
         this.taxForm.get(owner).get('state'));
     }
 
+    requireField3($event) {
+      if (this.stringUtils.isEmpty(this.taxForm.get('field2').value) && this.stringUtils.isEmpty(this.taxForm.get('field2State').value)) {
+        this.taxForm.get('field3').setValidators([]);
+      } else {
+        this.taxForm.get('field3').setValidators([Validators.required]);
+      }
+      this.taxForm.get('field3').updateValueAndValidity();
+    }
+
+    changeField10a(): void {
+      const filed10a$ = this.taxForm.get('field10a').value;
+      if (!filed10a$ || filed10a$ === '') {
+        this.taxForm.get('field10b').setValidators([]);
+        this.taxForm.get('field11').setValidators([]);
+      } else {
+        this.taxForm.get('field10b').setValidators([Validators.required]);
+        this.taxForm.get('field11').setValidators([Validators.required]);
+      }
+      this.taxForm.get('field10b').updateValueAndValidity();
+      this.taxForm.get('field11').updateValueAndValidity();
+    }
+
+    changeField10b(): void {
+      const field10b$ = this.taxForm.get('field10b').value;
+      if (!field10b$ || field10b$ === '') {
+        this.taxForm.get('field10a').setValidators([]);
+        this.taxForm.get('field11').setValidators([]);
+      } else {
+        this.taxForm.get('field10a').setValidators([Validators.required]);
+        this.taxForm.get('field11').setValidators([Validators.required]);
+      }
+      this.taxForm.get('field10a').updateValueAndValidity();
+      this.taxForm.get('field11').updateValueAndValidity();
+    }
+
+    changeField11(): void {
+      const field11$ = this.taxForm.get('field11').value;
+      if (!field11$ || field11$ === '') {
+        this.taxForm.get('field10a').setValidators([]);
+        this.taxForm.get('field10b').setValidators([]);
+      } else {
+        this.taxForm.get('field10a').setValidators([Validators.required]);
+        this.taxForm.get('field10b').setValidators([Validators.required]);
+      }
+      this.taxForm.get('field10a').updateValueAndValidity();
+      this.taxForm.get('field10b').updateValueAndValidity();
+    }
+
     cleanAmount(form1099g: any): any {
       form1099g.field1 = this.maskUtils.cleanAmount(form1099g.field1);
       form1099g.field4 = this.maskUtils.cleanAmount(form1099g.field4);
-      form1099g.field11 = this.maskUtils.cleanAmount(form1099g.field11);
       return form1099g;
     }
 
