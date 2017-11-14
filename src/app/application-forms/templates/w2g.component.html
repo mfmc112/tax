@@ -24,7 +24,9 @@
           </div>
 
           <div class="row">
-            <n-checkbox nName="sameAddressAsHome" [fGroup]="taxForm" nValue="true" nLabel="Check here if the recipient's address is the same as the present home address" (change)="sameAddress($event)"></n-checkbox>
+            <div class="col-sm-8">
+              <n-checkbox nName="sameAddressAsHome" [fGroup]="taxForm" nValue="true" nClass="checkbox-padding" nLabel="Check here if the recipient's address is the same as the present home address" (change)="sameAddress($event)"></n-checkbox>
+            </div>
           </div>
 
           <div class="row">
