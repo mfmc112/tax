@@ -199,6 +199,8 @@ export class W2GComponent implements OnInit {
     }
 
     findZip($event, owner: string): void {
+      if (!this.taxForm.get(owner) || !this.taxForm.get(owner).value) return;
+      
       let obj = this.zipCodeUtils.findZipCode(
         this.taxForm.get(owner).get('zip').value,
         this.taxForm.get(owner).get('city'),

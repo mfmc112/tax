@@ -36,6 +36,8 @@ export class Form1099GComponent implements OnInit {
   einMask: Array<string | RegExp> = this.maskUtils.MASKS.EIN;
   zipMask:  Array<string | RegExp> = this.maskUtils.MASKS.ZIP;
   stateMask:  Array<string | RegExp> = this.maskUtils.MASKS.STATE;
+  stateIdMask: Array<string | RegExp> = this.maskUtils.MASKS.STATE_ID;
+  
   myDatePickerOptions: IMyDpOptions = this.datePickerUtils.myDatePickerOptions;
   defaultMonth: IMyDefaultMonth = this.datePickerUtils.defaultMonth;
   taxForm: FormGroup;

@@ -75,8 +75,8 @@
 
       <div class="row">
         <n-money class="col-sm-5" name="field1" label="1-Unemployment Compensation" nRight [fGroup]="taxForm"></n-money>
-        <n-input class="col-sm-5" name="field2" label="2-State or Local Income Tax Refunds " [fGroup]="taxForm" (keyup)="requireField3($event)"></n-input>
-        <n-input class="col-sm-2" name="field2State"  label=" " [fGroup]="taxForm" [mask]="stateMask" (keyup)="requireField3($event)"></n-input>
+        <n-input class="col-sm-5" name="field2" label="2-State or Local Income Tax Refunds " [fGroup]="taxForm" [mask]="stateMask" (keyup)="requireField3($event)"></n-input>
+        <n-input class="col-sm-2" name="field2State"  label="State" [fGroup]="taxForm" [mask]="stateMask" (keyup)="requireField3($event)"></n-input>
 
         <n-input class="col-sm-5" name="field3" label="3-Box 2 Amount is for Tax Year" [fGroup]="taxForm"></n-input>
         <n-money class="col-sm-5" name="field4" label="4-Federal Income Tax Withheld" nRight [fGroup]="taxForm"></n-money>
@@ -87,7 +87,7 @@
 
       <div class="row">
         <n-input class="col-sm-2" name="field10a"  label="10a-State" [fGroup]="taxForm" [mask]="stateMask" (keyup)="changeField10a();"></n-input>
-        <n-input class="col-sm-5" name="field10b"  label="10b-State ID No." [fGroup]="taxForm" [mask]="stateMask" (keyup)="changeField10b();"></n-input>
+        <n-input class="col-sm-5" name="field10b"  label="10b-State ID No." [fGroup]="taxForm" [mask]="stateIdMask" (keyup)="changeField10b();"></n-input>
         <n-money class="col-sm-5" name="field11"  label="11-State Income Tax Withheld" [fGroup]="taxForm" nRight (keyup)="changeField11();"></n-money>
       </div>
 
