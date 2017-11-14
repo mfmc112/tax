@@ -20,7 +20,7 @@
 
             <n-input class="col-sm-3" name="ssn" label="Recipient's-SSN" [mask]="ssnMask" [fGroup]="taxForm"></n-input>
             <n-input class="col-sm-4" name="name" label="Recipient's Name" [fGroup]="taxForm"></n-input>
-            <n-input class="col-sm-5" name="accountNumber" label="Account Number (Oprional)" [fGroup]="taxForm"></n-input>
+            <n-input class="col-sm-5" name="accountNumber" label="Account Number (Optional)" [fGroup]="taxForm"></n-input>
 
             <div class="col-sm-12">
               <div class="alert alert-default" role="alert">
@@ -88,7 +88,7 @@
       <div class="row">
         <n-input class="col-sm-2" name="field10a"  label="10a-State" [fGroup]="taxForm" [mask]="stateMask" (keyup)="changeField10a();"></n-input>
         <n-input class="col-sm-5" name="field10b"  label="10b-State ID No." [fGroup]="taxForm" [mask]="stateMask" (keyup)="changeField10b();"></n-input>
-        <n-input class="col-sm-5" name="field11"  label="11-State Income Tax Withheld" [fGroup]="taxForm" [mask]="stateMask" (keyup)="changeField11();"></n-input>
+        <n-money class="col-sm-5" name="field11"  label="11-State Income Tax Withheld" [fGroup]="taxForm" nRight (keyup)="changeField11();"></n-money>
       </div>
 
       <div class="row">

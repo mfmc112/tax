@@ -22,7 +22,7 @@ export class Form1099G {
   field4: number;
   field10a: string;
   field10b: string;
-  field11: string;
+  field11: number;
 
   constructor(client: Client) {
     let middleName = ((client.middleName) ? client.middleName : "");

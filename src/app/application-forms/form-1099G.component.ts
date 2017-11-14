@@ -107,7 +107,7 @@ export class Form1099GComponent implements OnInit {
         'field4': this.form1099G.field4?this.form1099G.field4:0,
         'field10a': this.form1099G.field10a,
         'field10b': this.form1099G.field10b,
-        'field11': this.form1099G.field11
+        'field11': this.form1099G.field11?this.form1099G.field11:0
       });
     }
 
@@ -219,7 +219,7 @@ export class Form1099GComponent implements OnInit {
 
     changeField11(): void {
       const field11$ = this.taxForm.get('field11').value;
-      if (!field11$ || field11$ === '') {
+      if (!field11$ || field11$ === '' || field11$ === '0' || field11$ === '$0' ) {
         this.taxForm.get('field10a').setValidators([]);
         this.taxForm.get('field10b').setValidators([]);
       } else {
