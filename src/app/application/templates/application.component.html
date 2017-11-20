@@ -41,19 +41,19 @@
                 <a uiSref="menu.application.filingInfo" uiSrefActive="active" class="dropdown-item" href="#">Filing Information</a>
               </li>
               <li class="nav-item" *ngIf="hasDependents">
-                <a uiSref="menu.application.dependentsForm" [uiOptions]="{reload: true}" uiSrefActive="active" class="dropdown-item" href="#">Dependents ({{application.dependents.length}})</a>
+                <a uiSref="menu.application.dependentsForm" [uiOptions]="{reload: false}" uiSrefActive="active" class="dropdown-item" href="#">Dependents ({{application.dependents.length}})</a>
               </li>
               <li class="nav-item" *ngIf="hasW2">
-                <a uiSref="menu.application.w2Forms" [uiOptions]="{reload: true}" uiSrefActive="active" class="dropdown-item" href="#">W-2 ({{application.w2Forms.length}})</a>
+                <a uiSref="menu.application.w2Forms" [uiOptions]="{reload: false}" uiSrefActive="active" class="dropdown-item" href="#">W-2 ({{application.w2Forms.length}})</a>
               </li>
               <li class="nav-item" *ngIf="hasW2G">
-                <a uiSref="menu.application.w2gForms" [uiOptions]="{reload: true}" uiSrefActive="active" class="dropdown-item" href="#">W-2G ({{application.w2GForms.length}})</a>
+                <a uiSref="menu.application.w2gForms" [uiOptions]="{reload: false}" uiSrefActive="active" class="dropdown-item" href="#">W-2G ({{application.w2GForms.length}})</a>
               </li>
               <li class="nav-item" *ngIf="has1099G">
-                <a uiSref="menu.application.forms1099g" [uiOptions]="{reload: true}" uiSrefActive="active" class="dropdown-item" href="#">1099-G ({{application.forms1099G.length}})</a>
+                <a uiSref="menu.application.forms1099g" [uiOptions]="{reload: false}" uiSrefActive="active" class="dropdown-item" href="#">1099-G ({{application.forms1099G.length}})</a>
               </li>
               <li class="nav-item">
-                <a uiSref="menu.application.form1040" [uiOptions]="{reload: true}" uiSrefActive="active" class="dropdown-item" href="#">Form 1040</a>
+                <a uiSref="menu.application.form1040" [uiOptions]="{reload: false}" uiSrefActive="active" class="dropdown-item" href="#">Form 1040</a>
               </li>
             </ul>
           </div>

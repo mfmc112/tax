@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApplicationApiService } from '../api/application-api.service';
-import { CalculateW2Service } from './calculate-w2.service';
-import { CalculateW2GService } from './calculate-w2g.service';
+import { CalculateW2Service } from './forms/calculate-w2.service';
+import { CalculateW2GService } from './forms/calculate-w2g.service';
 import { AbstractControl } from '@angular/forms';
 import { Application, Client, User, ClientInformation, PersonalInformation, FilingInformation, Dependent, BasicInformation, W2Form, W2GForm, Form1040, Form1099G } from '../../common/';
 import * as _ from 'lodash';

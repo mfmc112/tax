@@ -45,6 +45,9 @@ server.use(function (req, res, next) {
     // Remove the X-Powered-By header.
     res.removeHeader("X-Powered-By");
 
+    // res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+    // res.setHeader("Pragma", "no-cache");
+    // res.setHeader("Expires",0);
     // Pass to next layer of middleware
     next();
 });

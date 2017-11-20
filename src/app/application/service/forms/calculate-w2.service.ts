@@ -1,28 +1,20 @@
 import { Injectable } from '@angular/core';
-import { ApplicationApiService } from '../api/application-api.service';
-import { FormulaService } from './formula.service';
+import { ApplicationApiService } from '../../api/application-api.service';
+import { FormulaService } from '../formula.service';
+import { CalculateService } from '../calculate.service';
 import { AbstractControl } from '@angular/forms';
-import { Application, Client, User, ClientInformation, PersonalInformation, FilingInformation, Dependent, BasicInformation, W2Form, W2GForm, Form1040, Form1099G } from '../../common/';
+import { Application, ClientInformation, FilingInformation} from '../../../common/';
 import * as _ from 'lodash';
 
 @Injectable()
-export class CalculateW2Service {
+export class CalculateW2Service extends CalculateService {
 
   formula: any;
 
   constructor(private formulaService: FormulaService) {
+    super();
     this.formula = formulaService.getFormula();
   }
-
-  getCurrentAGI(application: Application): number {
-    return (application && application.currentAgi) ? Number(application.currentAgi) : 0;
-  }
-
-  addToEstimate(application: Application, estimated: number, paid: number): void {
-    if (!_.isNumber(paid)) paid = 0;
-    application.estimate += Math.round(paid-estimated);
-  }
-
 
   calculateW2Field1(application: Application): number {
     let field1 = 0;
