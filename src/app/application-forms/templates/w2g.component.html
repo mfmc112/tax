@@ -19,7 +19,7 @@
             <n-input class="col-sm-5" name="name" label="Winner's Name" [fGroup]="taxForm"></n-input>
             <n-input class="col-sm-4" name="ssn" label="Winner's-SSN" [mask]="ssnMask" [fGroup]="taxForm"></n-input>
             <div class="offset-sm-8 col-sm-4" style="margin-top: -10px;">
-              <n-checkbox nName="isIdEin" [fGroup]="taxForm" nValue="true" nClass="font-13" nLabel="Check here if the ID on the W2-G is an EIN"></n-checkbox>
+              <n-checkbox nName="isIdEin" [fGroup]="taxForm" nValue="true" nClass="checkbox-padding font-13" nLabel="Check here if the ID on the W2-G is an EIN"></n-checkbox>
             </div>
           </div>
 
@@ -70,7 +70,7 @@
       </div>
 
       <div class="row">
-        <n-money class="col-sm-5" name="field1" label="1-Gross Winnings" nRight [fGroup]="taxForm"></n-money>
+        <n-money class="col-sm-5" name="field1" label="1-Gross Winnings" nRight [fGroup]="taxForm" (keyup)="calculate($event)"></n-money>
         <div class="col-sm-5">
           <label for="taxpayerDeath">2-Date Won</label>
           <my-date-picker name="field2"
@@ -82,7 +82,7 @@
         </div>
 
         <n-input class="col-sm-5" name="field3" label="3-Type of Wager" [fGroup]="taxForm"></n-input>
-        <n-money class="col-sm-5" name="field4" label="4-Federal Tax Withheld" nRight [fGroup]="taxForm"></n-money>
+        <n-money class="col-sm-5" name="field4" label="4-Federal Tax Withheld" nRight [fGroup]="taxForm" (keyup)="calculate($event)"></n-money>
 
         <n-input class="col-sm-5" name="field5" label="5-Transaction" [fGroup]="taxForm"></n-input>
         <n-input class="col-sm-5" name="field6" label="6-Race" [fGroup]="taxForm"></n-input>

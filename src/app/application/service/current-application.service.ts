@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ApplicationApiService } from '../api/application-api.service';
+import { CalculateHelperService } from './calculate-helper.service';
 import { AbstractControl } from '@angular/forms';
 import { Application, Client, User, ClientInformation, PersonalInformation, FilingInformation, Dependent, BasicInformation, W2Form, W2GForm, Form1040, Form1099G } from '../../common/';
 import * as _ from 'lodash';
@@ -8,30 +9,11 @@ import * as _ from 'lodash';
 export class CurrentApplicationService {
 
   private application: Application;
-  private calcHelper = {
-    "2017": {
-      "threshold": {
-        "box3": 127200,
-        "box6": {
-          "single": 200000,
-          "jointly": 250000,
-          "separate": 125000,
-          "head": 200000,
-          "widow": 200000
-        }
-      },
-      "percent": {
-        "box2": 10,
-        "box4": 6.2,
-        "box6": {
-          "default": 1.45,
-          "over": 0.9
-        }
-      }
-    }
-  }
 
-  constructor( private applicationApiService: ApplicationApiService ) {  }
+  constructor(
+    private applicationApiService: ApplicationApiService,
+    private calculateHelperService: CalculateHelperService
+  ) {  }
 
   getApplication(): Application {
     return this.application;
@@ -54,7 +36,8 @@ export class CurrentApplicationService {
   }
 
   getCurrentAGI(): number {
-    return (this.application && this.application.currentAgi) ? Number(this.application.currentAgi) : 0;
+    return this.calculateHelperService.getCurrentAGI(this.application);
+    // return (this.application && this.application.currentAgi) ? Number(this.application.currentAgi) : 0;
   }
 
   retrieveApplication(id: string): any {
@@ -105,13 +88,7 @@ export class CurrentApplicationService {
   }
 
   calculateW2Field1(): number {
-    let field1 = 0;
-    if (this.application.w2Forms && this.application.w2Forms[0]) {
-      _.each(this.application.w2Forms, form => {
-        field1 = field1 + form.field1;
-      });
-    }
-    return field1;
+    return this.calculateHelperService.calculateW2Field1(this.application);
   }
 
   calculate1040Box7(): number {
@@ -124,97 +101,30 @@ export class CurrentApplicationService {
     return box7;
   }
 
-  calculateBox2(amount: number): number {
-    let box2 = 0;
-    let percent = this.calcHelper[this.application.year]["percent"]["box2"];
-    if (amount) box2 = Math.round(amount * (percent/100));
-    return box2;
-  }
-
-  calculateBox8(amount: number): number {
-    return this.calculateBox2(amount);
-  }
-
-  /*
-   * Calculate box 3 and box 4
-   */
-  calculateBox3(box1: number, form: AbstractControl): number {
-    if (!box1 || box1 == 0) return 0;
-    let box3Ts = this.calcHelper[this.application.year]["threshold"]["box3"];
-    let box3 = box3Ts;
-    if (box1 < box3Ts) box3 = box1;
-    form.setValue(this.calculateBox4(box3));
-    return box3;
-  }
-
-  private calculateBox4(amount: number): number {
-    let box4 = 0;
-    if (amount) {
-      let percent = this.calcHelper[this.application.year]["percent"]["box4"];
-      box4 = Math.round(amount * (percent/100));
-    }
-    return box4;
-  }
-
-  calculateBox5(box1: number): number {
-    if (!box1 || box1 == 0) return 0;
-    return box1;
-  }
-
-  calculateBox6(box1: number): number {
-    let box6 = 0;
-    if (box1) {
-      let status = this.application.clientInformation.filingInformation.status;
-      if (!status) status = "single"; // set single if empty
-      let box6Ts = this.calcHelper[this.application.year]["threshold"]["box6"][status];
-      let percent = this.calcHelper[this.application.year]["percent"]["box6"]["default"];
-      box6 = Math.round(box1 * (percent/100));
-      if (box1 > box6Ts) {
-        let over = this.calcHelper[this.application.year]["percent"]["box6"]["over"];
-        box6 = box6 + ((box1 - box6Ts) * (over/100));
-      }
-    }
-    return box6;
-  }
+  calculateBox2(amount: number): number { return this.calculateHelperService.calculateBox2(this.application, amount); }
+  calculateBox8(amount: number): number { return this.calculateHelperService.calculateBox8(this.application, amount); }
+  calculateBox3(box1: number, form: AbstractControl): number { return this.calculateHelperService.calculateBox3(this.application, box1, form); }
+  private calculateBox4(amount: number): number { return this.calculateHelperService.calculateBox4(this.application, amount); }
+  calculateBox5(box1: number): number { return this.calculateHelperService.calculateBox5(this.application, box1); }
+  calculateBox6(box1: number): number { return this.calculateHelperService.calculateBox6(this.application, box1); }
 
   calculate(): void {
     this.application.estimate = 0;
     this.application.currentAgi = 0;
-    if (!this.application.w2Forms || this.application.w2Forms.length <= 0 || !this.application.w2Forms[0]) {
-      this.application.w2Forms = undefined;
-      this.addToEstimate(0, 0);
-      return;
-    }
-    _.each(this.application.w2Forms, form => {
-      if (!_.isEmpty(form.field1) || form.field1 >= 0) {
-        this.application.currentAgi = this.getCurrentAGI() + Number(form.field1);
-        let estimated = this.calculateBox2(form.field1);
-        let paid = Number(form.field2);
-        this.addToEstimate(estimated, paid);
-      }
-      if (!_.isEmpty(form.field3) || form.field3 >= 0) {
-        let estimated = this.calculateBox4(form.field3);
-        let paid = Number(form.field4);
-        this.addToEstimate(estimated, paid);
-      }
-      if (!_.isEmpty(form.field5) || form.field5 >= 0) {
-        let estimated = this.calculateBox6(form.field5);
-        let paid = Number(form.field6);
-        this.addToEstimate(estimated, paid);
-      }
-      if (!_.isEmpty(form.field8) || form.field8 >= 0) {
-        this.application.currentAgi = this.getCurrentAGI() + Number(form.field8);
-        let estimated = this.calculateBox8(form.field8);
-        this.addToEstimate(estimated, 0);
-      }
-    });
+    this.calculateW2Forms();
+    this.calculateW2GForms();
+  }
 
+  calculateW2Forms() {
+    this.calculateHelperService.calculateW2Forms(this.application);
+  }
 
+  calculateW2GForms() {
+    this.calculateHelperService.calculateW2GForms(this.application);
   }
 
   addToEstimate(estimated: number, paid: number): void {
-    if (!_.isNumber(paid)) paid = 0;
-    this.application.estimate += Math.round(paid-estimated);
+    this.calculateHelperService.addToEstimate(this.application, estimated, paid);
   }
 
   getDependents(): Dependent[] {

@@ -20,6 +20,10 @@ import { TaxContentComponent } from './tax-return/tax-content.component';
 
 import { CommonService } from './common.service';
 import { CurrentApplicationService } from './application/service/current-application.service';
+import { CalculateHelperService } from './application/service/calculate-helper.service';
+import { CalculateW2Service } from './application/service/calculate-w2.service';
+import { CalculateW2GService } from './application/service/calculate-w2g.service';
+import { FormulaService } from './application/service/formula.service';
 import { WorkingClientService } from './working-client.service';
 import { WorkingTaxReturnService } from './working-tax-return.service';
 
@@ -63,6 +67,10 @@ import { routerConfigFn } from './router.config';
   providers: [
     CommonService,
     CurrentApplicationService,
+    CalculateHelperService,
+    CalculateW2Service,
+    CalculateW2GService,
+    FormulaService,
     WorkingClientService,
     WorkingTaxReturnService,
     HttpClientModule,

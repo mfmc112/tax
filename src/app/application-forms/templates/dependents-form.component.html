@@ -3,7 +3,10 @@
 
   <ul class="nav nav-tabs">
     <li class="nav-item active" *ngFor="let dependent of dependents; let i = index">
-      <a uiSref="menu.application.dependentsForm.dependent" [uiParams]="{ id: dependent._id }" class="nav-link" [ngClass]="{'active': tab === i }" href="#" (click)="selectTab(i)">{{dependent.basicInfo.firstName}} {{dependent.basicInfo.initial}}</a>
+      <a uiSref="menu.application.dependentsForm.dependent" [uiParams]="{ id: dependent._id }" class="nav-link" [ngClass]="{'active': tab === i }" href="#" (click)="selectTab(i)">
+        <span *ngIf="dependent.basicInfo && dependent.basicInfo.firstName">{{dependent.basicInfo.firstName}} {{dependent.basicInfo.initial}}</span>
+        <span *ngIf="!dependent.basicInfo || !dependent.basicInfo.firstName">Dependent</span>
+        </a>
     </li>
     <li class="nav-item active">
       <a uiSref="menu.application.dependentsForm.dependent" [uiParams]="{ id: '' }" class="nav-link" [ngClass]="{'active': tab === (dependents.length + 1) }" href="#" (click)="selectTab((dependents.length + 1))">[Add Dependent]</a>
